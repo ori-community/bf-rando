@@ -57,7 +57,6 @@
     <Compile Include="Pickup Actions\RandomiserActionResult.cs" />
     <Compile Include="Randomiser.cs" />
     <Compile Include="RandomiserBootstrap.cs" />
-    <Compile Include="RandomiserGuids.cs" />
     <Compile Include="RandomiserIcons.cs" />
     <Compile Include="RandomiserInventory.cs" />
     <Compile Include="RandomiserLocations.cs" />

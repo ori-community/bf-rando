@@ -10,24 +10,24 @@ namespace Randomiser
             switch (__instance.State)
             {
                 case WorldState.WaterPurified:
-                    Randomiser.Grant(RandomiserGuids.WaterPurified);
+                    Randomiser.Grant("GinsoEscapeExit");
                     if (__instance.IsTrue)
                         Randomiser.Inventory.finishedGinsoEscape = true;
                     return false;
                 case WorldState.GinsoTreeKey:
-                    Randomiser.Grant(RandomiserGuids.WaterVein);
+                    Randomiser.Grant("WaterVein");
                     return false;
                 case WorldState.WindRestored:
-                    Randomiser.Grant(RandomiserGuids.WindRestored);
+                    Randomiser.Grant("ForlornEscape");
                     return false;
                 case WorldState.ForlornRuinsKey:
-                    Randomiser.Grant(RandomiserGuids.GumonSeal);
+                    Randomiser.Grant("GumonSeal");
                     return false;
                 case WorldState.MountHoruKey:
-                    Randomiser.Grant(RandomiserGuids.Sunstone);
+                    Randomiser.Grant("Sunstone");
                     return false;
                 case WorldState.WarmthReturned:
-                    Randomiser.Grant(RandomiserGuids.WarmthReturned);
+                    Randomiser.Grant("FinalEscape");
                     return false;
             }
 

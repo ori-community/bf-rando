@@ -25,12 +25,29 @@ namespace Randomiser
                 return;
             }
 
+            Grant(location);
+        }
+
+        public static void Grant(string name)
+        {
+            Location location = Locations.GetLocation(name);
+            if (location == null)
+            {
+                Message("ERROR: Unknown location: " + name);
+                return;
+            }
+
+            Grant(location);
+        }
+
+        private static void Grant(Location location)
+        {
             Debug.Log(location.name);
 
-            var action = Seed.GetActionFromGuid(guid);
+            var action = Seed.GetActionFromGuid(location.guid);
             if (action == null)
             {
-                Message("ERROR: Unknown pickup id: " + new Guid(guid.ToByteArray()));
+                Message("ERROR: Unknown pickup id: " + new Guid(location.guid.ToByteArray()));
                 return;
             }
 
