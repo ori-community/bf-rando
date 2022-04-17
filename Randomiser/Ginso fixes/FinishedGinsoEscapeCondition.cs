@@ -5,7 +5,7 @@
         public bool IsTrue = true;
         public override bool Validate(IContext context)
         {
-            return Randomiser.Inventory.finishedEscape == IsTrue;
+            return Randomiser.Inventory.finishedGinsoEscape == IsTrue;
         }
     }
 }
