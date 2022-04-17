@@ -11,13 +11,10 @@ namespace Randomiser
         private Dictionary<string, Location> nameMap = new Dictionary<string, Location>();
         private Dictionary<MoonGuid, Location> guidMap = new Dictionary<MoonGuid, Location>();
 
-        public IEnumerable<Location> AllLocs()
-        {
-            return guidMap.Values;
-        }
-
         public Location GetLocation(MoonGuid guid) => guidMap.GetOrDefault(guid);
         public Location GetLocation(string name) => nameMap.GetOrDefault(name);
+
+        public IEnumerable<Location> GetAll() => guidMap.Values;
 
         void Awake()
         {

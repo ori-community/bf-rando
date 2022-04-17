@@ -55,9 +55,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pickup Actions\RandomiserAction.cs" />
     <Compile Include="Pickup Actions\RandomiserActionResult.cs" />
+    <Compile Include="Randomiser.cs" />
     <Compile Include="RandomiserBootstrap.cs" />
     <Compile Include="RandomiserGuids.cs" />
     <Compile Include="RandomiserIcons.cs" />
+    <Compile Include="RandomiserInventory.cs" />
     <Compile Include="RandomiserLocations.cs" />
     <Compile Include="RandomiserMod.cs" />
     <Compile Include="Pickups\RandomiserPickupProcessor.cs" />
