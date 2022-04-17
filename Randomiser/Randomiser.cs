@@ -14,6 +14,8 @@ namespace Randomiser
 
         static BasicMessageProvider messageProvider;
 
+        public static int MapstonesRepaired => Locations.GetAll().Where(l => l.type == Location.LocationType.ProgressiveMapstone && l.HasBeenObtained()).Count();
+
         public static void Grant(MoonGuid guid)
         {
             Location location = Locations.GetLocation(guid);

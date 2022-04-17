@@ -10,7 +10,7 @@ Requires [Ori DE Mod Loader](https://github.com/Kirefel/OriDeModLoader)
 
 Copy package contents to Ori DE directory e.g. `C:\Program Files (x86)\steam\steamapps\common\Ori DE`
 
-Run `convertseed.ps1` to convert any seed from [orirando.com](orirando.com) to the new format.
+Run `convertseed.ps1` to convert any seed from [orirando.com](https://orirando.com) to the new format.
 
 ## FAQ
 

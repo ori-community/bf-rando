@@ -1,16 +1,16 @@
 ﻿using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 
 namespace Randomiser
 {
     [HarmonyPatch(typeof(MapStone), nameof(MapStone.FixedUpdate))]
     class MapstonePatch
     {
-        static void Grant(MapStone instance)
+        static void Grant()
         {
-            Randomiser.Grant(instance.MoonGuid);
+            var progressiveLocation = Randomiser.Locations.GetProgressiveMapstoneLocation(Randomiser.MapstonesRepaired);
+            Randomiser.Grant(progressiveLocation.guid);
         }
 
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
@@ -25,8 +25,7 @@ namespace Randomiser
 
                 if (codes[i].StoresField(field) && codes[i - 1].LoadsConstant((int)MapStone.State.Activated)) // this.CurrentState = State.Activated
                 {
-                    yield return new CodeInstruction(OpCodes.Ldarg_0);
-                    yield return CodeInstruction.Call(typeof(MapstonePatch), nameof(MapstonePatch.Grant)); // MapstonePatch.Grant(this)
+                    yield return CodeInstruction.Call(typeof(MapstonePatch), nameof(MapstonePatch.Grant)); // MapstonePatch.Grant()
                 }
             }
         }

@@ -5,7 +5,7 @@
         public bool goalComplete;
         public bool finishedGinsoEscape;
 
-        public BitCollection pickupsCollected = new BitCollection(256);
+        public BitCollection pickupsCollected = new BitCollection(320);
 
         public void Reset()
         {
