@@ -2,3 +2,5 @@
 [Oo]bj/
 *.csproj.user
 .vs/
+release/
+build/
