@@ -57,6 +57,7 @@
     <Compile Include="Pickup Actions\RandomiserActionResult.cs" />
     <Compile Include="Randomiser.cs" />
     <Compile Include="RandomiserBootstrap.cs" />
+    <Compile Include="RandomiserController.cs" />
     <Compile Include="RandomiserIcons.cs" />
     <Compile Include="RandomiserInventory.cs" />
     <Compile Include="RandomiserLocations.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="SceneBootstrap.cs" />
     <Compile Include="Pickups\SkillTreePatch.cs" />
     <Compile Include="Pickups\WorldEventsPatch.cs" />
+    <Compile Include="WaitForLevelLoad.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Lib.Harmony">

@@ -19,10 +19,12 @@ Implemented:
 * Vanilla items
 * Vanilla locations
 * Force Trees
+* Return-to-start
 
 Upcoming:
 
 * Bonus pickups (mega health, attack upgrade etc.)
+* Teleporter pickups
 * Clues, shards, world tour modes
 * Bonus locations (Mount Horu)
 
