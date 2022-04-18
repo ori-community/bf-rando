@@ -11,15 +11,15 @@ namespace Randomiser
         private Dictionary<string, Location> nameMap = new Dictionary<string, Location>();
         private Dictionary<MoonGuid, Location> guidMap = new Dictionary<MoonGuid, Location>();
 
-        public Location GetLocation(MoonGuid guid) => guidMap.GetOrDefault(guid);
-        public Location GetLocation(string name) => nameMap.GetOrDefault(name);
+        public Location this[string name] => nameMap.GetOrDefault(name);
+        public Location this[MoonGuid guid] => guidMap.GetOrDefault(guid);
 
         public Location GetProgressiveMapstoneLocation(int index)
         {
             if (index > 8 || index < 0)
                 throw new IndexOutOfRangeException("index must be in the range [0, 8]");
 
-            return GetLocation($"Map{index + 1}");
+            return this[$"Map{index + 1}"];
         }
 
         public IEnumerable<Location> GetAll() => guidMap.Values;
@@ -41,6 +41,7 @@ namespace Randomiser
             string json = File.ReadAllText(file);
             int start = 0;
             int end = 0;
+            LocationData locationData = new LocationData();
             while (end < json.Length)
             {
                 if (json[end] == '{')
@@ -50,7 +51,8 @@ namespace Randomiser
                 if (json[end] == '}')
                 {
                     string obj = json.Substring(start, end - start + 1);
-                    allLocs.Add(JsonUtility.FromJson<LocationData>(obj).ToLocation());
+                    JsonUtility.FromJsonOverwrite(obj, locationData);
+                    allLocs.Add(locationData.ToLocation());
                 }
                 end++;
             }

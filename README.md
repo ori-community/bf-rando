@@ -12,6 +12,20 @@ Copy package contents to Ori DE directory e.g. `C:\Program Files (x86)\steam\ste
 
 Run `convertseed.ps1` to convert any seed from [orirando.com](https://orirando.com) to the new format.
 
+## Current state
+
+Implemented:
+
+* Vanilla items
+* Vanilla locations
+* Force Trees
+
+Upcoming:
+
+* Bonus pickups (mega health, attack upgrade etc.)
+* Clues, shards, world tour modes
+* Bonus locations (Mount Horu)
+
 ## FAQ
 
 ### Why write another randomiser?

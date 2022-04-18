@@ -15,10 +15,11 @@ namespace Randomiser
         static BasicMessageProvider messageProvider;
 
         public static int MapstonesRepaired => Locations.GetAll().Where(l => l.type == Location.LocationType.ProgressiveMapstone && l.HasBeenObtained()).Count();
+        public static int TreesFound => Locations.GetAll().Where(l => l.type == Location.LocationType.Skill && l.HasBeenObtained()).Count();
 
         public static void Grant(MoonGuid guid)
         {
-            Location location = Locations.GetLocation(guid);
+            Location location = Locations[guid];
             if (location == null)
             {
                 Message("ERROR: Unknown location: " + new Guid(guid.ToByteArray()));
@@ -30,7 +31,7 @@ namespace Randomiser
 
         public static void Grant(string name)
         {
-            Location location = Locations.GetLocation(name);
+            Location location = Locations[name];
             if (location == null)
             {
                 Message("ERROR: Unknown location: " + name);
@@ -98,7 +99,7 @@ namespace Randomiser
                 case GoalMode.None:
                     return true;
                 case GoalMode.ForceTrees:
-                    return Locations.GetAll().Where(l => l.type == Location.LocationType.Skill).All(n => Locations.GetLocation(n.name).HasBeenObtained());
+                    return Locations.GetAll().Where(l => l.type == Location.LocationType.Skill).All(l => l.HasBeenObtained());
                 case GoalMode.ForceMaps:
                     break;
                 case GoalMode.WarmthFrags:
