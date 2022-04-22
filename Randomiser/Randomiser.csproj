@@ -64,7 +64,6 @@
     <Compile Include="RandomiserMod.cs" />
     <Compile Include="Pickups\RandomiserPickupProcessor.cs" />
     <Compile Include="RandomiserSeed.cs" />
-    <Compile Include="SceneBootstrap.cs" />
     <Compile Include="Pickups\SkillTreePatch.cs" />
     <Compile Include="Pickups\WorldEventsPatch.cs" />
     <Compile Include="WaitForLevelLoad.cs" />
@@ -74,10 +73,7 @@
       <Version>2.0.2</Version>
     </PackageReference>
     <PackageReference Include="OriDeModLoader">
-      <Version>0.1.1-alpha</Version>
-    </PackageReference>
-    <PackageReference Include="OriDeUILib">
-      <Version>0.1.0-alpha</Version>
+      <Version>0.2.0-alpha</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

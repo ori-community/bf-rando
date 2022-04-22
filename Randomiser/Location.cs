@@ -59,5 +59,7 @@ namespace Randomiser
         }
 
         public bool HasBeenObtained() => Randomiser.Inventory.pickupsCollected[saveIndex];
+
+        public override string ToString() => $"{worldArea}/{name}";
     }
 }

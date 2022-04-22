@@ -1,4 +1,4 @@
-﻿using UILib;
+﻿using OriDeModLoader.UIExtensions;
 using UnityEngine;
 using System;
 
