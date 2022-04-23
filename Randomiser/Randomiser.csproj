@@ -46,8 +46,9 @@
     <Compile Include="Extensions\CollectionsExtensions.cs" />
     <Compile Include="Goals\ForbidDoorPatch.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="Bonus\ExtraJumpsPatch.cs" />
     <Compile Include="Pickup Actions\RandomiserBonus.cs" />
-    <Compile Include="SeinRegen.cs" />
+    <Compile Include="Bonus\SeinRegen.cs" />
     <Compile Include="SeinResourcesPatches.cs" />
     <Compile Include="Pickups\FeatherSeinPatch.cs" />
     <Compile Include="Ginso fixes\FinishedGinsoEscapeCondition.cs" />
