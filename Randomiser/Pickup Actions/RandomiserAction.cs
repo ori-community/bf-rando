@@ -52,6 +52,7 @@ namespace Randomiser
                 case "AC": return HandleAC();
                 case "KS": return HandleKS();
                 case "MS": return HandleMS();
+                case "EV": return HandleEV();
                 case "TP": return HandleTP();
                 case "RB": return HandleBonus();
                 default:
@@ -126,6 +127,32 @@ namespace Randomiser
             UI.SeinUI.ShakeMapstones();
 
             return new RandomiserActionResult(Strings.Get("PICKUP_MAPSTONE_FRAGMENT"));
+        }
+
+        private RandomiserActionResult HandleEV()
+        {
+            switch ((RandomiserWorldEvents)int.Parse(parameters[0]))
+            {
+                case RandomiserWorldEvents.WaterVein:
+                    Sein.World.Keys.GinsoTree = true;
+                    return new RandomiserActionResult(Strings.Get("EVENT_GINSO_KEY"), '*');
+                case RandomiserWorldEvents.CleanWater:
+                    Sein.World.Events.WaterPurified = true;
+                    return new RandomiserActionResult(Strings.Get("EVENT_CLEAN_WATER"), '*');
+                case RandomiserWorldEvents.GumonSeal:
+                    Sein.World.Keys.ForlornRuins = true;
+                    return new RandomiserActionResult(Strings.Get("EVENT_FORLORN_KEY"), '#');
+                case RandomiserWorldEvents.WindRestored:
+                    Sein.World.Events.WindRestored = true;
+                    return new RandomiserActionResult(Strings.Get("EVENT_WIND_RESTORED"), '#');
+                case RandomiserWorldEvents.Sunstone:
+                    Sein.World.Keys.MountHoru = true;
+                    return new RandomiserActionResult(Strings.Get("EVENT_HORU_KEY"), '@');
+                case RandomiserWorldEvents.WarmthReturned:
+                    Sein.World.Events.WarmthReturned = true;
+                    return new RandomiserActionResult(Strings.Get("EVENT_WARMTH_RETURNED"), '@');
+            }
+            return null;
         }
 
         private static readonly Dictionary<string, string> tpMap = new Dictionary<string, string>
