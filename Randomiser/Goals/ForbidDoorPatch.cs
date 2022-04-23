@@ -10,7 +10,7 @@ namespace Randomiser
         {
             // Don't let anyone through to the element of warmth
             if (door.name == "mountHoruExitDoor")
-                return Randomiser.Inventory.goalComplete;
+                return Randomiser.Seed.GoalMode == GoalMode.None || Randomiser.Inventory.goalComplete;
 
             return true;
         }

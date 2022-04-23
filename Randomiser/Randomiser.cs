@@ -88,7 +88,7 @@ namespace Randomiser
 
         private static void CheckGoal()
         {
-            if (!Inventory.goalComplete)
+            if (!Inventory.goalComplete && Seed.GoalMode != GoalMode.None)
             {
                 if (IsGoalMet(Seed.GoalMode))
                 {

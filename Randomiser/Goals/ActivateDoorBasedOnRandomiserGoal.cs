@@ -19,7 +19,7 @@ namespace Randomiser
 
         private void FixedUpdate()
         {
-            if (!Randomiser.Inventory.goalComplete)
+            if (Randomiser.Seed.GoalMode != GoalMode.None && !Randomiser.Inventory.goalComplete)
                 door.OverrideEnterDoorMessage = messageProvider;
             else
                 door.OverrideEnterDoorMessage = null;
