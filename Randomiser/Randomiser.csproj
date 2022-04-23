@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bonus\ChargeDashEfficiencyPatches.cs" />
     <Compile Include="Goals\ActivateDoorBasedOnRandomiserGoal.cs" />
     <Compile Include="Extensions\ArchiveExtensions.cs" />
     <Compile Include="BitCollection.cs" />

@@ -28,6 +28,7 @@ namespace Randomiser
                 return multi + 1;
             }
         }
+        public static float ChargeDashDiscount => Randomiser.Inventory.chargeDashEfficiency ? 0.5f : 0f;
 
         public static void Grant(MoonGuid guid)
         {

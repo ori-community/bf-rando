@@ -176,30 +176,34 @@ namespace Randomiser
                     Characters.Sein.Energy.SetCurrent(Characters.Sein.Energy.Max + 5);
                     return new RandomiserActionResult(Strings.Get("BONUS_MEGA_ENERGY"));
 
+                case RandomiserBonus.SpiritLightEfficiency:
+                    Randomiser.Inventory.spiritLightEfficiency++;
+                    return new RandomiserActionResult(Strings.Get("BONUS_SPIRIT_LIGHT_EFFICIENCY"));
+
+                case RandomiserBonus.ExtraDoubleJump:
+                    Randomiser.Inventory.extraJumps++;
+                    return new RandomiserActionResult(Strings.Get("BONUS_EXTRA_DOUBLE_JUMP"));
+
+                case RandomiserBonus.HealthRegeneration:
+                    Randomiser.Inventory.healthRegen++;
+                    return new RandomiserActionResult(Strings.Get("BONUS_HEALTH_REGENERATION", Randomiser.Inventory.healthRegen));
+
+                case RandomiserBonus.EnergyRegeneration:
+                    Randomiser.Inventory.energyRegen++;
+                    return new RandomiserActionResult(Strings.Get("BONUS_ENERGY_REGENERATION", Randomiser.Inventory.energyRegen));
+
+                case RandomiserBonus.ChargeDashEfficiency:
+                    Randomiser.Inventory.chargeDashEfficiency = true;
+                    return new RandomiserActionResult(Strings.Get("BONUS_CHARGE_DASH_EFFICIENCY"));
+
                 // TODO add effect for bonus upgrades
 
                 case RandomiserBonus.AttackUpgrade:
                     Randomiser.Inventory.attackUpgrades++;
                     break;
-                case RandomiserBonus.SpiritLightEfficiency:
-                    Randomiser.Inventory.spiritLightEfficiency++;
-                    break;
+
                 case RandomiserBonus.ExtraAirDash:
                     Randomiser.Inventory.extraDashes++;
-                    break;
-                case RandomiserBonus.ChargeDashEfficiency:
-                    Randomiser.Inventory.chargeDashEfficiency = true;
-                    break;
-                case RandomiserBonus.ExtraDoubleJump: // done
-                    Randomiser.Inventory.extraJumps++;
-                    break;
-                case RandomiserBonus.HealthRegeneration: // done
-                    Randomiser.Inventory.healthRegen++;
-                    break;
-                case RandomiserBonus.EnergyRegeneration: // done
-                    Randomiser.Inventory.energyRegen++;
-                    break;
-                default:
                     break;
             }
 
