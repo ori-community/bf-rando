@@ -1,0 +1,46 @@
+#  *Blue*   #Yellow#   @Red@
+#  {0} indicates a contextual value that will be inserted at runtime
+#  [WordsInSquareBrackets] should also not be changed as it is replaced with the key or button image for the action
+
+# Pickups
+EVENT_GINSO_KEY=Water Vein
+EVENT_CLEAN_WATER=Clean Water
+EVENT_FORLORN_KEY=Gumon Seal
+EVENT_WIND_RESTORED=Wind Restored
+EVENT_HORU_KEY=Sunstone
+EVENT_WARMTH_RETURNED=Warmth Returned
+
+TELEPORTER_NAME=Teleporter
+TELEPORTER_ACTIVATED={0} teleporter activated
+
+SKILL_SpiritFlame=Spirit Flame
+SKILL_WallJump=Wall Jump
+SKILL_ChargeFlame=Charge Flame
+SKILL_DoubleJump=Double Jump
+SKILL_Bash=Bash
+SKILL_Stomp=Stomp
+SKILL_Glide=Kuro's Feather
+SKILL_Climb=Climb
+SKILL_ChargeJump=Charge Jump
+SKILL_Dash=Dash
+SKILL_Grenade=Light Burst
+
+PICKUP_KEYSTONE=Keystone
+PICKUP_MAPSTONE_FRAGMENT=Mapstone
+PICKUP_HEALTH_CELL=Health Cell
+PICKUP_ENERGY_CELL=Energy Cell
+PICKUP_ABILITY_CELL=Ability Cell
+PICKUP_EXPERIENCE={0} Experience
+
+# Areas
+AREA_BLACKROOT_BURROWS=Blackroot
+AREA_FORLORN_RUINS=Forlorn
+AREA_GINSO_TREE=Ginso
+AREA_HOLLOW_GROVE=Grove
+AREA_MISTY_WOODS=Misty
+AREA_MOON_GROTTO=Grotto
+AREA_MOUNT_HORU=Horu
+AREA_SORROW_PASS=Sorrow
+AREA_SUNKEN_GLADES=Glades
+AREA_THORNFELT_SWAMP=Swamp
+AREA_VALLEY_OF_THE_WIND=Valley
