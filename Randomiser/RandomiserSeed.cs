@@ -146,7 +146,7 @@ namespace Randomiser
         {
             try
             {
-                result = (T)Enum.Parse(typeof(T), value);
+                result = (T)Enum.Parse(typeof(T), value, ignoreCase: true);
                 return true;
             }
             catch (ArgumentException) { }

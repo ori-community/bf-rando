@@ -53,6 +53,7 @@ namespace Randomiser
                 case "KS": return HandleKS();
                 case "MS": return HandleMS();
                 case "TP": return HandleTP();
+                case "RB": return HandleBonus();
                 default:
                     return null;
             }
@@ -158,6 +159,50 @@ namespace Randomiser
 
             string areaNameKey = areaShortNameMap[parameters[0]];
             return new RandomiserActionResult(Strings.Get("TELEPORTER_ACTIVATED", Strings.Get(areaNameKey)));
+        }
+
+        // Some arbitrary subset of pickups are identified by a different ID
+        private RandomiserActionResult HandleBonus()
+        {
+            RandomiserBonus bonus = (RandomiserBonus)int.Parse(parameters[0]);
+            switch (bonus)
+            {
+                case RandomiserBonus.MegaHealth:
+                    Characters.Sein.Mortality.Health.SetAmount(Characters.Sein.Mortality.Health.MaxHealth + 20);
+                    return new RandomiserActionResult(Strings.Get("BONUS_MEGA_HEALTH"));
+
+                case RandomiserBonus.MegaEnergy:
+                    Characters.Sein.Energy.SetCurrent(Characters.Sein.Energy.Max + 5);
+                    return new RandomiserActionResult(Strings.Get("BONUS_MEGA_ENERGY"));
+
+                // TODO add effect for bonus upgrades
+
+                case RandomiserBonus.AttackUpgrade:
+                    Randomiser.Inventory.attackUpgrades++;
+                    break;
+                case RandomiserBonus.SpiritLightEfficiency:
+                    Randomiser.Inventory.spiritLightMultiplier++;
+                    break;
+                case RandomiserBonus.ExtraAirDash:
+                    Randomiser.Inventory.extraDashes++;
+                    break;
+                case RandomiserBonus.ChargeDashEfficiency:
+                    Randomiser.Inventory.chargeDashEfficiency = true;
+                    break;
+                case RandomiserBonus.ExtraDoubleJump:
+                    Randomiser.Inventory.extraJumps++;
+                    break;
+                case RandomiserBonus.HealthRegeneration: // done
+                    Randomiser.Inventory.healthRegen++;
+                    break;
+                case RandomiserBonus.EnergyRegeneration: // done
+                    Randomiser.Inventory.energyRegen++;
+                    break;
+                default:
+                    break;
+            }
+
+            return new RandomiserActionResult(bonus.ToString() + " (not implemented)");
         }
     }
 }

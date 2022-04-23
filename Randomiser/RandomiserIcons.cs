@@ -1,6 +1,5 @@
 ﻿using OriDeModLoader.UIExtensions;
 using UnityEngine;
-using System;
 
 namespace Randomiser
 {
@@ -50,16 +49,14 @@ namespace Randomiser
             Add(CustomWorldMapIconType.Plant, new Vector3(318.5f, 245.6f), "HoruR3Plant");
         }
 
-        // TODO get guid from name
-
         private static void Add(CustomWorldMapIconType iconType, Vector3 position, string name)
         {
-            CustomWorldMapIconManager.Register(new CustomWorldMapIcon(iconType, position, new MoonGuid(Guid.NewGuid())));
+            CustomWorldMapIconManager.Register(new CustomWorldMapIcon(iconType, position, Randomiser.Locations[name].guid));
         }
 
         private static void Add(WorldMapIconType iconType, Vector3 position, string name)
         {
-            CustomWorldMapIconManager.Register(new CustomWorldMapIcon(iconType, position, new MoonGuid(Guid.NewGuid())));
+            CustomWorldMapIconManager.Register(new CustomWorldMapIcon(iconType, position, Randomiser.Locations[name].guid));
         }
     }
 }

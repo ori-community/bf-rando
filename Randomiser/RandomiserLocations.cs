@@ -27,6 +27,9 @@ namespace Randomiser
         void Awake()
         {
             Load(@".\Mods\assets\OriDeRandomiser\LocationData.json");
+
+            // TODO this dependency is unfortunate, find a better way to do it
+            RandomiserIcons.Initialise();
         }
 
         public void Load(string file)
