@@ -1,14 +1,14 @@
-﻿using Game;
-using OriDeModLoader;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Game;
+using OriDeModLoader;
 
 namespace Randomiser
 {
     public class RandomiserAction : ISerializable
     {
-        public string action;
-        public string[] parameters;
+        private string action;
+        private string[] parameters;
 
         public RandomiserAction(string action, string[] parameters)
         {

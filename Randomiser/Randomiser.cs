@@ -1,7 +1,7 @@
-﻿using BaseModLib;
-using Game;
-using System;
+﻿using System;
 using System.Linq;
+using BaseModLib;
+using Game;
 using UnityEngine;
 
 namespace Randomiser
@@ -12,7 +12,7 @@ namespace Randomiser
         public static RandomiserSeed Seed { get; internal set; }
         public static RandomiserLocations Locations { get; internal set; }
 
-        static BasicMessageProvider messageProvider;
+        private static BasicMessageProvider messageProvider;
 
         public static int MapstonesRepaired => Locations.GetAll().Where(l => l.type == Location.LocationType.ProgressiveMapstone && l.HasBeenObtained()).Count();
         public static int TreesFound => Locations.GetAll().Where(l => l.type == Location.LocationType.Skill && l.HasBeenObtained()).Count();

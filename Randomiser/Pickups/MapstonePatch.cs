@@ -1,19 +1,19 @@
-﻿using HarmonyLib;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 
 namespace Randomiser
 {
     [HarmonyPatch(typeof(MapStone), nameof(MapStone.FixedUpdate))]
-    class MapstonePatch
+    internal class MapstonePatch
     {
-        static void Grant()
+        private static void Grant()
         {
             var progressiveLocation = Randomiser.Locations.GetProgressiveMapstoneLocation(Randomiser.MapstonesRepaired);
             Randomiser.Grant(progressiveLocation.guid);
         }
 
-        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             List<CodeInstruction> codes = instructions.ToList();
 

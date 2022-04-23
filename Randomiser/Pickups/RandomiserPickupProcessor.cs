@@ -12,15 +12,15 @@ namespace Randomiser
         // Small health/energy/xp orbs aren't randomised pickups so replicate original behaviour
         public void OnCollectEnergyOrbPickup(EnergyOrbPickup energyOrbPickup)
         {
-            float num = (float)energyOrbPickup.Amount;
-            if (this.Sein.PlayerAbilities.EnergyEfficiency.HasAbility)
+            float num = energyOrbPickup.Amount;
+            if (Sein.PlayerAbilities.EnergyEfficiency.HasAbility)
             {
                 num *= 1.5f;
             }
-            bool couldAffordSoulFlame = this.Sein.SoulFlame.CanAffordSoulFlame;
-            this.Sein.Energy.Gain(num);
+            bool couldAffordSoulFlame = Sein.SoulFlame.CanAffordSoulFlame;
+            Sein.Energy.Gain(num);
             energyOrbPickup.Collected();
-            if (!couldAffordSoulFlame && this.Sein.SoulFlame.CanAffordSoulFlame)
+            if (!couldAffordSoulFlame && Sein.SoulFlame.CanAffordSoulFlame)
             {
                 UI.SeinUI.ShakeSoulFlame();
             }
@@ -29,7 +29,7 @@ namespace Randomiser
 
         public void OnCollectExpOrbPickup(ExpOrbPickup expOrbPickup)
         {
-            if (expOrbPickup.MessageType> ExpOrbPickup.ExpOrbMessageType.None)
+            if (expOrbPickup.MessageType > ExpOrbPickup.ExpOrbMessageType.None)
             {
                 // Spirit light container
                 expOrbPickup.Collected();
@@ -39,23 +39,23 @@ namespace Randomiser
 
             // Small exp orb (that drops from enemies)
             int amount = (int)(expOrbPickup.Amount * Randomiser.SpiritLightMultiplier);
-            this.Sein.Level.GainExperience(amount);
+            Sein.Level.GainExperience(amount);
             expOrbPickup.Collected();
-            if (this.m_expText && this.m_expText.gameObject.activeInHierarchy)
+            if (m_expText && m_expText.gameObject.activeInHierarchy)
             {
-                this.m_expText.Amount += amount;
+                m_expText.Amount += amount;
             }
             else
             {
-                this.m_expText = Orbs.OrbDisplayText.Create(Characters.Sein.Transform, Vector3.up, amount);
+                m_expText = Orbs.OrbDisplayText.Create(Characters.Sein.Transform, Vector3.up, amount);
             }
             UI.SeinUI.ShakeExperienceBar();
         }
 
         public void OnCollectRestoreHealthPickup(RestoreHealthPickup restoreHealthPickup)
         {
-            int amount = restoreHealthPickup.Amount * ((!this.Sein.PlayerAbilities.HealthEfficiency.HasAbility) ? 1 : 2);
-            this.Sein.Mortality.Health.GainHealth(amount);
+            int amount = restoreHealthPickup.Amount * ((!Sein.PlayerAbilities.HealthEfficiency.HasAbility) ? 1 : 2);
+            Sein.Mortality.Health.GainHealth(amount);
             restoreHealthPickup.Collected();
             UI.SeinUI.ShakeHealthbar();
         }
@@ -94,14 +94,14 @@ namespace Randomiser
 
         public void SetReferenceToSein(SeinCharacter sein)
         {
-            this.Sein = sein;
+            Sein = sein;
         }
     }
 
     [HarmonyPatch(typeof(SeinPickupProcessor), nameof(SeinPickupProcessor.SetReferenceToSein))]
-    class PickupProcessorReplacerPatch
+    internal class PickupProcessorReplacerPatch
     {
-        static void Postfix(SeinPickupProcessor __instance)
+        private static void Postfix(SeinPickupProcessor __instance)
         {
             __instance.Sein.PickupHandler = null;
             Object.Destroy(__instance);

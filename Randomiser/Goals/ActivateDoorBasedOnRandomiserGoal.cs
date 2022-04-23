@@ -11,13 +11,13 @@ namespace Randomiser
 
         public BasicMessageProvider messageProvider;
 
-        void Awake()
+        private void Awake()
         {
             messageProvider = ScriptableObject.CreateInstance<BasicMessageProvider>();
             messageProvider.SetMessage("You're not allowed in!");
         }
 
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             if (!Randomiser.Inventory.goalComplete)
                 door.OverrideEnterDoorMessage = messageProvider;

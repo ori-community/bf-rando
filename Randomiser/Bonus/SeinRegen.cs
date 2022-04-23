@@ -8,8 +8,8 @@ namespace Randomiser
     {
         public override bool AllowAbility(SeinLogicCycle logicCycle) => true;
 
-        const float HealthPerSecond = 1 / 60f;
-        const float EnergyPerSecond = 1 / 60f;
+        private const float HealthPerSecond = 1 / 60f;
+        private const float EnergyPerSecond = 1 / 60f;
 
         public void Update()
         {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using OriDeModLoader;
+using UnityEngine;
 
 namespace Randomiser
 {
-    static class RandomiserBootstrap
+    internal static class RandomiserBootstrap
     {
         public static void SetupBootstrap(SceneBootstrap sceneBootstrap)
         {

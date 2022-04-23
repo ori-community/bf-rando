@@ -1,12 +1,11 @@
 ﻿using HarmonyLib;
-using UnityEngine;
 
 namespace Randomiser
 {
     [HarmonyPatch(typeof(EntityDamageReciever), nameof(EntityDamageReciever.OnRecieveDamage))]
-    class PetrifiedPlantPatch
+    internal class PetrifiedPlantPatch
     {
-        static void Postfix(EntityDamageReciever __instance)
+        private static void Postfix(EntityDamageReciever __instance)
         {
             if (__instance.NoHealthLeft && __instance.Entity is PetrifiedPlant)
             {

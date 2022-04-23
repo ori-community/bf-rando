@@ -3,9 +3,9 @@
 namespace Randomiser
 {
     [HarmonyPatch(typeof(SeinDoubleJump), nameof(SeinDoubleJump.ExtraJumpsAvailable))]
-    class ExtraJumpsPatch
+    internal class ExtraJumpsPatch
     {
-        static void Postfix(ref int __result)
+        private static void Postfix(ref int __result)
         {
             __result += Randomiser.Inventory.extraJumps;
         }

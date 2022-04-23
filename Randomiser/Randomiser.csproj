@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LocationData.json" />
+    <None Include=".editorconfig" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -24,7 +24,7 @@ namespace Randomiser
 
         public IEnumerable<Location> GetAll() => guidMap.Values;
 
-        void Awake()
+        private void Awake()
         {
             Load(@".\Mods\assets\OriDeRandomiser\LocationData.json");
 
@@ -74,7 +74,7 @@ namespace Randomiser
         public string area;
         public string position;
 
-        Vector2 ParseVec2(string str)
+        private Vector2 ParseVec2(string str)
         {
             var strings = str.Trim('(', ')').Split(',');
             return new Vector2(float.Parse(strings[0]), float.Parse(strings[1]));

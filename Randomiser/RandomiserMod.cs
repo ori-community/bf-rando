@@ -9,7 +9,7 @@ namespace Randomiser
     {
         public string Name => "Randomiser";
 
-        Harmony harmony;
+        private Harmony harmony;
 
         public void Init()
         {
@@ -20,7 +20,7 @@ namespace Randomiser
             Controllers.Add<RandomiserSeed>("df0ebc08-9469-4f58-9e10-f836115b797b", "Randomiser", mb => Randomiser.Seed = mb as RandomiserSeed);
             Controllers.Add<RandomiserLocations>("53d559f6-f989-48ae-9a6a-1c1b72b7955c", "Randomiser", mb => Randomiser.Locations = mb as RandomiserLocations);
             Controllers.Add<RandomiserController>("f563a07e-7ac3-4fd5-b134-afe69c1f3c4e", "Randomiser");
-            
+
             CustomSeinAbilityManager.Add<SeinRegen>("cc6427ed-31bf-4a7a-b4c4-ad559000ced9");
 
             Hooks.OnStartNewGame += () =>

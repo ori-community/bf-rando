@@ -55,7 +55,7 @@ namespace Randomiser
             this.type = type;
             this.worldArea = worldArea;
             this.guid = guid;
-            this.saveIndex = nextSaveIndex++; // TODO improve this
+            saveIndex = nextSaveIndex++; // TODO improve this
         }
 
         public bool HasBeenObtained() => Randomiser.Inventory.pickupsCollected[saveIndex];

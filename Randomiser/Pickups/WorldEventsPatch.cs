@@ -3,9 +3,9 @@
 namespace Randomiser
 {
     [HarmonyPatch(typeof(SetSeinWorldStateAction), nameof(SetSeinWorldStateAction.Perform))]
-    class WorldEventsPatch
+    internal class WorldEventsPatch
     {
-        static bool Prefix(SetSeinWorldStateAction __instance)
+        private static bool Prefix(SetSeinWorldStateAction __instance)
         {
             switch (__instance.State)
             {

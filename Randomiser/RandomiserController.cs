@@ -1,6 +1,6 @@
-﻿using Core;
+﻿using System.Collections;
+using Core;
 using Game;
-using System.Collections;
 using UnityEngine;
 
 namespace Randomiser
@@ -9,12 +9,12 @@ namespace Randomiser
     {
         public bool IsSuspended { get; set; }
 
-        void Awake()
+        private void Awake()
         {
             SuspensionManager.Register(this);
         }
 
-        void Update()
+        private void Update()
         {
             if (IsSuspended)
                 return;
@@ -28,7 +28,7 @@ namespace Randomiser
             }
         }
 
-        IEnumerator ReturnToStart()
+        private IEnumerator ReturnToStart()
         {
             if (Items.NightBerry != null)
                 Items.NightBerry.transform.position = new Vector3(-755f, -400f);
