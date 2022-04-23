@@ -16,6 +16,18 @@ namespace Randomiser
 
         public static int MapstonesRepaired => Locations.GetAll().Where(l => l.type == Location.LocationType.ProgressiveMapstone && l.HasBeenObtained()).Count();
         public static int TreesFound => Locations.GetAll().Where(l => l.type == Location.LocationType.Skill && l.HasBeenObtained()).Count();
+        public static float SpiritLightMultiplier
+        {
+            get
+            {
+                float multi = Inventory.spiritLightEfficiency;
+                if (Characters.Sein.PlayerAbilities.AbilityMarkers.HasAbility)
+                    multi += 0.5f;
+                if (Characters.Sein.PlayerAbilities.SoulEfficiency.HasAbility)
+                    multi += 0.5f;
+                return multi + 1;
+            }
+        }
 
         public static void Grant(MoonGuid guid)
         {

@@ -8,7 +8,7 @@
         public BitCollection pickupsCollected = new BitCollection(320);
 
         public int attackUpgrades;
-        public int spiritLightMultiplier;
+        public int spiritLightEfficiency;
         public int extraDashes;
         public int extraJumps;
         public bool chargeDashEfficiency;
@@ -22,7 +22,7 @@
             goalComplete = false;
             pickupsCollected.Clear();
             attackUpgrades = 0;
-            spiritLightMultiplier = 0;
+            spiritLightEfficiency = 0;
             extraDashes = 0;
             extraJumps = 0;
             chargeDashEfficiency = false;
@@ -37,7 +37,7 @@
             pickupsCollected.Serialize(ar);
 
             ar.Serialize(ref attackUpgrades);
-            ar.Serialize(ref spiritLightMultiplier);
+            ar.Serialize(ref spiritLightEfficiency);
             ar.Serialize(ref extraDashes);
             ar.Serialize(ref extraJumps);
             ar.Serialize(ref chargeDashEfficiency);

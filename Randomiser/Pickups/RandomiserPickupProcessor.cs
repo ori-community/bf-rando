@@ -38,7 +38,7 @@ namespace Randomiser
             }
 
             // Small exp orb (that drops from enemies)
-            int amount = expOrbPickup.Amount * ((!this.Sein.PlayerAbilities.SoulEfficiency.HasAbility) ? 1 : 2);
+            int amount = (int)(expOrbPickup.Amount * Randomiser.SpiritLightMultiplier);
             this.Sein.Level.GainExperience(amount);
             expOrbPickup.Collected();
             if (this.m_expText && this.m_expText.gameObject.activeInHierarchy)

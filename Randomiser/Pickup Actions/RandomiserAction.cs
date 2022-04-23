@@ -89,7 +89,8 @@ namespace Randomiser
             if (Randomiser.Seed.HasFlag(RandomiserFlags.ZeroXP))
                 amount = 0;
 
-            Characters.Sein.Level.GainExperience(amount); // TODO multiplier
+            amount = (int)(amount * Randomiser.SpiritLightMultiplier);
+            Characters.Sein.Level.GainExperience(amount);
 
             return new RandomiserActionResult(Strings.Get("PICKUP_EXPERIENCE", amount));
         }
@@ -181,7 +182,7 @@ namespace Randomiser
                     Randomiser.Inventory.attackUpgrades++;
                     break;
                 case RandomiserBonus.SpiritLightEfficiency:
-                    Randomiser.Inventory.spiritLightMultiplier++;
+                    Randomiser.Inventory.spiritLightEfficiency++;
                     break;
                 case RandomiserBonus.ExtraAirDash:
                     Randomiser.Inventory.extraDashes++;
@@ -189,7 +190,7 @@ namespace Randomiser
                 case RandomiserBonus.ChargeDashEfficiency:
                     Randomiser.Inventory.chargeDashEfficiency = true;
                     break;
-                case RandomiserBonus.ExtraDoubleJump:
+                case RandomiserBonus.ExtraDoubleJump: // done
                     Randomiser.Inventory.extraJumps++;
                     break;
                 case RandomiserBonus.HealthRegeneration: // done
