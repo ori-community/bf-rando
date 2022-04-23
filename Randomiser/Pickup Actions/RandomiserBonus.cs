@@ -10,6 +10,9 @@
         ChargeDashEfficiency = 11,
         ExtraDoubleJump = 12,
         HealthRegeneration = 13,
-        EnergyRegeneration = 15
+        EnergyRegeneration = 15,
+        WaterVeinShard = 17,
+        GumonSealShard = 19,
+        SunstoneShard = 21
     }
 }

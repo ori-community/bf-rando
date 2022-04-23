@@ -139,12 +139,14 @@ namespace Randomiser
                 case RandomiserWorldEvents.CleanWater:
                     Sein.World.Events.WaterPurified = true;
                     return new RandomiserActionResult(Strings.Get("EVENT_CLEAN_WATER"), '*');
+
                 case RandomiserWorldEvents.GumonSeal:
                     Sein.World.Keys.ForlornRuins = true;
                     return new RandomiserActionResult(Strings.Get("EVENT_FORLORN_KEY"), '#');
                 case RandomiserWorldEvents.WindRestored:
                     Sein.World.Events.WindRestored = true;
                     return new RandomiserActionResult(Strings.Get("EVENT_WIND_RESTORED"), '#');
+
                 case RandomiserWorldEvents.Sunstone:
                     Sein.World.Keys.MountHoru = true;
                     return new RandomiserActionResult(Strings.Get("EVENT_HORU_KEY"), '@');
@@ -195,6 +197,22 @@ namespace Randomiser
             RandomiserBonus bonus = (RandomiserBonus)int.Parse(parameters[0]);
             switch (bonus)
             {
+                case RandomiserBonus.WaterVeinShard:
+                    Randomiser.Inventory.waterVeinShards++;
+                    if (Randomiser.Inventory.waterVeinShards >= Randomiser.Seed.ShardsRequiredForKey)
+                        Sein.World.Keys.GinsoTree = true;
+                    return new RandomiserActionResult(ShardText("SHARD_GINSO_KEY", Randomiser.Inventory.waterVeinShards), '*');
+                case RandomiserBonus.GumonSealShard:
+                    Randomiser.Inventory.gumonSealShards++;
+                    if (Randomiser.Inventory.gumonSealShards >= Randomiser.Seed.ShardsRequiredForKey)
+                        Sein.World.Keys.ForlornRuins = true;
+                    return new RandomiserActionResult(ShardText("SHARD_FORLORN_KEY", Randomiser.Inventory.gumonSealShards), '#');
+                case RandomiserBonus.SunstoneShard:
+                    Randomiser.Inventory.sunstoneShards++;
+                    if (Randomiser.Inventory.sunstoneShards >= Randomiser.Seed.ShardsRequiredForKey)
+                        Sein.World.Keys.MountHoru = true;
+                    return new RandomiserActionResult(ShardText("SHARD_HORU_KEY", Randomiser.Inventory.sunstoneShards), '@');
+
                 case RandomiserBonus.MegaHealth:
                     Characters.Sein.Mortality.Health.SetAmount(Characters.Sein.Mortality.Health.MaxHealth + 20);
                     return new RandomiserActionResult(Strings.Get("BONUS_MEGA_HEALTH"));
@@ -235,6 +253,14 @@ namespace Randomiser
             }
 
             return new RandomiserActionResult(bonus.ToString() + " (not implemented)");
+        }
+
+        private string ShardText(string type, int count)
+        {
+            if (count <= Randomiser.Seed.ShardsRequiredForKey)
+                return Strings.Get(type, count, Randomiser.Seed.ShardsRequiredForKey);
+
+            return Strings.Get(type + "_EXTRA", count);
         }
     }
 }

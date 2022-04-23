@@ -44,6 +44,8 @@ namespace Randomiser
         public KeyMode KeyMode { get; private set; }
         public RandomiserFlags Flags { get; private set; }
 
+        public int ShardsRequiredForKey { get; } = 3;
+
         private readonly Dictionary<MoonGuid, RandomiserAction> map = new Dictionary<MoonGuid, RandomiserAction>();
 
         // The random seed used to generate the... seed. But nobody means this when they say "seed".

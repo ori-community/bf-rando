@@ -45,6 +45,15 @@ BONUS_CHARGE_DASH_EFFICIENCY=Charge Dash Efficiency
 BONUS_EXTRA_DOUBLE_JUMP=Extra Double Jump
 BONUS_EXTRA_DOUBLE_JUMP_EXTRA=Extra Double Jump ({0})
 
+SHARD_GINSO_KEY=*Water Vein Shard ({0}/{1})*
+SHARD_GINSO_KEY_EXTRA=*Water Vein Shard (extra)*
+SHARD_FORLORN_KEY=#Gumon Seal Shard ({0}/{1})#
+SHARD_FORLORN_KEY_EXTRA=#Gumon Seal Shard (extra)#
+SHARD_HORU_KEY=@Sunstone Shard ({0}/{1})@
+SHARD_HORU_KEY_EXTRA=@Sunstone Shard (extra)@
+SHARD_WARMTH_FRAGMENT=@Warmth Fragment ({0}/{1})@
+SHARD_WARMTH_FRAGMENT_EXTRA=@Warmth Fragment (extra)@
+
 # Areas
 AREA_BLACKROOT_BURROWS=Blackroot
 AREA_FORLORN_RUINS=Forlorn
