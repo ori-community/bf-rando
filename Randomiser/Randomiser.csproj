@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bonus\AttackPowerUpgradePatches.cs" />
     <Compile Include="Bonus\ChargeDashEfficiencyPatches.cs" />
     <Compile Include="Clues.cs" />
     <Compile Include="FreeGrenadePatch.cs" />
