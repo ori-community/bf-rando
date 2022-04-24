@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using BaseModLib;
 using Game;
+using OriDeModLoader;
 using UnityEngine;
 
 namespace Randomiser
@@ -14,8 +16,10 @@ namespace Randomiser
 
         private static BasicMessageProvider messageProvider;
 
+        public static int TotalPickupsFound => Inventory.pickupsCollected.Sum;
         public static int MapstonesRepaired => Locations.GetAll().Where(l => l.type == Location.LocationType.ProgressiveMapstone && l.HasBeenObtained()).Count();
         public static int TreesFound => Locations.GetAll().Where(l => l.type == Location.LocationType.Skill && l.HasBeenObtained()).Count();
+        public static int TreesFoundExceptSein => Locations.GetAll().Where(l => l.type == Location.LocationType.Skill && l.name != "Sein" && l.HasBeenObtained()).Count();
         public static float SpiritLightMultiplier
         {
             get
@@ -75,8 +79,8 @@ namespace Randomiser
 
             if (location.type == Location.LocationType.Skill && location.name != "Sein")
             {
-                if (Locations.GetAll().Where(l => l.type == Location.LocationType.Skill && l.name != "Sein" && l.HasBeenObtained()).Count() % 3 == 0)
-                    Message(Seed.Clues.GetFullLabel()); // TODO print all (trees found, pickups found, shards and whatnot)
+                if (TreesFoundExceptSein % 3 == 0)
+                    Message(BuildProgressString());
             }
         }
 
@@ -129,6 +133,57 @@ namespace Randomiser
                     break;
             }
             return false;
+        }
+
+        public static string BuildProgressString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            int trees = TreesFoundExceptSein;
+            int maps = MapstonesRepaired;
+
+            sb.Append(Strings.Get("RANDO_PROGRESS_1",
+                trees == 10 ? "$" : "",
+                trees,
+                maps == 9 ? "$" : "",
+                maps,
+                TotalPickupsFound
+            ));
+
+            if (Seed.KeyMode == KeyMode.Clues)
+            {
+                Clues.Clue wv = Seed.Clues.WaterVein;
+                Clues.Clue gs = Seed.Clues.GumonSeal;
+                Clues.Clue ss = Seed.Clues.Sunstone;
+
+                sb.AppendLine();
+                sb.Append(Strings.Get("RANDO_PROGRESS_CLUES",
+                    wv.owned ? "*" : "",
+                    wv.revealed ? Strings.Get("AREA_" + wv.area) : "????",
+                    gs.owned ? "#" : "",
+                    gs.revealed ? Strings.Get("AREA_" + gs.area) : "????",
+                    ss.owned ? "@" : "",
+                    ss.revealed ? Strings.Get("AREA_" + ss.area) : "????"
+                ));
+            }
+
+            if (Seed.KeyMode == KeyMode.Shards)
+            {
+                int max = Seed.ShardsRequiredForKey;
+
+                sb.AppendLine();
+                sb.Append(Strings.Get("RANDO_PROGRESS_SHARDS",
+                    Inventory.waterVeinShards == max ? "*" : "",
+                    Inventory.waterVeinShards,
+                    Inventory.gumonSealShards == max ? "#" : "",
+                    Inventory.gumonSealShards,
+                    Inventory.sunstoneShards == max ? "@" : "",
+                    Inventory.sunstoneShards,
+                    max
+                ));
+            }
+
+            return sb.ToString();
         }
     }
 }

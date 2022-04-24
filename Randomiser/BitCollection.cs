@@ -51,5 +51,19 @@ namespace Randomiser
         }
 
         public override string ToString() => string.Join(" ", array.Select(a => Convert.ToString(a)).ToArray());
+
+        public int Sum
+        {
+            get
+            {
+                int c = 0;
+                for (int i = 0; i < array.Length; i++)
+                {
+                    for (int j = 0; j < sizeof(int) * 8; j++)
+                        c += (array[i] & (1 << j)) > 0 ? 1 : 0;
+                }
+                return c;
+            }
+        }
     }
 }

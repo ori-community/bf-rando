@@ -55,12 +55,28 @@ namespace Randomiser
 
         public Clues Clues { get; private set; }
 
+        public override void Awake()
+        {
+            base.Awake();
+            Reset();
+        }
+
         public RandomiserAction GetActionFromGuid(MoonGuid guid)
         {
             if (map.ContainsKey(guid))
                 return map[guid];
 
             return null;
+        }
+
+        private void Reset()
+        {
+            GoalMode = 0;
+            KeyMode = 0;
+            Flags = 0;
+            map.Clear();
+            seed = "";
+            Clues = new Clues(Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, null, null, null);
         }
 
         public override void Serialize(Archive ar)
@@ -182,16 +198,6 @@ namespace Randomiser
 
             result = default;
             return false;
-        }
-
-        private void Reset()
-        {
-            GoalMode = 0;
-            KeyMode = 0;
-            Flags = 0;
-            map.Clear();
-            seed = "";
-            Clues = new Clues(Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, null, null, null);
         }
     }
 }

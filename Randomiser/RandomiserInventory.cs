@@ -19,6 +19,14 @@
         public int gumonSealShards;
         public int sunstoneShards;
 
+        public string lastPickup;
+
+        public override void Awake()
+        {
+            base.Awake();
+            Reset();
+        }
+
         public void Reset()
         {
             // TODO make this automatic somehow
@@ -35,6 +43,7 @@
             waterVeinShards = 0;
             gumonSealShards = 0;
             sunstoneShards = 0;
+            lastPickup = "Good luck on your rando!";
         }
 
         public override void Serialize(Archive ar)
@@ -58,6 +67,8 @@
             ar.Serialize(ref waterVeinShards);
             ar.Serialize(ref gumonSealShards);
             ar.Serialize(ref sunstoneShards);
+
+            ar.Serialize(ref lastPickup);
         }
     }
 }

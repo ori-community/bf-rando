@@ -1,6 +1,4 @@
-﻿using OriDeModLoader;
-
-namespace Randomiser
+﻿namespace Randomiser
 {
     public class Clues : ISerializable
     {
@@ -17,33 +15,6 @@ namespace Randomiser
                 this.revealed = revealed;
                 this.area = area;
                 this.type = type;
-            }
-
-            public string Label()
-            {
-                if (!owned && !revealed)
-                    return $"{ShortName}: ????";
-
-                if (owned)
-                    return $"{Colour}{ShortName}: {area}{Colour}";
-
-                return $"{ShortName}: {area}";
-            }
-
-            private string ShortName => Strings.Get("CLUE_" + type);
-
-            private string Colour
-            {
-                get
-                {
-                    switch (type)
-                    {
-                        case ClueType.WaterVein: return "*";
-                        case ClueType.GumonSeal: return "#";
-                        case ClueType.Sunstone: return "@";
-                    }
-                    return "";
-                }
             }
         }
 
@@ -76,11 +47,6 @@ namespace Randomiser
                             revealed: (revealOrder[(int)type] + 1) * 3 <= Randomiser.TreesFound,
                             area: loc.worldArea.ToString(),
                             type: type);
-        }
-
-        public string GetFullLabel()
-        {
-            return $"{WaterVein.Label()}  {GumonSeal.Label()}  {Sunstone.Label()}";
         }
 
         public void Serialize(Archive ar)

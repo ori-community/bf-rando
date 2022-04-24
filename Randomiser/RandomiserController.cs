@@ -19,11 +19,24 @@ namespace Randomiser
             if (IsSuspended)
                 return;
 
-            if ((UnityEngine.Input.GetKey(KeyCode.LeftAlt) || UnityEngine.Input.GetKey(KeyCode.RightAlt)) && UnityEngine.Input.GetKeyDown(KeyCode.R))
+            if (UnityEngine.Input.GetKey(KeyCode.LeftAlt) || UnityEngine.Input.GetKey(KeyCode.RightAlt))
             {
                 if (Characters.Sein && Characters.Sein.Controller.CanMove && Characters.Sein.Active)
                 {
-                    StartCoroutine(ReturnToStart());
+                    if (UnityEngine.Input.GetKeyDown(KeyCode.R))
+                    {
+                        StartCoroutine(ReturnToStart());
+                    }
+
+                    if (UnityEngine.Input.GetKeyDown(KeyCode.P))
+                    {
+                        Randomiser.Message(Randomiser.BuildProgressString());
+                    }
+                }
+
+                if (UnityEngine.Input.GetKeyDown(KeyCode.T))
+                {
+                    Randomiser.Message(Randomiser.Inventory.lastPickup);
                 }
             }
         }

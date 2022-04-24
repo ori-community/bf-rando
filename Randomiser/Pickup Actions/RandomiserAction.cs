@@ -39,6 +39,7 @@ namespace Randomiser
 
             string message = result.decoration.HasValue ? Wrap(result.text, result.decoration.Value) : result.text;
             Randomiser.Message(message);
+            Randomiser.Inventory.lastPickup = message;
         }
 
         private RandomiserActionResult Run()
@@ -65,7 +66,7 @@ namespace Randomiser
             var skill = (AbilityType)Enum.Parse(typeof(AbilityType), parameters[0]);
             Characters.Sein.PlayerAbilities.SetAbility(skill, true);
 
-            return new RandomiserActionResult(Strings.Get("SKILL_" + skill), '#');
+            return new RandomiserActionResult(Strings.Get("SKILL_" + skill));
         }
 
         private RandomiserActionResult HandleEC()
@@ -135,24 +136,24 @@ namespace Randomiser
             {
                 case RandomiserWorldEvents.WaterVein:
                     Sein.World.Keys.GinsoTree = true;
-                    return new RandomiserActionResult(Strings.Get("EVENT_GINSO_KEY"), '*');
+                    return new RandomiserActionResult(Strings.Get("EVENT_GINSO_KEY"));
                 case RandomiserWorldEvents.CleanWater:
                     Sein.World.Events.WaterPurified = true;
-                    return new RandomiserActionResult(Strings.Get("EVENT_CLEAN_WATER"), '*');
+                    return new RandomiserActionResult(Strings.Get("EVENT_CLEAN_WATER"));
 
                 case RandomiserWorldEvents.GumonSeal:
                     Sein.World.Keys.ForlornRuins = true;
-                    return new RandomiserActionResult(Strings.Get("EVENT_FORLORN_KEY"), '#');
+                    return new RandomiserActionResult(Strings.Get("EVENT_FORLORN_KEY"));
                 case RandomiserWorldEvents.WindRestored:
                     Sein.World.Events.WindRestored = true;
-                    return new RandomiserActionResult(Strings.Get("EVENT_WIND_RESTORED"), '#');
+                    return new RandomiserActionResult(Strings.Get("EVENT_WIND_RESTORED"));
 
                 case RandomiserWorldEvents.Sunstone:
                     Sein.World.Keys.MountHoru = true;
-                    return new RandomiserActionResult(Strings.Get("EVENT_HORU_KEY"), '@');
+                    return new RandomiserActionResult(Strings.Get("EVENT_HORU_KEY"));
                 case RandomiserWorldEvents.WarmthReturned:
                     Sein.World.Events.WarmthReturned = true;
-                    return new RandomiserActionResult(Strings.Get("EVENT_WARMTH_RETURNED"), '@');
+                    return new RandomiserActionResult(Strings.Get("EVENT_WARMTH_RETURNED"));
             }
             return null;
         }
@@ -170,24 +171,11 @@ namespace Randomiser
             ["Glades"] = "sunkenGlades",
             ["Blackroot"] = "mangroveFalls"
         };
-        private static readonly Dictionary<string, string> areaShortNameMap = new Dictionary<string, string>
-        {
-            ["Forlorn"] = "AREA_FORLORN_RUINS",
-            ["Grotto"] = "AREA_MOON_GROTTO",
-            ["Sorrow"] = "AREA_SORROW_PASS",
-            ["Grove"] = "AREA_HOLLOW_GROVE",
-            ["Swamp"] = "AREA_THORNFELT_SWAMP",
-            ["Valley"] = "AREA_VALLEY_OF_THE_WIND",
-            ["Ginso"] = "AREA_GINSO_TREE",
-            ["Horu"] = "AREA_MOUNT_HORU",
-            ["Glades"] = "AREA_SUNKEN_GLADES",
-            ["Blackroot"] = "AREA_BLACKROOT_BURROWS"
-        };
         private RandomiserActionResult HandleTP()
         {
             TeleporterController.Activate(tpMap[parameters[0]]);
 
-            string areaNameKey = areaShortNameMap[parameters[0]];
+            string areaNameKey = "AREA_" + parameters[0];
             return new RandomiserActionResult(Strings.Get("TELEPORTER_ACTIVATED", Strings.Get(areaNameKey)));
         }
 
