@@ -91,7 +91,7 @@
         "position": "(-59.4, -244.3)"
     },
     {
-        "guid": "0f891a29-8e8e-452f-b5a2-d3923c0adc32",
+        "guid": "9be6ea7c-ea0e-4127-bf98-7d1ab19d73dd",
         "name": "WallJumpSkillTree",
         "type": "Skill",
         "area": "Glades",
@@ -224,7 +224,7 @@
         "position": "(-168.1, -103.0)"
     },
     {
-        "guid": "88661177-24f0-435a-bd71-e41ae7c769c7",
+        "guid": "db35e94b-0392-48ff-990e-c24befa00a2e",
         "name": "ChargeFlameSkillTree",
         "type": "Skill",
         "area": "Grove",
@@ -301,7 +301,7 @@
         "position": "(197.3, -229.1)"
     },
     {
-        "guid": "121ed77f-9a75-4fdc-ba79-d8805e836385",
+        "guid": "bb0847e0-a88b-4449-9bf6-f9944e5024df",
         "name": "DashSkillTree",
         "type": "Skill",
         "area": "Blackroot",
@@ -350,7 +350,7 @@
         "position": "(432.0, -324.0)"
     },
     {
-        "guid": "8cf24909-516f-45c8-bf81-02eb36b55607",
+        "guid": "a90db45e-56b4-405b-80d6-83bc4607b921",
         "name": "GrenadeSkillTree",
         "type": "Skill",
         "area": "Blackroot",
@@ -714,7 +714,7 @@
         "position": "(477.0, -389.0)"
     },
     {
-        "guid": "dd61efe0-1721-4ad8-a1ef-9868b0cda7b4",
+        "guid": "83a91676-9217-4d5f-8ae5-ef6189d6ebfe",
         "name": "DoubleJumpSkillTree",
         "type": "Skill",
         "area": "Grotto",
@@ -875,7 +875,7 @@
         "position": "(540.0, 101.0)"
     },
     {
-        "guid": "5fd73676-79aa-4489-877e-0f0be62e5c8e",
+        "guid": "d094cce4-3b65-454f-b5c9-7e6ed7dcc436",
         "name": "BashSkillTree",
         "type": "Skill",
         "area": "Ginso",
@@ -1050,7 +1050,7 @@
         "position": "(722.3, -95.5)"
     },
     {
-        "guid": "04161042-6b23-48d3-9278-222a5d3f9466",
+        "guid": "d02c2919-1426-44e9-a72b-f48a6c7c68e1",
         "name": "StompSkillTree",
         "type": "Skill",
         "area": "Swamp",
@@ -1652,7 +1652,7 @@
         "position": "(-592.0, 445.0)"
     },
     {
-        "guid": "bb66f074-a98b-4356-abcb-57cf153fad7a",
+        "guid": "24783b59-4196-4fcb-bd42-d1a925962e86",
         "name": "ChargeJumpSkillTree",
         "type": "Skill",
         "area": "Sorrow",
@@ -1729,7 +1729,7 @@
         "position": "(-1102.0, -67.0)"
     },
     {
-        "guid": "8ed1a92b-a8ad-4d10-ab44-fc79e93a900d",
+        "guid": "a273c819-a2c7-44c9-8798-a6510fc25e0d",
         "name": "ClimbSkillTree",
         "type": "Skill",
         "area": "Misty",
