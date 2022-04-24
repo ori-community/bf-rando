@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Bonus\ChargeDashEfficiencyPatches.cs" />
     <Compile Include="Clues.cs" />
+    <Compile Include="FreeGrenadePatch.cs" />
     <Compile Include="Goals\ActivateDoorBasedOnRandomiserGoal.cs" />
     <Compile Include="Extensions\ArchiveExtensions.cs" />
     <Compile Include="BitCollection.cs" />
@@ -88,8 +89,4 @@
     <None Include="Assets\LocationData.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
 </Project>
