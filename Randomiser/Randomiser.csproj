@@ -51,6 +51,7 @@
     <Compile Include="GrantPickupAction.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Bonus\ExtraJumpsPatch.cs" />
+    <Compile Include="MapMarkersPatch.cs" />
     <Compile Include="Pickup Actions\RandomiserBonus.cs" />
     <Compile Include="Bonus\SeinRegen.cs" />
     <Compile Include="Pickup Actions\RandomiserWorldEvents.cs" />

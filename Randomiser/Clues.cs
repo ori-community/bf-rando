@@ -25,7 +25,6 @@
 
         public Clues(ClueType clue1, ClueType clue2, ClueType clue3, MoonGuid wv, MoonGuid gs, MoonGuid ss)
         {
-            // TODO load clues from seed
             revealOrder = new int[3];
             revealOrder[(int)clue1] = 0;
             revealOrder[(int)clue2] = 1;
