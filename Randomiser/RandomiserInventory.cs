@@ -39,6 +39,8 @@
 
         public override void Serialize(Archive ar)
         {
+            int version = ar.Serialize(0); // Can use version to determine if the file is unplayable due to changing save data, or try to repair it
+
             // The order of fields in the class don't matter, but the order they are serialized does.
             // Don't change it.
             ar.Serialize(ref goalComplete);

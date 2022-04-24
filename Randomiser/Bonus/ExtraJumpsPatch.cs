@@ -2,7 +2,7 @@
 
 namespace Randomiser
 {
-    [HarmonyPatch(typeof(SeinDoubleJump), nameof(SeinDoubleJump.ExtraJumpsAvailable))]
+    [HarmonyPatch(typeof(SeinDoubleJump), "get_ExtraJumpsAvailable")]
     internal class ExtraJumpsPatch
     {
         private static void Postfix(ref int __result)
