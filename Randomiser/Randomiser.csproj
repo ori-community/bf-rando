@@ -77,6 +77,7 @@
     <Compile Include="RandomiserSeed.cs" />
     <Compile Include="Pickups\SkillTreePatch.cs" />
     <Compile Include="Pickups\WorldEventsPatch.cs" />
+    <Compile Include="StompTriggerCondition.cs" />
     <Compile Include="WaitForLevelLoad.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,10 @@ namespace Randomiser
                 ["thornfeltSwampActTwoStart"] = BootstrapThornfeltSwampActTwoStart,
 
                 ["mountHoruHubBottom"] = BootstrapMountHoruHubBottom,
-                ["mountHoruHubMid"] = BootstrapMountHoruHubMid
+                ["mountHoruHubMid"] = BootstrapMountHoruHubMid,
+
+                ["upperGladesHollowTreeSplitB"] = BootstrapUpperGladesHollowTreeSplitB,
+                ["valleyOfTheWindBackground"] = BootstrapValleyOfTheWindBackground
             };
         }
 
@@ -190,5 +193,30 @@ namespace Randomiser
             doorSequence.Actions.Insert(3, conditionPickupAction);
             ActionSequence.Rename(doorSequence.Actions);
         }
+
+        #region Stomp Triggers
+        private static void BootstrapUpperGladesHollowTreeSplitB(SceneRoot sceneRoot)
+        {
+            var triggerCollider = sceneRoot.transform.Find("*kuroAct2/triggerCollider").GetComponent<PlayerCollisionTrigger>();
+            UnityEngine.Object.Destroy(triggerCollider.Condition); // Old SeinAbilityCondition
+
+            var condition = triggerCollider.gameObject.AddComponent<StompTriggerCondition>();
+            // condition.ShouldEnable = false; // Set to false to disable cutscene completely (good?)
+            triggerCollider.Condition = condition;
+        }
+
+        private static void BootstrapValleyOfTheWindBackground(SceneRoot sceneRoot)
+        {
+            var deathZoneTrigger = sceneRoot.transform.Find("*getFeatherSetupContainer/*kuroHideSetup/kuroDeathZones").GetComponent<ActivateBasedOnCondition>();
+            UnityEngine.Object.Destroy(deathZoneTrigger.Condition);
+            var deathZoneCondition = deathZoneTrigger.gameObject.AddComponent<StompTriggerCondition>();
+            deathZoneTrigger.Condition = deathZoneCondition;
+
+            var kuroCliffTriggerCollider = sceneRoot.transform.Find("*getFeatherSetupContainer/*kuroCliffLowerHint/triggerCollider").GetComponent<PlayerCollisionTrigger>();
+            UnityEngine.Object.Destroy(kuroCliffTriggerCollider.Condition);
+            var kuroCliffCondition = kuroCliffTriggerCollider.gameObject.AddComponent<StompTriggerCondition>();
+            kuroCliffTriggerCollider.Condition = kuroCliffCondition;
+        }
+        #endregion
     }
 }
