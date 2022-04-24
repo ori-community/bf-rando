@@ -1,4 +1,6 @@
-﻿namespace Randomiser
+﻿using System;
+
+namespace Randomiser
 {
     public static class ArchiveExtensions
     {
@@ -8,6 +10,25 @@
             {
                 int count = archive.Serialize(0);
                 string[] newArray = new string[count];
+                for (int i = 0; i < count; i++)
+                    archive.Serialize(ref newArray[i]);
+                return newArray;
+            }
+            else
+            {
+                archive.Serialize(array.Length);
+                for (int i = 0; i < array.Length; i++)
+                    archive.Serialize(array[i]);
+                return array;
+            }
+        }
+
+        public static int[] Serialize(this Archive archive, int[] array)
+        {
+            if (archive.Reading)
+            {
+                int count = archive.Serialize(0);
+                int[] newArray = new int[count];
                 for (int i = 0; i < count; i++)
                     archive.Serialize(ref newArray[i]);
                 return newArray;
@@ -33,6 +54,9 @@
         {
             if (archive.Writing)
             {
+                if (moonGuid == null)
+                    throw new ArgumentNullException(nameof(moonGuid), "Trying to serialize a null guid");
+
                 archive.Serialize(moonGuid.A);
                 archive.Serialize(moonGuid.B);
                 archive.Serialize(moonGuid.C);

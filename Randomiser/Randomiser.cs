@@ -72,6 +72,12 @@ namespace Randomiser
 
             GameWorld.Instance.CurrentArea.DirtyCompletionAmount();
             CheckGoal();
+
+            if (location.type == Location.LocationType.Skill && location.name != "Sein")
+            {
+                if (Locations.GetAll().Where(l => l.type == Location.LocationType.Skill && l.name != "Sein" && l.HasBeenObtained()).Count() % 3 == 0)
+                    Message(Seed.Clues.GetFullLabel()); // TODO print all (trees found, pickups found, shards and whatnot)
+            }
         }
 
         public static bool Has(MoonGuid guid) => false;

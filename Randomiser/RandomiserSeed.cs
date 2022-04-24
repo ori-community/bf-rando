@@ -53,6 +53,8 @@ namespace Randomiser
 
         public bool HasFlag(RandomiserFlags flag) => (Flags & flag) != 0;
 
+        public Clues Clues { get; private set; }
+
         public RandomiserAction GetActionFromGuid(MoonGuid guid)
         {
             if (map.ContainsKey(guid))
@@ -68,6 +70,7 @@ namespace Randomiser
             Flags = (RandomiserFlags)ar.Serialize((int)Flags);
             ar.Serialize(ref seed);
             SerialiseMap(ar);
+            Clues.Serialize(ar);
         }
 
         private void SerialiseMap(Archive ar)
@@ -109,6 +112,9 @@ namespace Randomiser
 
             Reset();
 
+            List<Clues.ClueType> clues = new List<Clues.ClueType>();
+            MoonGuid[] clueLocations = new MoonGuid[3];
+
             using (var reader = new StreamReader(filepath))
             {
                 string[] meta = reader.ReadLine().Split('|');
@@ -121,8 +127,29 @@ namespace Randomiser
                     if (line.Length == 0)
                         continue;
 
-                    map[new MoonGuid(new Guid(line[0]))] = new RandomiserAction(line[1], line.Skip(2).ToArray());
+                    var guid = new MoonGuid(new Guid(line[0]));
+                    map[guid] = new RandomiserAction(line[1], line.Skip(2).ToArray());
+
+                    if (KeyMode == KeyMode.Clues && line[1] == "EV")
+                    {
+                        // Clues are determined by the order they appear in the seed
+                        // WV = 0, GS = 2, SS = 4
+                        if (int.TryParse(line[2], out int keyID) && keyID % 2 == 0)
+                        {
+                            var clueType = (Clues.ClueType)(keyID / 2);
+                            clues.Add(clueType);
+                            clueLocations[(int)clueType] = guid;
+                        }
+                    }
                 }
+            }
+
+            if (KeyMode == KeyMode.Clues)
+            {
+                if (clues.Count != 3)
+                    Randomiser.Message($"Invalid clues seed: {clues.Count} keys found in seed");
+                else
+                    Clues = new Clues(clues[0], clues[1], clues[2], clueLocations[0], clueLocations[1], clueLocations[2]);
             }
 
             Randomiser.Message($"Seed file loaded:\n{GoalMode} {KeyMode} {seed}");
@@ -164,6 +191,7 @@ namespace Randomiser
             Flags = 0;
             map.Clear();
             seed = "";
+            Clues = new Clues(Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, null, null, null);
         }
     }
 }
