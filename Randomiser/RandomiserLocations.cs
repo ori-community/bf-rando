@@ -29,7 +29,7 @@ namespace Randomiser
             Load(@".\Mods\assets\OriDeRandomiser\LocationData.json");
 
             // TODO this dependency is unfortunate, find a better way to do it
-            RandomiserIcons.Initialise();
+            RandomiserIcons.Initialise(this);
         }
 
         public void Load(string file)
