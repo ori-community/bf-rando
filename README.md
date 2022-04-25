@@ -28,7 +28,9 @@ Upcoming:
 
 ### Why write another randomiser?
 
-For a better developer workflow, mainly. Also to make it compatible with other mods.
+* To separate out QoL and accessibility features into different mods, allowing you to play with them without it being rando
+* For a better developer workflow
+* To make it compatible with other mods
 
 ### Sein text is back!
 
