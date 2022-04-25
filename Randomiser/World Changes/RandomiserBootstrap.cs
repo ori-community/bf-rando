@@ -81,20 +81,33 @@ namespace Randomiser
 
         private static void BootstrapGinsoTreeResurrection(SceneRoot sceneRoot)
         {
-            PatchMusicZones(sceneRoot.transform.Find("musicZones").GetChild(0));
-            PatchMusicZones(sceneRoot.transform.Find("musicZones").GetChild(1));
+            {
+                PatchMusicZones(sceneRoot.transform.Find("musicZones").GetChild(0));
+                PatchMusicZones(sceneRoot.transform.Find("musicZones").GetChild(1));
 
-            // Change the walls blocking access to the side rooms so they will be disabled if you have finished the escape
-            var activator = sceneRoot.transform.Find("*heartResurrection/restoringHeartWaterRising/activator").GetComponent<ActivateBasedOnCondition>();
-            var newCondition = activator.gameObject.AddComponent<FinishedGinsoEscapeCondition>();
-            activator.Condition = newCondition;
+                // Change the walls blocking access to the side rooms so they will be disabled if you have finished the escape
+                var activator = sceneRoot.transform.Find("*heartResurrection/restoringHeartWaterRising/activator").GetComponent<ActivateBasedOnCondition>();
+                var newCondition = activator.gameObject.AddComponent<FinishedGinsoEscapeCondition>();
+                activator.Condition = newCondition;
 
-            // Fix the "double heart" effect of both the active and inactive hearts being visible at once if you have clean water
-            var artAfter = sceneRoot.transform.Find("artAfter/artAfter");
-            var condition = artAfter.gameObject.AddComponent<FinishedGinsoEscapeCondition>();
-            AddActivator(artAfter, artAfter.Find("heartClean").gameObject, condition);
-            AddActivator(artAfter, artAfter.Find("rotatingLightraysA").gameObject, condition);
-            AddActivator(artAfter, artAfter.Find("rotatingLightraysB").gameObject, condition);
+                // Fix the "double heart" effect of both the active and inactive hearts being visible at once if you have clean water
+                var artAfter = sceneRoot.transform.Find("artAfter/artAfter");
+                var condition = artAfter.gameObject.AddComponent<FinishedGinsoEscapeCondition>();
+                AddActivator(artAfter, artAfter.Find("heartClean").gameObject, condition);
+                AddActivator(artAfter, artAfter.Find("rotatingLightraysA").gameObject, condition);
+                AddActivator(artAfter, artAfter.Find("rotatingLightraysB").gameObject, condition);
+            }
+
+            {
+                // Elemental kill door blocking spirit well
+                var door = sceneRoot.transform.Find("*turretEnemyPuzzle/*enemyPuzzle/doorSetup").gameObject;
+                var doorActivator = door.AddComponent<ActivateBasedOnCondition>();
+                var doorCondition = door.AddComponent<RandomiserFlagsCondition>();
+                doorActivator.Condition = doorCondition;
+                doorActivator.Target = door.transform.Find("sidewaysDoor").gameObject;
+                doorCondition.Flags = RandomiserFlags.ClosedDungeons;
+                doorCondition.IsTrue = true; // Activate the door only when Closed Dungeons is true
+            }
         }
 
         private static void AddActivator(Transform root, GameObject target, Condition condition)

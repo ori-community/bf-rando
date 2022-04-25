@@ -53,21 +53,22 @@
     <Compile Include="Location.cs" />
     <Compile Include="Bonus\ExtraJumpsPatch.cs" />
     <Compile Include="MapMarkersPatch.cs" />
+    <Compile Include="World Changes\RandomiserFlagsCondition.cs" />
     <Compile Include="Pickup Actions\RandomiserBonus.cs" />
     <Compile Include="Bonus\SeinRegen.cs" />
     <Compile Include="Pickup Actions\RandomiserWorldEvents.cs" />
     <Compile Include="SeinResourcesPatches.cs" />
     <Compile Include="Pickups\FeatherSeinPatch.cs" />
-    <Compile Include="Ginso fixes\FinishedGinsoEscapeCondition.cs" />
+    <Compile Include="World Changes\FinishedGinsoEscapeCondition.cs" />
     <Compile Include="InvisibleCheckpointPatch.cs" />
     <Compile Include="Pickups\MapstonePatch.cs" />
-    <Compile Include="Ginso fixes\PatchGetWorldEventCondition.cs" />
+    <Compile Include="World Changes\PatchGetWorldEventCondition.cs" />
     <Compile Include="Pickups\PetrifiedPlantPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pickup Actions\RandomiserAction.cs" />
     <Compile Include="Pickup Actions\RandomiserActionResult.cs" />
     <Compile Include="Randomiser.cs" />
-    <Compile Include="RandomiserBootstrap.cs" />
+    <Compile Include="World Changes\RandomiserBootstrap.cs" />
     <Compile Include="RandomiserController.cs" />
     <Compile Include="RandomiserIcons.cs" />
     <Compile Include="RandomiserInventory.cs" />
@@ -77,7 +78,7 @@
     <Compile Include="RandomiserSeed.cs" />
     <Compile Include="Pickups\SkillTreePatch.cs" />
     <Compile Include="Pickups\WorldEventsPatch.cs" />
-    <Compile Include="StompTriggerCondition.cs" />
+    <Compile Include="World Changes\StompTriggerCondition.cs" />
     <Compile Include="WaitForLevelLoad.cs" />
   </ItemGroup>
   <ItemGroup>
