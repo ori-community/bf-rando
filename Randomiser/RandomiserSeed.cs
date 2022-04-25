@@ -55,6 +55,9 @@ namespace Randomiser
 
         public Clues Clues { get; private set; }
 
+        private readonly List<Location> senseList = new List<Location>();
+        public IEnumerable<Location> SenseItems => senseList.AsEnumerable();
+
         public override void Awake()
         {
             base.Awake();
@@ -77,6 +80,7 @@ namespace Randomiser
             map.Clear();
             seed = "";
             Clues = new Clues(Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, null, null, null);
+            senseList.Clear();
         }
 
         public override void Serialize(Archive ar)
@@ -87,6 +91,29 @@ namespace Randomiser
             ar.Serialize(ref seed);
             SerialiseMap(ar);
             Clues.Serialize(ar);
+            SerializeSenseList(ar);
+        }
+
+        private void SerializeSenseList(Archive ar)
+        {
+            int senseCount = ar.Serialize(senseList.Count);
+            if (ar.Reading)
+            {
+                // TODO this doesn't work. Although maybe it does and it's the saving that doesn't.
+                senseList.Clear();
+                senseList.Capacity = senseCount;
+                MoonGuid guid = new MoonGuid(0, 0, 0, 0);
+                for (int i = 0; i < senseCount; i++)
+                {
+                    guid.Serialize(ar);
+                    senseList[i] = Randomiser.Locations[guid];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < senseCount; i++)
+                    senseList[i].guid.Serialize(ar);
+            }
         }
 
         private void SerialiseMap(Archive ar)
@@ -157,6 +184,10 @@ namespace Randomiser
                             clueLocations[(int)clueType] = guid;
                         }
                     }
+
+                    // Sense = Skills, events, teleporters
+                    if (line[1] == "SK" || line[1] == "EV" || line[1] == "TP")
+                        senseList.Add(Randomiser.Locations[guid]);
                 }
             }
 

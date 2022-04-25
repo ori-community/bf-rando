@@ -55,6 +55,7 @@
     <Compile Include="Bonus\ExtraJumpsPatch.cs" />
     <Compile Include="MapMarkersPatch.cs" />
     <Compile Include="RandomiserMessageController.cs" />
+    <Compile Include="SeinSense.cs" />
     <Compile Include="World Changes\ActivateMultipleBasedOnCondition.cs" />
     <Compile Include="World Changes\RandomiserFlagsCondition.cs" />
     <Compile Include="Pickup Actions\RandomiserBonus.cs" />
@@ -89,7 +90,7 @@
       <Version>2.0.2</Version>
     </PackageReference>
     <PackageReference Include="OriDeModLoader">
-      <Version>0.3.0-alpha</Version>
+      <Version>0.4.0-alpha</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
