@@ -54,6 +54,7 @@
     <Compile Include="Location.cs" />
     <Compile Include="Bonus\ExtraJumpsPatch.cs" />
     <Compile Include="MapMarkersPatch.cs" />
+    <Compile Include="RandomiserMessageController.cs" />
     <Compile Include="World Changes\ActivateMultipleBasedOnCondition.cs" />
     <Compile Include="World Changes\RandomiserFlagsCondition.cs" />
     <Compile Include="Pickup Actions\RandomiserBonus.cs" />
