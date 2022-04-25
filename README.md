@@ -22,7 +22,6 @@ Upcoming:
 
 * Open World
 * World Tour
-* Sense
 * Forlorn escape plant clues
 
 ## FAQ

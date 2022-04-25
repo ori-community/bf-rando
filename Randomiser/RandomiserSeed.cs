@@ -99,14 +99,12 @@ namespace Randomiser
             int senseCount = ar.Serialize(senseList.Count);
             if (ar.Reading)
             {
-                // TODO this doesn't work. Although maybe it does and it's the saving that doesn't.
                 senseList.Clear();
-                senseList.Capacity = senseCount;
                 MoonGuid guid = new MoonGuid(0, 0, 0, 0);
                 for (int i = 0; i < senseCount; i++)
                 {
                     guid.Serialize(ar);
-                    senseList[i] = Randomiser.Locations[guid];
+                    senseList.Add(Randomiser.Locations[guid]);
                 }
             }
             else
