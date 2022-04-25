@@ -12,9 +12,9 @@ jobs:
   build:
     runs-on: windows-2019
     steps:
-        uses: actions/checkout@v2
-        uses: NuGet/setup-nuget@v1.0.6
-        uses: microsoft/setup-msbuild@v1.1
+      - uses: actions/checkout@v2
+      - uses: NuGet/setup-nuget@v1.0.6
+      - uses: microsoft/setup-msbuild@v1.1
 
       - name: Build and package
         run: .\build.ps1
