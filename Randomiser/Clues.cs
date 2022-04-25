@@ -21,7 +21,7 @@
         public enum ClueType { WaterVein, GumonSeal, Sunstone };
 
         private int[] revealOrder;
-        private MoonGuid[] locations = new MoonGuid[3];
+        private readonly MoonGuid[] locations = new MoonGuid[3];
 
         public Clues(ClueType clue1, ClueType clue2, ClueType clue3, MoonGuid wv, MoonGuid gs, MoonGuid ss)
         {

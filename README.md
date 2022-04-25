@@ -16,17 +16,14 @@ Run `convertseed.ps1` to convert any seed from [orirando.com](https://orirando.c
 
 Implemented:
 
-* Vanilla items
-* Vanilla locations
-* Force Trees
-* Return-to-start
+* Everything in a typical Standard Clues or Shards seed, unless listed below
 
 Upcoming:
 
-* Bonus pickups (mega health, attack upgrade etc.)
-* Teleporter pickups
-* Clues, shards, world tour modes
-* Bonus locations (Mount Horu)
+* Open World
+* World Tour
+* Sense
+* Forlorn escape plant clues
 
 ## FAQ
 
@@ -36,4 +33,4 @@ For a better developer workflow, mainly. Also to make it compatible with other m
 
 ### Sein text is back!
 
-You need the speed mod, it'll be bundled with the randomiser eventually. In the meantime turn the UI off or enjoy the lore.
+You need the speed mod. For now, grab it from the randomiser's [releases page](https://github.com/Kirefel/OriDeRandomiser/releases/latest).
