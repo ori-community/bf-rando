@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bonus\AttackPowerUpgradePatches.cs" />
-    <Compile Include="Bonus\ChargeDashEfficiencyPatches.cs" />
+    <Compile Include="Bonus\AttackPowerUpgrade.cs" />
+    <Compile Include="Bonus\ChargeDashEfficiency.cs" />
     <Compile Include="Clues.cs" />
     <Compile Include="Extensions\TransformExtensions.cs" />
     <Compile Include="FreeGrenadePatch.cs" />
@@ -52,7 +52,7 @@
     <Compile Include="Goals\ForbidDoorPatch.cs" />
     <Compile Include="GrantPickupAction.cs" />
     <Compile Include="Location.cs" />
-    <Compile Include="Bonus\ExtraJumpsPatch.cs" />
+    <Compile Include="Bonus\ExtraDoubleJump.cs" />
     <Compile Include="MapMarkersPatch.cs" />
     <Compile Include="RandomiserMessageController.cs" />
     <Compile Include="Bonus\ExtraAirDash.cs" />

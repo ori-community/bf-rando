@@ -1,4 +1,5 @@
 ﻿using BaseModLib;
+using OriDeModLoader;
 using UnityEngine;
 
 namespace Randomiser
@@ -14,7 +15,7 @@ namespace Randomiser
         private void Awake()
         {
             messageProvider = ScriptableObject.CreateInstance<BasicMessageProvider>();
-            messageProvider.SetMessage("You're not allowed in!");
+            messageProvider.SetMessage(Strings.Get("RANDO_EXIT_BLOCKED"));
         }
 
         private void FixedUpdate()

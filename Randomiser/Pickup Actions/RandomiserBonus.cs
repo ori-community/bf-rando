@@ -1,5 +1,7 @@
 ﻿namespace Randomiser
 {
+    // These enum values have been created to match those found in existing seeds
+    // They can't be changed
     public enum RandomiserBonus
     {
         MegaHealth = 0,

@@ -9,6 +9,7 @@
         /// * = Blue
         /// # = Yellow
         /// @ = Red
+        /// $ = Green
         /// </summary>
         public RandomiserActionResult(string text, char? decoration = null)
         {

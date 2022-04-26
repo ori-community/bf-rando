@@ -229,15 +229,13 @@ namespace Randomiser
                     Randomiser.Inventory.chargeDashEfficiency = true;
                     return new RandomiserActionResult(Strings.Get("BONUS_CHARGE_DASH_EFFICIENCY"));
 
-                // TODO add effect for bonus upgrades
-
                 case RandomiserBonus.AttackUpgrade:
                     Randomiser.Inventory.attackUpgrades++;
-                    break;
+                    return new RandomiserActionResult(Strings.Get("BONUS_ATTACK_UPGRADE", Randomiser.Inventory.attackUpgrades));
 
                 case RandomiserBonus.ExtraAirDash:
                     Randomiser.Inventory.extraDashes++;
-                    break;
+                    return new RandomiserActionResult(Strings.Get("BONUS_EXTRA_AIR_DASH"));
             }
 
             return new RandomiserActionResult(bonus.ToString() + " (not implemented)");
