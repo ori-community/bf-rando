@@ -25,7 +25,7 @@ namespace Randomiser
             foreach (var pos in positions)
             {
                 float dist = (pos - seinPosition).sqrMagnitude;
-                if (dist<closestDistance)
+                if (dist < closestDistance)
                 {
                     closestDistance = dist;
                     closestPos = pos;

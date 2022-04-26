@@ -55,6 +55,7 @@
     <Compile Include="Bonus\ExtraJumpsPatch.cs" />
     <Compile Include="MapMarkersPatch.cs" />
     <Compile Include="RandomiserMessageController.cs" />
+    <Compile Include="Bonus\ExtraAirDash.cs" />
     <Compile Include="SeinSense.cs" />
     <Compile Include="World Changes\ActivateMultipleBasedOnCondition.cs" />
     <Compile Include="World Changes\RandomiserFlagsCondition.cs" />
