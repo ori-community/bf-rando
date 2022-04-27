@@ -3,6 +3,7 @@ using OriDeModLoader;
 
 namespace Randomiser
 {
+    // Update area map objective text to be the rando goal
     [HarmonyPatch(typeof(AreaMapUI), nameof(AreaMapUI.FixedUpdate))]
     internal class AreaMapObjectiveText
     {
@@ -30,5 +31,18 @@ namespace Randomiser
 
             return Strings.Get("OBJECTIVE_FORCE_TREES");
         }
+    }
+
+    // Remove the blue objective circles that show you where to go
+    [HarmonyPatch(typeof(WorldMapSetObjectiveTextAction), nameof(WorldMapSetObjectiveTextAction.Perform))]
+    internal class WorldMapSetObjectiveTextActionPatch
+    {
+        private static bool Prefix() => false;
+    }
+
+    [HarmonyPatch(typeof(ShowWorldMapObjectiveAction), nameof(ShowWorldMapObjectiveAction.Perform))]
+    internal class ShowWorldMapObjectiveActionPatch
+    {
+        private static bool Prefix() => false;
     }
 }
