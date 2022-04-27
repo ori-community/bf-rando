@@ -61,5 +61,25 @@ namespace Randomiser
         public bool HasBeenObtained() => Randomiser.Inventory.pickupsCollected[saveIndex];
 
         public override string ToString() => $"{worldArea}/{name}";
+
+        public static WorldArea ParseArea(string name)
+        {
+            switch (name)
+            {
+                case "sunkenGlades": return WorldArea.Glades;
+                case "hollowGrove": return WorldArea.Grove;
+                case "moonGrotto": return WorldArea.Grotto;
+                case "mangrove": return WorldArea.Blackroot;
+                case "thornfeltSwamp": return WorldArea.Swamp;
+                case "ginsoTree": return WorldArea.Ginso;
+                case "valleyOfTheWind": return WorldArea.Valley;
+                case "mistyWoods": return WorldArea.Misty;
+                case "forlornRuins": return WorldArea.Forlorn;
+                case "sorrowPass": return WorldArea.Sorrow;
+                case "mountHoru": return WorldArea.Horu;
+            }
+
+            throw new ArgumentException("Not a valid world area", nameof(name));
+        }
     }
 }

@@ -53,6 +53,7 @@
     <Compile Include="GrantPickupAction.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Bonus\ExtraDoubleJump.cs" />
+    <Compile Include="MapCompletionPercent.cs" />
     <Compile Include="MapMarkersPatch.cs" />
     <Compile Include="RandomiserMessageController.cs" />
     <Compile Include="Bonus\ExtraAirDash.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Game;
@@ -19,6 +20,9 @@ namespace Randomiser
         public static int MapstonesRepaired => Locations.GetAll().Where(l => l.type == Location.LocationType.ProgressiveMapstone && l.HasBeenObtained()).Count();
         public static int TreesFound => Locations.GetAll().Where(l => l.type == Location.LocationType.Skill && l.HasBeenObtained()).Count();
         public static int TreesFoundExceptSein => Locations.GetAll().Where(l => l.type == Location.LocationType.Skill && l.name != "Sein" && l.HasBeenObtained()).Count();
+
+        public static IEnumerable<Location> LocationsInArea(Location.WorldArea area) => Locations.GetAll().Where(l => l.worldArea == area);
+
         public static float SpiritLightMultiplier
         {
             get
@@ -61,19 +65,19 @@ namespace Randomiser
         {
             Debug.Log(location.name);
 
+            Inventory.pickupsCollected[location.saveIndex] = true;
+            GameWorld.Instance.CurrentArea.DirtyCompletionAmount();
+
             var action = Seed.GetActionFromGuid(location.guid);
             if (action == null)
             {
-                Message("ERROR: Unknown pickup id: " + new Guid(location.guid.ToByteArray()));
+                Debug.Log("WARNING: Unknown pickup id: " + new Guid(location.guid.ToByteArray()));
                 return;
             }
 
             Debug.Log(action);
             action.Execute();
 
-            Inventory.pickupsCollected[location.saveIndex] = true;
-
-            GameWorld.Instance.CurrentArea.DirtyCompletionAmount();
             CheckGoal();
 
             if (location.type == Location.LocationType.Skill && location.name != "Sein")
