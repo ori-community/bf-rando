@@ -12,6 +12,11 @@ namespace Randomiser
         {
             sceneBootstrap.BootstrapActions = new Dictionary<string, Action<SceneRoot>>
             {
+                // Bug Fixes
+                ["spiritTreeRefined"] = BootstrapSpiritTreeRefined,
+                ["moonGrottoRopeBridge"] = BootstrapMoonGrottoRopeBridge,
+
+                // Ginso Fixes
                 ["ginsoEntranceSketch"] = BootstrapGinsoEntry,
                 ["ginsoTreeWaterRisingEnd"] = BootstrapGinsoEnd,
                 ["ginsoTreeWaterRisingMid"] = BootstrapGinsoEscapeMid,
@@ -19,13 +24,35 @@ namespace Randomiser
                 ["ginsoTreeResurrection"] = BootstrapGinsoTreeResurrection,
                 ["thornfeltSwampActTwoStart"] = BootstrapThornfeltSwampActTwoStart,
 
+                // Horu
                 ["mountHoruHubBottom"] = BootstrapMountHoruHubBottom,
                 ["mountHoruHubMid"] = BootstrapMountHoruHubMid,
 
+                // Stomp Triggers
                 ["upperGladesHollowTreeSplitB"] = BootstrapUpperGladesHollowTreeSplitB,
                 ["valleyOfTheWindBackground"] = BootstrapValleyOfTheWindBackground
             };
         }
+
+
+        #region Bug Fixes
+        private static void BootstrapSpiritTreeRefined(SceneRoot sceneRoot)
+        {
+            // Unlike most other pickups, which are permanent placeholders that spawn an object with a DestroyOnRestoreCheckpoint component,
+            // this one is *just* an object with a DestroyOnRestoreCheckpoint component. Disable that to prevent its untimely demise.
+            sceneRoot.transform.FindChild("mediumExpOrb").GetComponent<DestroyOnRestoreCheckpoint>().enabled = false;
+        }
+
+        private static void BootstrapMoonGrottoRopeBridge(SceneRoot sceneRoot)
+        {
+            // add an ActionSequenceSerializer to the bridge so that the sequence continues and activates the final colliders even after glitching it
+            GameObject bridgeSequence = sceneRoot.transform.FindChild("*gumoBridgeSetup/group/action").gameObject;
+            ActionSequenceSerializer serializer = bridgeSequence.AddComponent<ActionSequenceSerializer>();
+            serializer.MoonGuid = new MoonGuid(1360931587, 1176121670, -1051255642, 855352030);
+            serializer.RegisterToSaveSceneManager(sceneRoot.SaveSceneManager);
+            serializer.OnValidate();
+        }
+        #endregion
 
         #region Ginso Fixes
         private static void BootstrapThornfeltSwampActTwoStart(SceneRoot sceneRoot)
@@ -129,6 +156,7 @@ namespace Randomiser
         }
         #endregion
 
+        #region Horu
         private static void BootstrapMountHoruHubBottom(SceneRoot sceneRoot)
         {
             var door = sceneRoot.transform.Find("mountHoruExitDoor").GetComponent<Door>();
@@ -231,6 +259,7 @@ namespace Randomiser
                 enableVisualEffects.Activate = false; // opposite of lava (alters visuals near lava streams)
             }
         }
+        #endregion
 
         #region Stomp Triggers
         private static void BootstrapUpperGladesHollowTreeSplitB(SceneRoot sceneRoot)

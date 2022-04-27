@@ -189,17 +189,17 @@ namespace Randomiser
                     Randomiser.Inventory.waterVeinShards++;
                     if (Randomiser.Inventory.waterVeinShards >= Randomiser.Seed.ShardsRequiredForKey)
                         Sein.World.Keys.GinsoTree = true;
-                    return new RandomiserActionResult(ShardText("SHARD_GINSO_KEY", Randomiser.Inventory.waterVeinShards), '*');
+                    return new RandomiserActionResult(ShardText("SHARD_GINSO_KEY", Randomiser.Inventory.waterVeinShards));
                 case RandomiserBonus.GumonSealShard:
                     Randomiser.Inventory.gumonSealShards++;
                     if (Randomiser.Inventory.gumonSealShards >= Randomiser.Seed.ShardsRequiredForKey)
                         Sein.World.Keys.ForlornRuins = true;
-                    return new RandomiserActionResult(ShardText("SHARD_FORLORN_KEY", Randomiser.Inventory.gumonSealShards), '#');
+                    return new RandomiserActionResult(ShardText("SHARD_FORLORN_KEY", Randomiser.Inventory.gumonSealShards));
                 case RandomiserBonus.SunstoneShard:
                     Randomiser.Inventory.sunstoneShards++;
                     if (Randomiser.Inventory.sunstoneShards >= Randomiser.Seed.ShardsRequiredForKey)
                         Sein.World.Keys.MountHoru = true;
-                    return new RandomiserActionResult(ShardText("SHARD_HORU_KEY", Randomiser.Inventory.sunstoneShards), '@');
+                    return new RandomiserActionResult(ShardText("SHARD_HORU_KEY", Randomiser.Inventory.sunstoneShards));
 
                 case RandomiserBonus.MegaHealth:
                     Characters.Sein.Mortality.Health.SetAmount(Characters.Sein.Mortality.Health.MaxHealth + 20);
@@ -238,7 +238,7 @@ namespace Randomiser
                     return new RandomiserActionResult(Strings.Get("BONUS_EXTRA_AIR_DASH"));
             }
 
-            return new RandomiserActionResult(bonus.ToString() + " (not implemented)");
+            return null;
         }
 
         private string ShardText(string type, int count)
