@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AreaMapObjective.cs" />
+    <Compile Include="UI\AreaMapObjective.cs" />
     <Compile Include="Bonus\AttackPowerUpgrade.cs" />
     <Compile Include="Bonus\ChargeDashEfficiency.cs" />
     <Compile Include="Clues.cs" />
@@ -51,12 +51,12 @@
     <Compile Include="BitCollection.cs" />
     <Compile Include="Extensions\CollectionsExtensions.cs" />
     <Compile Include="Goals\ForbidDoorPatch.cs" />
-    <Compile Include="GrantPickupAction.cs" />
-    <Compile Include="PauseMenuKeyHints.cs" />
+    <Compile Include="World Changes\GrantPickupAction.cs" />
+    <Compile Include="UI\PauseMenuKeyHints.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Bonus\ExtraDoubleJump.cs" />
-    <Compile Include="MapCompletionPercent.cs" />
-    <Compile Include="MapMarkersPatch.cs" />
+    <Compile Include="UI\MapCompletionPercent.cs" />
+    <Compile Include="UI\MapMarkersPatch.cs" />
     <Compile Include="RandomiserMessageController.cs" />
     <Compile Include="Bonus\ExtraAirDash.cs" />
     <Compile Include="SeinSense.cs" />
@@ -78,7 +78,7 @@
     <Compile Include="Randomiser.cs" />
     <Compile Include="World Changes\RandomiserBootstrap.cs" />
     <Compile Include="RandomiserController.cs" />
-    <Compile Include="RandomiserIcons.cs" />
+    <Compile Include="UI\RandomiserIcons.cs" />
     <Compile Include="RandomiserInventory.cs" />
     <Compile Include="RandomiserLocations.cs" />
     <Compile Include="RandomiserMod.cs" />
