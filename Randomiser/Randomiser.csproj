@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnableSenseAlways.cs" />
     <Compile Include="UI\AreaMapObjective.cs" />
     <Compile Include="Bonus\AttackPowerUpgrade.cs" />
     <Compile Include="Bonus\ChargeDashEfficiency.cs" />
@@ -59,7 +60,7 @@
     <Compile Include="UI\MapMarkersPatch.cs" />
     <Compile Include="RandomiserMessageController.cs" />
     <Compile Include="Bonus\ExtraAirDash.cs" />
-    <Compile Include="SeinSense.cs" />
+    <Compile Include="SeinHotColdSense.cs" />
     <Compile Include="World Changes\ActivateMultipleBasedOnCondition.cs" />
     <Compile Include="World Changes\RandomiserFlagsCondition.cs" />
     <Compile Include="Pickup Actions\RandomiserBonus.cs" />

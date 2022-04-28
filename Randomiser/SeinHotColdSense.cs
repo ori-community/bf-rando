@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Randomiser
 {
-    public class SeinSense : CustomSeinAbility
+    public class SeinHotColdSense : CustomSeinAbility
     {
         public override bool AllowAbility(SeinLogicCycle logicCycle) => logicCycle.Sein.PlayerAbilities.Sense.HasAbility;
 

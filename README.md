@@ -2,6 +2,8 @@
 
 A new randomiser implementation.
 
+See [orirando.com](https://orirando.com) for the complete, up to date rando.
+
 ## Installation
 
 To be automated

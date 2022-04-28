@@ -34,7 +34,6 @@ namespace Randomiser
             };
         }
 
-
         #region Bug Fixes
         private static void BootstrapSpiritTreeRefined(SceneRoot sceneRoot)
         {

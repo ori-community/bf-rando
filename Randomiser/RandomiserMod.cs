@@ -23,7 +23,7 @@ namespace Randomiser
             Controllers.Add<RandomiserMessageController>("c2d7a17a-1b2a-42cb-a9c3-d6af4704ccf1", "Randomiser", mb => Randomiser.Messages = mb as RandomiserMessageController);
 
             CustomSeinAbilityManager.Add<SeinRegen>("cc6427ed-31bf-4a7a-b4c4-ad559000ced9");
-            CustomSeinAbilityManager.Add<SeinSense>("eda5f877-889b-4be5-9ecb-1b499ce7053d");
+            CustomSeinAbilityManager.Add<SeinHotColdSense>("eda5f877-889b-4be5-9ecb-1b499ce7053d");
             CustomSeinAbilityManager.Add<ExtraAirDash>("88f2d7ca-f017-43f1-8dbb-3ae2afcb4ff4");
 
             Hooks.OnStartNewGame += () =>

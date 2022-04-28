@@ -54,10 +54,6 @@ SHARD_HORU_KEY_EXTRA=@Sunstone Shard (extra)@
 SHARD_WARMTH_FRAGMENT=@Warmth Fragment ({0}/{1})@
 SHARD_WARMTH_FRAGMENT_EXTRA=@Warmth Fragment (extra)@
 
-CLUE_WaterVein=WV
-CLUE_GumonSeal=GS
-CLUE_Sunstone=SS
-
 # Areas
 AREA_Blackroot=Blackroot
 AREA_Forlorn=Forlorn
