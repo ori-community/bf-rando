@@ -1,105 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F9F82B74-8941-4936-8499-EA87DD97E346}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Randomiser</RootNamespace>
     <AssemblyName>OriDeRandomiser</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
+    <TargetFramework>net35</TargetFramework>
+    <AssemblyTitle>Randomiser</AssemblyTitle>
+    <Product>Randomiser</Product>
+    <Copyright>Copyright ©  2022</Copyright>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnableSenseAlways.cs" />
-    <Compile Include="UI\AreaMapObjective.cs" />
-    <Compile Include="Bonus\AttackPowerUpgrade.cs" />
-    <Compile Include="Bonus\ChargeDashEfficiency.cs" />
-    <Compile Include="Clues.cs" />
-    <Compile Include="Extensions\TransformExtensions.cs" />
-    <Compile Include="FreeGrenadePatch.cs" />
-    <Compile Include="Goals\ActivateDoorBasedOnRandomiserGoal.cs" />
-    <Compile Include="Extensions\ArchiveExtensions.cs" />
-    <Compile Include="BitCollection.cs" />
-    <Compile Include="Extensions\CollectionsExtensions.cs" />
-    <Compile Include="Goals\ForbidDoorPatch.cs" />
-    <Compile Include="World Changes\GrantPickupAction.cs" />
-    <Compile Include="UI\PauseMenuKeyHints.cs" />
-    <Compile Include="Location.cs" />
-    <Compile Include="Bonus\ExtraDoubleJump.cs" />
-    <Compile Include="UI\MapCompletionPercent.cs" />
-    <Compile Include="UI\MapMarkersPatch.cs" />
-    <Compile Include="RandomiserMessageController.cs" />
-    <Compile Include="Bonus\ExtraAirDash.cs" />
-    <Compile Include="SeinHotColdSense.cs" />
-    <Compile Include="World Changes\ActivateMultipleBasedOnCondition.cs" />
-    <Compile Include="World Changes\RandomiserFlagsCondition.cs" />
-    <Compile Include="Pickup Actions\RandomiserBonus.cs" />
-    <Compile Include="Bonus\SeinRegen.cs" />
-    <Compile Include="Pickup Actions\RandomiserWorldEvents.cs" />
-    <Compile Include="SeinResourcesPatches.cs" />
-    <Compile Include="Pickups\FeatherSeinPatch.cs" />
-    <Compile Include="World Changes\FinishedGinsoEscapeCondition.cs" />
-    <Compile Include="InvisibleCheckpointPatch.cs" />
-    <Compile Include="Pickups\MapstonePatch.cs" />
-    <Compile Include="World Changes\PatchGetWorldEventCondition.cs" />
-    <Compile Include="Pickups\PetrifiedPlantPatch.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pickup Actions\RandomiserAction.cs" />
-    <Compile Include="Pickup Actions\RandomiserActionResult.cs" />
-    <Compile Include="Randomiser.cs" />
-    <Compile Include="World Changes\RandomiserBootstrap.cs" />
-    <Compile Include="RandomiserController.cs" />
-    <Compile Include="UI\RandomiserIcons.cs" />
-    <Compile Include="RandomiserInventory.cs" />
-    <Compile Include="RandomiserLocations.cs" />
-    <Compile Include="RandomiserMod.cs" />
-    <Compile Include="Pickups\RandomiserPickupProcessor.cs" />
-    <Compile Include="RandomiserSeed.cs" />
-    <Compile Include="Pickups\SkillTreePatch.cs" />
-    <Compile Include="Pickups\WorldEventsPatch.cs" />
-    <Compile Include="World Changes\StompTriggerCondition.cs" />
-    <Compile Include="WaitForLevelLoad.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Lib.Harmony">
-      <Version>2.0.2</Version>
-    </PackageReference>
-    <PackageReference Include="OriDeModLoader">
-      <Version>0.4.0-alpha</Version>
-    </PackageReference>
+    <PackageReference Include="Lib.Harmony" Version="2.0.2" />
+    <PackageReference Include="OriDeModLoader" Version="0.4.0-alpha" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LocationData.json" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
