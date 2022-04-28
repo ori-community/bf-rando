@@ -17,7 +17,14 @@ namespace Randomiser
         public override void UpdateCharacterState()
         {
             // TODO optimise? use inventory if caching
-            IEnumerable<Vector2> positions = Randomiser.Seed.SenseItems.Where(l => !l.HasBeenObtained()).Select(p => p.position);
+            var realDist = Characters.Ori && Characters.Ori.InsideMapstone ? GetMapstoneItem() : GetNormalItem();
+
+            Characters.Sein.PlatformBehaviour.Visuals.SpriteRenderer.material.color = Color.Lerp(warmColour, coldColour, realDist / MaxDistance);
+        }
+
+        private static float GetNormalItem()
+        {
+            IEnumerable<Vector2> positions = Randomiser.Seed.SenseItems.Where(l => l.type != Location.LocationType.ProgressiveMapstone && !l.HasBeenObtained()).Select(p => p.position);
             Vector2 seinPosition = Characters.Sein.Position;
 
             float closestDistance = float.PositiveInfinity;
@@ -32,9 +39,28 @@ namespace Randomiser
                 }
             }
 
-            float realDist = (seinPosition - closestPos).magnitude;
+            if (closestDistance == float.PositiveInfinity)
+                return MaxDistance;
 
-            Characters.Sein.PlatformBehaviour.Visuals.SpriteRenderer.material.color = Color.Lerp(warmColour, coldColour, realDist / MaxDistance);
+            return (seinPosition - closestPos).magnitude;
+        }
+
+        private static float GetMapstoneItem()
+        {
+            // Location data has progressive maps at (0, 24 + i * 4) so the y position can be used to judge how deep into the progression it is
+            IEnumerable<float> positions = Randomiser.Seed.SenseItems.Where(l => l.type == Location.LocationType.ProgressiveMapstone && !l.HasBeenObtained()).Select(p => p.position.y);
+
+            float closestDistance = float.PositiveInfinity;
+            foreach (var pos in positions)
+            {
+                if (pos < closestDistance)
+                    closestDistance = pos;
+            }
+
+            if (closestDistance == float.PositiveInfinity)
+                return MaxDistance;
+
+            return closestDistance - (24 + Randomiser.MapstonesRepaired * 4);
         }
     }
 }
