@@ -30,6 +30,7 @@ namespace Randomiser
             {
                 Randomiser.Inventory.Reset();
                 Randomiser.Seed.LoadSeed("randomizer.dat");
+                Randomiser.Message(AreaMapObjectiveText.GetGoalMessage());
             };
 
             SceneBootstrap.RegisterHandler(RandomiserBootstrap.SetupBootstrap, "Randomiser");

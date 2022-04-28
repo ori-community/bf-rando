@@ -24,12 +24,23 @@ namespace Randomiser
             }
         }
 
-        private static string GetGoalMessage()
+        public static string GetGoalMessage()
         {
-            if (Randomiser.Inventory.goalComplete)
+            if (Randomiser.Inventory.goalComplete || Randomiser.Seed.GoalMode == GoalMode.None)
                 return Strings.Get("OBJECTIVE_HORU_ESCAPE");
 
-            return Strings.Get("OBJECTIVE_FORCE_TREES");
+            switch (Randomiser.Seed.GoalMode)
+            {
+                case GoalMode.ForceTrees:
+                    return Strings.Get("OBJECTIVE_FORCE_TREES");
+                case GoalMode.ForceMaps:
+                    return Strings.Get("OBJECTIVE_FORCE_MAPS");
+                case GoalMode.WorldTour:
+                case GoalMode.WarmthFrags:
+                    return $"{Randomiser.Seed.GoalMode} is not supported yet";
+            }
+
+            return Strings.Get("OBJECTIVE_FALLBACK");
         }
     }
 
