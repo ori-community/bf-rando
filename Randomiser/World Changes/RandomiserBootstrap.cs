@@ -30,8 +30,42 @@ namespace Randomiser
 
                 // Stomp Triggers
                 ["upperGladesHollowTreeSplitB"] = BootstrapUpperGladesHollowTreeSplitB,
-                ["valleyOfTheWindBackground"] = BootstrapValleyOfTheWindBackground
+                ["valleyOfTheWindBackground"] = BootstrapValleyOfTheWindBackground,
+
+                // Open World
+                ["westGladesFireflyAreaA"] = BootstrapWestGladesFireflyAreaA
             };
+        }
+
+        // aka 3 bird area
+        private static void BootstrapWestGladesFireflyAreaA(SceneRoot sceneRoot)
+        {
+            Transform leverSetup = sceneRoot.transform.FindChild("*leverSetup");
+            ActionLeverSystem leverSystem = leverSetup.GetComponentInChildren<ActionLeverSystem>();
+
+            var closedWorldCondition = leverSetup.gameObject.AddComponent<RandomiserFlagsCondition>();
+            closedWorldCondition.Flags = RandomiserFlags.OpenWorld;
+            closedWorldCondition.IsTrue = false;
+
+            // Disable lever?
+            //leverSystem.CanLeverLeft = closedWorldCondition;
+            //leverSystem.CanLeverRight = closedWorldCondition;
+
+            {
+                // Remove lever
+                var activator = leverSetup.gameObject.AddComponent<ActivateBasedOnCondition>();
+                activator.Condition = closedWorldCondition;
+                activator.Activate = true;
+                activator.Target = leverSystem.Lever.gameObject;
+            }
+
+            {
+                // Remove tree
+                var activator = leverSetup.gameObject.AddComponent<ActivateBasedOnCondition>();
+                activator.Condition = closedWorldCondition;
+                activator.Activate = true;
+                activator.Target = leverSetup.FindChild("platformBranchSetup/sunkenGladesStompTree").gameObject;
+            }
         }
 
         #region Bug Fixes
