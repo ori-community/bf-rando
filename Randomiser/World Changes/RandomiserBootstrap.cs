@@ -69,6 +69,11 @@ namespace Randomiser
             ActionSequence seinAnimationSequence = sceneRoot.transform.FindChild("*objectiveSetup/objectiveSetupTrigger/seinSpriteAction").GetComponent<ActionSequence>();
             WaitAction waitAction = seinAnimationSequence.Actions[1] as WaitAction;
             waitAction.Duration = 5.0f;
+
+            // force the music to start up, dang it
+            var musicZones = sceneRoot.transform.Find("musicZones").GetComponentsInChildren<MusicZone>(includeInactive: true);
+            foreach (var zone in musicZones)
+                zone.gameObject.SetActive(!zone.gameObject.activeInHierarchy);
         }
 
         private static void ReplaceCondition(OnSceneStartRunAction action)

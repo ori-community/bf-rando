@@ -15,9 +15,6 @@
     <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Lib.Harmony" Version="2.0.2" />
     <PackageReference Include="OriDeModLoader" Version="0.4.0-alpha" />
   </ItemGroup>

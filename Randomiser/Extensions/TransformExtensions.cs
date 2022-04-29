@@ -21,5 +21,20 @@ namespace Randomiser
             transform.parent = newParent;
             return newParent;
         }
+
+        public static string GetPath(this Transform transform)
+        {
+            Transform t = transform;
+            List<string> names = new List<string>();
+
+            do
+            {
+                names.Add(t.name);
+                t = t.parent;
+            } while (t != null);
+
+            names.Reverse();
+            return string.Join("/", names.ToArray());
+        }
     }
 }
