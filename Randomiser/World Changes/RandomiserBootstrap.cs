@@ -33,39 +33,9 @@ namespace Randomiser
                 ["valleyOfTheWindBackground"] = BootstrapValleyOfTheWindBackground,
 
                 // Open World
+                ["sunkenGladesIntroSplitA"] = BootstrapSunkenGladesIntroSplitA,
                 ["westGladesFireflyAreaA"] = BootstrapWestGladesFireflyAreaA
             };
-        }
-
-        // aka 3 bird area
-        private static void BootstrapWestGladesFireflyAreaA(SceneRoot sceneRoot)
-        {
-            Transform leverSetup = sceneRoot.transform.FindChild("*leverSetup");
-            ActionLeverSystem leverSystem = leverSetup.GetComponentInChildren<ActionLeverSystem>();
-
-            var closedWorldCondition = leverSetup.gameObject.AddComponent<RandomiserFlagsCondition>();
-            closedWorldCondition.Flags = RandomiserFlags.OpenWorld;
-            closedWorldCondition.IsTrue = false;
-
-            // Disable lever?
-            //leverSystem.CanLeverLeft = closedWorldCondition;
-            //leverSystem.CanLeverRight = closedWorldCondition;
-
-            {
-                // Remove lever
-                var activator = leverSetup.gameObject.AddComponent<ActivateBasedOnCondition>();
-                activator.Condition = closedWorldCondition;
-                activator.Activate = true;
-                activator.Target = leverSystem.Lever.gameObject;
-            }
-
-            {
-                // Remove tree
-                var activator = leverSetup.gameObject.AddComponent<ActivateBasedOnCondition>();
-                activator.Condition = closedWorldCondition;
-                activator.Activate = true;
-                activator.Target = leverSetup.FindChild("platformBranchSetup/sunkenGladesStompTree").gameObject;
-            }
         }
 
         #region Bug Fixes
@@ -321,6 +291,38 @@ namespace Randomiser
             UnityEngine.Object.Destroy(kuroCliffTriggerCollider.Condition);
             var kuroCliffCondition = kuroCliffTriggerCollider.gameObject.AddComponent<StompTriggerCondition>();
             kuroCliffTriggerCollider.Condition = kuroCliffCondition;
+        }
+        #endregion
+
+        #region Open World
+        private static void BootstrapSunkenGladesIntroSplitA(SceneRoot sceneRoot)
+        {
+            // Disable sunken glades first key door
+            var closedWorldCondition = sceneRoot.gameObject.AddComponent<RandomiserFlagsCondition>();
+            closedWorldCondition.Flags = RandomiserFlags.OpenWorld;
+            closedWorldCondition.IsTrue = false;
+
+            var activator = sceneRoot.gameObject.AddComponent<ActivateMultipleBasedOnCondition>();
+            activator.Condition = closedWorldCondition;
+            activator.Activate = true;
+            activator.Objects = sceneRoot.transform.FindAllChildren("doorWithTwoSlots/door", "*allEnemiesKilled/activated/*objectiveSetup/objectiveSetupTrigger").Select(t => t.gameObject).ToArray();
+        }
+
+        // aka 3 bird area
+        private static void BootstrapWestGladesFireflyAreaA(SceneRoot sceneRoot)
+        {
+            Transform leverSetup = sceneRoot.transform.FindChild("*leverSetup");
+            ActionLeverSystem leverSystem = leverSetup.GetComponentInChildren<ActionLeverSystem>();
+
+            var closedWorldCondition = leverSetup.gameObject.AddComponent<RandomiserFlagsCondition>();
+            closedWorldCondition.Flags = RandomiserFlags.OpenWorld;
+            closedWorldCondition.IsTrue = false;
+
+            // Remove lever
+            var activator = leverSetup.gameObject.AddComponent<ActivateMultipleBasedOnCondition>();
+            activator.Condition = closedWorldCondition;
+            activator.Activate = true;
+            activator.Objects = new GameObject[] { leverSystem.Lever.gameObject, leverSetup.FindChild("platformBranchSetup/sunkenGladesStompTree").gameObject };
         }
         #endregion
     }
