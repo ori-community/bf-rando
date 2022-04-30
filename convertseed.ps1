@@ -6,8 +6,12 @@ $lines = Get-Content .\randomizer.dat.bak
 $lines[0] | Out-File .\randomizer.dat
 
 for ($i = 1; $i -le $lines.length; $i++) {
-    $key = ($lines[$i] -split "\|")[0]
+    if (-not $lines[$i]) {
+        continue
+    }
 
-    # TODO remove location name
-    $lines[$i] -replace $key, $map[$key] | Out-File -Append .\randomizer.dat
+    $key = ($lines[$i] -split "\|")[0]
+    $x = $lines[$i] -replace $key, $map[$key]
+    $x = $x.Substring(0, $x.LastIndexOf('|'))
+    $x | Out-File -Append .\randomizer.dat
 }
