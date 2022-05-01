@@ -51,7 +51,7 @@ namespace Randomiser
         // The random seed used to generate the... seed. But nobody means this when they say "seed".
         public string seed;
 
-        public bool HasFlag(RandomiserFlags flag) => (Flags & flag) != 0;
+        public bool HasFlag(RandomiserFlags flag) => (Flags & flag) == flag;
 
         public Clues Clues { get; private set; }
 

@@ -44,6 +44,14 @@ namespace Randomiser
             // Unlike most other pickups, which are permanent placeholders that spawn an object with a DestroyOnRestoreCheckpoint component,
             // this one is *just* an object with a DestroyOnRestoreCheckpoint component. Disable that to prevent its untimely demise.
             sceneRoot.transform.FindChild("mediumExpOrb").GetComponent<DestroyOnRestoreCheckpoint>().enabled = false;
+
+            // Open world removes the blue wall left of the spirit well
+            var condition = sceneRoot.gameObject.AddComponent<RandomiserFlagsCondition>();
+            condition.Flags = RandomiserFlags.OpenWorld;
+            var activator = sceneRoot.gameObject.AddComponent<ActivateBasedOnCondition>();
+            activator.Activate = false;
+            activator.Condition = condition;
+            activator.Target = sceneRoot.transform.Find("chargeFlameWall").EmbedInContainer().gameObject;
         }
 
         private static void BootstrapMoonGrottoRopeBridge(SceneRoot sceneRoot)
