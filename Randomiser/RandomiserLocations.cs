@@ -11,6 +11,8 @@ namespace Randomiser
         private Dictionary<string, Location> nameMap = new Dictionary<string, Location>();
         private Dictionary<MoonGuid, Location> guidMap = new Dictionary<MoonGuid, Location>();
 
+        public LocationCache Cache { get; private set; }
+
         public Location this[string name] => nameMap.GetOrDefault(name);
         public Location this[MoonGuid guid] => guidMap.GetOrDefault(guid);
 
@@ -62,6 +64,8 @@ namespace Randomiser
 
             nameMap = allLocs.ToDictionary(l => l.name);
             guidMap = allLocs.ToDictionary(l => l.guid);
+
+            Cache = new LocationCache(allLocs);
         }
     }
 

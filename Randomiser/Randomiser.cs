@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Game;
 using OriDeModLoader;
@@ -17,11 +15,9 @@ namespace Randomiser
 
 
         public static int TotalPickupsFound => Inventory.pickupsCollected.Sum;
-        public static int MapstonesRepaired => Locations.GetAll().Where(l => l.type == Location.LocationType.ProgressiveMapstone && l.HasBeenObtained()).Count();
-        public static int TreesFound => Locations.GetAll().Where(l => l.type == Location.LocationType.Skill && l.HasBeenObtained()).Count();
-        public static int TreesFoundExceptSein => Locations.GetAll().Where(l => l.type == Location.LocationType.Skill && l.name != "Sein" && l.HasBeenObtained()).Count();
-
-        public static IEnumerable<Location> LocationsInArea(Location.WorldArea area) => Locations.GetAll().Where(l => l.worldArea == area);
+        public static int MapstonesRepaired => Locations.Cache.progressiveMapstones.ObtainedCount();
+        public static int TreesFound => Locations.Cache.skills.ObtainedCount();
+        public static int TreesFoundExceptSein => Locations.Cache.skillsExceptSein.ObtainedCount();
 
         public static float SpiritLightMultiplier
         {
@@ -119,7 +115,7 @@ namespace Randomiser
                 case GoalMode.None:
                     return true;
                 case GoalMode.ForceTrees:
-                    return Locations.GetAll().Where(l => l.type == Location.LocationType.Skill).All(l => l.HasBeenObtained());
+                    return Locations.Cache.skills.ObtainedCount() == 11;
                 case GoalMode.ForceMaps:
                     break;
                 case GoalMode.WarmthFrags:

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Randomiser
 {
@@ -10,6 +11,17 @@ namespace Randomiser
                 return dict[key];
 
             return default;
+        }
+
+        public static int ObtainedCount(this ReadOnlyCollection<Location> locations)
+        {
+            int count = 0;
+            for (int i = 0; i < locations.Count; i++)
+            {
+                if (locations[i].HasBeenObtained())
+                    count++;
+            }
+            return count;
         }
     }
 }

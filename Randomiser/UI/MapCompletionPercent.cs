@@ -8,12 +8,8 @@ namespace Randomiser
     {
         private static bool Prefix(RuntimeGameWorldArea __instance, ref float ___m_completionAmount)
         {
-            var locations = Randomiser.LocationsInArea(Location.ParseArea(__instance.Area.AreaIdentifier));
-            int count = locations.Count();
-
-            int collected = locations.Where(l => l.HasBeenObtained()).Count();
-
-            ___m_completionAmount = (float)collected / count;
+            var locations = Randomiser.Locations.Cache.LocationsInArea(Location.ParseArea(__instance.Area.AreaIdentifier));
+            ___m_completionAmount = (float)locations.ObtainedCount() / locations.Count();
 
             return false;
         }
