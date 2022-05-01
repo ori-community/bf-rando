@@ -8,6 +8,9 @@ namespace Randomiser
 
         public override bool Validate(IContext context)
         {
+            if (Randomiser.Seed.HasFlag(RandomiserFlags.OpenWorld))
+                return false;
+
             if (Randomiser.Seed.HasFlag(RandomiserFlags.StompTriggers))
                 return Characters.Sein != null && Characters.Sein.PlayerAbilities.HasAbility(AbilityType.Stomp);
 
