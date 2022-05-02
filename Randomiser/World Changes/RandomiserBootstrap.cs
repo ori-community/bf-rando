@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using OriDeModLoader;
 using UnityEngine;
@@ -34,8 +35,107 @@ namespace Randomiser
 
                 // Open World
                 ["sunkenGladesIntroSplitA"] = BootstrapSunkenGladesIntroSplitA,
-                ["westGladesFireflyAreaA"] = BootstrapWestGladesFireflyAreaA
+                ["westGladesFireflyAreaA"] = BootstrapWestGladesFireflyAreaA,
+
+                ["creditsScreen"] = BootstrapCreditsScreen,
+                ["titleScreenSwallowsNest"] = BootstrapTitleScreenSwallowsNest
             };
+        }
+
+        private static void BootstrapCreditsScreen(SceneRoot sceneRoot)
+        {
+            var creditsTextMoon = sceneRoot.transform.Find("timelineSequence/creditsTexts/creditsMoonAndCo/creditsTextMoon");
+
+            var creditsTextMods = GameObject.Instantiate(creditsTextMoon);
+            creditsTextMods.name = "creditsTextMods";
+
+            creditsTextMods.SetParent(creditsTextMoon.parent, false);
+
+            creditsTextMoon.position += Vector3.left * 10;
+            creditsTextMods.position += Vector3.right * 10;
+
+            var messageBox = creditsTextMods.GetComponent<MessageBox>();
+            messageBox.OverrideText = @"*Mods*#
+
+#Author/s  ^Mod Loader^#
+
+#Name 1  ^Mod 1^
+Name 2 ^ Mod 2 ^
+Name n ^ Mod n ^#";
+        }
+
+        private static void BootstrapTitleScreenSwallowsNest(SceneRoot sceneRoot)
+        {
+            var background = sceneRoot.transform.Find("ui/group/definitiveEdition/logoOriDefinitiveEditionA");
+            background.localScale = new Vector3(21.28151f, 10.32038f, 0.7093837f);
+            background.position = new Vector3(-2478.584f, -549.78f, 0);
+
+            var deText = sceneRoot.transform.Find("ui/group/definitiveEdition/logoOriDefinitiveEditionB");
+            deText.position = new Vector3(deText.position.x, -549.2224f, deText.position.z);
+
+                var randoText = GameObject.Instantiate(deText);
+                randoText.SetParent(deText.parent, false);
+                randoText.position = new Vector3(deText.position.x, -550.0939f, deText.position.z);
+                randoText.localScale = new Vector3(9, 4, 1);
+
+                var tex = LoadTextureFromFile("Mods/assets/OriDeRandomiser/logo.png", 227, 83);
+                var meshRenderer = randoText.GetComponent<MeshRenderer>();
+                meshRenderer.material.mainTexture = tex;
+
+                meshRenderer.material.SetVector("_MainTex_US_ATLAS", new Vector4(1, 1, 1, 1));
+                meshRenderer.material.SetVector("_MainTex_US_ATLAS_ST", new Vector4(0, 0, 1, 1));
+                meshRenderer.material.SetVector("_DepthFlipScreen", new Vector4(0, 0, 1, 0));
+
+                Mesh mesh = new Mesh();
+                Vector3[] vertices = new Vector3[4]
+                {
+                    new Vector3(-0.5f, -0.5f, 0),
+                    new Vector3(0.5f, -0.5f, 0),
+                    new Vector3(-0.5f, 0.5f, 0),
+                    new Vector3(0.5f, 0.5f, 0)
+                };
+                mesh.vertices = vertices;
+
+                int[] tris = new int[6]
+                {
+                    // lower left triangle
+                    0, 2, 1,
+                    // upper right triangle
+                    2, 1, 3
+                };
+                mesh.triangles = tris;
+
+                Vector3[] normals = new Vector3[4]
+                {
+                    -Vector3.forward,
+                    -Vector3.forward,
+                    -Vector3.forward,
+                    -Vector3.forward
+                };
+                mesh.normals = normals;
+
+                Vector2[] uv = new Vector2[4]
+                {
+                    new Vector2(0, 0),
+                    new Vector2(1, 0),
+                    new Vector2(0, 1),
+                    new Vector2(1, 1)
+                };
+                mesh.uv = uv;
+
+                randoText.GetComponent<MeshFilter>().mesh = mesh;
+        }
+
+        private static Texture2D LoadTextureFromFile(string path, int width, int height)
+        {
+            if (!File.Exists(path))
+                throw new FileNotFoundException("Failed to load texture (file not found)", path);
+
+            var bytes = File.ReadAllBytes(path);
+            var tex = new Texture2D(width, height, TextureFormat.DXT5, false, true);
+
+            tex.LoadImage(bytes);
+            return tex;
         }
 
         #region Bug Fixes

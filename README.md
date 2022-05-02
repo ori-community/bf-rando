@@ -22,7 +22,6 @@ Implemented:
 
 Upcoming:
 
-* Open World
 * World Tour
 * Forlorn escape plant clues
 
