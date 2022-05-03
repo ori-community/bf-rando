@@ -60,8 +60,8 @@ namespace Randomiser
 #Author/s  ^Mod Loader^#
 
 #Name 1  ^Mod 1^
-Name 2 ^ Mod 2 ^
-Name n ^ Mod n ^#";
+Name 2 ^Mod 2^
+Name n ^Mod n^#";
         }
 
         private static void BootstrapTitleScreenSwallowsNest(SceneRoot sceneRoot)
@@ -73,57 +73,57 @@ Name n ^ Mod n ^#";
             var deText = sceneRoot.transform.Find("ui/group/definitiveEdition/logoOriDefinitiveEditionB");
             deText.position = new Vector3(deText.position.x, -549.2224f, deText.position.z);
 
-                var randoText = GameObject.Instantiate(deText);
-                randoText.SetParent(deText.parent, false);
-                randoText.position = new Vector3(deText.position.x, -550.0939f, deText.position.z);
-                randoText.localScale = new Vector3(9, 4, 1);
+            var randoText = GameObject.Instantiate(deText);
+            randoText.SetParent(deText.parent, false);
+            randoText.position = new Vector3(deText.position.x, -550.0939f, deText.position.z);
+            randoText.localScale = new Vector3(8, 3.8f, 1);
 
-                var tex = LoadTextureFromFile("Mods/assets/OriDeRandomiser/logo.png", 227, 83);
-                var meshRenderer = randoText.GetComponent<MeshRenderer>();
-                meshRenderer.material.mainTexture = tex;
+            var tex = LoadTextureFromFile("Mods/assets/OriDeRandomiser/logo.png", 256, 128);
+            var meshRenderer = randoText.GetComponent<MeshRenderer>();
+            meshRenderer.material.mainTexture = tex;
 
-                meshRenderer.material.SetVector("_MainTex_US_ATLAS", new Vector4(1, 1, 1, 1));
-                meshRenderer.material.SetVector("_MainTex_US_ATLAS_ST", new Vector4(0, 0, 1, 1));
-                meshRenderer.material.SetVector("_DepthFlipScreen", new Vector4(0, 0, 1, 0));
+            meshRenderer.material.SetVector("_MainTex_US_ATLAS", new Vector4(1, 1, 1, 1));
+            meshRenderer.material.SetVector("_MainTex_US_ATLAS_ST", new Vector4(0, 0, 1, 1));
+            meshRenderer.material.SetVector("_DepthFlipScreen", new Vector4(0, 0, 1, 0));
 
-                Mesh mesh = new Mesh();
-                Vector3[] vertices = new Vector3[4]
-                {
-                    new Vector3(-0.5f, -0.5f, 0),
-                    new Vector3(0.5f, -0.5f, 0),
-                    new Vector3(-0.5f, 0.5f, 0),
-                    new Vector3(0.5f, 0.5f, 0)
-                };
-                mesh.vertices = vertices;
+            Mesh mesh = new Mesh();
+            Vector3[] vertices = new Vector3[4]
+            {
+                new Vector3(-0.5f, -0.5f, 0),
+                new Vector3(0.5f, -0.5f, 0),
+                new Vector3(-0.5f, 0.5f, 0),
+                new Vector3(0.5f, 0.5f, 0)
+            };
+            mesh.vertices = vertices;
 
-                int[] tris = new int[6]
-                {
-                    // lower left triangle
-                    0, 2, 1,
-                    // upper right triangle
-                    2, 1, 3
-                };
-                mesh.triangles = tris;
+            int[] tris = new int[6]
+            {
+                // lower left triangle
+                0, 2, 1,
+                // upper right triangle
+                2, 1, 3
+            };
+            mesh.triangles = tris;
 
-                Vector3[] normals = new Vector3[4]
-                {
-                    -Vector3.forward,
-                    -Vector3.forward,
-                    -Vector3.forward,
-                    -Vector3.forward
-                };
-                mesh.normals = normals;
+            Vector3[] normals = new Vector3[4]
+            {
+                -Vector3.forward,
+                -Vector3.forward,
+                -Vector3.forward,
+                -Vector3.forward
+            };
+            mesh.normals = normals;
 
-                Vector2[] uv = new Vector2[4]
-                {
-                    new Vector2(0, 0),
-                    new Vector2(1, 0),
-                    new Vector2(0, 1),
-                    new Vector2(1, 1)
-                };
-                mesh.uv = uv;
+            Vector2[] uv = new Vector2[4]
+            {
+                new Vector2(0, 0),
+                new Vector2(1, 0),
+                new Vector2(0, 1),
+                new Vector2(1, 1)
+            };
+            mesh.uv = uv;
 
-                randoText.GetComponent<MeshFilter>().mesh = mesh;
+            randoText.GetComponent<MeshFilter>().mesh = mesh;
         }
 
         private static Texture2D LoadTextureFromFile(string path, int width, int height)
