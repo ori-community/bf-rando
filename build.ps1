@@ -2,8 +2,9 @@ msbuild /t:Build /restore /p:Configuration=Release /p:OutDir=..\build
 
 rm -R .\release -ErrorAction SilentlyContinue
 
-mkdir .\release\Mods\Assets\OriDeRandomiser\
-mkdir .\release\Mods\strings\Randomiser\
+mkdir .\release\
+mkdir .\release\assets\
+mkdir .\release\strings\
 
 cp .\build\OriDeRandomiser.dll .\release\
 cp .\Randomiser\Assets\* .\release\assets\
