@@ -1,0 +1,6 @@
+{
+    "name": "Randomiser",
+    "version": "v0.1.4",
+    "preload": [],
+    "entrypoint": [ "OriDeRandomiser.dll" ]
+}
