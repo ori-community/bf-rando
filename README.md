@@ -6,13 +6,13 @@ See [orirando.com](https://orirando.com) for the complete, up to date rando.
 
 ## Installation
 
-To be automated
+Use the [Mod Manager](https://github.com/Kirefel/bf-mod-manager)
 
-Requires [Ori DE Mod Loader](https://github.com/Kirefel/OriDeModLoader)
+## Manual Installation
 
-Copy package contents to Ori DE directory e.g. `C:\Program Files (x86)\steam\steamapps\common\Ori DE`
+Requires [Ori DE Mod Loader](https://github.com/ori-community/bf-modloader)
 
-Run `convertseed.ps1` to convert any seed from [orirando.com](https://orirando.com) to the new format.
+TODO
 
 ## Current state
 
@@ -35,4 +35,4 @@ Upcoming:
 
 ### Sein text is back!
 
-You need the speed mod. For now, grab it from the randomiser's [releases page](https://github.com/Kirefel/OriDeRandomiser/releases/latest).
+You need the speed mod. For now, grab it from the randomiser's [releases page](https://github.com/Kirefel/OriDeRandomiser/releases).
