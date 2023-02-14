@@ -246,7 +246,7 @@ namespace Randomiser
             if (count <= Randomiser.Seed.ShardsRequiredForKey)
                 return Strings.Get(type, count, Randomiser.Seed.ShardsRequiredForKey);
 
-            return Strings.Get(type + "_EXTRA", count);
+            return Strings.Get(type + "_EXTRA");
         }
     }
 }

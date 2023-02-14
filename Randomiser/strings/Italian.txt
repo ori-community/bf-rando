@@ -1,14 +1,14 @@
-SKILL_SpiritFlame=Fiamma dello spirito
-SKILL_WallJump=Salto a parete
-SKILL_ChargeFlame=Fiamma caricata
-SKILL_DoubleJump=Doppio salto
-SKILL_Bash=Colpo
-SKILL_Stomp=Colpo a terra
-SKILL_Glide=Piuma di Kuro
-SKILL_Climb=Scalata
-SKILL_ChargeJump=Salto caricato
-SKILL_Dash=Rapidità
-SKILL_Grenade=Esplosione di luce
+SKILL_SpiritFlame=$Fiamma dello spirito$
+SKILL_WallJump=$Salto a parete$
+SKILL_ChargeFlame=$Fiamma caricata$
+SKILL_DoubleJump=$Doppio salto$
+SKILL_Bash=$Colpo$
+SKILL_Stomp=$Colpo a terra$
+SKILL_Glide=$Piuma di Kuro$
+SKILL_Climb=$Scalata$
+SKILL_ChargeJump=$Salto caricato$
+SKILL_Dash=$Rapidità$
+SKILL_Grenade=$Esplosione di luce$
 
 PICKUP_HEALTH_CELL=Cellule vitali
 PICKUP_ENERGY_CELL=Cullule energetiche

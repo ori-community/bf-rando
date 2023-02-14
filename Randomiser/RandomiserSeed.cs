@@ -228,5 +228,15 @@ namespace Randomiser
             result = default;
             return false;
         }
+
+#if DEBUG
+        public void ToggleFlag(RandomiserFlags flag)
+        {
+            if (HasFlag(flag))
+                Flags &= ~flag;
+            else
+                Flags |= flag;
+        }
+#endif
     }
 }
