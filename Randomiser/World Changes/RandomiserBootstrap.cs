@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using OriDeModLoader;
 using UnityEngine;
 
@@ -78,7 +79,7 @@ Name n ^Mod n^#";
             randoText.position = new Vector3(deText.position.x, -550.0939f, deText.position.z);
             randoText.localScale = new Vector3(8, 3.8f, 1);
 
-            var tex = LoadTextureFromFile("Mods/assets/OriDeRandomiser/logo.png", 256, 128);
+            var tex = LoadTextureFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "assets/logo.png"), 256, 128);
             var meshRenderer = randoText.GetComponent<MeshRenderer>();
             meshRenderer.material.mainTexture = tex;
 

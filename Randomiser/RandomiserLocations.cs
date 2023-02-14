@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 namespace Randomiser
@@ -28,7 +29,7 @@ namespace Randomiser
 
         private void Awake()
         {
-            Load(@".\Mods\assets\OriDeRandomiser\LocationData.json");
+            Load(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"assets\LocationData.json"));
 
             // TODO this dependency is unfortunate, find a better way to do it
             RandomiserIcons.Initialise(this);
