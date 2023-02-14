@@ -24,6 +24,8 @@ Upcoming:
 
 * World Tour
 * Forlorn escape plant clues
+* In-game seed generation
+* Sharable seeds
 
 ## FAQ
 
@@ -35,4 +37,4 @@ Upcoming:
 
 ### Sein text is back!
 
-You need the speed mod. For now, grab it from the randomiser's [releases page](https://github.com/Kirefel/OriDeRandomiser/releases).
+You need the [QoL mod](https://github.com/Kirefel/OriDeQol)
