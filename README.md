@@ -4,6 +4,8 @@ A new randomiser implementation.
 
 See [orirando.com](https://orirando.com) for the complete, up to date rando.
 
+> :warning: **Requires python 3.10+, download [here](https://www.python.org/downloads/)**
+
 ## Installation
 
 Use the [Mod Manager](https://github.com/Kirefel/bf-mod-manager)
@@ -19,12 +21,13 @@ TODO
 Implemented:
 
 * Everything in a typical Standard Clues or Shards seed, unless listed below
+* In game seed generation - simply start a new file to generate a Standard Clues with Force Trees game
 
 Upcoming:
 
 * World Tour
 * Forlorn escape plant clues
-* In-game seed generation
+* In-game seed generation options
 * Sharable seeds
 
 ## FAQ
