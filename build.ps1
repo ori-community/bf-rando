@@ -7,7 +7,7 @@ mkdir .\release\assets\
 mkdir .\release\strings\
 
 cp .\build\OriDeRandomiser.dll .\release\
-cp .\Randomiser\Assets\* .\release\assets\
+cp .\Randomiser\Assets\* .\release\assets\ -Recurse
 cp .\Randomiser\strings\* .\release\strings\
 cp .\convertseed.ps1 .\release\
 cp .\mod.json .\release\
