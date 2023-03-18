@@ -4,6 +4,7 @@ import logging as log
 import re
 import pickle
 from collections import OrderedDict, defaultdict, Counter
+import json
 
 from util import enums_from_strlist
 from enums import MultiplayerGameType, ShareType, Variation, LogicPath, KeyMode, PathDifficulty, presets
@@ -370,6 +371,7 @@ class CLISeedParams(object):
             self.spawn_weights = []
             self.spawn = args.start
             raw = sg.setSeedAndPlaceItems(self, preplaced={})
+            
             seeds = []
             spoilers = []
             if not raw:
@@ -396,6 +398,8 @@ class CLISeedParams(object):
                     else:
                         seedfile = "randomizer" + str(count) + ".dat"
                         spoilerfile = "spoiler" + str(count) + ".txt"
+
+                seed = convert_keys(seed)
 
                 if not self.do_analysis and not self.do_loc_analysis:
                     with open(args.output_dir+"/"+seedfile, 'w') as f:
@@ -513,6 +517,26 @@ class CLISeedParams(object):
         if self.balanced:
             flags.append("balanced")
         return "%s|%s" % (",".join(flags), self.seed)
+
+def convert_keys(raw):
+    with open('../HashGuidMap.json', 'r') as f:
+      key_map = json.load(f)
+    
+    out = []
+    for line in raw.splitlines():
+        index = line.find('|')
+        if index < 0:
+            out.append(line)
+            continue
+
+        key = line[:index]
+        if key in key_map:
+            s = key_map[line[:index]] + line[index:]
+            out.append(s)
+        else:
+            out.append(line)
+
+    return '\n'.join(out)
 
 
 if __name__ == "__main__":
