@@ -6,3 +6,4 @@ release/
 build/
 OriDeRandomiser.zip
 LaunchSettings.json
+__pycache__/
