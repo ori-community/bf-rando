@@ -146,7 +146,7 @@ namespace Randomiser
             // TODO handle missing file
             if (!File.Exists(filepath))
             {
-                Randomiser.Message("randomizer.dat not found");
+                Randomiser.Message(filepath + " not found");
                 Debug.Log("File not found: " + Path.GetFullPath(filepath));
                 return;
             }
