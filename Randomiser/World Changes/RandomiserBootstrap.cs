@@ -56,13 +56,14 @@ namespace Randomiser
             creditsTextMods.position += Vector3.right * 10;
 
             var messageBox = creditsTextMods.GetComponent<MessageBox>();
-            messageBox.OverrideText = @"*Mods*#
+            messageBox.OverrideText = "TODO";
+//            messageBox.OverrideText = @"*Mods*#
 
-#Author/s  ^Mod Loader^#
+//#Author/s  ^Mod Loader^#
 
-#Name 1  ^Mod 1^
-Name 2 ^Mod 2^
-Name n ^Mod n^#";
+//#Name 1  ^Mod 1^
+//Name 2 ^Mod 2^
+//Name n ^Mod n^#";
         }
 
         private static void BootstrapTitleScreenSwallowsNest(SceneRoot sceneRoot)
@@ -125,6 +126,19 @@ Name n ^Mod n^#";
             mesh.uv = uv;
 
             randoText.GetComponent<MeshFilter>().mesh = mesh;
+
+
+            // Insert seed gen
+            {
+                var startGameSequence = sceneRoot.transform.Find("emptySlotPressed").GetComponent<ActionSequence>();
+
+                var go = new GameObject();
+                var action = go.AddComponent<GenerateRandomiserSeedAction>();
+                go.transform.parent = startGameSequence.transform;
+                startGameSequence.Actions.Insert(1, action);
+
+                ActionSequence.Rename(startGameSequence.Actions);
+            }
         }
 
         private static Texture2D LoadTextureFromFile(string path, int width, int height)

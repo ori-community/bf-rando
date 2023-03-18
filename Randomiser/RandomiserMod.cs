@@ -28,8 +28,7 @@ namespace Randomiser
 
             Hooks.OnStartNewGame += () =>
             {
-                Randomiser.Inventory.Reset();
-                Randomiser.Seed.LoadSeed("randomizer.dat");
+                // This runs when ori rises from the ground after the prologue
                 Randomiser.Message(AreaMapObjectiveText.GetGoalMessage());
             };
 
