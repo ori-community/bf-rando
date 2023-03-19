@@ -30,6 +30,10 @@ Upcoming:
 * In-game seed generation options
 * Sharable seeds
 
+## Known issues
+
+* Collecting Sein does not grant Spirit Flame - will need a seedgen update to fix. In the meantime use the debug menu.
+
 ## FAQ
 
 ### Why write another randomiser?
