@@ -93,3 +93,5 @@ ABILITY_DESC_AttackPowerUpgrade=Enhances the strength of Spirit Flame
 
 ABILITY_FIND_TO_UNLOCK=@Find this in the world to unlock@
 ABILITY_OWNED_COUNT=$Number obtained: {0}$
+
+UI_VIEW_SEED=[Map] View Seed

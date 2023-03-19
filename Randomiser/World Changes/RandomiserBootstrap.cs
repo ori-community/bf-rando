@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using BaseModLib;
 using OriDeModLoader;
 using UnityEngine;
 
@@ -57,13 +58,13 @@ namespace Randomiser
 
             var messageBox = creditsTextMods.GetComponent<MessageBox>();
             messageBox.OverrideText = "TODO";
-//            messageBox.OverrideText = @"*Mods*#
+            //            messageBox.OverrideText = @"*Mods*#
 
-//#Author/s  ^Mod Loader^#
+            //#Author/s  ^Mod Loader^#
 
-//#Name 1  ^Mod 1^
-//Name 2 ^Mod 2^
-//Name n ^Mod n^#";
+            //#Name 1  ^Mod 1^
+            //Name 2 ^Mod 2^
+            //Name n ^Mod n^#";
         }
 
         private static void BootstrapTitleScreenSwallowsNest(SceneRoot sceneRoot)
@@ -138,6 +139,16 @@ namespace Randomiser
                 startGameSequence.Actions.Insert(1, action);
 
                 ActionSequence.Rename(startGameSequence.Actions);
+            }
+
+            // Open folder in explorer/copy seed
+            {
+                sceneRoot.transform.Find("ui/group/6. saveSlots/saveSlotUI").gameObject.AddComponent<RandomiserSaveSlotsUI>();
+                var backLabel = sceneRoot.transform.Find("ui/group/6. saveSlots/legend/back").GetComponent<MessageBox>();
+                //backLabel.SetMessage(new MessageDescriptor(Strings.Get("UI_VIEW_SEED")));
+                var provider = ScriptableObject.CreateInstance<BasicMessageProvider>();
+                provider.SetMessage(Strings.Get("UI_VIEW_SEED"));
+                backLabel.SetMessageProvider(provider);
             }
         }
 

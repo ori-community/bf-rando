@@ -19,21 +19,18 @@ namespace Randomiser
 
             isRunning = true;
 
-            Thread thread = new Thread(GenerateSeed); // idk how long this takes, just assumed it might take a few seconds during which we don't want to be frozen
-                                                      // Might not need the thread
+            Thread thread = new Thread(GenerateSeed);
             thread.Start();
         }
 
-        public override void Stop()
-        {
-
-        }
+        public override void Stop() { }
 
         private void GenerateSeed()
         {
             var assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            var outputPath = Path.GetFullPath(Path.Combine(assemblyDir, Path.Combine("seeds", DateTime.Now.ToString("yyyyMMddHHmmss"))));
+            int saveSlotIndex = SaveSlotsUI.Instance.CurrentSlotIndex;
+            var outputPath = Path.GetFullPath(Path.Combine(assemblyDir, Path.Combine("seeds", (saveSlotIndex + 1).ToString())));
             Directory.CreateDirectory(outputPath);
 
             string seedgenPath = Path.Combine(

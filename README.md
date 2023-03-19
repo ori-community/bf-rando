@@ -40,9 +40,9 @@ Upcoming:
 
 ### Where is the spoiler/seed file?
 
-In the mod's install location (default `%APPDATA%\ori-bf-mod-manager\mods\RandoBeta\seeds`). The folders are named by date. These will be deleted whenever the mod is updated so be sure to save a copy of any you want to keep. The seed is also stored in the save file of the game itself so it won't be affected if the `randomizer0.dat` file is deleted.
+Go to the save file in the main menu and press the indicated button (default `Tab`/`Back`)
 
-This will become more easily accessible later.
+These files are lost when updating the mod or overwriting a save slot, so be sure to make a copy of any you want to keep.
 
 ### Sein text is back!
 
