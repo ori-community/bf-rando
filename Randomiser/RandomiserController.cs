@@ -9,9 +9,23 @@ namespace Randomiser
     {
         public bool IsSuspended { get; set; }
 
+        public static RandomiserController Instance { get; private set; }
+
         private void Awake()
         {
             SuspensionManager.Register(this);
+            Instance = this;
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+                Instance = null;
+        }
+
+        public void OpenTeleportMenu()
+        {
+            StartCoroutine(ReturnToStart());
         }
 
         private void Update()
@@ -25,7 +39,7 @@ namespace Randomiser
                 {
                     if (UnityEngine.Input.GetKeyDown(KeyCode.R))
                     {
-                        StartCoroutine(ReturnToStart());
+                        OpenTeleportMenu();
                     }
 
                     if (UnityEngine.Input.GetKeyDown(KeyCode.P))
