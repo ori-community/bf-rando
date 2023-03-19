@@ -23,13 +23,14 @@ namespace Randomiser
             __instance.AddItem(4, container, "skillTree/menuItems/orange/06. cinderFlame", BonusAbilities.AttackPowerUpgrade, new int[] { 2 });
         }
 
-        private static void AddItem(this SkillTreeManager manager, int index, Transform parent, string template, BonusAbilities ability, int[] paths)
+        private static void AddItem(this SkillTreeManager manager, int index, Transform parent, string iconTemplatePath, BonusAbilities ability, int[] paths)
         {
-            var templateObject = manager.transform.Find(template).gameObject;
+            var templateObject = GetTemplate(2 - (index % 3), manager.transform).gameObject;
 
             var newItem = Object.Instantiate(templateObject);
             newItem.transform.SetParentMaintainingLocalTransform(parent);
             newItem.transform.position = new Vector3(-6.35f + index * 0.8f, -3.35f, 0f);
+            newItem.name = $"{index + 1:00}. {ability}";
             SetColours(newItem.transform.Find("backgroundGlow"));
 
             var customItem = newItem.AddComponent<CustomSkillItem>();
@@ -39,6 +40,13 @@ namespace Randomiser
             skillItem.RequiredAbilities.Clear();
             skillItem.RequiredItems.Clear();
             skillItem.Ability = AbilityType.BashBuff; // It is impossible to get this ability, so this signals our SkillItem as a custom one
+
+            var iconTemplate = manager.transform.Find(iconTemplatePath).GetComponent<SkillItem>();
+            skillItem.Icon.material.mainTexture = iconTemplate.Icon.material.mainTexture;
+            skillItem.Icon.GetComponent<MeshFilter>().mesh = iconTemplate.Icon.GetComponent<MeshFilter>().mesh;
+            skillItem.transform.Find("backgroundGlow/abilityIconAquaflame").GetComponent<Renderer>().material.mainTexture = iconTemplate.Icon.material.mainTexture;
+            skillItem.transform.Find("backgroundGlow/abilityIconAquaflame").GetComponent<MeshFilter>().mesh = iconTemplate.transform.Find("backgroundGlow/abilityIconAquaflame").GetComponent<MeshFilter>().mesh;
+            skillItem.LargeIcon = iconTemplate.LargeIcon;
 
             var nameMessageProvider = ScriptableObject.CreateInstance<BasicMessageProvider>();
             nameMessageProvider.SetMessage(Strings.Get("ABILITY_" + ability.ToString()));
@@ -57,6 +65,17 @@ namespace Randomiser
 
             if (index > 0)
                 manager.NavigationManager.Navigation.AddTwoWayPath(menuItem, manager.NavigationManager.MenuItems[manager.NavigationManager.MenuItems.Count - 2]);
+        }
+
+        private static Transform GetTemplate(int index, Transform menuItems)
+        {
+            switch (index)
+            {
+                case 0: return menuItems.Find("skillTree/menuItems/orange/01. quickFlame");
+                case 1: return menuItems.Find("skillTree/menuItems/orange/02. sparkFlame");
+                default:
+                    return menuItems.Find("skillTree/menuItems/orange/03. chargeFlameBurn");
+            }
         }
 
         private static void SetColours(Transform backgroundGlow)
@@ -111,14 +130,5 @@ namespace Randomiser
     public class CustomSkillItem : MonoBehaviour
     {
         public BonusAbilities Ability;
-    }
-
-    public enum BonusAbilities
-    {
-        ExtraAirDash,
-        ExtraDoubleJump,
-        HealthRegen,
-        EnergyRegen,
-        AttackPowerUpgrade
     }
 }
