@@ -25,7 +25,7 @@ namespace Randomiser
         private static void AddItem(this SkillTreeManager manager, int index, Transform parent, string iconTemplatePath, BonusAbilities ability, int[] paths)
         {
             var templateObject = GetTemplate(2 - (index % 3), manager.transform).gameObject;
-
+            
             var newItem = Object.Instantiate(templateObject);
             newItem.transform.SetParentMaintainingLocalTransform(parent);
             newItem.transform.position = new Vector3(-6.35f + index * 0.8f, -3.35f, 0f);

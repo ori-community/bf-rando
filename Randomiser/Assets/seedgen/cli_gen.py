@@ -404,6 +404,10 @@ class CLISeedParams(object):
                 if not self.do_analysis and not self.do_loc_analysis:
                     with open(args.output_dir+"/"+seedfile, 'w') as f:
                         f.write(seed)
+
+                        # TEMP: just add spirit flame in here for now
+                        f.write("\ndf30b319-f085-4e36-9ad7-04f14f8087ee|SK|15")
+                        
                     with open(args.output_dir+"/"+spoilerfile, 'w') as f:
                         f.write(spoiler)
                 if self.do_analysis:

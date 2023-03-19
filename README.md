@@ -30,10 +30,6 @@ Upcoming:
 * In-game seed generation options
 * Sharable seeds
 
-## Known issues
-
-* Collecting Sein does not grant Spirit Flame - will need a seedgen update to fix. In the meantime use the debug menu.
-
 ## FAQ
 
 ### Why write another randomiser?
@@ -41,6 +37,12 @@ Upcoming:
 * To separate out QoL and accessibility features into different mods, allowing you to play with them without it being rando
 * For a better developer workflow
 * To make it compatible with other mods
+
+### Where is the spoiler/seed file?
+
+In the mod's install location (default `%APPDATA%\ori-bf-mod-manager\mods\RandoBeta\seeds`). The folders are named by date. These will be deleted whenever the mod is updated so be sure to save a copy of any you want to keep. The seed is also stored in the save file of the game itself so it won't be affected if the `randomizer0.dat` file is deleted.
+
+This will become more easily accessible later.
 
 ### Sein text is back!
 
