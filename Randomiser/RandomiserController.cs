@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Core;
+﻿using Core;
 using Game;
 using UnityEngine;
 
@@ -25,7 +24,52 @@ namespace Randomiser
 
         public void OpenTeleportMenu()
         {
-            StartCoroutine(ReturnToStart());
+            if (Characters.Sein.Active && !Characters.Sein.IsSuspended && Characters.Sein.Controller.CanMove && !UI.MainMenuVisible)
+            {
+                if (TeleporterController.CanTeleport(null))
+                {
+                    string defaultTeleporter = "sunkenGlades";
+                    float closestTeleporter = Mathf.Infinity;
+
+                    bool isInGlades = false;
+                    bool isInGrotto = false;
+
+                    if (Scenes.Manager.CurrentScene.Scene.StartsWith("sunkenGlades"))
+                        isInGlades = true;
+                    else if (Scenes.Manager.CurrentScene.Scene.StartsWith("moonGrotto"))
+                        isInGrotto = true;
+
+                    foreach (GameMapTeleporter teleporter in TeleporterController.Instance.Teleporters)
+                    {
+                        if (teleporter.Activated)
+                        {
+                            if (isInGlades && teleporter.Identifier == "sunkenGlades")
+                            {
+                                defaultTeleporter = teleporter.Identifier;
+                                break;
+                            }
+                            else if (isInGrotto && teleporter.Identifier == "moonGrotto")
+                            {
+                                defaultTeleporter = teleporter.Identifier;
+                                break;
+                            }
+
+                            Vector3 distanceVector = teleporter.WorldPosition - Characters.Sein.Position;
+                            if (distanceVector.sqrMagnitude < closestTeleporter)
+                            {
+                                defaultTeleporter = teleporter.Identifier;
+                                closestTeleporter = distanceVector.sqrMagnitude;
+                            }
+                        }
+                    }
+
+                    TeleporterController.Show(defaultTeleporter);
+                }
+                else
+                {
+                    Randomiser.Message("No #Spirit Wells# have been activated yet!");
+                }
+            }
         }
 
         private void Update()
@@ -53,34 +97,6 @@ namespace Randomiser
                     Randomiser.Message(Randomiser.Inventory.lastPickup);
                 }
             }
-        }
-
-        private IEnumerator ReturnToStart()
-        {
-            if (Items.NightBerry != null)
-                Items.NightBerry.transform.position = new Vector3(-755f, -400f);
-            if (Characters.Sein.Abilities.Carry.IsCarrying)
-                Characters.Sein.Abilities.Carry.CurrentCarryable.Drop();
-            Characters.Sein.Position = new Vector3(189f, -215f);
-            Characters.Sein.Speed = new Vector3(0f, 0f);
-            Characters.Ori.Position = new Vector3(190f, -210f);
-            Scenes.Manager.SetTargetPositions(Characters.Sein.Position);
-            UI.Cameras.Current.CameraTarget.SetTargetPosition(Characters.Sein.Position);
-            UI.Cameras.Current.MoveCameraToTargetInstantly(true);
-
-            var mistySim = new WorldEvents();
-            mistySim.MoonGuid = new MoonGuid(1061758509, 1206015992, 824243626, -2026069462);
-            int value = World.Events.Find(mistySim).Value;
-            if (value != 1 && value != 8)
-            {
-                World.Events.Find(mistySim).Value = 10;
-            }
-
-            SuspensionManager.SuspendAll();
-            Characters.Sein.Position = new Vector3(189f, -215f);
-
-            yield return new WaitForLevelLoad("sunkenGladesRunaway");
-            SuspensionManager.ResumeAll();
         }
     }
 }
