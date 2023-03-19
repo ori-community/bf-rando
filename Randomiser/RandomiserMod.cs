@@ -2,6 +2,7 @@
 using HarmonyLib;
 using OriDeModLoader;
 using OriDeModLoader.CustomSeinAbilities;
+using OriDeModLoader.UIExtensions;
 
 namespace Randomiser
 {
@@ -33,6 +34,7 @@ namespace Randomiser
             };
 
             SceneBootstrap.RegisterHandler(RandomiserBootstrap.SetupBootstrap, "Randomiser");
+            CustomMenuManager.RegisterOptionsScreen<RandomiserSettingsScreen>("Randomiser", 2);
         }
 
         public void Unload()
