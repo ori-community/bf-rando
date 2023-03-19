@@ -90,3 +90,6 @@ ABILITY_EnergyRegen=Energy Regeneration
 ABILITY_DESC_EnergyRegen=Regenerates lost energy over time
 ABILITY_AttackPowerUpgrade=Attack Power Upgrade
 ABILITY_DESC_AttackPowerUpgrade=Enhances the strength of Spirit Flame
+
+ABILITY_FIND_TO_UNLOCK=@Find this in the world to unlock@
+ABILITY_OWNED_COUNT=$Number obtained: {0}$

@@ -106,6 +106,17 @@ namespace Randomiser
             }
         }
 
+        [HarmonyPrefix, HarmonyPatch(typeof(SkillItem), "get_CanEarnSkill")]
+        private static bool PreventBuyingCustomAbilities(SkillItem __instance, ref bool __result)
+        {
+            if (__instance.Ability == AbilityType.BashBuff)
+            {
+                __result = false;
+                return HarmonyHelper.StopExecution;
+            }
+
+            return HarmonyHelper.ContinueExecution;
+        }
 
         [HarmonyPrefix, HarmonyPatch(typeof(SkillItem), nameof(SkillItem.OnEnable))]
         private static bool HighlightBonusAbilityWhenOwned(SkillItem __instance, TransparencyAnimator ___m_animator)
@@ -124,6 +135,24 @@ namespace Randomiser
             }
 
             return HarmonyHelper.ContinueExecution;
+        }
+
+        [HarmonyPostfix, HarmonyPatch(typeof(SkillTreeManager), nameof(SkillTreeManager.UpdateRequirementsText))]
+        private static void UpdateRequirementsTextForCustomAbilities(SkillTreeManager __instance)
+        {
+            if (__instance.CurrentSkillItem && __instance.CurrentSkillItem.Ability == AbilityType.BashBuff)
+            {
+                var customAbility = __instance.CurrentSkillItem.GetComponent<CustomSkillItem>().Ability;
+                int owned = GetBonusAbility(customAbility);
+                if (owned > 0)
+                {
+                    __instance.RequirementsLineA.SetMessage(new MessageDescriptor(Strings.Get("ABILITY_OWNED_COUNT", owned)));
+                }
+                else
+                {
+                    __instance.RequirementsLineA.SetMessage(new MessageDescriptor(Strings.Get("ABILITY_FIND_TO_UNLOCK")));
+                }
+            }
         }
     }
 
