@@ -79,3 +79,14 @@ OBJECTIVE_WORLD_TOUR=Find all {0} #Relics# hidden throughout Nibel
 OBJECTIVE_FORCE_MAPS=Restore all 9 #Mapstones#
 OBJECTIVE_WARMTH_FRAGS=Find all {0} #Warmth Fragments# hidden throughout Nibel
 OBJECTIVE_FALLBACK=Continue to search for #Skills# and #Resources#
+
+ABILITY_ExtraDoubleJump=Extra Jump
+ABILITY_DESC_ExtraDoubleJump=Allows Ori to jump more times in the air
+ABILITY_ExtraAirDash=Extra Air Dash
+ABILITY_DESC_ExtraAirDash=Allows Ori to dash more times in the air
+ABILITY_HealthRegen=Health Regeneration
+ABILITY_DESC_HealthRegen=Regenerates lost health over time
+ABILITY_EnergyRegen=Energy Regeneration
+ABILITY_DESC_EnergyRegen=Regenerates lost energy over time
+ABILITY_AttackPowerUpgrade=Attack Power Upgrade
+ABILITY_DESC_AttackPowerUpgrade=Enhances the strength of Spirit Flame
