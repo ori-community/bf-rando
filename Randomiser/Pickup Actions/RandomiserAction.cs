@@ -19,6 +19,7 @@ namespace Randomiser
         }
 
         public override string ToString() => $"{action} {string.Join(" ", parameters)}";
+        public string ToSeedFormat() => $"{action}|{string.Join("|", parameters)}";
 
         public void Serialize(Archive ar)
         {

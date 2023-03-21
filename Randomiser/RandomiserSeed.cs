@@ -265,5 +265,33 @@ namespace Randomiser
 
             return $"{BitConverter.ToInt32(bytes, 0)}.{(int)Flags}.{seed}";
         }
+
+        public void Export(string path)
+        {
+            using (var writer = new StreamWriter(path))
+            {
+                writer.Write(LogicPreset);
+                writer.Write(",");
+                writer.Write(KeyMode);
+                writer.Write(",");
+                writer.Write(GoalMode);
+                foreach (var flag in Flags.GetAll())
+                {
+                    writer.Write(",");
+                    writer.Write(flag);
+                }
+                writer.Write("|");
+                writer.Write(seed);
+                writer.WriteLine();
+
+                foreach (var pickup in map)
+                {
+                    writer.Write(pickup.Key.ToGuid());
+                    writer.Write("|");
+                    writer.Write(pickup.Value.ToSeedFormat());
+                    writer.WriteLine();
+                }
+            }
+        }
     }
 }

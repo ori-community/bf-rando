@@ -67,7 +67,7 @@ namespace Randomiser
             var action = Seed.GetActionFromGuid(location.guid);
             if (action == null)
             {
-                Debug.Log("WARNING: Unknown pickup id: " + new Guid(location.guid.ToByteArray()));
+                Debug.Log("WARNING: Unknown pickup id: " + location.guid.ToGuid());
                 return;
             }
 
