@@ -103,15 +103,15 @@ UI_NEW_RANDO_NEW_SEED_DESC=Generate a new game with options you provide
 UI_NEW_RANDO_QUICK_START=Quick Start
 UI_NEW_RANDO_QUICK_START_DESC=Start a new game with recommended settings (Standard, Clues, Force Trees)
 UI_NEW_RANDO_IMPORT_SHARED_SEED=Seeded
-UI_NEW_RANDO_IMPORT_SHARED_SEED_DEC=Start a new game with a premade seed
+UI_NEW_RANDO_IMPORT_SHARED_SEED_DESC=Start a new game with a premade seed
 
-UI_NEW_RANDO_DIFFICULT_Casual=Casual
+UI_NEW_RANDO_DIFFICULTY_Casual=Casual
 UI_NEW_RANDO_DIFFICULTY_Casual_DESC=The easiest mode
-UI_NEW_RANDO_DIFFICULT_Standard=Standard
+UI_NEW_RANDO_DIFFICULTY_Standard=Standard
 UI_NEW_RANDO_DIFFICULTY_Standard_DESC=The standardest mode, requiring some cool tricks
-UI_NEW_RANDO_DIFFICULT_Expert=Expert
+UI_NEW_RANDO_DIFFICULTY_Expert=Expert
 UI_NEW_RANDO_DIFFICULTY_Expert_DESC=A harder mode with more difficult tricks
-UI_NEW_RANDO_DIFFICULT_Master=Master
+UI_NEW_RANDO_DIFFICULTY_Master=Master
 UI_NEW_RANDO_DIFFICULTY_Master_DESC=Very hard with obscure tricks
 
 UI_NEW_RANDO_KEYMODE_Shards=Shards
@@ -121,11 +121,23 @@ UI_NEW_RANDO_KEYMODE_Clues_DESC=Get a clue to a dungeon key's location every 3 s
 UI_NEW_RANDO_KEYMODE_None=None
 UI_NEW_RANDO_KEYMODE_None_DESC=No help will be provided for finding keys
 
+UI_NEW_RANDO_GOAL_ForceTrees=Force Trees
 UI_NEW_RANDO_GOAL_ForceTrees_DESC=You must reach every skill tree before you can reach the Element of Warmth
+UI_NEW_RANDO_GOAL_ForceMaps=Force Mapstones
 UI_NEW_RANDO_GOAL_ForceMaps_DESC=You must repair every mapstone before you can reach the Element of Warmth
+UI_NEW_RANDO_GOAL_WarmthFrags=Warmth Fragments
 UI_NEW_RANDO_GOAL_WarmthFrags_DESC=You must find 50 warmth fragments before you can reach the Element of Warmth
 
 UI_NEW_RANDO_RANDOM_SEED=Random seed
 UI_NEW_RANDO_RANDOM_SEED_DESC=Play with a random seed
 UI_NEW_RANDO_ENTER_SEED=Input seed
 UI_NEW_RANDO_ENTER_SEED_DESC=Enter your seed
+
+UI_NEW_RANDO_DIFFICULTY_Easy=Easy
+UI_NEW_RANDO_DIFFICULTY_Easy_DESC=For players who want to focus more on story and less on challenge.
+UI_NEW_RANDO_DIFFICULTY_Normal=Normal
+UI_NEW_RANDO_DIFFICULTY_Normal_DESC=For players seeking a good challenge, average difficulty.
+UI_NEW_RANDO_DIFFICULTY_Hard=Hard
+UI_NEW_RANDO_DIFFICULTY_Hard_DESC=Ori is weak against the blight of the forest. For advanced players.
+UI_NEW_RANDO_DIFFICULTY_OneLife=One Life
+UI_NEW_RANDO_DIFFICULTY_OneLife_DESC=You only get one change to save Nibel. The ultimate challenge.

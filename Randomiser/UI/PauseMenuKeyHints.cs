@@ -31,12 +31,12 @@ namespace Randomiser
     {
         private static void Postfix()
         {
-            InventoryManagerKeyHintsAwake.waterVeinClueText.SetMessage(new MessageDescriptor(GetKeyLabel(Keys.GinsoTree, Randomiser.Seed.Clues.WaterVein, Randomiser.Inventory.waterVeinShards)));
-            InventoryManagerKeyHintsAwake.gumonSealClueText.SetMessage(new MessageDescriptor(GetKeyLabel(Keys.ForlornRuins, Randomiser.Seed.Clues.GumonSeal, Randomiser.Inventory.gumonSealShards)));
-            InventoryManagerKeyHintsAwake.sunstoneClueText.SetMessage(new MessageDescriptor(GetKeyLabel(Keys.MountHoru, Randomiser.Seed.Clues.Sunstone, Randomiser.Inventory.sunstoneShards)));
+            InventoryManagerKeyHintsAwake.waterVeinClueText.SetMessage(new MessageDescriptor(GetKeyLabel(Keys.GinsoTree, 0, Randomiser.Inventory.waterVeinShards)));
+            InventoryManagerKeyHintsAwake.gumonSealClueText.SetMessage(new MessageDescriptor(GetKeyLabel(Keys.ForlornRuins, 1, Randomiser.Inventory.gumonSealShards)));
+            InventoryManagerKeyHintsAwake.sunstoneClueText.SetMessage(new MessageDescriptor(GetKeyLabel(Keys.MountHoru, 2, Randomiser.Inventory.sunstoneShards)));
         }
 
-        private static string GetKeyLabel(bool ownsKey, Clues.Clue clue, int shardCount)
+        private static string GetKeyLabel(bool ownsKey, int key, int shardCount)
         {
             if (ownsKey)
                 return "";
@@ -44,6 +44,7 @@ namespace Randomiser
             switch (Randomiser.Seed.KeyMode)
             {
                 case KeyMode.Clues:
+                    var clue = ClueForKey(key);
                     if (!clue.owned && clue.revealed)
                         return Strings.Get("AREA_" + clue.area);
 
@@ -54,6 +55,19 @@ namespace Randomiser
 
                 default:
                     return "";
+            }
+        }
+
+        // TODO fix the whole clues thing, something is very wrong with this code.
+        // Shouldn't be inventing some new id for the keys just for this screen
+        private static Clues.Clue ClueForKey(int key)
+        {
+            switch (key)
+            {
+                case 0: return Randomiser.Seed.Clues.WaterVein;
+                case 1: return Randomiser.Seed.Clues.GumonSeal;
+                case 2: return Randomiser.Seed.Clues.Sunstone;
+                default: return default;
             }
         }
     }

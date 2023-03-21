@@ -21,14 +21,14 @@ TODO
 Implemented:
 
 * Everything in a typical Standard Clues or Shards seed, unless listed below
-* In game seed generation - simply start a new file to generate a Standard Clues with Force Trees game
+* In game seed generation with configurable parameters
 
 Upcoming:
 
 * World Tour
 * Forlorn escape plant clues
-* In-game seed generation options
 * Sharable seeds
+* Logic filter
 
 ## FAQ
 
