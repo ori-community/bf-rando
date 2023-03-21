@@ -37,6 +37,16 @@ namespace Randomiser
         StompTriggers = 32
     }
 
+    public enum LogicPath
+    {
+        None,
+        Casual,
+        Standard,
+        Expert,
+        Master,
+        Glitched
+    }
+
     public class RandomiserSeed : SaveSerialize
     {
         // Seed consists of flags, goals and item placements
@@ -238,5 +248,17 @@ namespace Randomiser
                 Flags |= flag;
         }
 #endif
+
+        public string GetSharableSeed()
+        {
+            byte[] bytes = new byte[] {
+                (byte)GoalMode,
+                (byte)KeyMode,
+                0,
+                0
+            };
+
+            return $"{BitConverter.ToInt32(bytes, 0)}.{(int)Flags}.{seed}";
+        }
     }
 }
