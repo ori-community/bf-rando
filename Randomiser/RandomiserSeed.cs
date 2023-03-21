@@ -53,6 +53,7 @@ namespace Randomiser
         public GoalMode GoalMode { get; private set; }
         public KeyMode KeyMode { get; private set; }
         public RandomiserFlags Flags { get; private set; }
+        public LogicPath LogicPreset { get; private set; }
 
         public int ShardsRequiredForKey { get; } = 3;
 
@@ -87,6 +88,7 @@ namespace Randomiser
             GoalMode = 0;
             KeyMode = 0;
             Flags = 0;
+            LogicPreset = 0;
             map.Clear();
             seed = "";
             Clues = new Clues(Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, null, null, null);
@@ -102,6 +104,7 @@ namespace Randomiser
             SerialiseMap(ar);
             Clues.Serialize(ar);
             SerializeSenseList(ar);
+            LogicPreset = (LogicPath)ar.Serialize((int)LogicPreset);
         }
 
         private void SerializeSenseList(Archive ar)
@@ -223,6 +226,8 @@ namespace Randomiser
                     KeyMode = keyMode;
                 if (TryParse(str, out RandomiserFlags flag))
                     Flags |= flag;
+                if (TryParse(str, out LogicPath logicPath))
+                    LogicPreset = logicPath;
             }
         }
 
@@ -254,7 +259,7 @@ namespace Randomiser
             byte[] bytes = new byte[] {
                 (byte)GoalMode,
                 (byte)KeyMode,
-                0,
+                (byte)LogicPreset,
                 0
             };
 

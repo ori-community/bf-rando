@@ -31,6 +31,7 @@ namespace Randomiser
                     Flags = (RandomiserFlags)int.Parse(parts[1]),
                     GoalMode = (GoalMode)bytes[0],
                     KeyMode = (KeyMode)bytes[1],
+                    LogicPreset = (LogicPath)bytes[2],
                     Seed = parts[2]
                 };
             }
