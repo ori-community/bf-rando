@@ -72,6 +72,7 @@ RANDO_PROGRESS_1={0}Trees ({1}/10){0}  {2}Maps ({3}/9){2}  Total ({4}/256)
 RANDO_PROGRESS_CLUES={0}WV: {1}{0}  {2}GS: {3}{2}  {4}SS: {5}{4}
 RANDO_PROGRESS_SHARDS={0}WV ({1}/{6}){0}  {2}GS ({3}/{6}){2}  {4}SS ({5}/{6}){4}
 RANDO_EXIT_BLOCKED=You can't enter until you reach all of the trees!
+RANDO_GOOD_LUCK=Good luck on your rando!
 
 OBJECTIVE_HORU_ESCAPE=Find and Restore #Mount Horu#!
 OBJECTIVE_FORCE_TREES=Visit all 10 #Skill Trees#
@@ -95,3 +96,36 @@ ABILITY_FIND_TO_UNLOCK=@Find this in the world to unlock@
 ABILITY_OWNED_COUNT=$Number obtained: {0}$
 
 UI_VIEW_SEED=[Map] View Seed
+
+# Game setup
+UI_NEW_RANDO_NEW_SEED=Generate New
+UI_NEW_RANDO_NEW_SEED_DESC=Generate a new game with options you provide
+UI_NEW_RANDO_QUICK_START=Quick Start
+UI_NEW_RANDO_QUICK_START_DESC=Start a new game with recommended settings (Standard, Clues, Force Trees)
+UI_NEW_RANDO_IMPORT_SHARED_SEED=Seeded
+UI_NEW_RANDO_IMPORT_SHARED_SEED_DEC=Start a new game with a premade seed
+
+UI_NEW_RANDO_DIFFICULT_Casual=Casual
+UI_NEW_RANDO_DIFFICULTY_Casual_DESC=The easiest mode
+UI_NEW_RANDO_DIFFICULT_Standard=Standard
+UI_NEW_RANDO_DIFFICULTY_Standard_DESC=The standardest mode, requiring some cool tricks
+UI_NEW_RANDO_DIFFICULT_Expert=Expert
+UI_NEW_RANDO_DIFFICULTY_Expert_DESC=A harder mode with more difficult tricks
+UI_NEW_RANDO_DIFFICULT_Master=Master
+UI_NEW_RANDO_DIFFICULTY_Master_DESC=Very hard with obscure tricks
+
+UI_NEW_RANDO_KEYMODE_Shards=Shards
+UI_NEW_RANDO_KEYMODE_Shards_DESC=Collect 3 out of 5 key shards to get each dungeon key
+UI_NEW_RANDO_KEYMODE_Clues=Clues
+UI_NEW_RANDO_KEYMODE_Clues_DESC=Get a clue to a dungeon key's location every 3 skill trees found
+UI_NEW_RANDO_KEYMODE_None=None
+UI_NEW_RANDO_KEYMODE_None_DESC=No help will be provided for finding keys
+
+UI_NEW_RANDO_GOAL_ForceTrees_DESC=You must reach every skill tree before you can reach the Element of Warmth
+UI_NEW_RANDO_GOAL_ForceMaps_DESC=You must repair every mapstone before you can reach the Element of Warmth
+UI_NEW_RANDO_GOAL_WarmthFrags_DESC=You must find 50 warmth fragments before you can reach the Element of Warmth
+
+UI_NEW_RANDO_RANDOM_SEED=Random seed
+UI_NEW_RANDO_RANDOM_SEED_DESC=Play with a random seed
+UI_NEW_RANDO_ENTER_SEED=Input seed
+UI_NEW_RANDO_ENTER_SEED_DESC=Enter your seed
