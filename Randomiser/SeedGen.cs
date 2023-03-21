@@ -82,6 +82,7 @@ namespace Randomiser
             };
             args.AddRange(ParseOptions(options));
 
+            Console.WriteLine("python " + string.Join(" ", args.ToArray()));
 
             var pyStartInfo = new ProcessStartInfo("python")
             {
@@ -91,10 +92,10 @@ namespace Randomiser
                 WorkingDirectory = Path.GetDirectoryName(seedgenPath)
             };
 
-            UnityEngine.Debug.Log("Running python generator...");
+            Console.WriteLine("Running python generator...");
             var process = Process.Start(pyStartInfo);
             process.WaitForExit();
-            UnityEngine.Debug.Log($"python exited with code: {process.ExitCode}");
+            Console.WriteLine($"python exited with code: {process.ExitCode}");
 
             if (process.ExitCode != 0)
                 Randomiser.Message("Failed to generate seed");

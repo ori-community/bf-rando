@@ -210,7 +210,7 @@ namespace Randomiser
                     Clues = new Clues(clues[0], clues[1], clues[2], clueLocations[0], clueLocations[1], clueLocations[2]);
             }
 
-            Randomiser.Message($"Seed file loaded:\n{GoalMode} {KeyMode} {seed}");
+            Randomiser.Message($"Seed file loaded:\n{LogicPreset} {GoalMode} {KeyMode} {seed}");
         }
 
         private void ParseMeta(string[] meta)

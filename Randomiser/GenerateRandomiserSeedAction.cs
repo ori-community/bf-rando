@@ -24,17 +24,7 @@ namespace Randomiser
 
         private void GenerateSeed()
         {
-            Random random = new Random();
-            int seed = random.Next(int.MinValue, int.MaxValue);
-
-            var result = SeedGen.GenerateSeed(new SeedGen.SeedGenOptions
-            {
-                Flags = RandomiserFlags.OpenWorld,
-                KeyMode = KeyMode.Shards,
-                GoalMode = GoalMode.ForceTrees,
-                LogicPreset = LogicPath.Standard,
-                Seed = seed.ToString()
-            });
+            var result = SeedGen.GenerateSeed(GenerateRandomiserSeedWizardController.Instance.seedGenOptions);
 
             Randomiser.Inventory.Reset();
             Randomiser.Seed.LoadSeed(result.FilePath);

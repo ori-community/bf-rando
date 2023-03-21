@@ -139,13 +139,16 @@ namespace Randomiser
                 startGameSequence.Actions.Insert(1, action);
 
                 ActionSequence.Rename(startGameSequence.Actions);
+
+
+                // Insert seedgen wizard
+                sceneRoot.transform.Find("ui/group/6. saveSlots/saveSlotUI").gameObject.AddComponent<GenerateRandomiserSeedWizardController>();
             }
 
             // Open folder in explorer/copy seed
             {
                 sceneRoot.transform.Find("ui/group/6. saveSlots/saveSlotUI").gameObject.AddComponent<RandomiserSaveSlotsUI>();
                 var backLabel = sceneRoot.transform.Find("ui/group/6. saveSlots/legend/back").GetComponent<MessageBox>();
-                //backLabel.SetMessage(new MessageDescriptor(Strings.Get("UI_VIEW_SEED")));
                 var provider = ScriptableObject.CreateInstance<BasicMessageProvider>();
                 provider.SetMessage(Strings.Get("UI_VIEW_SEED"));
                 backLabel.SetMessageProvider(provider);
