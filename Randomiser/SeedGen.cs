@@ -24,11 +24,18 @@ namespace Randomiser
             public static SeedGenOptions FromSharableSeed(string sharableSeed)
             {
                 string[] parts = sharableSeed.Split('.');
-                var bytes = BitConverter.GetBytes(int.Parse(parts[0]));
+
+                if (parts.Length != 3)
+                    return null;
+
+                if (!int.TryParse(parts[0], out var meta) || !int.TryParse(parts[1], out var flags))
+                    return null;
+
+                var bytes = BitConverter.GetBytes(meta);
 
                 return new SeedGenOptions
                 {
-                    Flags = (RandomiserFlags)int.Parse(parts[1]),
+                    Flags = (RandomiserFlags)flags,
                     GoalMode = (GoalMode)bytes[0],
                     KeyMode = (KeyMode)bytes[1],
                     LogicPreset = (LogicPath)bytes[2],
