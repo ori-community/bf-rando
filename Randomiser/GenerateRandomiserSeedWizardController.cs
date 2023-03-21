@@ -92,11 +92,19 @@ namespace Randomiser
 
             messageBoxes[index].SetMessage(new MessageDescriptor(Strings.Get(label)));
             tooltips[index].SetMessage(Strings.Get(label + "_DESC"));
+        }
 
-            if (index == 0)
-                options[index].HighlightAnimator.AnimatorDriver.GoToEnd();
-            else
-                options[index].HighlightAnimator.AnimatorDriver.GoToStart();
+        private void SelectOption(int index)
+        {
+            selectionManager.SetCurrentItem(index);
+
+            for (int i = 0; i < options.Length; i++)
+            {
+                if (i == index)
+                    options[index].HighlightAnimator.AnimatorDriver.GoToEnd();
+                else
+                    options[index].HighlightAnimator.AnimatorDriver.GoToStart();
+            }
         }
 
         public void BeginWizard(GameObject screen)
@@ -141,7 +149,6 @@ namespace Randomiser
 
 
             ModifyOptions(state);
-            selectionManager.SetIndexToFirst();
         }
 
         const int QuickStart = 0, NewSeed = 1, ImportSeed = 2;
@@ -160,6 +167,7 @@ namespace Randomiser
                     SetOption(QuickStart, "UI_NEW_RANDO_QUICK_START");
                     SetOption(NewSeed, "UI_NEW_RANDO_NEW_SEED");
                     SetOption(ImportSeed, "UI_NEW_RANDO_IMPORT_SHARED_SEED");
+                    SelectOption(0);
                     break;
                 case WizardState.LogicMode:
                     SetOptionCount(4);
@@ -167,12 +175,14 @@ namespace Randomiser
                     SetOption(Standard, "UI_NEW_RANDO_DIFFICULTY_Standard", w => w.seedGenOptions.LogicPreset = LogicPath.Standard);
                     SetOption(Expert, "UI_NEW_RANDO_DIFFICULTY_Expert", w => w.seedGenOptions.LogicPreset = LogicPath.Expert);
                     SetOption(Master, "UI_NEW_RANDO_DIFFICULTY_Master", w => w.seedGenOptions.LogicPreset = LogicPath.Master);
+                    SelectOption(1);
                     break;
                 case WizardState.KeyMode:
                     SetOptionCount(3);
                     SetOption(Clues, "UI_NEW_RANDO_KEYMODE_Clues", w => w.seedGenOptions.KeyMode = KeyMode.Clues);
                     SetOption(Shards, "UI_NEW_RANDO_KEYMODE_Shards", w => w.seedGenOptions.KeyMode = KeyMode.Shards);
                     SetOption(NoKeyMode, "UI_NEW_RANDO_KEYMODE_None", w => w.seedGenOptions.KeyMode = KeyMode.None);
+                    SelectOption(0);
                     break;
                 case WizardState.Goal:
                     SetOptionCount(4);
@@ -180,11 +190,13 @@ namespace Randomiser
                     SetOption(WorldTour, "UI_NEW_RANDO_GOAL_WorldTour", w => w.seedGenOptions.GoalMode = GoalMode.WorldTour);
                     SetOption(ForceMaps, "UI_NEW_RANDO_GOAL_ForceMaps", w => w.seedGenOptions.GoalMode = GoalMode.ForceMaps);
                     SetOption(WarmthFrags, "UI_NEW_RANDO_GOAL_WarmthFrags", w => w.seedGenOptions.GoalMode = GoalMode.WarmthFrags);
+                    SelectOption(0);
                     break;
                 case WizardState.Seed:
                     SetOptionCount(2);
                     SetOption(RandomSeed, "UI_NEW_RANDO_RANDOM_SEED");
                     SetOption(InputSeed, "UI_NEW_RANDO_ENTER_SEED");
+                    SelectOption(0);
                     break;
                 case WizardState.Difficulty:
                     SetOptionCount(4);
@@ -192,6 +204,7 @@ namespace Randomiser
                     SetOption(Normal, "UI_NEW_RANDO_DIFFICULTY_Normal", w => w.difficulty = DifficultyMode.Normal);
                     SetOption(Hard, "UI_NEW_RANDO_DIFFICULTY_Hard", w => w.difficulty = DifficultyMode.Hard);
                     SetOption(OneLife, "UI_NEW_RANDO_DIFFICULTY_OneLife", w => w.difficulty = DifficultyMode.OneLife);
+                    SelectOption(1);
                     break;
                 default:
                     break;
@@ -247,6 +260,7 @@ namespace Randomiser
                     break;
             }
 
+            options[index].HighlightAnimator.AnimatorDriver.GoToStart();
             GoToState(state + 1);
         }
     }
