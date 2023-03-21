@@ -28,6 +28,15 @@ namespace Randomiser
         }
     }
 
+    public class DeprogressWizardAction : ActionMethod
+    {
+        public GenerateRandomiserSeedWizardController Controller;
+        public override void Perform(IContext context)
+        {
+            Controller.GoBackwards();
+        }
+    }
+
     public class GenerateRandomiserSeedWizardController : MonoBehaviour
     {
         public enum WizardState
@@ -45,6 +54,9 @@ namespace Randomiser
         void Awake()
         {
             Instance = this;
+
+            newBackAction = gameObject.AddComponent<DeprogressWizardAction>();
+            newBackAction.Controller = this;
         }
 
         void OnDestroy()
@@ -52,6 +64,9 @@ namespace Randomiser
             if (Instance == this)
                 Instance = null;
         }
+
+        private ActionMethod closeMenuSequence;
+        private DeprogressWizardAction newBackAction;
 
         public SeedGen.SeedGenOptions seedGenOptions;
         private DifficultyMode difficulty;
@@ -114,6 +129,9 @@ namespace Randomiser
 
             selectionManager = screen.GetComponent<CleverMenuItemSelectionManager>();
             layout = screen.transform.Find("items").GetComponent<CleverMenuItemLayout>();
+
+            closeMenuSequence = selectionManager.BackAction;
+            selectionManager.BackAction = newBackAction;
 
             options = new CleverMenuItem[4];
             messageBoxes = new MessageBox[4];
@@ -262,6 +280,17 @@ namespace Randomiser
 
             options[index].HighlightAnimator.AnimatorDriver.GoToStart();
             GoToState(state + 1);
+        }
+
+        public void GoBackwards()
+        {
+            if (state == WizardState.Start)
+            {
+                closeMenuSequence.Perform(null);
+                return;
+            }
+
+            GoToState(state - 1);
         }
     }
 }
