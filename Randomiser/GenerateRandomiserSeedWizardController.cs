@@ -92,6 +92,11 @@ namespace Randomiser
 
             messageBoxes[index].SetMessage(new MessageDescriptor(Strings.Get(label)));
             tooltips[index].SetMessage(Strings.Get(label + "_DESC"));
+
+            if (index == 0)
+                options[index].HighlightAnimator.AnimatorDriver.GoToEnd();
+            else
+                options[index].HighlightAnimator.AnimatorDriver.GoToStart();
         }
 
         public void BeginWizard(GameObject screen)
@@ -142,7 +147,7 @@ namespace Randomiser
         const int QuickStart = 0, NewSeed = 1, ImportSeed = 2;
         const int Casual = 0, Standard = 1, Expert = 2, Master = 3;
         const int Clues = 0, Shards = 1, NoKeyMode = 2;
-        const int ForceTrees = 0, ForceMaps = 1, WarmthFrags = 2;
+        const int ForceTrees = 0, WorldTour = 1, ForceMaps = 2, WarmthFrags = 3;
         const int Easy = 0, Normal = 1, Hard = 2, OneLife = 3;
         const int RandomSeed = 0, InputSeed = 1;
 
@@ -170,8 +175,9 @@ namespace Randomiser
                     SetOption(NoKeyMode, "UI_NEW_RANDO_KEYMODE_None", w => w.seedGenOptions.KeyMode = KeyMode.None);
                     break;
                 case WizardState.Goal:
-                    SetOptionCount(3);
+                    SetOptionCount(4);
                     SetOption(ForceTrees, "UI_NEW_RANDO_GOAL_ForceTrees", w => w.seedGenOptions.GoalMode = GoalMode.ForceTrees);
+                    SetOption(WorldTour, "UI_NEW_RANDO_GOAL_WorldTour", w => w.seedGenOptions.GoalMode = GoalMode.WorldTour);
                     SetOption(ForceMaps, "UI_NEW_RANDO_GOAL_ForceMaps", w => w.seedGenOptions.GoalMode = GoalMode.ForceMaps);
                     SetOption(WarmthFrags, "UI_NEW_RANDO_GOAL_WarmthFrags", w => w.seedGenOptions.GoalMode = GoalMode.WarmthFrags);
                     break;
@@ -211,6 +217,20 @@ namespace Randomiser
                         return;
                     }
 
+                    if (index == ImportSeed)
+                    {
+                        Randomiser.Message("Not yet implemented");
+                        return;
+                    }
+
+                    break;
+
+                case WizardState.Goal:
+                    if (index == WorldTour)
+                    {
+                        Randomiser.Message("Not yet implemented");
+                        return;
+                    }
                     break;
 
                 case WizardState.Seed:
@@ -218,6 +238,11 @@ namespace Randomiser
                     {
                         int seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
                         seedGenOptions.Seed = seed.ToString();
+                    }
+                    else if (index == InputSeed)
+                    {
+                        Randomiser.Message("Not yet implemented");
+                        return;
                     }
                     break;
             }

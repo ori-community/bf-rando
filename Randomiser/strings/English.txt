@@ -122,11 +122,13 @@ UI_NEW_RANDO_KEYMODE_None=None
 UI_NEW_RANDO_KEYMODE_None_DESC=No help will be provided for finding keys
 
 UI_NEW_RANDO_GOAL_ForceTrees=Force Trees
-UI_NEW_RANDO_GOAL_ForceTrees_DESC=You must reach every skill tree before you can reach the Element of Warmth
+UI_NEW_RANDO_GOAL_ForceTrees_DESC=Reach every skill tree
 UI_NEW_RANDO_GOAL_ForceMaps=Force Mapstones
-UI_NEW_RANDO_GOAL_ForceMaps_DESC=You must repair every mapstone before you can reach the Element of Warmth
+UI_NEW_RANDO_GOAL_ForceMaps_DESC=Repair every mapstone
 UI_NEW_RANDO_GOAL_WarmthFrags=Warmth Fragments
-UI_NEW_RANDO_GOAL_WarmthFrags_DESC=You must find 50 warmth fragments before you can reach the Element of Warmth
+UI_NEW_RANDO_GOAL_WarmthFrags_DESC=Find 50 warmth fragments
+UI_NEW_RANDO_GOAL_WorldTour=World Tour
+UI_NEW_RANDO_GOAL_WorldTour_DESC=Find all of the relics
 
 UI_NEW_RANDO_RANDOM_SEED=Random seed
 UI_NEW_RANDO_RANDOM_SEED_DESC=Play with a random seed
