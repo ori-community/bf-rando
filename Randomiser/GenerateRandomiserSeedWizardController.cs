@@ -239,7 +239,8 @@ namespace Randomiser
                 case WizardState.Start:
                     if (index == QuickStart)
                     {
-                        int seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
+                        int rngSeed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
+                        uint seed = unchecked((uint)rngSeed); // positive numbers are nicer
 
                         seedGenOptions.Flags = RandomiserFlags.None;
                         seedGenOptions.KeyMode = KeyMode.Clues;
@@ -271,7 +272,8 @@ namespace Randomiser
                 case WizardState.Seed:
                     if (index == RandomSeed)
                     {
-                        int seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
+                        int rngSeed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
+                        uint seed = unchecked((uint)rngSeed); // positive numbers are nicer
                         seedGenOptions.Seed = seed.ToString();
                     }
                     else if (index == InputSeed)
