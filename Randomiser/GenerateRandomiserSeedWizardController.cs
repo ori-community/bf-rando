@@ -80,6 +80,9 @@ namespace Randomiser
         MessageBox[] messageBoxes;
         BasicMessageProvider[] tooltips;
 
+        /// <summary>When pressing Back how far back should we go. Usually 1 but quickstart skips some steps.</summary>
+        int backStepSize;
+
         private void SetOptionCount(int count)
         {
             selectionManager.MenuItems.Clear();
@@ -244,6 +247,7 @@ namespace Randomiser
                         seedGenOptions.LogicPreset = LogicPath.Standard;
                         seedGenOptions.Seed = seed.ToString();
 
+                        backStepSize = WizardState.Difficulty - WizardState.Start;
                         GoToState(WizardState.Difficulty);
                         return;
                     }
@@ -278,6 +282,7 @@ namespace Randomiser
                     break;
             }
 
+            backStepSize = 1;
             options[index].HighlightAnimator.AnimatorDriver.GoToStart();
             GoToState(state + 1);
         }
@@ -290,7 +295,7 @@ namespace Randomiser
                 return;
             }
 
-            GoToState(state - 1);
+            GoToState(state - backStepSize);
         }
     }
 }
