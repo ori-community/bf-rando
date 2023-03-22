@@ -23,23 +23,25 @@ namespace Randomiser
 
             public static SeedGenOptions FromSharableSeed(string sharableSeed)
             {
-                string[] parts = sharableSeed.Split('.');
-
-                if (parts.Length != 3)
+                int firstDot = sharableSeed.IndexOf('.');
+                if (firstDot < 0)
                     return null;
 
-                if (!int.TryParse(parts[0], out var meta) || !int.TryParse(parts[1], out var flags))
+                string metaStr = sharableSeed.Substring(0, firstDot);
+                string rngSeed = sharableSeed.Substring(firstDot + 1);
+
+                if (!ulong.TryParse(metaStr, out var meta))
                     return null;
 
                 var bytes = BitConverter.GetBytes(meta);
 
                 return new SeedGenOptions
                 {
-                    Flags = (RandomiserFlags)flags,
                     GoalMode = (GoalMode)bytes[0],
                     KeyMode = (KeyMode)bytes[1],
                     LogicPreset = (LogicPath)bytes[2],
-                    Seed = parts[2]
+                    Flags = (RandomiserFlags)BitConverter.ToInt32(bytes, 4),
+                    Seed = rngSeed
                 };
             }
         }

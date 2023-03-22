@@ -256,14 +256,19 @@ namespace Randomiser
 
         public string GetSharableSeed()
         {
+            byte[] flagBytes = BitConverter.GetBytes((int)Flags);
             byte[] bytes = new byte[] {
                 (byte)GoalMode,
                 (byte)KeyMode,
                 (byte)LogicPreset,
-                0
+                0,
+                flagBytes[0],
+                flagBytes[1],
+                flagBytes[2],
+                flagBytes[3]
             };
 
-            return $"{BitConverter.ToInt32(bytes, 0)}.{(int)Flags}.{seed}";
+            return $"{BitConverter.ToUInt64(bytes, 0)}.{seed}";
         }
 
         public void Export(string path)
