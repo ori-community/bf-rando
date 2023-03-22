@@ -1,42 +1,10 @@
 ﻿using System;
 using BaseModLib;
-using HarmonyLib;
 using OriDeModLoader;
 using UnityEngine;
 
 namespace Randomiser
 {
-    [HarmonyPatch]
-    class ShowRandomiserWizard
-    {
-        [HarmonyPostfix, HarmonyPatch(typeof(SaveSlotsUI), nameof(SaveSlotsUI.EmptySaveSlotSelected))]
-        static void ShowRandomiserWizardOnPress(GameObject ___m_difficultyScreen)
-        {
-            GenerateRandomiserSeedWizardController.Instance.BeginWizard(___m_difficultyScreen);
-        }
-    }
-
-    public class ProgressWizardAction : ActionMethod
-    {
-        public GenerateRandomiserSeedWizardController Controller;
-        public Action<GenerateRandomiserSeedWizardController> OptionalAction;
-        public override void Perform(IContext context)
-        {
-            OptionalAction?.Invoke(Controller);
-
-            Controller.OnSelectMenuItem(transform.GetSiblingIndex());
-        }
-    }
-
-    public class DeprogressWizardAction : ActionMethod
-    {
-        public GenerateRandomiserSeedWizardController Controller;
-        public override void Perform(IContext context)
-        {
-            Controller.GoBackwards();
-        }
-    }
-
     public class GenerateRandomiserSeedWizardController : MonoBehaviour
     {
         public enum WizardState

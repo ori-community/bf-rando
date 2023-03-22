@@ -24,8 +24,8 @@ namespace Randomiser
 
         private static void AddItem(this SkillTreeManager manager, int index, Transform parent, string iconTemplatePath, BonusAbilities ability, int[] paths)
         {
-            var templateObject = GetTemplate(2 - (index % 3), manager.transform).gameObject;
-            
+            var templateObject = GetTemplate(2 - index % 3, manager.transform).gameObject;
+
             var newItem = Object.Instantiate(templateObject);
             newItem.transform.SetParentMaintainingLocalTransform(parent);
             newItem.transform.position = new Vector3(-6.35f + index * 0.8f, -3.35f, 0f);
@@ -59,7 +59,7 @@ namespace Randomiser
 
             var menuItem = newItem.GetComponent<CleverMenuItem>();
             manager.NavigationManager.MenuItems.Add(menuItem);
-            for (int i = 0; i < paths.Length; i++)
+            for (var i = 0; i < paths.Length; i++)
                 manager.NavigationManager.Navigation.AddTwoWayPath(menuItem, orange.GetChild(paths[i]).GetComponent<CleverMenuItem>());
 
             if (index > 0)
@@ -142,7 +142,7 @@ namespace Randomiser
             if (__instance.CurrentSkillItem && __instance.CurrentSkillItem.Ability == AbilityType.BashBuff)
             {
                 var customAbility = __instance.CurrentSkillItem.GetComponent<CustomSkillItem>().Ability;
-                int owned = GetBonusAbility(customAbility);
+                var owned = GetBonusAbility(customAbility);
                 if (owned > 0)
                 {
                     __instance.RequirementsLineA.SetMessage(new MessageDescriptor(Strings.Get("ABILITY_OWNED_COUNT", owned)));
