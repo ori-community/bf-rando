@@ -38,15 +38,19 @@ namespace Randomiser
                 return;
             }
 
-            string message = result.decoration.HasValue ? Wrap(result.text, result.decoration.Value) : result.text;
-            Randomiser.Message(message);
-            Randomiser.Inventory.lastPickup = message;
+            if (result.text != null) // TODO rewrite this whole actions thing, it is bad
+            {
+                string message = result.decoration.HasValue ? Wrap(result.text, result.decoration.Value) : result.text;
+                Randomiser.Message(message);
+                Randomiser.Inventory.lastPickup = message;
+            }
         }
 
         private RandomiserActionResult Run()
         {
             switch (action)
             {
+                case "MU": return HandleMultiple();
                 case "SK": return HandleSkill();
                 case "EC": return HandleEC();
                 case "EX": return HandleSpiritLight();
@@ -60,6 +64,24 @@ namespace Randomiser
                 default:
                     return null;
             }
+        }
+
+        private RandomiserActionResult HandleMultiple()
+        {
+            string[] paramSegments = parameters[0].Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < paramSegments.Length; i += 2)
+            {
+                if (paramSegments[i] == "MU")
+                {
+                    Randomiser.Message("Error: Invalid action: " + parameters[0] + "\nMU cannot contain MU");
+                    return null;
+                }
+
+                var action = new RandomiserAction(paramSegments[i], new string[] { paramSegments[i + 1] });
+                action.Execute();
+            }
+
+            return new RandomiserActionResult(null);
         }
 
         private RandomiserActionResult HandleSkill()
