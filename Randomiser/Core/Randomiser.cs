@@ -18,6 +18,7 @@ namespace Randomiser
         public static int MapstonesRepaired => Locations.Cache.progressiveMapstones.ObtainedCount();
         public static int TreesFound => Locations.Cache.skills.ObtainedCount();
         public static int TreesFoundExceptSein => Locations.Cache.skillsExceptSein.ObtainedCount();
+        public static int RelicsFound => Seed.RelicLocations.ObtainedCount();
 
         public static float SpiritLightMultiplier
         {

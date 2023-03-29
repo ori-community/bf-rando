@@ -10,6 +10,8 @@ namespace Randomiser
         private string action;
         private string[] parameters;
 
+        public string Action => action;
+
         public RandomiserAction(string action, string[] parameters)
         {
             this.action = action;

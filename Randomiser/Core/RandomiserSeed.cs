@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -59,8 +60,10 @@ namespace Randomiser
 
         private readonly Dictionary<MoonGuid, RandomiserAction> map = new Dictionary<MoonGuid, RandomiserAction>();
 
-        // The random seed used to generate the... seed. But nobody means this when they say "seed".
+        /// <summary>The rng seed</summary>
         public string seed;
+
+        public int RelicsRequired { get; private set; } = 8; // TODO load from seed def
 
         public bool HasFlag(RandomiserFlags flag) => (Flags & flag) == flag;
 
@@ -68,6 +71,9 @@ namespace Randomiser
 
         private readonly List<Location> senseList = new List<Location>();
         public IEnumerable<Location> SenseItems => senseList.AsEnumerable();
+
+        private readonly List<Location> relicLocations = new List<Location>();
+        public ReadOnlyCollection<Location> RelicLocations => relicLocations.AsReadOnly();
 
         public override void Awake()
         {
@@ -93,6 +99,7 @@ namespace Randomiser
             seed = "";
             Clues = new Clues(Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, null, null, null);
             senseList.Clear();
+            relicLocations.Clear();
         }
 
         public override void Serialize(Archive ar)
@@ -105,6 +112,21 @@ namespace Randomiser
             Clues.Serialize(ar);
             SerializeSenseList(ar);
             LogicPreset = (LogicPath)ar.Serialize((int)LogicPreset);
+
+            if (ar.Reading)
+            {
+                RefreshReadonly();
+            }
+        }
+
+        private void RefreshReadonly()
+        {
+            relicLocations.Clear();
+            foreach (var loc in Randomiser.Locations.GetAll())
+            {
+                if (GetActionFromGuid(loc.guid)?.Action == "WT")
+                    relicLocations.Add(loc);
+            }
         }
 
         private void SerializeSenseList(Archive ar)
@@ -210,6 +232,8 @@ namespace Randomiser
                     Clues = new Clues(clues[0], clues[1], clues[2], clueLocations[0], clueLocations[1], clueLocations[2]);
             }
 
+            RefreshReadonly(); // TODO could apply same to clues and sense items - would not need to save them to the file
+
             Randomiser.Message($"Seed file loaded:\n{LogicPreset} {GoalMode} {KeyMode} {seed}");
         }
 
@@ -220,8 +244,16 @@ namespace Randomiser
             string[] flagsAndOtherThings = meta[0].Split(',');
             foreach (string str in flagsAndOtherThings)
             {
-                if (TryParse(str, out GoalMode goalMode))
+                if (TryParse(str, GoalMode.WorldTour, out int requiredRelicCount))
+                {
+                    GoalMode = GoalMode.WorldTour;
+                    RelicsRequired = requiredRelicCount;
+                }
+                else if (TryParse(str, out GoalMode goalMode))
+                {
                     GoalMode = goalMode;
+                }
+
                 if (TryParse(str, out KeyMode keyMode))
                     KeyMode = keyMode;
                 if (TryParse(str, out RandomiserFlags flag))
@@ -241,6 +273,33 @@ namespace Randomiser
             catch (ArgumentException) { }
 
             result = default;
+            return false;
+        }
+
+        /// <summary>
+        /// Parses the format Enum=Arg, e.g. WorldTour=8
+        /// </summary>
+        public static bool TryParse<TEnum, TArg0>(string value, TEnum expectedEnumValue, out TArg0 arg0) where TEnum : struct, Enum
+        {
+            int eqIndex = value.IndexOf('=');
+            if (eqIndex == -1)
+            {
+                arg0 = default;
+                return false;
+            }
+
+            try
+            {
+                var enumValue = (TEnum)Enum.Parse(typeof(TEnum), value.Substring(0, eqIndex), ignoreCase: true);
+                if (enumValue.Equals(expectedEnumValue))
+                {
+                    arg0 = (TArg0)Convert.ChangeType(value.Substring(eqIndex + 1), typeof(TArg0));
+                    return true;
+                }
+            }
+            catch (ArgumentException) { }
+
+            arg0 = default;
             return false;
         }
 

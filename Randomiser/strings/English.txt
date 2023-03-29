@@ -143,3 +143,6 @@ UI_NEW_RANDO_DIFFICULTY_Hard=Hard
 UI_NEW_RANDO_DIFFICULTY_Hard_DESC=Ori is weak against the blight of the forest. For advanced players.
 UI_NEW_RANDO_DIFFICULTY_OneLife=One Life
 UI_NEW_RANDO_DIFFICULTY_OneLife_DESC=You only get one change to save Nibel. The ultimate challenge.
+
+UI_NEW_RANDO_SPAWN=Spawn
+UI_NEW_RANDO_SPAWN_DESC=Where you will spawn at the beginning of the game
