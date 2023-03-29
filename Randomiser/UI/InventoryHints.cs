@@ -1,4 +1,7 @@
-﻿using HarmonyLib;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using HarmonyLib;
 using OriDeModLoader;
 using Sein.World;
 using UnityEngine;
@@ -23,6 +26,8 @@ namespace Randomiser
             sunstoneClueText = Object.Instantiate(__instance.EnergyUpgradesText);
             sunstoneClueText.transform.position = __instance.MountHoruKey.transform.position + Vector3.down * 0.55f;
             sunstoneClueText.transform.SetParent(__instance.MountHoruKey.transform);
+
+            __instance.CompletionText.transform.parent.GetComponentInChildren<InventoryItemHelpText>().HelpMessage = ScriptableObject.CreateInstance<CompletionDescriptionMessageProvider>();
         }
     }
 
@@ -34,6 +39,8 @@ namespace Randomiser
             InventoryManagerKeyHintsAwake.waterVeinClueText.SetMessage(new MessageDescriptor(GetKeyLabel(Keys.GinsoTree, 0, Randomiser.Inventory.waterVeinShards)));
             InventoryManagerKeyHintsAwake.gumonSealClueText.SetMessage(new MessageDescriptor(GetKeyLabel(Keys.ForlornRuins, 1, Randomiser.Inventory.gumonSealShards)));
             InventoryManagerKeyHintsAwake.sunstoneClueText.SetMessage(new MessageDescriptor(GetKeyLabel(Keys.MountHoru, 2, Randomiser.Inventory.sunstoneShards)));
+
+            InventoryManager.Instance.CompletionText.SetMessage(new MessageDescriptor(GetCompletionText()));
         }
 
         private static string GetKeyLabel(bool ownsKey, int key, int shardCount)
@@ -69,6 +76,27 @@ namespace Randomiser
                 case 2: return Randomiser.Seed.Clues.Sunstone;
                 default: return default;
             }
+        }
+
+        private static string GetCompletionText()
+        {
+            switch (Randomiser.Seed.GoalMode)
+            {
+                case GoalMode.ForceTrees:
+                    return $"{Randomiser.TreesFound}/10";
+                case GoalMode.WorldTour:
+                    return $"{Randomiser.RelicsFound}/{Randomiser.Seed.RelicsRequired}";
+            }
+
+            return "";
+        }
+    }
+
+    public class CompletionDescriptionMessageProvider : MessageProvider
+    {
+        public override IEnumerable<MessageDescriptor> GetMessages()
+        {
+            return new MessageDescriptor[] { new MessageDescriptor(DynamicText.BuildDetailedGoalString()) };
         }
     }
 }

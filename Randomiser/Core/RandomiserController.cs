@@ -91,7 +91,7 @@ namespace Randomiser
 
                     if (UnityEngine.Input.GetKeyDown(KeyCode.P))
                     {
-                        Randomiser.Message(Randomiser.BuildProgressString());
+                        Randomiser.Message(DynamicText.BuildProgressString());
                     }
                 }
 
@@ -100,19 +100,11 @@ namespace Randomiser
                     Randomiser.Message(Randomiser.Inventory.lastPickup);
                 }
 
-                if (Randomiser.Seed.GoalMode == GoalMode.WorldTour && UnityEngine.Input.GetKeyDown(KeyCode.Alpha5))
+                if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha5))
                 {
-                    StringBuilder sb = new StringBuilder();
-                    sb.AppendLine(Strings.Get("OBJECTIVE_RELICS_FOUND_TEXT"));
-                    foreach (var relicLocation in Randomiser.Seed.RelicLocations.OrderBy(l => (int)l.worldArea))
-                    {
-                        bool found = relicLocation.HasBeenObtained();
-                        if (found) sb.Append("$");
-                        sb.Append(Strings.Get("AREA_SHORT_" + relicLocation.worldArea.ToString()));
-                        if (found) sb.Append("$");
-                        sb.Append("  ");
-                    }
-                    Randomiser.Message(sb.ToString());
+                    string text = DynamicText.BuildDetailedGoalString();
+                    if (!string.IsNullOrEmpty(text))
+                        Randomiser.Message(text);
                 }
             }
         }

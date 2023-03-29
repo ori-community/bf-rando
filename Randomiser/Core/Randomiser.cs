@@ -80,7 +80,7 @@ namespace Randomiser
             if (location.type == Location.LocationType.Skill && location.name != "Sein")
             {
                 if (TreesFoundExceptSein % 3 == 0)
-                    Message(BuildProgressString());
+                    Message(DynamicText.BuildProgressString());
             }
         }
 
@@ -127,74 +127,6 @@ namespace Randomiser
                     break;
             }
             return false;
-        }
-
-        public static string BuildProgressString()
-        {
-            StringBuilder sb = new StringBuilder();
-
-            int trees = TreesFoundExceptSein;
-            int maps = MapstonesRepaired;
-
-            if (Seed.GoalMode == GoalMode.WorldTour)
-            {
-                int relics = RelicsFound;
-                sb.Append(Strings.Get("RANDO_PROGRESS_WORLDTOUR",
-                    trees >= 10 ? "$" : "",
-                    trees,
-                    maps >= 9 ? "$" : "",
-                    maps,
-                    TotalPickupsFound,
-                    relics >= Seed.RelicsRequired ? "$" : "",
-                    relics,
-                    Seed.RelicsRequired
-                ));
-            }
-            else
-            {
-                sb.Append(Strings.Get("RANDO_PROGRESS_0",
-                    trees == 10 ? "$" : "",
-                    trees,
-                    maps == 9 ? "$" : "",
-                    maps,
-                    TotalPickupsFound
-                ));
-            }
-
-            if (Seed.KeyMode == KeyMode.Clues)
-            {
-                Clues.Clue wv = Seed.Clues.WaterVein;
-                Clues.Clue gs = Seed.Clues.GumonSeal;
-                Clues.Clue ss = Seed.Clues.Sunstone;
-
-                sb.AppendLine();
-                sb.Append(Strings.Get("RANDO_PROGRESS_CLUES",
-                    wv.owned ? "*" : "",
-                    wv.revealed ? Strings.Get("AREA_SHORT_" + wv.area) : "????",
-                    gs.owned ? "#" : "",
-                    gs.revealed ? Strings.Get("AREA_SHORT_" + gs.area) : "????",
-                    ss.owned ? "@" : "",
-                    ss.revealed ? Strings.Get("AREA_SHORT_" + ss.area) : "????"
-                ));
-            }
-
-            if (Seed.KeyMode == KeyMode.Shards)
-            {
-                int max = Seed.ShardsRequiredForKey;
-
-                sb.AppendLine();
-                sb.Append(Strings.Get("RANDO_PROGRESS_SHARDS",
-                    Inventory.waterVeinShards == max ? "*" : "",
-                    Inventory.waterVeinShards,
-                    Inventory.gumonSealShards == max ? "#" : "",
-                    Inventory.gumonSealShards,
-                    Inventory.sunstoneShards == max ? "@" : "",
-                    Inventory.sunstoneShards,
-                    max
-                ));
-            }
-
-            return sb.ToString();
         }
     }
 }

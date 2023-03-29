@@ -67,6 +67,17 @@ AREA_SHORT_Glades=Glades
 AREA_SHORT_Swamp=Swamp
 AREA_SHORT_Valley=Valley
 
+LOCATION_WallJumpSkillTree=Wall Jump
+LOCATION_ChargeFlameSkillTree=Charge Flame
+LOCATION_DashSkillTree=Dash
+LOCATION_GrenadeSkillTree=Grenade
+LOCATION_DoubleJumpSkillTree=Double Jump
+LOCATION_BashSkillTree=Bash
+LOCATION_StompSkillTree=Stomp
+LOCATION_GlideSkillFeather=Glide
+LOCATION_ChargeJumpSkillTree=Charge Jump
+LOCATION_ClimbSkillTree=Climb
+
 # Rando strings
 RANDO_PROGRESS_1={0}Trees ({1}/10){0}  {2}Maps ({3}/9){2}  Total ({4}/256)
 RANDO_PROGRESS_WORLDTOUR={0}Trees ({1}/10){0}  {2}Maps ({3}/9){2}  Total ({4}/256)  {5}Relics ({6}/{7}){5}
@@ -84,6 +95,7 @@ OBJECTIVE_FORCE_MAPS=Restore all 9 #Mapstones#
 OBJECTIVE_WARMTH_FRAGS=Find all {0} #Warmth Fragments# hidden throughout Nibel
 OBJECTIVE_FALLBACK=Continue to search for #Skills# and #Resources#
 OBJECTIVE_RELICS_FOUND_TEXT=Relics found:
+OBJECTIVE_TREES_FOUND_TEXT=Trees found:
 
 ABILITY_ExtraDoubleJump=Extra Jump
 ABILITY_DESC_ExtraDoubleJump=Allows Ori to jump more times in the air
