@@ -63,7 +63,7 @@ namespace Randomiser
         /// <summary>The rng seed</summary>
         public string seed;
 
-        public int RelicsRequired { get; private set; } = 8; // TODO load from seed def
+        public int RelicsRequired { get; private set; }
 
         public bool HasFlag(RandomiserFlags flag) => (Flags & flag) == flag;
 
@@ -112,6 +112,7 @@ namespace Randomiser
             Clues.Serialize(ar);
             SerializeSenseList(ar);
             LogicPreset = (LogicPath)ar.Serialize((int)LogicPreset);
+            RelicsRequired = ar.Serialize(RelicsRequired);
 
             if (ar.Reading)
             {
@@ -248,6 +249,7 @@ namespace Randomiser
                 {
                     GoalMode = GoalMode.WorldTour;
                     RelicsRequired = requiredRelicCount;
+                    Flags |= RandomiserFlags.OpenWorld; // TODO I would prefer if the seed generator added this flag itself
                 }
                 else if (TryParse(str, out GoalMode goalMode))
                 {

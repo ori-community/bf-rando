@@ -63,9 +63,17 @@ namespace Randomiser
                 case "EV": return HandleEV();
                 case "TP": return HandleTP();
                 case "RB": return HandleBonus();
+                case "WT": return HandleWorldTourRelic();
                 default:
                     return null;
             }
+        }
+
+        private RandomiserActionResult HandleWorldTourRelic()
+        {
+            // Relics have their text built in to the seed
+            //  We should change this :)
+            return new RandomiserActionResult(parameters[0]);
         }
 
         private RandomiserActionResult HandleMultiple()

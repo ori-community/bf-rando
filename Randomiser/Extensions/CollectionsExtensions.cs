@@ -23,5 +23,10 @@ namespace Randomiser
             }
             return count;
         }
+
+        public static void AddRange<T>(this List<T> list, params T[] items)
+        {
+            list.AddRange(items);
+        }
     }
 }

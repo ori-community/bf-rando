@@ -53,6 +53,8 @@ namespace Randomiser
                 args.Add("--force-trees");
             if (opts.GoalMode == GoalMode.ForceMaps)
                 args.Add("--force-mapstones");
+            if (opts.GoalMode == GoalMode.WorldTour)
+                args.AddRange("--world-tour", "8");
 
             if (opts.Flags.Contains(RandomiserFlags.OpenWorld))
                 args.Add("--open-world");

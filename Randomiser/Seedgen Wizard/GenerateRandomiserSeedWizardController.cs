@@ -230,7 +230,7 @@ namespace Randomiser
                     break;
 
                 case WizardState.Goal:
-                    if (index == WorldTour)
+                    if (index == WarmthFrags || index == ForceMaps)
                     {
                         Randomiser.Message("Not yet implemented");
                         return;

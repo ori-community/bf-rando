@@ -36,6 +36,7 @@ namespace Randomiser
                 case GoalMode.ForceMaps:
                     return Strings.Get("OBJECTIVE_FORCE_MAPS");
                 case GoalMode.WorldTour:
+                    return Strings.Get("OBJECTIVE_WORLD_TOUR", Randomiser.Seed.RelicsRequired);
                 case GoalMode.WarmthFrags:
                     return $"{Randomiser.Seed.GoalMode} is not supported yet";
             }

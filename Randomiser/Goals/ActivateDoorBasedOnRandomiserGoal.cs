@@ -15,7 +15,7 @@ namespace Randomiser
         private void Awake()
         {
             messageProvider = ScriptableObject.CreateInstance<BasicMessageProvider>();
-            messageProvider.SetMessage(Strings.Get("RANDO_EXIT_BLOCKED"));
+            messageProvider.SetMessage(Strings.Get("RANDO_EXIT_BLOCKED_" + Randomiser.Seed.GoalMode));
         }
 
         private void FixedUpdate()

@@ -103,7 +103,7 @@ namespace Randomiser
                     //else
                     //{
                     Inventory.goalComplete = true;
-                    Message("Horu escape now available");
+                    Message(Strings.Get("RANDO_ESCAPE_AVAILABLE"));
                     //}
                 }
             }
@@ -122,7 +122,7 @@ namespace Randomiser
                 case GoalMode.WarmthFrags:
                     break;
                 case GoalMode.WorldTour:
-                    break;
+                    return RelicsFound >= Seed.RelicsRequired;
                 default:
                     break;
             }
@@ -136,13 +136,30 @@ namespace Randomiser
             int trees = TreesFoundExceptSein;
             int maps = MapstonesRepaired;
 
-            sb.Append(Strings.Get("RANDO_PROGRESS_1",
-                trees == 10 ? "$" : "",
-                trees,
-                maps == 9 ? "$" : "",
-                maps,
-                TotalPickupsFound
-            ));
+            if (Seed.GoalMode == GoalMode.WorldTour)
+            {
+                int relics = RelicsFound;
+                sb.Append(Strings.Get("RANDO_PROGRESS_WORLDTOUR",
+                    trees >= 10 ? "$" : "",
+                    trees,
+                    maps >= 9 ? "$" : "",
+                    maps,
+                    TotalPickupsFound,
+                    relics >= Seed.RelicsRequired ? "$" : "",
+                    relics,
+                    Seed.RelicsRequired
+                ));
+            }
+            else
+            {
+                sb.Append(Strings.Get("RANDO_PROGRESS_0",
+                    trees == 10 ? "$" : "",
+                    trees,
+                    maps == 9 ? "$" : "",
+                    maps,
+                    TotalPickupsFound
+                ));
+            }
 
             if (Seed.KeyMode == KeyMode.Clues)
             {

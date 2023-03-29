@@ -69,10 +69,13 @@ AREA_Valley=Valley
 
 # Rando strings
 RANDO_PROGRESS_1={0}Trees ({1}/10){0}  {2}Maps ({3}/9){2}  Total ({4}/256)
+RANDO_PROGRESS_WORLDTOUR={0}Trees ({1}/10){0}  {2}Maps ({3}/9){2}  Total ({4}/256)  {5}Relics ({6}/{7}){5}
 RANDO_PROGRESS_CLUES={0}WV: {1}{0}  {2}GS: {3}{2}  {4}SS: {5}{4}
 RANDO_PROGRESS_SHARDS={0}WV ({1}/{6}){0}  {2}GS ({3}/{6}){2}  {4}SS ({5}/{6}){4}
-RANDO_EXIT_BLOCKED=You can't enter until you reach all of the trees!
+RANDO_EXIT_BLOCKED_ForceTrees=You can't enter until you reach all of the trees!
+RANDO_EXIT_BLOCKED_WorldTour=You can't enter until you find all of the relics!
 RANDO_GOOD_LUCK=Good luck on your rando!
+RANDO_ESCAPE_AVAILABLE=Horu escape is now available
 
 OBJECTIVE_HORU_ESCAPE=Find and Restore #Mount Horu#!
 OBJECTIVE_FORCE_TREES=Visit all 10 #Skill Trees#
