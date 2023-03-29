@@ -43,7 +43,7 @@
         {
             Location loc = Randomiser.Locations[locations[(int)type]];
             return new Clue(owned: loc.HasBeenObtained(),
-                            revealed: (revealOrder[(int)type] + 1) * 3 <= Randomiser.TreesFound,
+                            revealed: (revealOrder[(int)type] + 1) * 3 <= Randomiser.TreesFoundExceptSein,
                             area: loc.worldArea.ToString(),
                             type: type);
         }
