@@ -170,11 +170,11 @@ namespace Randomiser
                 sb.AppendLine();
                 sb.Append(Strings.Get("RANDO_PROGRESS_CLUES",
                     wv.owned ? "*" : "",
-                    wv.revealed ? Strings.Get("AREA_" + wv.area) : "????",
+                    wv.revealed ? Strings.Get("AREA_SHORT_" + wv.area) : "????",
                     gs.owned ? "#" : "",
-                    gs.revealed ? Strings.Get("AREA_" + gs.area) : "????",
+                    gs.revealed ? Strings.Get("AREA_SHORT_" + gs.area) : "????",
                     ss.owned ? "@" : "",
-                    ss.revealed ? Strings.Get("AREA_" + ss.area) : "????"
+                    ss.revealed ? Strings.Get("AREA_SHORT_" + ss.area) : "????"
                 ));
             }
 

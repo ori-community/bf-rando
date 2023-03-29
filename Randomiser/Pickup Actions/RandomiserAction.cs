@@ -208,7 +208,7 @@ namespace Randomiser
         {
             TeleporterController.Activate(tpMap[parameters[0]]);
 
-            string areaNameKey = "AREA_" + parameters[0];
+            string areaNameKey = "AREA_SHORT_" + parameters[0];
             return new RandomiserActionResult(Strings.Get("TELEPORTER_ACTIVATED", Strings.Get(areaNameKey)));
         }
 

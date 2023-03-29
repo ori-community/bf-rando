@@ -1,5 +1,8 @@
-﻿using Core;
+﻿using System.Linq;
+using System.Text;
+using Core;
 using Game;
+using OriDeModLoader;
 using UnityEngine;
 
 namespace Randomiser
@@ -95,6 +98,21 @@ namespace Randomiser
                 if (UnityEngine.Input.GetKeyDown(KeyCode.T))
                 {
                     Randomiser.Message(Randomiser.Inventory.lastPickup);
+                }
+
+                if (Randomiser.Seed.GoalMode == GoalMode.WorldTour && UnityEngine.Input.GetKeyDown(KeyCode.Alpha5))
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine(Strings.Get("OBJECTIVE_RELICS_FOUND_TEXT"));
+                    foreach (var relicLocation in Randomiser.Seed.RelicLocations.OrderBy(l => (int)l.worldArea))
+                    {
+                        bool found = relicLocation.HasBeenObtained();
+                        if (found) sb.Append("$");
+                        sb.Append(Strings.Get("AREA_SHORT_" + relicLocation.worldArea.ToString()));
+                        if (found) sb.Append("$");
+                        sb.Append("  ");
+                    }
+                    Randomiser.Message(sb.ToString());
                 }
             }
         }

@@ -55,17 +55,17 @@ SHARD_WARMTH_FRAGMENT=@Warmth Fragment ({0}/{1})@
 SHARD_WARMTH_FRAGMENT_EXTRA=@Warmth Fragment (extra)@
 
 # Areas
-AREA_Blackroot=Blackroot
-AREA_Forlorn=Forlorn
-AREA_Ginso=Ginso
-AREA_Grove=Grove
-AREA_MISTY_WOODS=Misty
-AREA_Grotto=Grotto
-AREA_Horu=Horu
-AREA_Sorrow=Sorrow
-AREA_Glades=Glades
-AREA_Swamp=Swamp
-AREA_Valley=Valley
+AREA_SHORT_Blackroot=Blackroot
+AREA_SHORT_Forlorn=Forlorn
+AREA_SHORT_Ginso=Ginso
+AREA_SHORT_Grove=Grove
+AREA_SHORT_Misty=Misty
+AREA_SHORT_Grotto=Grotto
+AREA_SHORT_Horu=Horu
+AREA_SHORT_Sorrow=Sorrow
+AREA_SHORT_Glades=Glades
+AREA_SHORT_Swamp=Swamp
+AREA_SHORT_Valley=Valley
 
 # Rando strings
 RANDO_PROGRESS_1={0}Trees ({1}/10){0}  {2}Maps ({3}/9){2}  Total ({4}/256)
@@ -83,6 +83,7 @@ OBJECTIVE_WORLD_TOUR=Find all {0} #Relics# hidden throughout Nibel
 OBJECTIVE_FORCE_MAPS=Restore all 9 #Mapstones#
 OBJECTIVE_WARMTH_FRAGS=Find all {0} #Warmth Fragments# hidden throughout Nibel
 OBJECTIVE_FALLBACK=Continue to search for #Skills# and #Resources#
+OBJECTIVE_RELICS_FOUND_TEXT=Relics found:
 
 ABILITY_ExtraDoubleJump=Extra Jump
 ABILITY_DESC_ExtraDoubleJump=Allows Ori to jump more times in the air

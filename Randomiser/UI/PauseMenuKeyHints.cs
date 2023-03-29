@@ -46,7 +46,7 @@ namespace Randomiser
                 case KeyMode.Clues:
                     var clue = ClueForKey(key);
                     if (!clue.owned && clue.revealed)
-                        return Strings.Get("AREA_" + clue.area);
+                        return Strings.Get("AREA_SHORT_" + clue.area);
 
                     return "";
 
