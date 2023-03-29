@@ -341,6 +341,8 @@ namespace Randomiser
                 writer.Write(KeyMode);
                 writer.Write(",");
                 writer.Write(GoalMode);
+                if (GoalMode == GoalMode.WorldTour)
+                    writer.Write("=" + RelicsRequired);
                 foreach (var flag in Flags.GetAll())
                 {
                     writer.Write(",");
