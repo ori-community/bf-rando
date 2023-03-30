@@ -233,6 +233,10 @@ namespace Randomiser
                     Clues = new Clues(clues[0], clues[1], clues[2], clueLocations[0], clueLocations[1], clueLocations[2]);
             }
 
+            // Cheat and add the skill clue
+            // TODO this should be in the seed file instead
+            map[Randomiser.Locations["ForlornEscapePlant"].guid] = new RandomiserAction("SC", new string[0]);
+
             RefreshReadonly(); // TODO could apply same to clues and sense items - would not need to save them to the file
 
             Randomiser.Message($"Seed file loaded:\n{LogicPreset} {GoalMode} {KeyMode} {seed}");

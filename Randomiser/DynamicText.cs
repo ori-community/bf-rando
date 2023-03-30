@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
 using OriDeModLoader;
+using Randomiser.Extensions;
 
 namespace Randomiser
 {
@@ -101,6 +102,53 @@ namespace Randomiser
                     if (found) sb.Append("$");
                     sb.Append("  ");
                 }
+            }
+
+            return sb.ToString();
+        }
+
+        public static string BuildSkillClueString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            Location stompLoc = null, grenadeLoc = null;
+
+            foreach (var loc in Randomiser.Locations.GetAll())
+            {
+                var action = Randomiser.Seed.GetActionFromGuid(loc.guid);
+                if (action == null)
+                    continue;
+
+                if (action.Is(AbilityType.Stomp))
+                    stompLoc = loc;
+                else if (action.Is(AbilityType.Grenade))
+                    grenadeLoc = loc;
+
+                if (stompLoc != null && grenadeLoc != null)
+                    break;
+            }
+
+            if (stompLoc != null)
+            {
+                bool found = stompLoc.HasBeenObtained();
+                if (found) sb.Append("$");
+                sb.Append(Strings.Get("SKILL_Stomp"));
+                sb.Append(": ");
+                sb.Append(Strings.Get("AREA_SHORT_" + stompLoc.worldArea));
+                if (found) sb.Append("$");
+
+                if (grenadeLoc != null)
+                    sb.Append("  ");
+            }
+
+            if (grenadeLoc != null)
+            {
+                bool found = grenadeLoc.HasBeenObtained();
+                if (found) sb.Append("$");
+                sb.Append(Strings.Get("SKILL_Grenade"));
+                sb.Append(": ");
+                sb.Append(Strings.Get("AREA_SHORT_" + grenadeLoc.worldArea));
+                if (found) sb.Append("$");
             }
 
             return sb.ToString();

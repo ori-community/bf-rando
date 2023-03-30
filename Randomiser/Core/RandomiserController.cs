@@ -106,6 +106,12 @@ namespace Randomiser
                     if (!string.IsNullOrEmpty(text))
                         Randomiser.Message(text);
                 }
+
+                if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha6))
+                {
+                    if (Randomiser.Inventory.skillClueFound)
+                        Randomiser.Message(DynamicText.BuildSkillClueString());
+                }
             }
         }
     }

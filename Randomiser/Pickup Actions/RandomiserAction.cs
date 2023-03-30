@@ -11,6 +11,7 @@ namespace Randomiser
         private string[] parameters;
 
         public string Action => action;
+        public string[] Parameters => parameters;
 
         public RandomiserAction(string action, string[] parameters)
         {
@@ -64,9 +65,16 @@ namespace Randomiser
                 case "TP": return HandleTP();
                 case "RB": return HandleBonus();
                 case "WT": return HandleWorldTourRelic();
+                case "SC": return HandleSkillClue(); // Typically Forlorn Escape Plant revealing stomp/grenade areas
                 default:
                     return null;
             }
+        }
+
+        private RandomiserActionResult HandleSkillClue()
+        {
+            Randomiser.Inventory.skillClueFound = true;
+            return new RandomiserActionResult(DynamicText.BuildSkillClueString());
         }
 
         private RandomiserActionResult HandleWorldTourRelic()
@@ -99,7 +107,7 @@ namespace Randomiser
             var skill = (AbilityType)Enum.Parse(typeof(AbilityType), parameters[0]);
             Characters.Sein.PlayerAbilities.SetAbility(skill, true);
 
-            return new RandomiserActionResult(Strings.Get("SKILL_" + skill));
+            return new RandomiserActionResult(Strings.Get("SKILL_" + skill), '$');
         }
 
         private RandomiserActionResult HandleEC()
