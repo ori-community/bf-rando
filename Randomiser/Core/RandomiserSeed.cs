@@ -110,7 +110,6 @@ namespace Randomiser
             ar.Serialize(ref seed);
             SerialiseMap(ar);
             Clues.Serialize(ar);
-            SerializeSenseList(ar);
             LogicPreset = (LogicPath)ar.Serialize((int)LogicPreset);
             RelicsRequired = ar.Serialize(RelicsRequired);
 
@@ -123,30 +122,24 @@ namespace Randomiser
         private void RefreshReadonly()
         {
             relicLocations.Clear();
+            senseList.Clear();
             foreach (var loc in Randomiser.Locations.GetAll())
             {
-                if (GetActionFromGuid(loc.guid)?.Action == "WT")
-                    relicLocations.Add(loc);
-            }
-        }
+                var action = GetActionFromGuid(loc.guid)?.Action;
+                if (action == null)
+                    continue;
 
-        private void SerializeSenseList(Archive ar)
-        {
-            int senseCount = ar.Serialize(senseList.Count);
-            if (ar.Reading)
-            {
-                senseList.Clear();
-                MoonGuid guid = new MoonGuid(0, 0, 0, 0);
-                for (int i = 0; i < senseCount; i++)
+                switch (action)
                 {
-                    guid.Serialize(ar);
-                    senseList.Add(Randomiser.Locations[guid]);
+                    case RandomiserActionKind.WorldTourRelic:
+                        relicLocations.Add(loc);
+                        break;
+                    case RandomiserActionKind.Skill:
+                    case RandomiserActionKind.WorldEvent:
+                    case RandomiserActionKind.Teleporter:
+                        senseList.Add(loc);
+                        break;
                 }
-            }
-            else
-            {
-                for (int i = 0; i < senseCount; i++)
-                    senseList[i].guid.Serialize(ar);
             }
         }
 
@@ -205,9 +198,10 @@ namespace Randomiser
                         continue;
 
                     var guid = new MoonGuid(new Guid(line[0]));
-                    map[guid] = new RandomiserAction(line[1], line.Skip(2).ToArray());
+                    var action = new RandomiserAction(line[1], line.Skip(2).ToArray());
+                    map[guid] = action;
 
-                    if (KeyMode == KeyMode.Clues && line[1] == "EV")
+                    if (KeyMode == KeyMode.Clues && action.Action == RandomiserActionKind.WorldEvent)
                     {
                         // Clues are determined by the order they appear in the seed
                         // WV = 0, GS = 2, SS = 4
@@ -218,10 +212,6 @@ namespace Randomiser
                             clueLocations[(int)clueType] = guid;
                         }
                     }
-
-                    // Sense = Skills, events, teleporters
-                    if (line[1] == "SK" || line[1] == "EV" || line[1] == "TP")
-                        senseList.Add(Randomiser.Locations[guid]);
                 }
             }
 
@@ -237,7 +227,7 @@ namespace Randomiser
             // TODO this should be in the seed file instead
             map[Randomiser.Locations["ForlornEscapePlant"].guid] = new RandomiserAction("SC", new string[0]);
 
-            RefreshReadonly(); // TODO could apply same to clues and sense items - would not need to save them to the file
+            RefreshReadonly(); // TODO could apply same to clues - would not need to save them to the file
 
             Randomiser.Message($"Seed file loaded:\n{LogicPreset} {GoalMode} {KeyMode} {seed}");
         }

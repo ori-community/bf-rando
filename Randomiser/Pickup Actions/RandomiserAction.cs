@@ -7,15 +7,15 @@ namespace Randomiser
 {
     public class RandomiserAction : ISerializable
     {
-        private string action;
+        private RandomiserActionKind action;
         private string[] parameters;
 
-        public string Action => action;
+        public RandomiserActionKind Action => action;
         public string[] Parameters => parameters;
 
         public RandomiserAction(string action, string[] parameters)
         {
-            this.action = action;
+            this.action = (RandomiserActionKind)Enum.Parse(typeof(RandomiserActionKind), action);
             this.parameters = parameters;
 
             // TODO detect invalid actions early
@@ -26,7 +26,7 @@ namespace Randomiser
 
         public void Serialize(Archive ar)
         {
-            ar.Serialize(ref action);
+            action = (RandomiserActionKind)ar.Serialize((int)action);
             parameters = ar.Serialize(parameters);
         }
 
@@ -53,19 +53,19 @@ namespace Randomiser
         {
             switch (action)
             {
-                case "MU": return HandleMultiple();
-                case "SK": return HandleSkill();
-                case "EC": return HandleEC();
-                case "EX": return HandleSpiritLight();
-                case "HC": return HandleHC();
-                case "AC": return HandleAC();
-                case "KS": return HandleKS();
-                case "MS": return HandleMS();
-                case "EV": return HandleEV();
-                case "TP": return HandleTP();
-                case "RB": return HandleBonus();
-                case "WT": return HandleWorldTourRelic();
-                case "SC": return HandleSkillClue(); // Typically Forlorn Escape Plant revealing stomp/grenade areas
+                case RandomiserActionKind.MultiPickup: return HandleMultiple();
+                case RandomiserActionKind.Skill: return HandleSkill();
+                case RandomiserActionKind.EnergyCell: return HandleEC();
+                case RandomiserActionKind.Experience: return HandleSpiritLight();
+                case RandomiserActionKind.HealthCell: return HandleHC();
+                case RandomiserActionKind.AbilityCell: return HandleAC();
+                case RandomiserActionKind.Keystone: return HandleKS();
+                case RandomiserActionKind.Mapstone: return HandleMS();
+                case RandomiserActionKind.WorldEvent: return HandleEV();
+                case RandomiserActionKind.Teleporter: return HandleTP();
+                case RandomiserActionKind.Bonus: return HandleBonus();
+                case RandomiserActionKind.WorldTourRelic: return HandleWorldTourRelic();
+                case RandomiserActionKind.SkillClue: return HandleSkillClue(); // Typically Forlorn Escape Plant revealing stomp/grenade areas
                 default:
                     return null;
             }
