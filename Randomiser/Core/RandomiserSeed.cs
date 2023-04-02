@@ -75,6 +75,9 @@ namespace Randomiser
         private readonly List<Location> relicLocations = new List<Location>();
         public ReadOnlyCollection<Location> RelicLocations => relicLocations.AsReadOnly();
 
+        private Dictionary<AbilityType, Location> skillLocations = new Dictionary<AbilityType, Location>();
+        public Location GetSkillLocation(AbilityType ability) => skillLocations.ContainsKey(ability) ? skillLocations[ability] : null;
+
         public override void Awake()
         {
             base.Awake();
@@ -100,6 +103,7 @@ namespace Randomiser
             Clues = new Clues(Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, null, null, null);
             senseList.Clear();
             relicLocations.Clear();
+            skillLocations.Clear();
         }
 
         public override void Serialize(Archive ar)
@@ -125,18 +129,21 @@ namespace Randomiser
             senseList.Clear();
             foreach (var loc in Randomiser.Locations.GetAll())
             {
-                var action = GetActionFromGuid(loc.guid)?.Action;
+                var action = GetActionFromGuid(loc.guid);
                 if (action == null)
                     continue;
 
-                switch (action)
+                switch (action.Action)
                 {
-                    case RandomiserActionKind.WorldTourRelic:
+                    case RandomiserActionKind.WT:
                         relicLocations.Add(loc);
                         break;
-                    case RandomiserActionKind.Skill:
-                    case RandomiserActionKind.WorldEvent:
-                    case RandomiserActionKind.Teleporter:
+                    case RandomiserActionKind.SK:
+                        skillLocations[(AbilityType)int.Parse(action.Parameters[0])] = loc;
+                        senseList.Add(loc);
+                        break;
+                    case RandomiserActionKind.EV:
+                    case RandomiserActionKind.TP:
                         senseList.Add(loc);
                         break;
                 }
@@ -154,7 +161,7 @@ namespace Randomiser
                 for (int i = 0; i < count; i++)
                 {
                     MoonGuid guid = new MoonGuid(0, 0, 0, 0);
-                    RandomiserAction action = new RandomiserAction(null, null);
+                    RandomiserAction action = new RandomiserAction("AC", null);
                     ar.Serialize(ref guid);
                     action.Serialize(ar);
                     map[guid] = action;
@@ -201,7 +208,7 @@ namespace Randomiser
                     var action = new RandomiserAction(line[1], line.Skip(2).ToArray());
                     map[guid] = action;
 
-                    if (KeyMode == KeyMode.Clues && action.Action == RandomiserActionKind.WorldEvent)
+                    if (KeyMode == KeyMode.Clues && action.Action == RandomiserActionKind.EV)
                     {
                         // Clues are determined by the order they appear in the seed
                         // WV = 0, GS = 2, SS = 4

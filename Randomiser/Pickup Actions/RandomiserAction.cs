@@ -53,19 +53,19 @@ namespace Randomiser
         {
             switch (action)
             {
-                case RandomiserActionKind.MultiPickup: return HandleMultiple();
-                case RandomiserActionKind.Skill: return HandleSkill();
-                case RandomiserActionKind.EnergyCell: return HandleEC();
-                case RandomiserActionKind.Experience: return HandleSpiritLight();
-                case RandomiserActionKind.HealthCell: return HandleHC();
-                case RandomiserActionKind.AbilityCell: return HandleAC();
-                case RandomiserActionKind.Keystone: return HandleKS();
-                case RandomiserActionKind.Mapstone: return HandleMS();
-                case RandomiserActionKind.WorldEvent: return HandleEV();
-                case RandomiserActionKind.Teleporter: return HandleTP();
-                case RandomiserActionKind.Bonus: return HandleBonus();
-                case RandomiserActionKind.WorldTourRelic: return HandleWorldTourRelic();
-                case RandomiserActionKind.SkillClue: return HandleSkillClue(); // Typically Forlorn Escape Plant revealing stomp/grenade areas
+                case RandomiserActionKind.MU: return HandleMultiple();
+                case RandomiserActionKind.SK: return HandleSkill();
+                case RandomiserActionKind.EC: return HandleEC();
+                case RandomiserActionKind.EX: return HandleSpiritLight();
+                case RandomiserActionKind.HC: return HandleHC();
+                case RandomiserActionKind.AC: return HandleAC();
+                case RandomiserActionKind.KS: return HandleKS();
+                case RandomiserActionKind.MS: return HandleMS();
+                case RandomiserActionKind.EV: return HandleEV();
+                case RandomiserActionKind.TP: return HandleTP();
+                case RandomiserActionKind.RB: return HandleBonus();
+                case RandomiserActionKind.WT: return HandleWorldTourRelic();
+                case RandomiserActionKind.SC: return HandleSkillClue(); // Typically Forlorn Escape Plant revealing stomp/grenade areas
                 default:
                     return null;
             }

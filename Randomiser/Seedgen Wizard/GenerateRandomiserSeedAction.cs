@@ -24,12 +24,21 @@ namespace Randomiser
 
         private void GenerateSeed()
         {
-            var result = SeedGen.GenerateSeed(GenerateRandomiserSeedWizardController.Instance.seedGenOptions);
-
-            Randomiser.Inventory.Reset();
-            Randomiser.Seed.LoadSeed(result.FilePath);
-
-            isRunning = false;
+            try
+            {
+                var result = SeedGen.GenerateSeed(GenerateRandomiserSeedWizardController.Instance.seedGenOptions);
+                Randomiser.Inventory.Reset();
+                Randomiser.Seed.LoadSeed(result.FilePath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Randomiser.Message(ex.Message);
+            }
+            finally
+            {
+                isRunning = false;
+            }
         }
     }
 }

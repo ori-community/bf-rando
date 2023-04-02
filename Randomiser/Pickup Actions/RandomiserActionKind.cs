@@ -4,18 +4,18 @@ namespace Randomiser
 {
     public enum RandomiserActionKind
     {
-        [Description("MU")] MultiPickup,
-        [Description("SK")] Skill,
-        [Description("EC")] EnergyCell,
-        [Description("EX")] Experience,
-        [Description("HC")] HealthCell,
-        [Description("AC")] AbilityCell,
-        [Description("KS")] Keystone,
-        [Description("MS")] Mapstone,
-        [Description("EV")] WorldEvent,
-        [Description("TP")] Teleporter,
-        [Description("RB")] Bonus,
-        [Description("WT")] WorldTourRelic,
-        [Description("SC")] SkillClue
+        [Description("MultiPickup")] MU,
+        [Description("Skill")] SK,
+        [Description("EnergyCell")] EC,
+        [Description("Experience")] EX,
+        [Description("HealthCell")] HC,
+        [Description("AbilityCell")] AC,
+        [Description("Keystone")] KS,
+        [Description("Mapstone")] MS,
+        [Description("WorldEvent")] EV,
+        [Description("Teleporter")] TP,
+        [Description("Bonus")] RB,
+        [Description("WorldTourRelic")] WT,
+        [Description("SkillClue")] SC
     }
 }
