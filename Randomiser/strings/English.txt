@@ -67,6 +67,18 @@ AREA_SHORT_Glades=Glades
 AREA_SHORT_Swamp=Swamp
 AREA_SHORT_Valley=Valley
 
+AREA_LONG_Blackroot=Black Root Burrows
+AREA_LONG_Forlorn=Forlorn Ruins
+AREA_LONG_Ginso=Ginso Tree
+AREA_LONG_Grove=Hollow Grove
+AREA_LONG_Misty=Misty Woods
+AREA_LONG_Grotto=Moon Grotto
+AREA_LONG_Horu=Mount Horu
+AREA_LONG_Sorrow=Sorrow Pass
+AREA_LONG_Glades=Sunken Glades
+AREA_LONG_Swamp=Thornfelt Swamp
+AREA_LONG_Valley=Valley of the Wind
+
 LOCATION_WallJumpSkillTree=Wall Jump
 LOCATION_ChargeFlameSkillTree=Charge Flame
 LOCATION_DashSkillTree=Dash
@@ -112,6 +124,8 @@ ABILITY_FIND_TO_UNLOCK=@Find this in the world to unlock@
 ABILITY_OWNED_COUNT=$Number obtained: {0}$
 
 UI_VIEW_SEED=[Map] View Seed
+UI_ABILITY_LOCKED=Locked
+UI_ABILITY_WITH_CLUE=Found in #{0}#
 
 # Game setup
 UI_NEW_RANDO_NEW_SEED=Generate New

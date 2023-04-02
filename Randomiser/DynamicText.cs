@@ -111,22 +111,8 @@ namespace Randomiser
         {
             StringBuilder sb = new StringBuilder();
 
-            Location stompLoc = null, grenadeLoc = null;
-
-            foreach (var loc in Randomiser.Locations.GetAll())
-            {
-                var action = Randomiser.Seed.GetActionFromGuid(loc.guid);
-                if (action == null)
-                    continue;
-
-                if (action.Is(AbilityType.Stomp))
-                    stompLoc = loc;
-                else if (action.Is(AbilityType.Grenade))
-                    grenadeLoc = loc;
-
-                if (stompLoc != null && grenadeLoc != null)
-                    break;
-            }
+            Location stompLoc = Randomiser.Seed.GetSkillLocation(AbilityType.Stomp);
+            Location grenadeLoc = Randomiser.Seed.GetSkillLocation(AbilityType.Grenade);
 
             if (stompLoc != null)
             {

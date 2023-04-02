@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using HarmonyLib;
 using OriDeModLoader;
 using Sein.World;
@@ -28,6 +26,7 @@ namespace Randomiser
             sunstoneClueText.transform.SetParent(__instance.MountHoruKey.transform);
 
             __instance.CompletionText.transform.parent.GetComponentInChildren<InventoryItemHelpText>().HelpMessage = ScriptableObject.CreateInstance<CompletionDescriptionMessageProvider>();
+            __instance.LockedMessageProvider = ScriptableObject.CreateInstance<LockedSkillMessageProvider>();
         }
     }
 
@@ -97,6 +96,28 @@ namespace Randomiser
         public override IEnumerable<MessageDescriptor> GetMessages()
         {
             return new MessageDescriptor[] { new MessageDescriptor(DynamicText.BuildDetailedGoalString()) };
+        }
+    }
+
+    public class LockedSkillMessageProvider : MessageProvider
+    {
+        public override IEnumerable<MessageDescriptor> GetMessages()
+        {
+            if (!Randomiser.Inventory.skillClueFound)
+            {
+                yield return new MessageDescriptor(Strings.Get("UI_ABILITY_LOCKED"));
+                yield break;
+            }
+
+            AbilityType? selectedSkill = InventoryManager.Instance.NavigationManager.CurrentMenuItem?.GetComponent<InventoryAbilityItem>()?.Ability;
+            if (selectedSkill != null && (selectedSkill == AbilityType.Stomp || selectedSkill == AbilityType.Grenade))
+            {
+                var location = Randomiser.Seed.GetSkillLocation(selectedSkill.Value);
+                yield return new MessageDescriptor(Strings.Get("UI_ABILITY_WITH_CLUE", Strings.Get("AREA_LONG_" + location.worldArea.ToString())));
+                yield break;
+            }
+
+            yield return new MessageDescriptor(Strings.Get("UI_ABILITY_LOCKED"));
         }
     }
 }
