@@ -1860,5 +1860,19 @@
         "type": "ProgressiveMapstone",
         "area": "Mapstone",
         "position": "(0.0, 56.0)"
+    },
+    {
+        "guid": "f7debdd1-f518-4e8e-bd3c-df4382a4526a",
+        "name": "KuEgg",
+        "type": "Cutscene",
+        "area": "Forlorn",
+        "position": "(0.0, 0.0)"
+    },
+    {
+        "guid": "6d2256fc-c415-415a-8b0a-4911854669d2",
+        "name": "KuroForlornHideEscape",
+        "type": "Cutscene",
+        "area": "Valley",
+        "position": "(0.0, 0.0)"
     }
 ]

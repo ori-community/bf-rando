@@ -31,6 +31,10 @@ namespace Randomiser
                 ["mountHoruHubBottom"] = BootstrapMountHoruHubBottom,
                 ["mountHoruHubMid"] = BootstrapMountHoruHubMid,
 
+                // Forlorn Ruins end sequence
+                ["forlornRuinsNestC"] = BootstrapForlornRuinsNestC,
+                ["forlornRuinsKuroHideStreamlined"] = BootstrapForlornRuinsKuroHideStreamlined,
+
                 // Stomp Triggers
                 ["upperGladesHollowTreeSplitB"] = BootstrapUpperGladesHollowTreeSplitB,
                 ["valleyOfTheWindBackground"] = BootstrapValleyOfTheWindBackground,
@@ -42,6 +46,16 @@ namespace Randomiser
                 ["creditsScreen"] = BootstrapCreditsScreen,
                 ["titleScreenSwallowsNest"] = BootstrapTitleScreenSwallowsNest
             };
+        }
+
+        private static void BootstrapForlornRuinsNestC(SceneRoot sceneRoot)
+        {
+            InsertAction<GrantPickupAction>(sceneRoot.transform.Find("*storyNew/setup/action").GetComponent<ActionSequence>(), 8, Randomiser.Locations["KuEgg"].guid, sceneRoot);
+        }
+
+        private static void BootstrapForlornRuinsKuroHideStreamlined(SceneRoot sceneRoot)
+        {
+            InsertAction<GrantPickupAction>(sceneRoot.transform.Find("*setups/kuroHide/*endSequence/action").GetComponent<ActionSequence>(), 24, Randomiser.Locations["KuroForlornHideEscape"].guid, sceneRoot);
         }
 
         private static void BootstrapCreditsScreen(SceneRoot sceneRoot)
@@ -316,6 +330,18 @@ namespace Randomiser
             pickupAction.RegisterToSaveSceneManager(sceneRoot.SaveSceneManager);
             sequence.Actions.Insert(3, pickupAction);
             ActionSequence.Rename(sequence.Actions);
+        }
+
+        private static T InsertAction<T>(ActionSequence sequence, int index, MoonGuid guid, SceneRoot sceneRoot) where T : ActionMethod
+        {
+            var go = new GameObject();
+            go.transform.SetParent(sequence.transform);
+            var action = go.AddComponent<T>();
+            action.MoonGuid = guid;
+            action.RegisterToSaveSceneManager(sceneRoot.SaveSceneManager);
+            sequence.Actions.Insert(index, action);
+            ActionSequence.Rename(sequence.Actions);
+            return action;
         }
         private static void BootstrapMountHoruHubMid(SceneRoot sceneRoot)
         {
