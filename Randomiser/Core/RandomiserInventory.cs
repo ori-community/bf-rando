@@ -19,6 +19,8 @@
         public int gumonSealShards;
         public int sunstoneShards;
 
+        public int warmthFragments;
+
         public bool skillClueFound;
 
         public string lastPickup;
@@ -47,6 +49,7 @@
             sunstoneShards = 0;
             lastPickup = "Good luck on your rando!";
             skillClueFound = false;
+            warmthFragments = 0;
         }
 
         public override void Serialize(Archive ar)
@@ -73,6 +76,7 @@
 
             ar.Serialize(ref lastPickup);
             ar.Serialize(ref skillClueFound);
+            ar.Serialize(ref warmthFragments);
         }
     }
 }

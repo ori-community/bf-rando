@@ -15,6 +15,7 @@
         EnergyRegeneration = 15,
         WaterVeinShard = 17,
         GumonSealShard = 19,
-        SunstoneShard = 21
+        SunstoneShard = 21,
+        WarmthFragment = 28
     }
 }

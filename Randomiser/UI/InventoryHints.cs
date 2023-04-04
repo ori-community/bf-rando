@@ -85,6 +85,8 @@ namespace Randomiser
                     return $"{Randomiser.TreesFound}/10";
                 case GoalMode.WorldTour:
                     return $"{Randomiser.RelicsFound}/{Randomiser.Seed.RelicsRequired}";
+                case GoalMode.Frags:
+                    return $"{Randomiser.Inventory.warmthFragments}/{Randomiser.Seed.WarmthFragmentsRequired}";
             }
 
             return "";

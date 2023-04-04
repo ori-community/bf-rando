@@ -79,7 +79,11 @@ namespace Randomiser
         {
             StringBuilder sb = new StringBuilder();
 
-            if (Randomiser.Seed.GoalMode == GoalMode.WorldTour)
+            if (Randomiser.Inventory.goalComplete)
+            {
+                sb.Append(Strings.Get("OBJECTIVE_COMPLETE_TEXT"));
+            }
+            else if (Randomiser.Seed.GoalMode == GoalMode.WorldTour)
             {
                 sb.AppendLine(Strings.Get("OBJECTIVE_RELICS_FOUND_TEXT"));
                 foreach (var relicLocation in Randomiser.Seed.RelicLocations.OrderBy(l => (int)l.worldArea))
@@ -102,6 +106,10 @@ namespace Randomiser
                     if (found) sb.Append("$");
                     sb.Append("  ");
                 }
+            }
+            else if (Randomiser.Seed.GoalMode == GoalMode.Frags)
+            {
+                sb.Append(Strings.Get("OBJECTIVE_WARMTH_FRAGS_FOUND_TEXT", Randomiser.Inventory.warmthFragments, Randomiser.Seed.WarmthFragmentsRequired));
             }
 
             return sb.ToString();

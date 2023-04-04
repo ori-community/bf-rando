@@ -44,6 +44,7 @@ BONUS_EXTRA_AIR_DASH=Extra Air Dash
 BONUS_CHARGE_DASH_EFFICIENCY=Charge Dash Efficiency
 BONUS_EXTRA_DOUBLE_JUMP=Extra Double Jump
 BONUS_EXTRA_DOUBLE_JUMP_EXTRA=Extra Double Jump ({0})
+BONUS_WARMTH_FRAGMENT=Warmth Fragment ({0}/{1})
 
 SHARD_GINSO_KEY=*Water Vein Shard ({0}/{1})*
 SHARD_GINSO_KEY_EXTRA=*Water Vein Shard (extra)*
@@ -95,8 +96,9 @@ RANDO_PROGRESS_1={0}Trees ({1}/10){0}  {2}Maps ({3}/9){2}  Total ({4}/256)
 RANDO_PROGRESS_WORLDTOUR={0}Trees ({1}/10){0}  {2}Maps ({3}/9){2}  Total ({4}/256)  {5}Relics ({6}/{7}){5}
 RANDO_PROGRESS_CLUES={0}WV: {1}{0}  {2}GS: {3}{2}  {4}SS: {5}{4}
 RANDO_PROGRESS_SHARDS={0}WV ({1}/{6}){0}  {2}GS ({3}/{6}){2}  {4}SS ({5}/{6}){4}
-RANDO_EXIT_BLOCKED_ForceTrees=You can't enter until you reach all of the trees!
-RANDO_EXIT_BLOCKED_WorldTour=You can't enter until you find all of the relics!
+RANDO_EXIT_BLOCKED_ForceTrees=You can't enter until you reach all of the #trees#!
+RANDO_EXIT_BLOCKED_WorldTour=You can't enter until you find all of the #relics#!
+RANDO_EXIT_BLOCKED_Frags=You can't enter until you find all of the #warmth fragments#!
 RANDO_GOOD_LUCK=Good luck on your rando!
 RANDO_ESCAPE_AVAILABLE=Horu escape is now available
 
@@ -108,6 +110,8 @@ OBJECTIVE_WARMTH_FRAGS=Find all {0} #Warmth Fragments# hidden throughout Nibel
 OBJECTIVE_FALLBACK=Continue to search for #Skills# and #Resources#
 OBJECTIVE_RELICS_FOUND_TEXT=Relics found:
 OBJECTIVE_TREES_FOUND_TEXT=Trees found:
+OBJECTIVE_WARMTH_FRAGS_FOUND_TEXT=Warmth Fragments found: {0}/{1}
+OBJECTIVE_COMPLETE_TEXT=The entrance to the #Element of Warmth# at #Mount Horu# is open.\nComplete the escape to win!
 
 ABILITY_ExtraDoubleJump=Extra Jump
 ABILITY_DESC_ExtraDoubleJump=Allows Ori to jump more times in the air
@@ -155,8 +159,8 @@ UI_NEW_RANDO_GOAL_ForceTrees=Force Trees
 UI_NEW_RANDO_GOAL_ForceTrees_DESC=Reach every skill tree
 UI_NEW_RANDO_GOAL_ForceMaps=Force Mapstones
 UI_NEW_RANDO_GOAL_ForceMaps_DESC=Repair every mapstone
-UI_NEW_RANDO_GOAL_WarmthFrags=Warmth Fragments
-UI_NEW_RANDO_GOAL_WarmthFrags_DESC=Find 50 warmth fragments
+UI_NEW_RANDO_GOAL_Frags=Warmth Fragments
+UI_NEW_RANDO_GOAL_Frags_DESC=Find 20 warmth fragments
 UI_NEW_RANDO_GOAL_WorldTour=World Tour
 UI_NEW_RANDO_GOAL_WorldTour_DESC=Find all of the relics
 

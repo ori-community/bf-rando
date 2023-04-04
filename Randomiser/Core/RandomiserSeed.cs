@@ -13,7 +13,7 @@ namespace Randomiser
         None,
         ForceTrees,
         ForceMaps,
-        WarmthFrags,
+        Frags,
         WorldTour
     }
 
@@ -64,6 +64,7 @@ namespace Randomiser
         public string seed;
 
         public int RelicsRequired { get; private set; }
+        public int WarmthFragmentsRequired { get; private set; }
 
         public bool HasFlag(RandomiserFlags flag) => (Flags & flag) == flag;
 
@@ -104,6 +105,8 @@ namespace Randomiser
             senseList.Clear();
             relicLocations.Clear();
             skillLocations.Clear();
+            WarmthFragmentsRequired = 0;
+            RelicsRequired = 0;
         }
 
         public override void Serialize(Archive ar)
@@ -116,6 +119,7 @@ namespace Randomiser
             Clues.Serialize(ar);
             LogicPreset = (LogicPath)ar.Serialize((int)LogicPreset);
             RelicsRequired = ar.Serialize(RelicsRequired);
+            WarmthFragmentsRequired = ar.Serialize(WarmthFragmentsRequired);
 
             if (ar.Reading)
             {
@@ -246,11 +250,16 @@ namespace Randomiser
             string[] flagsAndOtherThings = meta[0].Split(',');
             foreach (string str in flagsAndOtherThings)
             {
-                if (TryParse(str, GoalMode.WorldTour, out int requiredRelicCount))
+                if (TryParse(str, GoalMode.WorldTour, '=', out int requiredRelicCount))
                 {
                     GoalMode = GoalMode.WorldTour;
                     RelicsRequired = requiredRelicCount;
                     Flags |= RandomiserFlags.OpenWorld; // TODO I would prefer if the seed generator added this flag itself
+                }
+                else if (TryParse(str, GoalMode.Frags, '/', out int warmthFragsRequired, out int _))
+                {
+                    GoalMode = GoalMode.Frags;
+                    WarmthFragmentsRequired = warmthFragsRequired;
                 }
                 else if (TryParse(str, out GoalMode goalMode))
                 {
@@ -282,9 +291,9 @@ namespace Randomiser
         /// <summary>
         /// Parses the format Enum=Arg, e.g. WorldTour=8
         /// </summary>
-        public static bool TryParse<TEnum, TArg0>(string value, TEnum expectedEnumValue, out TArg0 arg0) where TEnum : struct, Enum
+        public static bool TryParse<TEnum, TArg0>(string value, TEnum expectedEnumValue, char delimeter, out TArg0 arg0) where TEnum : struct, Enum
         {
-            int eqIndex = value.IndexOf('=');
+            int eqIndex = value.IndexOf(delimeter);
             if (eqIndex == -1)
             {
                 arg0 = default;
@@ -303,6 +312,40 @@ namespace Randomiser
             catch (ArgumentException) { }
 
             arg0 = default;
+            return false;
+        }
+
+        public static bool TryParse<TEnum, TArg0, TArg1>(string value, TEnum expectedEnumValue, char delimeter, out TArg0 arg0, out TArg1 arg1) where TEnum : struct, Enum
+        {
+            if (value.IndexOf(delimeter) == -1)
+            {
+                arg0 = default;
+                arg1 = default;
+                return false;
+            }
+
+            string[] parts = value.Split(new char[] { delimeter }, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length < 3)
+            {
+                arg0 = default;
+                arg1 = default;
+                return false;
+            }
+
+            try
+            {
+                var enumValue = (TEnum)Enum.Parse(typeof(TEnum), parts[0], ignoreCase: true);
+                if (enumValue.Equals(expectedEnumValue))
+                {
+                    arg0 = (TArg0)Convert.ChangeType(parts[1], typeof(TArg0));
+                    arg1 = (TArg1)Convert.ChangeType(parts[2], typeof(TArg1));
+                    return true;
+                }
+            }
+            catch (ArgumentException) { }
+
+            arg0 = default;
+            arg1 = default;
             return false;
         }
 
@@ -344,6 +387,8 @@ namespace Randomiser
                 writer.Write(GoalMode);
                 if (GoalMode == GoalMode.WorldTour)
                     writer.Write("=" + RelicsRequired);
+                if (GoalMode == GoalMode.Frags)
+                    writer.Write($"{WarmthFragmentsRequired}/{WarmthFragmentsRequired + 10}");
                 foreach (var flag in Flags.GetAll())
                 {
                     writer.Write(",");

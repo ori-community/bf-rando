@@ -120,8 +120,8 @@ namespace Randomiser
                     return Locations.Cache.skills.ObtainedCount() == 11;
                 case GoalMode.ForceMaps:
                     break;
-                case GoalMode.WarmthFrags:
-                    break;
+                case GoalMode.Frags:
+                    return Inventory.warmthFragments >= Seed.WarmthFragmentsRequired;
                 case GoalMode.WorldTour:
                     return RelicsFound >= Seed.RelicsRequired;
                 default:

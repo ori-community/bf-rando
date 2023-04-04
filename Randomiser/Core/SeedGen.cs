@@ -55,6 +55,8 @@ namespace Randomiser
                 args.Add("--force-mapstones");
             if (opts.GoalMode == GoalMode.WorldTour)
                 args.AddRange("--world-tour", "8");
+            if (opts.GoalMode == GoalMode.Frags)
+                args.AddRange("--warmth-frags", "30", "--extra-frags", "10"); // i.e. 20 required + 10 redundant
 
             if (opts.Flags.Contains(RandomiserFlags.OpenWorld))
                 args.Add("--open-world");

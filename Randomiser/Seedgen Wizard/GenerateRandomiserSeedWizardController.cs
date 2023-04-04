@@ -178,7 +178,7 @@ namespace Randomiser
                     SetOption(ForceTrees, "UI_NEW_RANDO_GOAL_ForceTrees", w => w.seedGenOptions.GoalMode = GoalMode.ForceTrees);
                     SetOption(WorldTour, "UI_NEW_RANDO_GOAL_WorldTour", w => w.seedGenOptions.GoalMode = GoalMode.WorldTour);
                     SetOption(ForceMaps, "UI_NEW_RANDO_GOAL_ForceMaps", w => w.seedGenOptions.GoalMode = GoalMode.ForceMaps);
-                    SetOption(WarmthFrags, "UI_NEW_RANDO_GOAL_WarmthFrags", w => w.seedGenOptions.GoalMode = GoalMode.WarmthFrags);
+                    SetOption(WarmthFrags, "UI_NEW_RANDO_GOAL_Frags", w => w.seedGenOptions.GoalMode = GoalMode.Frags);
                     SelectOption(0);
                     break;
                 case WizardState.Seed:
@@ -230,7 +230,7 @@ namespace Randomiser
                     break;
 
                 case WizardState.Goal:
-                    if (index == WarmthFrags || index == ForceMaps)
+                    if (index == ForceMaps)
                     {
                         Randomiser.Message("Not yet implemented");
                         return;

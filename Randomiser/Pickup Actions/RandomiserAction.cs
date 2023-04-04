@@ -277,6 +277,11 @@ namespace Randomiser
                 case RandomiserBonus.ExtraAirDash:
                     Randomiser.Inventory.extraDashes++;
                     return new RandomiserActionResult(Strings.Get("BONUS_EXTRA_AIR_DASH"));
+
+                case RandomiserBonus.WarmthFragment:
+                    Randomiser.Inventory.warmthFragments++;
+                    return new RandomiserActionResult(Strings.Get("BONUS_WARMTH_FRAGMENT", Randomiser.Inventory.warmthFragments, Randomiser.Seed.WarmthFragmentsRequired),
+                        Randomiser.Inventory.warmthFragments >= Randomiser.Seed.WarmthFragmentsRequired ? '$' : (char?)null);
             }
 
             return null;
