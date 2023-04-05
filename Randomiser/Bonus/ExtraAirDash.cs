@@ -35,7 +35,7 @@ namespace Randomiser
         }
     }
 
-    [HarmonyPatch(typeof(SeinDashAttack), nameof(SeinDashAttack.PerformDash), 
+    [HarmonyPatch(typeof(SeinDashAttack), nameof(SeinDashAttack.PerformDash),
         argumentTypes: new Type[] { typeof(TextureAnimationWithTransitions), typeof(SoundProvider) })]
     internal class SeinDashAttackPerformDashPatch
     {

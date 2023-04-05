@@ -1,8 +1,5 @@
-﻿using System.Linq;
-using System.Text;
-using Core;
+﻿using Core;
 using Game;
-using OriDeModLoader;
 using UnityEngine;
 
 namespace Randomiser

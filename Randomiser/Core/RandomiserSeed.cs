@@ -76,7 +76,7 @@ namespace Randomiser
         private readonly List<Location> relicLocations = new List<Location>();
         public ReadOnlyCollection<Location> RelicLocations => relicLocations.AsReadOnly();
 
-        private Dictionary<AbilityType, Location> skillLocations = new Dictionary<AbilityType, Location>();
+        private readonly Dictionary<AbilityType, Location> skillLocations = new Dictionary<AbilityType, Location>();
         public Location GetSkillLocation(AbilityType ability) => skillLocations.ContainsKey(ability) ? skillLocations[ability] : null;
 
         public override void Awake()

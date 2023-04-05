@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using Game;
 using OriDeModLoader;
 using UnityEngine;
@@ -12,6 +11,7 @@ namespace Randomiser
         public static RandomiserSeed Seed { get; internal set; }
         public static RandomiserLocations Locations { get; internal set; }
         public static RandomiserMessageController Messages { get; internal set; }
+        public static StatsController Stats { get; internal set; }
 
 
         public static int TotalPickupsFound => Inventory.pickupsCollected.Sum;

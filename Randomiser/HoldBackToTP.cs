@@ -20,7 +20,7 @@ namespace Randomiser
             {
                 __instance.DoMenuKeyPress();
             }
-            
+
             if (Characters.Sein && Characters.Sein.Controller.CanMove && !Core.Input.Select.Used && Core.Input.Select.OnReleased && timeHeld < Settings.HoldBackToTPTime.Value)
             {
                 Core.Input.Select.Used = true;

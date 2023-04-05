@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
 using OriDeModLoader;
-using Randomiser.Extensions;
 
 namespace Randomiser
 {
