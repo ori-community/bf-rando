@@ -1,6 +1,7 @@
 ﻿using System;
 using Game;
 using OriDeModLoader;
+using Randomiser.Stats;
 using UnityEngine;
 
 namespace Randomiser

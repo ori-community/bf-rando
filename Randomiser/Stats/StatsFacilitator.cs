@@ -1,10 +1,10 @@
 ﻿using System;
 using HarmonyLib;
 
-namespace Randomiser
+namespace Randomiser.Stats
 {
     [HarmonyPatch]
-    public static class StatsFacilitator
+    static class StatsFacilitator
     {
         [HarmonyPrefix, HarmonyPatch(typeof(GameController), nameof(GameController.RestartGame))]
         public static void OnRTM(bool ___m_isRestartingGame)

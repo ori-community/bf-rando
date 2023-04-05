@@ -1,18 +1,13 @@
-﻿namespace Randomiser
+﻿namespace Randomiser.Stats
 {
     public class StatsController : SaveSerialize
     {
-        public struct AllStats
-        {
-            public int soulLinks;
-            public int deaths;
-        }
-
-        public AllStats current;
+        public AllStats Global;
 
         public void Reset()
         {
-            current = new AllStats();
+            Global = new AllStats();
+            Global.Init();
         }
 
         public override void Awake()
@@ -37,11 +32,15 @@
 
         public override void Serialize(Archive ar)
         {
-            ar.Serialize(ref current.soulLinks);
-            ar.Serialize(ref current.deaths);
+            Global.Serialize(ar);
         }
 
         // TODO when copying over another file that has the same identifier, keep the stats of the more played one
         //      (this will keep stats consistent when using backups)
+
+        public void UpdateZone(Location.WorldArea area, float time)
+        {
+            Global.areaStats[(int)area].time += time;
+        }
     }
 }
