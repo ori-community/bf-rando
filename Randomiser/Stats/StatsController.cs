@@ -1,25 +1,32 @@
-﻿namespace Randomiser.Stats
+﻿using Game;
+using UnityEngine;
+
+namespace Randomiser.Stats
 {
-    public class StatsController : SaveSerialize
+    public class StatsController : SaveSerialize, ISuspendable
     {
-        public AllStats Global;
+        public AllStats GlobalStats;
+
+        public bool IsSuspended { get; set; }
 
         public void Reset()
         {
-            Global = new AllStats();
-            Global.Init();
+            GlobalStats = new AllStats();
+            GlobalStats.Init();
         }
 
         public override void Awake()
         {
             Reset();
             Randomiser.Stats = this;
+            SuspensionManager.Register(this);
         }
 
         public override void OnDestroy()
         {
             if (Randomiser.Stats == this)
                 Randomiser.Stats = null;
+            SuspensionManager.Unregister(this);
         }
 
         public void SaveNow()
@@ -32,15 +39,18 @@
 
         public override void Serialize(Archive ar)
         {
-            Global.Serialize(ar);
+            GlobalStats.Serialize(ar);
         }
 
         // TODO when copying over another file that has the same identifier, keep the stats of the more played one
         //      (this will keep stats consistent when using backups)
 
-        public void UpdateZone(Location.WorldArea area, float time)
+        void FixedUpdate()
         {
-            Global.areaStats[(int)area].time += time;
+            if (IsSuspended) // TODO check that this continues to count up during SA (and fix the base timer so it does too!)
+                return;
+
+            GlobalStats.areaStats[(int)Characters.Sein.CurrentWorldArea()].time += Time.deltaTime;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Randomiser.Stats
         [HarmonyPostfix, HarmonyPatch(typeof(TeleporterController), nameof(TeleporterController.OnFinishedTeleporting))]
         static void OnTeleported()
         {
-            Randomiser.Stats.Global.teleports++;
+            Randomiser.Stats.GlobalStats.teleports++;
         }
     }
 }

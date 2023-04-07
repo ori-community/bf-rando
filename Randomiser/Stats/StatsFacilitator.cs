@@ -19,6 +19,8 @@ namespace Randomiser.Stats
             if (!__instance.Sein.Active)
                 return;
 
+            Randomiser.Stats.GlobalStats.areaStats[(int)__instance.Sein.CurrentWorldArea()].deaths++;
+
             Randomiser.Stats?.SaveNow(); // Before the checkpoint is reloaded, save the stats so they persist across deaths
         }
 
