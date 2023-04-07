@@ -242,8 +242,9 @@ namespace Randomiser
         {
             // Allow the water vein to be inserted even when clean water is owned
             var activator = sceneRoot.transform.Find("*setups/openingGinsoTree").GetComponent<ActivateBasedOnCondition>();
-            activator.enabled = false;
-            activator.Target.SetActive(true);
+            var condition = activator.gameObject.AddComponent<ConstantCondition>();
+            condition.IsTrue = true;
+            activator.Condition = condition;
         }
 
         private static void BootstrapGinsoEnd(SceneRoot sceneRoot)

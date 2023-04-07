@@ -82,7 +82,7 @@ namespace Randomiser
             switch (Randomiser.Seed.GoalMode)
             {
                 case GoalMode.ForceTrees:
-                    return $"{Randomiser.TreesFound}/10";
+                    return $"{Randomiser.TreesFoundExceptSein}/10";
                 case GoalMode.WorldTour:
                     return $"{Randomiser.RelicsFound}/{Randomiser.Seed.RelicsRequired}";
                 case GoalMode.Frags:
