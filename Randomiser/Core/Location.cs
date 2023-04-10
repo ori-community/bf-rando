@@ -37,7 +37,8 @@ namespace Randomiser
             Sorrow,
             Horu,
             Blackroot,
-            Mapstone
+            Mapstone,
+            Void
         }
 
         public readonly string name;
