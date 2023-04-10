@@ -13,6 +13,7 @@ namespace Randomiser
         public static RandomiserLocations Locations { get; internal set; }
         public static RandomiserMessageController Messages { get; internal set; }
         public static StatsController Stats { get; internal set; }
+        public static ArchipelagoController Archipelago { get; internal set; }
 
 
         public static int TotalPickupsFound => Inventory.pickupsCollected.Sum;
