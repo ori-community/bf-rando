@@ -7,18 +7,44 @@ using Archipelago.MultiClient.Net.Helpers;
 using System.Text;
 using Archipelago.MultiClient.Net.Models;
 using APColour = Archipelago.MultiClient.Net.Models.Color;
+using Game;
+using Newtonsoft.Json;
+using System.IO;
+using System.Reflection;
+using OriDeModLoader;
 
 namespace Randomiser
 {
+    public struct ArchipelagoItem
+    {
+        public readonly string name;
+        public readonly string key;
+
+        public ArchipelagoItem(string name, string key)
+        {
+            this.name = name;
+            this.key = key;
+        }
+    }
+
     public class ArchipelagoController : MonoBehaviour
     {
         ArchipelagoSession session;
         bool connected = false;
 
+        public bool Active { get; private set; }
+
         void Awake()
         {
+            items = JsonConvert.DeserializeObject<ArchipelagoItem[]>(File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"assets\Archipelago\Items.json")));
+
             connected = false;
         }
+
+        ArchipelagoItem[] items;
+
+        private const int APOffset = 262144;
+        public ArchipelagoItem GetItem(long id) => items[id - APOffset];
 
         // Have a button that lets you connect to archipelago server on the main menu?
         // If you quit the game and relaunch you'll need to reconnect with the button
@@ -53,12 +79,29 @@ namespace Randomiser
             var item = helper.DequeueItem();
             if (item.Player == session.ConnectionInfo.Slot)
                 Console.WriteLine("Found my own item");
-            GetItem(item);
+            GetItem(item, true);
         }
 
-        private void GetItem(NetworkItem item)
+        private void GetItem(NetworkItem item, bool notify)
         {
+            // Announce that the item was received even if on the main menu. It will be refreshed once loaded.
             Console.WriteLine($"Item received: {item.Item} ({session.Items.GetItemName(item.Item)}) from location {session.Locations.GetLocationNameFromId(item.Location)}, player {session.Players.GetPlayerName(item.Player)}");
+
+            if (!Characters.Sein)
+                return; // Sein does not exist i.e. in menu. Don't worry, you'll get the items upon loading in.
+
+            try
+            {
+                var randoItem = GetItem(item.Item);
+                var parts = randoItem.key.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+                var action = new RandomiserAction(parts[0], parts.Skip(1).ToArray());
+                action.Execute();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to grant item");
+                Console.WriteLine(ex);
+            }
         }
 
         public int location;
@@ -67,7 +110,7 @@ namespace Randomiser
         public void APConnectGame()
         {
             session = ArchipelagoSessionFactory.CreateSession("localhost");
-            var result = session.TryConnectAndLogin("Hollow Knight", "HK Player", ItemsHandlingFlags.AllItems);
+            var result = session.TryConnectAndLogin("Ori and the Blind Forest", "Ori Player", ItemsHandlingFlags.AllItems);
             if (result.Successful)
             {
                 Console.WriteLine("Connection succeeded");
@@ -77,14 +120,13 @@ namespace Randomiser
                 NetworkItem item = session.Items.DequeueItem();
                 while (item.Item > 0)
                 {
-                    GetItem(item);
+                    GetItem(item, false);
                     item = session.Items.DequeueItem();
                 }
                 Console.WriteLine("Done");
 
                 session.Items.ItemReceived += Items_ItemReceived;
                 session.MessageLog.OnMessageReceived += MessageLog_OnMessageReceived;
-                //APPrintItems();
             }
             else
             {
@@ -133,6 +175,32 @@ namespace Randomiser
             // Whenever you load in, force-set all your skills and events and whatnot
             // This will make sure you stay up to date at all times
             // TODO idk how death rollback works (or if it even rolls back at all)
+        }
+
+        /// <see cref="Items_ItemReceived(ReceivedItemsHelper)"/>
+        public void CheckLocation(Location location)
+        {
+            if (HandleSpecialLocation(location))
+                return;
+
+            session.Locations.CompleteLocationChecks(session.Locations.GetLocationIdFromName("Ori and the Blind Forest", location.name));
+        }
+
+        private bool HandleSpecialLocation(Location location)
+        {
+            // These locations aren't included in the archipelago definitions at the moment so their effects are hardcoded
+            if (location.name == "Sein")
+            {
+                new RandomiserAction("SK", new string[] { "15" }).Execute();
+                return true;
+            }
+            else if (location.name == "FirstEnergyCell")
+            {
+                new RandomiserAction("EC", new string[0]).Execute();
+                return true;
+            }
+
+            return false;
         }
     }
 

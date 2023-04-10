@@ -1,107 +1,106 @@
 [
-    {
-        "name": "Ability Cell",
-        "id": 1,
-        "key": "AC"
-    },
-    {
-        "name": "Keystone",
-        "id": 2,
-        "key": "KS"
-    },
-    {
-        "name": "Health Cell",
-        "id": 3,
-        "key": "HC"
-    },
-    {
-        "name": "Energy Cell",
-        "id": 4,
-        "key": "EC"
-    },
-    {
-        "name": "Water Vein",
-        "id": 5,
-        "key": "EV|0"
-    },
-    {
-        "name": "Gumon Seal",
-        "id": 6,
-        "key": "EV|1"
-    },
-    {
-        "name": "Sunstone",
-        "id": 7,
-        "key": "EV|2"
-    },
-    {
-        "name": "Clean Water",
-        "id": 8,
-        "key": "EV|3"
-    },
-    {
-        "name": "Wind Restored",
-        "id": 9,
-        "key": "EV|4"
-    },
-    {
-        "name": "Warmth Returned",
-        "id": 10,
-        "key": "EV|5"
-    },
-    {
-        "name": "Spirit Flame",
-        "id": 11,
-        "key": "SK|15"
-    },
-    {
-        "name": "Charge Flame",
-        "id": 12,
-        "key": "SK|2"
-    },
-    {
-        "name": "Double Jump",
-        "id": 13,
-        "key": "SK|5"
-    },
-    {
-        "name": "Bash",
-        "id": 14,
-        "key": "SK|0"
-    },
-    {
-        "name": "Glide",
-        "id": 15,
-        "key": "SK|14"
-    },
-    {
-        "name": "Climb",
-        "id": 16,
-        "key": "SK|12"
-    },
-    {
-        "name": "Charge Jump",
-        "id": 17,
-        "key": "SK|8"
-    },
-    {
-        "name": "Dash",
-        "id": 18,
-        "key": "SK|50"
-    },
-    {
-        "name": "Grenade",
-        "id": 19,
-        "key": "SK|51"
-    },
-    {
-        "name": "Mapstone Fragment",
-        "id": 20,
-        "key": "MS"
-    },
-    {
-        "name": "Stomp",
-        "id": 21,
-        "key": "SK|4"
-    }
+ {
+     "name": "EX100",
+     "key": "EX|100"
+ },
+ {
+     "name": "AC",
+     "key": "AC"
+ },
+ {
+     "name": "Bash",
+     "key": "SK|0"
+ },
+ {
+     "name": "HC",
+     "key": "HC"
+ },
+ {
+     "name": "Plant",
+     "key": "?"
+ },
+ {
+     "name": "MapStone",
+     "key": "MS"
+ },
+ {
+     "name": "ChargeFlame",
+     "key": "SK|2"
+ },
+ {
+     "name": "ChargeJump",
+     "key": "SK|8"
+ },
+ {
+     "name": "Climb",
+     "key": "SK|12"
+ },
+ {
+     "name": "MS",
+     "key": "?"
+ },
+ {
+     "name": "Dash",
+     "key": "SK|50"
+ },
+ {
+     "name": "EC",
+     "key": "EC"
+ },
+ {
+     "name": "EX200",
+     "key": "EX|200"
+ },
+ {
+     "name": "DoubleJump",
+     "key": "SK|5"
+ },
+ {
+     "name": "EX15",
+     "key": "EX|15"
+ },
+ {
+     "name": "Wind",
+     "key": "EV|3"
+ },
+ {
+     "name": "KS",
+     "key": "KS"
+ },
+ {
+     "name": "Water",
+     "key": "EV|1"
+ },
+ {
+     "name": "Glide",
+     "key": "SK|14"
+ },
+ {
+     "name": "Grenade",
+     "key": "SK|51"
+ },
+ {
+     "name": "ForlornKey",
+     "key": "EV|2"
+ },
+ {
+     "name": "CS",
+     "key": "?"
+ },
+ {
+     "name": "Stomp",
+     "key": "SK|4"
+ },
+ {
+     "name": "HoruKey",
+     "key": "EV|4"
+ },
+ {
+     "name": "WallJump",
+     "key": "SK|3"
+ },
+ {
+     "name": "GinsoKey",
+     "key": "EV|0"
+ }
 ]

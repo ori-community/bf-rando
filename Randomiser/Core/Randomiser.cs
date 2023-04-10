@@ -36,6 +36,7 @@ namespace Randomiser
         }
         public static float ChargeDashDiscount => Inventory.chargeDashEfficiency ? 0.5f : 0f;
 
+
         public static void Grant(MoonGuid guid)
         {
             Location location = Locations[guid];
@@ -67,16 +68,23 @@ namespace Randomiser
             Inventory.pickupsCollected[location.saveIndex] = true;
             GameWorld.Instance.CurrentArea.DirtyCompletionAmount();
 
-            var action = Seed.GetActionFromGuid(location.guid);
-            if (action == null)
+            if (Archipelago.Active)
             {
-                // There is nothing at this location, which is acceptable
-                //Debug.Log("WARNING: Unknown pickup id: " + location.guid.ToGuid());
-                return;
+                Archipelago.CheckLocation(location);
             }
+            else
+            {
+                var action = Seed.GetActionFromGuid(location.guid);
+                if (action == null)
+                {
+                    // There is nothing at this location, which is acceptable
+                    //Debug.Log("WARNING: Unknown pickup id: " + location.guid.ToGuid());
+                    return;
+                }
 
-            Debug.Log(action);
-            action.Execute();
+                Debug.Log(action);
+                action.Execute();
+            }
 
             CheckGoal();
 
@@ -93,7 +101,7 @@ namespace Randomiser
             Messages.AddMessage(message);
         }
 
-        private static void CheckGoal()
+        public static void CheckGoal()
         {
             if (!Inventory.goalComplete && Seed.GoalMode != GoalMode.None)
             {
