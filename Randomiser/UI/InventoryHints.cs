@@ -115,7 +115,7 @@ namespace Randomiser
             if (selectedSkill != null && (selectedSkill == AbilityType.Stomp || selectedSkill == AbilityType.Grenade))
             {
                 var location = Randomiser.Seed.GetSkillLocation(selectedSkill.Value);
-                yield return new MessageDescriptor(Strings.Get("UI_ABILITY_WITH_CLUE", Strings.Get("AREA_LONG_" + location.worldArea.ToString())));
+                yield return new MessageDescriptor(Strings.Get("UI_ABILITY_WITH_CLUE", Strings.Get("AREA_LONG_" + location.area.ToString())));
                 yield break;
             }
 

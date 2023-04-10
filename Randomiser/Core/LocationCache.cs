@@ -22,9 +22,9 @@ namespace Randomiser
             var dict = new Dictionary<Location.WorldArea, List<Location>>();
             foreach (var loc in allLocations)
             {
-                if (!dict.ContainsKey(loc.worldArea))
-                    dict[loc.worldArea] = new List<Location>();
-                dict[loc.worldArea].Add(loc);
+                if (!dict.ContainsKey(loc.area))
+                    dict[loc.area] = new List<Location>();
+                dict[loc.area].Add(loc);
             }
             areas = dict.ToDictionary(a => a.Key, a => a.Value.AsReadOnly());
         }

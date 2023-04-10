@@ -44,24 +44,24 @@ namespace Randomiser
         public readonly string name;
         public readonly Vector2 position;
         public readonly LocationType type;
-        public readonly WorldArea worldArea;
+        public readonly WorldArea area;
         public readonly int saveIndex;
         public readonly MoonGuid guid;
 
         private static int nextSaveIndex = 0;
-        public Location(string name, Vector2 position, LocationType type, WorldArea worldArea, MoonGuid guid)
+        public Location(string name, Vector2 position, LocationType type, WorldArea area, MoonGuid guid)
         {
             this.name = name;
             this.position = position;
             this.type = type;
-            this.worldArea = worldArea;
+            this.area = area;
             this.guid = guid;
             saveIndex = nextSaveIndex++; // TODO improve this
         }
 
         public bool HasBeenObtained() => Randomiser.Inventory.pickupsCollected[saveIndex];
 
-        public override string ToString() => $"{worldArea}/{name}";
+        public override string ToString() => $"{area}/{name}";
 
         public static WorldArea ParseArea(string name)
         {

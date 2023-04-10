@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Randomiser.JsonConverters;
 using UnityEngine;
 
 namespace Randomiser
@@ -43,25 +46,26 @@ namespace Randomiser
             // Unity's JsonUtility sucks at deserialising nested objects, and Json.Net won't work
             // so we have to pick them out manually
             List<Location> allLocs = new List<Location>();
-
             string json = File.ReadAllText(file);
-            int start = 0;
-            int end = 0;
-            LocationData locationData = new LocationData();
-            while (end < json.Length)
-            {
-                if (json[end] == '{')
-                {
-                    start = end;
-                }
-                if (json[end] == '}')
-                {
-                    string obj = json.Substring(start, end - start + 1);
-                    JsonUtility.FromJsonOverwrite(obj, locationData);
-                    allLocs.Add(locationData.ToLocation());
-                }
-                end++;
-            }
+            allLocs = JsonConvert.DeserializeObject<List<Location>>(json, new MoonGuidJsonConverter(), new Vector2JsonConverter(), new StringEnumConverter());
+
+            //int start = 0;
+            //int end = 0;
+            //LocationData locationData = new LocationData();
+            //while (end < json.Length)
+            //{
+            //    if (json[end] == '{')
+            //    {
+            //        start = end;
+            //    }
+            //    if (json[end] == '}')
+            //    {
+            //        string obj = json.Substring(start, end - start + 1);
+            //        JsonUtility.FromJsonOverwrite(obj, locationData);
+            //        allLocs.Add(locationData.ToLocation());
+            //    }
+            //    end++;
+            //}
 
             nameMap = allLocs.ToDictionary(l => l.name);
             guidMap = allLocs.ToDictionary(l => l.guid);

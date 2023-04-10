@@ -53,6 +53,7 @@ namespace Randomiser
         {
             switch (action)
             {
+                case RandomiserActionKind.AP: return HandleArchipelago();
                 case RandomiserActionKind.MU: return HandleMultiple();
                 case RandomiserActionKind.SK: return HandleSkill();
                 case RandomiserActionKind.EC: return HandleEC();
@@ -285,6 +286,12 @@ namespace Randomiser
             }
 
             return null;
+        }
+
+        private RandomiserActionResult HandleArchipelago()
+        {
+
+            return new RandomiserActionResult("Whatever");
         }
 
         private string ShardText(string type, int count)
