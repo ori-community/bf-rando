@@ -16,7 +16,6 @@ namespace Randomiser
         [Description("Teleporter")] TP,
         [Description("Bonus")] RB,
         [Description("WorldTourRelic")] WT,
-        [Description("SkillClue")] SC,
-        [Description("Archipelago")] AP
+        [Description("SkillClue")] SC
     }
 }

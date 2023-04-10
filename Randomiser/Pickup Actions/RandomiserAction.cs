@@ -13,6 +13,8 @@ namespace Randomiser
         public RandomiserActionKind Action => action;
         public string[] Parameters => parameters;
 
+        public static bool hideMessage = false;
+
         public RandomiserAction(string action, string[] parameters)
         {
             this.action = (RandomiserActionKind)Enum.Parse(typeof(RandomiserActionKind), action);
@@ -41,7 +43,7 @@ namespace Randomiser
                 return;
             }
 
-            if (result.text != null) // TODO rewrite this whole actions thing, it is bad
+            if (result.text != null && !hideMessage) // TODO rewrite this whole actions thing, it is bad
             {
                 string message = result.decoration.HasValue ? Wrap(result.text, result.decoration.Value) : result.text;
                 Randomiser.Message(message);
@@ -53,7 +55,6 @@ namespace Randomiser
         {
             switch (action)
             {
-                case RandomiserActionKind.AP: return HandleArchipelago();
                 case RandomiserActionKind.MU: return HandleMultiple();
                 case RandomiserActionKind.SK: return HandleSkill();
                 case RandomiserActionKind.EC: return HandleEC();
@@ -286,12 +287,6 @@ namespace Randomiser
             }
 
             return null;
-        }
-
-        private RandomiserActionResult HandleArchipelago()
-        {
-
-            return new RandomiserActionResult("Whatever");
         }
 
         private string ShardText(string type, int count)

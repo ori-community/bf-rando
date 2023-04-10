@@ -1,17 +1,18 @@
-﻿using UnityEngine;
-using Archipelago.MultiClient.Net;
-using System;
-using Archipelago.MultiClient.Net.Enums;
-using System.Linq;
-using Archipelago.MultiClient.Net.Helpers;
-using System.Text;
-using Archipelago.MultiClient.Net.Models;
-using APColour = Archipelago.MultiClient.Net.Models.Color;
-using Game;
-using Newtonsoft.Json;
+﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
-using OriDeModLoader;
+using System.Text;
+using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.Enums;
+using Archipelago.MultiClient.Net.Helpers;
+using Archipelago.MultiClient.Net.Models;
+using Game;
+using HarmonyLib;
+using Newtonsoft.Json;
+using Sein.World;
+using UnityEngine;
+using APColour = Archipelago.MultiClient.Net.Models.Color;
 
 namespace Randomiser
 {
@@ -79,10 +80,10 @@ namespace Randomiser
             var item = helper.DequeueItem();
             if (item.Player == session.ConnectionInfo.Slot)
                 Console.WriteLine("Found my own item");
-            GetItem(item, true);
+            ReceiveItem(item, true);
         }
 
-        private void GetItem(NetworkItem item, bool notify)
+        private void ReceiveItem(NetworkItem item, bool notify)
         {
             // Announce that the item was received even if on the main menu. It will be refreshed once loaded.
             Console.WriteLine($"Item received: {item.Item} ({session.Items.GetItemName(item.Item)}) from location {session.Locations.GetLocationNameFromId(item.Location)}, player {session.Players.GetPlayerName(item.Player)}");
@@ -120,7 +121,7 @@ namespace Randomiser
                 NetworkItem item = session.Items.DequeueItem();
                 while (item.Item > 0)
                 {
-                    GetItem(item, false);
+                    //ReceiveItem(item, false);
                     item = session.Items.DequeueItem();
                 }
                 Console.WriteLine("Done");
@@ -170,11 +171,63 @@ namespace Randomiser
                 Console.WriteLine($"{p}: {session.Locations.GetLocationNameFromId(p)}");
         }
 
-        public void RefreshState()
+        [ContextMenu("Force set items")]
+        public void ForceSetArchipelagoItems()
         {
             // Whenever you load in, force-set all your skills and events and whatnot
             // This will make sure you stay up to date at all times
             // TODO idk how death rollback works (or if it even rolls back at all)
+            try
+            {
+                RandomiserAction.hideMessage = true;
+                var sein = Characters.Sein;
+
+                int ap = 0, hc = 3, ec = 0, ks = 0, ms = 0, xp = 0;
+
+                Keys.GinsoTree = false;
+                Keys.ForlornRuins = false;
+                Keys.MountHoru = false;
+                Sein.World.Events.WaterPurified = false;
+                Sein.World.Events.WindRestored = false;
+
+                foreach (var item in session.Items.AllItemsReceived)
+                {
+                    var i = GetItem(item.Item);
+                    if (i.key == "AC") ap++;
+                    else if (i.key == "EC") ec++;
+                    else if (i.key == "KS") ks++;
+                    else if (i.key == "MS") ms++;
+                    else if (i.key == "HC") hc++;
+                    else if (i.key.StartsWith("EX"))
+                        xp += int.Parse(i.key.Substring(3));
+                    else
+                        ReceiveItem(item, false);
+                }
+
+                ap -= Randomiser.Inventory.apSpent;
+                ks -= Randomiser.Inventory.keysSpent;
+                ms -= Randomiser.Inventory.mapsSpent;
+
+                sein.Level.Current = 0;
+                sein.Level.Experience = xp;
+
+                while (sein.Level.Current >= sein.Level.ExperienceNeedForNextLevel)
+                {
+                    sein.Level.Current++;
+                    ap++;
+                }
+
+                sein.Level.SkillPoints = ap;
+                sein.Energy.Max = ec;
+                sein.Mortality.Health.MaxHealth = hc * 4;
+
+                sein.Inventory.MapStones = ms;
+                sein.Inventory.Keystones = ks;
+            }
+            finally
+            {
+                RandomiserAction.hideMessage = false;
+            }
         }
 
         /// <see cref="Items_ItemReceived(ReceivedItemsHelper)"/>
@@ -199,8 +252,23 @@ namespace Randomiser
                 new RandomiserAction("EC", new string[0]).Execute();
                 return true;
             }
+            else if (location.name == "ForlornEscapePlant")
+            {
+                Randomiser.Inventory.skillClueFound = true;
+                Randomiser.Message(DynamicText.BuildSkillClueString());
+            }
 
             return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(RestoreCheckpointController), "FinishLoading")]
+    static class AfterLoad
+    {
+        static void Postfix()
+        {
+            if (Randomiser.Archipelago.Active)
+                Randomiser.Archipelago.ForceSetArchipelagoItems();
         }
     }
 
