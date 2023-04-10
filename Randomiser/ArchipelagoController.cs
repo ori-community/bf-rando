@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.Models;
@@ -30,6 +33,7 @@ namespace Randomiser
 
     public class ArchipelagoController : MonoBehaviour
     {
+        public DeathLinkService deathLink;
         ArchipelagoSession session;
         bool connected = false;
 
@@ -128,10 +132,25 @@ namespace Randomiser
 
                 session.Items.ItemReceived += Items_ItemReceived;
                 session.MessageLog.OnMessageReceived += MessageLog_OnMessageReceived;
+
+
+                //deathLink = session.CreateDeathLinkService();
+                //deathLink.EnableDeathLink
+                //deathLink.OnDeathLinkReceived += OnDeathLinkReceived;
             }
             else
             {
                 Console.WriteLine("Connection failed");
+            }
+        }
+
+        private void OnDeathLinkReceived(DeathLink deathLink)
+        {
+            if (Characters.Sein)
+            {
+                Console.WriteLine(deathLink.Source);
+                Console.WriteLine(deathLink.Cause);
+                Characters.Sein.Mortality.DamageReciever.OnKill(new Damage(-1f, Vector2.zero, Vector3.zero, DamageType.Lava, null));
             }
         }
 
@@ -269,6 +288,32 @@ namespace Randomiser
         {
             if (Randomiser.Archipelago.Active)
                 Randomiser.Archipelago.ForceSetArchipelagoItems();
+        }
+    }
+
+    [HarmonyPatch(typeof(SeinDamageReciever), nameof(SeinDamageReciever.OnRecieveDamage))]
+    static class DeathLinkOnKill
+    {
+        static void PerformDeathLinkKill(Damage damage)
+        {
+            if (Randomiser.Archipelago.Active && Randomiser.Archipelago.deathLink != null)
+            {
+                Randomiser.Archipelago.deathLink.SendDeathLink(new DeathLink("Ori Player", damage.Type.ToString()));
+            }
+        }
+
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            var method = AccessTools.Method(typeof(SeinDamageReciever), nameof(SeinDamageReciever.OnKill));
+            foreach (var code in instructions)
+            {
+                yield return code;
+                if (code.Calls(method))
+                {
+                    yield return new CodeInstruction(OpCodes.Ldarg_1);
+                    yield return CodeInstruction.Call(typeof(DeathLinkOnKill), nameof(PerformDeathLinkKill));
+                }
+            }
         }
     }
 
