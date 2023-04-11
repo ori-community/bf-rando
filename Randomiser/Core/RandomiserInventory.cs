@@ -28,6 +28,7 @@
         public int keysSpent;
         public int apSpent;
         public int mapsSpent;
+        public int xpGainedFromEnemies;
 
         public override void Awake()
         {
@@ -57,6 +58,7 @@
             keysSpent = 0;
             mapsSpent = 0;
             apSpent = 0;
+            xpGainedFromEnemies = 0;
         }
 
         public override void Serialize(Archive ar)
@@ -88,6 +90,7 @@
             ar.Serialize(ref keysSpent);
             ar.Serialize(ref mapsSpent);
             ar.Serialize(ref apSpent);
+            ar.Serialize(ref xpGainedFromEnemies);
         }
     }
 }

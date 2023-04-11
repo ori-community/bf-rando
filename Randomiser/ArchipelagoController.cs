@@ -206,18 +206,20 @@ namespace Randomiser
                 ap -= Randomiser.Inventory.apSpent;
                 ks -= Randomiser.Inventory.keysSpent;
                 ms -= Randomiser.Inventory.mapsSpent;
+                xp += Randomiser.Inventory.xpGainedFromEnemies;
 
                 sein.Level.Current = 0;
                 sein.Level.Experience = xp;
 
                 while (sein.Level.Current >= sein.Level.ExperienceNeedForNextLevel)
                 {
+                    sein.Level.Experience -= sein.Level.ExperienceForNextLevel;
                     sein.Level.Current++;
                     ap++;
                 }
 
                 sein.Level.SkillPoints = ap;
-                sein.Energy.Max = ec;
+                sein.Energy.Max = ec + (Randomiser.Locations["FirstEnergyCell"].HasBeenObtained() ? 1 : 0);
                 sein.Mortality.Health.MaxHealth = hc * 4;
 
                 sein.Inventory.MapStones = ms;
