@@ -37,6 +37,11 @@ namespace Randomiser
         ArchipelagoSession session;
         bool connected = false;
 
+        public string Slot { get; private set; } = "Ori Player";
+        public string Hostname { get; private set; } = "localhost";
+        public int Port { get; private set; } = 38281;
+        public string Password { get; private set; } = "";
+
         public bool Active { get; private set; }
 
         void Awake()
@@ -49,48 +54,58 @@ namespace Randomiser
         ArchipelagoItem[] items;
 
         private const int APOffset = 262144;
+        private const string GameName = "Ori and the Blind Forest";
+
         public ArchipelagoItem GetItem(long id) => items[id - APOffset];
 
         // Have a button that lets you connect to archipelago server on the main menu?
         // If you quit the game and relaunch you'll need to reconnect with the button
+        // TODO auto-connect if available when launching and did not finish or forfeit last game and server is hosting the game
 
-        //public void CreateSession()
-        //{
-        //    session = ArchipelagoSessionFactory.CreateSession("localhost");
+        [ContextMenu("Connect")]
+        public void APConnectGame()
+        {
+            session = ArchipelagoSessionFactory.CreateSession(Hostname, Port);
+            var result = session.TryConnectAndLogin(GameName, Slot, ItemsHandlingFlags.AllItems, password: Password);
+            if (result.Successful)
+            {
+                Debug.Log("Connection succeeded");
+                Active = true;
 
-        //    Connect();
-        //}
+                NetworkItem item = session.Items.DequeueItem();
+                while (item.Item > 0)
+                {
+                    //ReceiveItem(item, false);
+                    item = session.Items.DequeueItem();
+                }
 
-        //private void Connect()
-        //{
-        //    if (session == null)
-        //        throw new Exception("Must create the session first");
-
-        //    var result = session.TryConnectAndLogin("Ori and the Blind Forest", "meiguess", ItemsHandlingFlags.AllItems);
-        //    if (result.Successful)
-        //    {
-        //        connected = true;
-        //    }
-
-        //    //(result as LoginSuccessful).SlotData
+                session.Items.ItemReceived += Items_ItemReceived;
+                session.MessageLog.OnMessageReceived += MessageLog_OnMessageReceived;
 
 
-        //    session.Items.ItemReceived += Items_ItemReceived;
-        //}
-
+                //deathLink = session.CreateDeathLinkService();
+                //deathLink.EnableDeathLink
+                //deathLink.OnDeathLinkReceived += OnDeathLinkReceived;
+            }
+            else
+            {
+                Debug.Log("Connection failed");
+                Active = false;
+            }
+        }
 
         private void Items_ItemReceived(ReceivedItemsHelper helper)
         {
             var item = helper.DequeueItem();
             if (item.Player == session.ConnectionInfo.Slot)
-                Console.WriteLine("Found my own item");
+                Debug.Log("Found my own item");
             ReceiveItem(item, true);
         }
 
         private void ReceiveItem(NetworkItem item, bool notify)
         {
             // Announce that the item was received even if on the main menu. It will be refreshed once loaded.
-            Console.WriteLine($"Item received: {item.Item} ({session.Items.GetItemName(item.Item)}) from location {session.Locations.GetLocationNameFromId(item.Location)}, player {session.Players.GetPlayerName(item.Player)}");
+            Debug.Log($"Item received: {item.Item} ({session.Items.GetItemName(item.Item)}) from location {session.Locations.GetLocationNameFromId(item.Location)}, player {session.Players.GetPlayerName(item.Player)}");
 
             if (!Characters.Sein)
                 return; // Sein does not exist i.e. in menu. Don't worry, you'll get the items upon loading in.
@@ -104,43 +119,8 @@ namespace Randomiser
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Failed to grant item");
-                Console.WriteLine(ex);
-            }
-        }
-
-        public int location;
-
-        [ContextMenu("Connect")]
-        public void APConnectGame()
-        {
-            session = ArchipelagoSessionFactory.CreateSession("localhost");
-            var result = session.TryConnectAndLogin("Ori and the Blind Forest", "Ori Player", ItemsHandlingFlags.AllItems);
-            if (result.Successful)
-            {
-                Console.WriteLine("Connection succeeded");
-
-
-                Console.WriteLine("Initing items");
-                NetworkItem item = session.Items.DequeueItem();
-                while (item.Item > 0)
-                {
-                    //ReceiveItem(item, false);
-                    item = session.Items.DequeueItem();
-                }
-                Console.WriteLine("Done");
-
-                session.Items.ItemReceived += Items_ItemReceived;
-                session.MessageLog.OnMessageReceived += MessageLog_OnMessageReceived;
-
-
-                //deathLink = session.CreateDeathLinkService();
-                //deathLink.EnableDeathLink
-                //deathLink.OnDeathLinkReceived += OnDeathLinkReceived;
-            }
-            else
-            {
-                Console.WriteLine("Connection failed");
+                Debug.Log("Failed to grant item");
+                Debug.Log(ex);
             }
         }
 
@@ -148,23 +128,16 @@ namespace Randomiser
         {
             if (Characters.Sein)
             {
-                Console.WriteLine(deathLink.Source);
-                Console.WriteLine(deathLink.Cause);
+                Debug.Log(deathLink.Source);
+                Debug.Log(deathLink.Cause);
                 Characters.Sein.Mortality.DamageReciever.OnKill(new Damage(-1f, Vector2.zero, Vector3.zero, DamageType.Lava, null));
             }
         }
 
         private void MessageLog_OnMessageReceived(LogMessage message)
         {
-            Console.WriteLine("Message received");
-            Console.WriteLine(message.ConvertMessageFormat());
-        }
-
-        [ContextMenu("Check Location")]
-        public void APCheckLocation()
-        {
-            Console.WriteLine($"Checking location {location}");
-            session.Locations.CompleteLocationChecks(location);
+            Debug.Log("Message received");
+            Debug.Log(message.ConvertMessageFormat());
         }
 
         [ContextMenu("Print received items")]
@@ -172,7 +145,7 @@ namespace Randomiser
         {
             foreach (var item in session.Items.AllItemsReceived)
             {
-                Console.WriteLine(session.Items.GetItemName(item.Item));
+                Debug.Log(session.Items.GetItemName(item.Item));
             }
         }
 
@@ -180,15 +153,15 @@ namespace Randomiser
         public void APPrintPlayers()
         {
             foreach (var p in session.Players.AllPlayers)
-                Console.WriteLine($"{p.Name}: {p.Game}");
+                Debug.Log($"{p.Name}: {p.Game}");
         }
 
-        [ContextMenu("Print locations")]
-        public void APPrintLocations()
-        {
-            foreach (var p in session.Locations.AllLocations)
-                Console.WriteLine($"{p}: {session.Locations.GetLocationNameFromId(p)}");
-        }
+        //[ContextMenu("Print locations")]
+        //public void APPrintLocations()
+        //{
+        //    foreach (var p in session.Locations.AllLocations)
+        //        Debug.Log($"{p}: {session.Locations.GetLocationNameFromId(p)}");
+        //}
 
         [ContextMenu("Force set items")]
         public void ForceSetArchipelagoItems()
@@ -196,10 +169,17 @@ namespace Randomiser
             // Whenever you load in, force-set all your skills and events and whatnot
             // This will make sure you stay up to date at all times
             // TODO idk how death rollback works (or if it even rolls back at all)
+            Debug.Log("Force-setting items");
             try
             {
                 RandomiserAction.hideMessage = true;
                 var sein = Characters.Sein;
+
+                if (!sein)
+                {
+                    Debug.Log("This can only be called while in-game");
+                    return;
+                }
 
                 int ap = 0, hc = 3, ec = 0, ks = 0, ms = 0, xp = 0;
 
@@ -252,33 +232,33 @@ namespace Randomiser
         /// <see cref="Items_ItemReceived(ReceivedItemsHelper)"/>
         public void CheckLocation(Location location)
         {
-            if (HandleSpecialLocation(location))
-                return;
+            //if (HandleSpecialLocation(location))
+            //    return;
 
-            session.Locations.CompleteLocationChecks(session.Locations.GetLocationIdFromName("Ori and the Blind Forest", location.name));
+            session.Locations.CompleteLocationChecks(session.Locations.GetLocationIdFromName(GameName, location.name));
         }
 
-        private bool HandleSpecialLocation(Location location)
-        {
-            // These locations aren't included in the archipelago definitions at the moment so their effects are hardcoded
-            if (location.name == "Sein")
-            {
-                new RandomiserAction("SK", new string[] { "15" }).Execute();
-                return true;
-            }
-            else if (location.name == "FirstEnergyCell")
-            {
-                new RandomiserAction("EC", new string[0]).Execute();
-                return true;
-            }
-            else if (location.name == "ForlornEscapePlant")
-            {
-                Randomiser.Inventory.skillClueFound = true;
-                Randomiser.Message(DynamicText.BuildSkillClueString());
-            }
+        //private bool HandleSpecialLocation(Location location)
+        //{
+        //    // These locations aren't included in the archipelago definitions at the moment so their effects are hardcoded
+        //    if (location.name == "Sein")
+        //    {
+        //        new RandomiserAction("SK", new string[] { "15" }).Execute();
+        //        return true;
+        //    }
+        //    else if (location.name == "FirstEnergyCell")
+        //    {
+        //        new RandomiserAction("EC", new string[0]).Execute();
+        //        return true;
+        //    }
+        //    else if (location.name == "ForlornEscapePlant")
+        //    {
+        //        Randomiser.Inventory.skillClueFound = true;
+        //        Randomiser.Message(DynamicText.BuildSkillClueString());
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
     }
 
     [HarmonyPatch(typeof(RestoreCheckpointController), "FinishLoading")]
@@ -291,6 +271,16 @@ namespace Randomiser
         }
     }
 
+    [HarmonyPatch(typeof(LockPlayerInputManualAction), nameof(LockPlayerInputManualAction.Perform))]
+    static class WhenInputUnlocked
+    {
+        static void Postfix(bool ___ShouldLock)
+        {
+            if (!___ShouldLock && Randomiser.Archipelago.Active)
+                Randomiser.Archipelago.ForceSetArchipelagoItems();
+        }
+    }
+
     [HarmonyPatch(typeof(SeinDamageReciever), nameof(SeinDamageReciever.OnRecieveDamage))]
     static class DeathLinkOnKill
     {
@@ -298,7 +288,7 @@ namespace Randomiser
         {
             if (Randomiser.Archipelago.Active && Randomiser.Archipelago.deathLink != null)
             {
-                Randomiser.Archipelago.deathLink.SendDeathLink(new DeathLink("Ori Player", damage.Type.ToString()));
+                Randomiser.Archipelago.deathLink.SendDeathLink(new DeathLink(Randomiser.Archipelago.Slot, damage.Type.ToString()));
             }
         }
 

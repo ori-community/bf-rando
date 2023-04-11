@@ -407,5 +407,20 @@ namespace Randomiser
                 }
             }
         }
+
+        public void BuildArchipelagoSeed()
+        {
+            // These seeds have basically no items at any locations and set rules
+            // TODO some rules may differ based on AP settings, and clues may refer to other games
+
+            Reset();
+            KeyMode = KeyMode.None;
+            GoalMode = GoalMode.ForceTrees;
+            Flags = RandomiserFlags.None;
+            LogicPreset = LogicPath.None;
+            map[Randomiser.Locations["FirstEnergyCell"].guid] = new RandomiserAction("EC", new string[0]);
+            map[Randomiser.Locations["Sein"].guid] = new RandomiserAction("SK", new string[] { ((int)AbilityType.SpiritFlame).ToString() });
+            //map[Randomiser.Locations["ForlornEscapePlant"].guid] = new RandomiserAction("SC", new string[0]);
+        }
     }
 }

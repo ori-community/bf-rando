@@ -72,19 +72,10 @@ namespace Randomiser
             {
                 Archipelago.CheckLocation(location);
             }
-            else
-            {
-                var action = Seed.GetActionFromGuid(location.guid);
-                if (action == null)
-                {
-                    // There is nothing at this location, which is acceptable
-                    //Debug.Log("WARNING: Unknown pickup id: " + location.guid.ToGuid());
-                    return;
-                }
 
-                Debug.Log(action);
-                action.Execute();
-            }
+            var action = Seed.GetActionFromGuid(location.guid);
+            Debug.Log(action?.ToString() ?? "Nothing here");
+            action?.Execute();
 
             CheckGoal();
 
