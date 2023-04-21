@@ -38,8 +38,7 @@ namespace Randomiser
         bool connected = false;
 
         public string Slot { get; private set; } = "Ori Player";
-        public string Hostname { get; private set; } = "localhost";
-        public int Port { get; private set; } = 38281;
+        public string Hostname { get; private set; } = "localhost:38281";
         public string Password { get; private set; } = "";
 
         public bool Active { get; private set; }
@@ -65,7 +64,7 @@ namespace Randomiser
         [ContextMenu("Connect")]
         public void APConnectGame()
         {
-            session = ArchipelagoSessionFactory.CreateSession(Hostname, Port);
+            session = ArchipelagoSessionFactory.CreateSession(Hostname);
             var result = session.TryConnectAndLogin(GameName, Slot, ItemsHandlingFlags.AllItems, password: Password);
             if (result.Successful)
             {
@@ -261,6 +260,79 @@ namespace Randomiser
 
         //    return false;
         //}
+
+        private Rect guiRect = new Rect(10, 10, 250, 400);
+        private void OnGUI()
+        {
+            if (GameStateMachine.Instance.CurrentState != GameStateMachine.State.TitleScreen)
+                return;
+
+            guiRect = GUI.Window(1001, guiRect, APWindowFunc, "Archipelago");
+        }
+
+        private void Update()
+        {
+            var p = Input.mousePosition;
+            p.y = Screen.height - p.y;
+            if (guiRect.Contains( p))
+            {
+                Core.Input.ActionButtonA.Used = true;
+                Core.Input.LeftClick.WasPressed = true;
+            }
+        }
+
+        private void APWindowFunc(int window)
+        {
+            GUI.DragWindow(new Rect(0, 0, 250, 16));
+
+            const int labelWidth = 65;
+
+            if (!Active)
+            {
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("Name", GUILayout.Width(labelWidth));
+                Slot = GUILayout.TextField(Slot);
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("Host", GUILayout.Width(labelWidth));
+                Hostname = GUILayout.TextField(Hostname);
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("Password", GUILayout.Width(labelWidth));
+                Password = GUILayout.PasswordField(Password, '*');
+                GUILayout.EndHorizontal();
+
+                if (GUILayout.Button("Connect"))
+                {
+                    APConnectGame();
+                }
+            }
+            else
+            {
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("Name", GUILayout.Width(labelWidth));
+                GUILayout.Label(Slot);
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("Host", GUILayout.Width(labelWidth));
+                GUILayout.Label(Hostname);
+                GUILayout.EndHorizontal();
+
+                GUILayout.Space(10);
+
+                GUILayout.Label("Players:");
+                foreach (var player in session.Players.AllPlayers)
+                {
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label(player.Name, GUILayout.Width(labelWidth));
+                    GUILayout.Label(player.Game);
+                    GUILayout.EndHorizontal();
+                }
+            }
+        }
     }
 
     [HarmonyPatch(typeof(RestoreCheckpointController), "FinishLoading")]
