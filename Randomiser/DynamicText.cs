@@ -146,5 +146,36 @@ namespace Randomiser
 
             return sb.ToString();
         }
+
+        public static string BuildDiscordActivityStatus()
+        {
+            switch (GameStateMachine.Instance.CurrentState)
+            {
+                case GameStateMachine.State.Game:
+                    return "Randomiser: " + GetDiscordGameStatus();
+
+                case GameStateMachine.State.Prologue:
+                    return "Randomiser: Prologue";
+
+                default:
+                    return "Randomiser: In menus";
+            }
+        }
+
+        private static string GetDiscordGameStatus()
+        {
+            if (Randomiser.Seed.GoalMode == GoalMode.WorldTour)
+                return "World Tour";
+
+            switch (Randomiser.Seed.KeyMode)
+            {
+                case KeyMode.None: return "Free";
+                case KeyMode.Clues: return "Clues";
+                case KeyMode.Shards: return "Shards";
+                case KeyMode.LimitKeys: return "Limit Keys";
+            }
+
+            return "In game";
+        }
     }
 }

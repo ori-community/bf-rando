@@ -1,4 +1,5 @@
-﻿using BaseModLib;
+﻿using System;
+using BaseModLib;
 using HarmonyLib;
 using OriDeModLoader;
 using OriDeModLoader.CustomSeinAbilities;
@@ -36,6 +37,11 @@ namespace Randomiser
 
             SceneBootstrap.RegisterHandler(RandomiserBootstrap.SetupBootstrap, "Randomiser");
             CustomMenuManager.RegisterOptionsScreen<RandomiserSettingsScreen>("Randomiser", 2);
+
+            if (ModLoader.GetMod("Discord") != null)
+            {
+                IPC.SetValue("Discord.ActivityDetails", (Func<string>)DynamicText.BuildDiscordActivityStatus);
+            }
         }
 
         public void Unload()
