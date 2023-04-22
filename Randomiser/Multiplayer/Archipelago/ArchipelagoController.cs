@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
@@ -15,27 +14,13 @@ using HarmonyLib;
 using Newtonsoft.Json;
 using Sein.World;
 using UnityEngine;
-using APColour = Archipelago.MultiClient.Net.Models.Color;
 
-namespace Randomiser
+namespace Randomiser.Multiplayer.Archipelago
 {
-    public struct ArchipelagoItem
-    {
-        public readonly string name;
-        public readonly string key;
-
-        public ArchipelagoItem(string name, string key)
-        {
-            this.name = name;
-            this.key = key;
-        }
-    }
-
     public class ArchipelagoController : MonoBehaviour
     {
         public DeathLinkService deathLink;
         ArchipelagoSession session;
-        bool connected = false;
 
         public string Slot { get; private set; } = "Ori Player";
         public string Hostname { get; private set; } = "localhost:38281";
@@ -43,11 +28,28 @@ namespace Randomiser
 
         public bool Active { get; private set; }
 
+        private CleverMenuItemSelectionManager mainMenuSelectionManager;
+        bool _showUI = false;
+        public bool ShowUI
+        {
+            get => _showUI;
+            set
+            {
+                if (mainMenuSelectionManager == null)
+                    mainMenuSelectionManager = FindObjectOfType<TitleScreenManager>().MainMenuScreen;
+
+                if (value)
+                    SuspensionManager.Suspend(mainMenuSelectionManager);
+                else
+                    SuspensionManager.Resume(mainMenuSelectionManager);
+
+                _showUI = value;
+            }
+        }
+
         void Awake()
         {
             items = JsonConvert.DeserializeObject<ArchipelagoItem[]>(File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"assets\Archipelago\Items.json")));
-
-            connected = false;
         }
 
         ArchipelagoItem[] items;
@@ -71,7 +73,7 @@ namespace Randomiser
                 Debug.Log("Connection succeeded");
                 Active = true;
 
-                NetworkItem item = session.Items.DequeueItem();
+                var item = session.Items.DequeueItem();
                 while (item.Item > 0)
                 {
                     //ReceiveItem(item, false);
@@ -155,13 +157,6 @@ namespace Randomiser
                 Debug.Log($"{p.Name}: {p.Game}");
         }
 
-        //[ContextMenu("Print locations")]
-        //public void APPrintLocations()
-        //{
-        //    foreach (var p in session.Locations.AllLocations)
-        //        Debug.Log($"{p}: {session.Locations.GetLocationNameFromId(p)}");
-        //}
-
         [ContextMenu("Force set items")]
         public void ForceSetArchipelagoItems()
         {
@@ -233,59 +228,25 @@ namespace Randomiser
         /// <see cref="Items_ItemReceived(ReceivedItemsHelper)"/>
         public void CheckLocation(Location location)
         {
-            //if (HandleSpecialLocation(location))
-            //    return;
-
             session.Locations.CompleteLocationChecks(session.Locations.GetLocationIdFromName(GameName, location.name));
         }
 
-        //private bool HandleSpecialLocation(Location location)
-        //{
-        //    // These locations aren't included in the archipelago definitions at the moment so their effects are hardcoded
-        //    if (location.name == "Sein")
-        //    {
-        //        new RandomiserAction("SK", new string[] { "15" }).Execute();
-        //        return true;
-        //    }
-        //    else if (location.name == "FirstEnergyCell")
-        //    {
-        //        new RandomiserAction("EC", new string[0]).Execute();
-        //        return true;
-        //    }
-        //    else if (location.name == "ForlornEscapePlant")
-        //    {
-        //        Randomiser.Inventory.skillClueFound = true;
-        //        Randomiser.Message(DynamicText.BuildSkillClueString());
-        //    }
-
-        //    return false;
-        //}
-
-        private Rect guiRect = new Rect(10, 10, 250, 400);
+        private Rect guiRect = new Rect(10, 10, 350, 300);
         private void OnGUI()
         {
-            if (GameStateMachine.Instance.CurrentState != GameStateMachine.State.TitleScreen)
+            if (GameStateMachine.Instance.CurrentState != GameStateMachine.State.TitleScreen || !ShowUI)
                 return;
 
             guiRect = GUI.Window(1001, guiRect, APWindowFunc, "Archipelago");
         }
 
-        private void Update()
-        {
-            var p = Input.mousePosition;
-            p.y = Screen.height - p.y;
-            if (guiRect.Contains( p))
-            {
-                Core.Input.ActionButtonA.Used = true;
-                Core.Input.LeftClick.WasPressed = true;
-            }
-        }
-
         private void APWindowFunc(int window)
         {
-            GUI.DragWindow(new Rect(0, 0, 250, 16));
+            GUI.DragWindow(new Rect(0, 0, 350, 16));
 
             const int labelWidth = 65;
+
+            GUILayout.Label("Warning: Archipelago support is experimental. Many ordinary randomiser features will not work and you should expect bugs.");
 
             if (!Active)
             {
@@ -332,6 +293,9 @@ namespace Randomiser
                     GUILayout.EndHorizontal();
                 }
             }
+
+            if (GUILayout.Button("Close menu"))
+                ShowUI = false;
         }
     }
 
@@ -379,64 +343,5 @@ namespace Randomiser
                 }
             }
         }
-    }
-
-    public static class ArchipelagoExtensions
-    {
-        public static string ConvertMessageFormat(this LogMessage message)
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (var part in message.Parts)
-            {
-                if (part.Color == APColour.White || part.Color == APColour.Black)
-                {
-                    sb.Append(part.Text);
-                }
-                else
-                {
-                    var colour = GetClosestColour(part.Color, APColour.White, APColour.Red, APColour.Yellow, APColour.Blue, APColour.Green);
-                    sb.Append(ColourString(colour)).Append(part.Text).Append(ColourString(colour));
-                }
-            }
-            return sb.ToString();
-        }
-
-        private static APColour GetClosestColour(APColour test, params APColour[] colours)
-        {
-            int closest = Distance(test, colours[0]);
-            APColour closestColour = colours[0];
-            for (int i = 1; i < colours.Length; i++)
-            {
-                int c = Distance(test, colours[i]);
-                if (c < closest)
-                {
-                    closest = c;
-                    closestColour = colours[i];
-                }
-            }
-            return closestColour;
-        }
-
-        private static string ColourString(APColour colour)
-        {
-            if (colour == APColour.Red) return "@";
-            if (colour == APColour.Yellow) return "#";
-            if (colour == APColour.Blue) return "*";
-            if (colour == APColour.Green) return "$";
-
-            return "";
-        }
-
-        private static int Distance(APColour a, APColour b)
-        {
-            return (a.R - b.R) * (a.R - b.R) + (a.G - b.G) * (a.G - b.G) + (a.B - b.B) * (a.B - b.B);
-        }
-
-        public static UnityEngine.Color ToUnityColour(this APColour colour)
-        {
-            return new UnityEngine.Color(colour.R / 255f, colour.G / 255f, colour.B / 255f);
-        }
-
-        //public static void ApplyColouredString(this )
     }
 }

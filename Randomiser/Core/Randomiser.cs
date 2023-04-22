@@ -1,6 +1,7 @@
 ﻿using System;
 using Game;
 using OriDeModLoader;
+using Randomiser.Multiplayer.Archipelago;
 using Randomiser.Stats;
 using UnityEngine;
 

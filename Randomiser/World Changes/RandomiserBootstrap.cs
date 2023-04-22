@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using BaseModLib;
 using OriDeModLoader;
+using OriDeModLoader.UIExtensions;
 using UnityEngine;
 
 namespace Randomiser
@@ -166,6 +167,19 @@ namespace Randomiser
                 var provider = ScriptableObject.CreateInstance<BasicMessageProvider>();
                 provider.SetMessage(Strings.Get("UI_VIEW_SEED"));
                 backLabel.SetMessageProvider(provider);
+            }
+
+            // Add multiplayer menu
+            {
+                var manager = sceneRoot.transform.Find("ui/group/3. fullGameMainMenu").GetComponent<CleverMenuItemSelectionManager>();
+
+                var messageProvider = ScriptableObject.CreateInstance<BasicMessageProvider>();
+                messageProvider.SetMessage(string.Join("\n", ModLoader.GetLoadedMods().Select(m => m.Mod.Name).ToArray()));
+
+                manager.AddMenuItem("MULTIPLAYER", 1, () =>
+                {
+                    Randomiser.Archipelago.ShowUI = true;
+                });
             }
         }
 

@@ -4,6 +4,7 @@ using HarmonyLib;
 using OriDeModLoader;
 using OriDeModLoader.CustomSeinAbilities;
 using OriDeModLoader.UIExtensions;
+using Randomiser.Multiplayer.Archipelago;
 
 namespace Randomiser
 {
