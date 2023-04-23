@@ -16,14 +16,6 @@
      "key": "HC"
  },
  {
-     "name": "Plant",
-     "key": "?"
- },
- {
-     "name": "MapStone",
-     "key": "MS"
- },
- {
      "name": "ChargeFlame",
      "key": "SK|2"
  },
@@ -37,7 +29,7 @@
  },
  {
      "name": "MS",
-     "key": "?"
+     "key": "MS"
  },
  {
      "name": "Dash",
@@ -82,10 +74,6 @@
  {
      "name": "ForlornKey",
      "key": "EV|2"
- },
- {
-     "name": "CS",
-     "key": "?"
  },
  {
      "name": "Stomp",
