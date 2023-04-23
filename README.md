@@ -18,7 +18,7 @@ Implemented:
 
 * Clues, Shards, Force Trees, World Tour, Warmth Fragments, Standard, Expert, Master, Glitched
 * In game seed generation with configurable parameters
-* Archipelago (beta, see FAQ for more info)
+* [Archipelago Multiworld](https://archipelago.gg/) (beta, see FAQ for more info)
 
 Upcoming:
 
@@ -44,10 +44,11 @@ There are several new features:
 * Sharable seeds
 * More QOL features
 * Completely controller friendly
+* Archipelago
 
 Some things are not available, though they might be added later:
 
-* Multiplayer
+* orirando.com multiplayer
 * Bingo
 * Expanded bonus skills (e.g. skill velocity upgrade)
 
@@ -69,22 +70,15 @@ Yes! There are some caveats currently:
 
 1. The host starts a game using the Ori and the Blind Forest settings along with any other games
 1. Install the AP beta in the mod manager by right clicking "Rando 2 (beta)" and selecting "Install version..."
-1. Enable the "Scene Explorer" mod and launch Ori through the mod manager
-1. Once it loads, press `F1` to open the scene explorer
-1. Right click objects in the rightmost tree view to expand. Open `introLogos > systems > gameController`
-1. Left click `Randomiser` to view the object. Scroll to the bottom to find `ArchipelagoController`
-1. Enter your name under `Slot`, and the appropriate hostname and port. If hosted by archipelago.gg, only `Slot` needs to change
+1. Launch the game and go to the settings. Under Randomiser, enable `Enable Archipelago` and restart the game.
+1. When the game loads, there will be a Multiplayer option in the main menu.
+1. Enter your name and the appropriate hostname and port. The host will know these details.
 1. Click `Connect`
-1. If successful, you will see a message in the logs
 1. Start a new game in a new file using Quick Start when all players are ready
 
-If you ever quit, you will need to repeat the above steps. Any items that you missed while the game was closed will be awarded when you load back in.
+If you ever quit, you will need to reconnect.
 
 If you ever find that you're missing an item you should have, save and quit. You will get it upon loading back in.
-
-#### **That's far too complicated**
-
-I know, and there will be a proper UI for the 1.0 release, but for now it's the easiest way.
 
 ### Why does it need python?
 

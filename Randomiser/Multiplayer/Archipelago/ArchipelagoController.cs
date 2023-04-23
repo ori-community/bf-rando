@@ -52,6 +52,7 @@ namespace Randomiser.Multiplayer.Archipelago
         }
 
         ArchipelagoItem[] items;
+        string[] loginErrors = new string[0];
 
         private const int APOffset = 262144;
         private const string GameName = "Ori and the Blind Forest";
@@ -70,6 +71,7 @@ namespace Randomiser.Multiplayer.Archipelago
             if (result.Successful)
             {
                 Debug.Log("Connection succeeded");
+                loginErrors = new string[0];
                 Active = true;
 
                 var item = session.Items.DequeueItem();
@@ -90,6 +92,12 @@ namespace Randomiser.Multiplayer.Archipelago
             else
             {
                 Debug.Log("Connection failed");
+                if (result is LoginFailure failure)
+                {
+                    loginErrors = failure.Errors;
+                    foreach (var err in loginErrors)
+                        Debug.Log(err);
+                }
                 Active = false;
             }
         }
@@ -300,6 +308,15 @@ namespace Randomiser.Multiplayer.Archipelago
 
             if (GUILayout.Button("Close menu"))
                 ShowUI = false;
+
+            GUI.color = UnityEngine.Color.red;
+            if (loginErrors.Length > 0)
+                GUILayout.Label("Login failed");
+            GUI.color = UnityEngine.Color.white;
+            foreach (var error in loginErrors)
+            {
+                GUILayout.Label(error);
+            }
         }
     }
 

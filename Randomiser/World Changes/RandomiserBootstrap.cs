@@ -191,6 +191,7 @@ namespace Randomiser
             }
 
             // Add multiplayer menu
+            if (Settings.EnableArchipelago.Value)
             {
                 var manager = sceneRoot.transform.Find("ui/group/3. fullGameMainMenu").GetComponent<CleverMenuItemSelectionManager>();
 
