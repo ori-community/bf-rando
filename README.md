@@ -62,7 +62,6 @@ Yes! There are some caveats currently:
 * No bonus pickups e.g. Extra Air Dash
 * No teleporters
 * Archipelago uses its own generation algorithm, which will result in very different item placements
-* Some locations will grant nothing (Archipelago thinkgs plants and cutscenes are items you can receive)
 * Keystone duplication does not work
 * If you pick up an item and then die without saving, you will keep the item but it will remain on the map. Picking it up grants nothing.
 
