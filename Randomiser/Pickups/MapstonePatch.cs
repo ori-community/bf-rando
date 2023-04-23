@@ -11,6 +11,7 @@ namespace Randomiser
         private static void Grant(MapStone mapstone)
         {
             var progressiveLocation = Randomiser.Locations.GetProgressiveMapstoneLocation(Randomiser.MapstonesRepaired);
+            Randomiser.Inventory.mapsSpent++;
             Randomiser.Grant(progressiveLocation.guid);
             Randomiser.Grant(mapstone.GetComponent<VisibleOnWorldMap>().MoonGuid);
         }

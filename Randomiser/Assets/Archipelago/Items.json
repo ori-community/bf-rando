@@ -1,0 +1,94 @@
+[
+ {
+     "name": "EX100",
+     "key": "EX|100"
+ },
+ {
+     "name": "AC",
+     "key": "AC"
+ },
+ {
+     "name": "Bash",
+     "key": "SK|0"
+ },
+ {
+     "name": "HC",
+     "key": "HC"
+ },
+ {
+     "name": "ChargeFlame",
+     "key": "SK|2"
+ },
+ {
+     "name": "ChargeJump",
+     "key": "SK|8"
+ },
+ {
+     "name": "Climb",
+     "key": "SK|12"
+ },
+ {
+     "name": "MS",
+     "key": "MS"
+ },
+ {
+     "name": "Dash",
+     "key": "SK|50"
+ },
+ {
+     "name": "EC",
+     "key": "EC"
+ },
+ {
+     "name": "EX200",
+     "key": "EX|200"
+ },
+ {
+     "name": "DoubleJump",
+     "key": "SK|5"
+ },
+ {
+     "name": "EX15",
+     "key": "EX|15"
+ },
+ {
+     "name": "Wind",
+     "key": "EV|3"
+ },
+ {
+     "name": "KS",
+     "key": "KS"
+ },
+ {
+     "name": "Water",
+     "key": "EV|1"
+ },
+ {
+     "name": "Glide",
+     "key": "SK|14"
+ },
+ {
+     "name": "Grenade",
+     "key": "SK|51"
+ },
+ {
+     "name": "ForlornKey",
+     "key": "EV|2"
+ },
+ {
+     "name": "Stomp",
+     "key": "SK|4"
+ },
+ {
+     "name": "HoruKey",
+     "key": "EV|4"
+ },
+ {
+     "name": "WallJump",
+     "key": "SK|3"
+ },
+ {
+     "name": "GinsoKey",
+     "key": "EV|0"
+ }
+]

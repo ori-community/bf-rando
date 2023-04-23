@@ -15,8 +15,9 @@
     <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Archipelago.MultiClient.Net" Version="4.2.4" />
     <PackageReference Include="Lib.Harmony" Version="2.0.2" />
-    <PackageReference Include="OriDeModLoader" Version="0.6.0-alpha" />
+    <PackageReference Include="OriDeModLoader" Version="0.8.0-alpha" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LocationData.json" />

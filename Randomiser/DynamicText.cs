@@ -85,11 +85,11 @@ namespace Randomiser
             else if (Randomiser.Seed.GoalMode == GoalMode.WorldTour)
             {
                 sb.AppendLine(Strings.Get("OBJECTIVE_RELICS_FOUND_TEXT"));
-                foreach (var relicLocation in Randomiser.Seed.RelicLocations.OrderBy(l => (int)l.worldArea))
+                foreach (var relicLocation in Randomiser.Seed.RelicLocations.OrderBy(l => (int)l.area))
                 {
                     bool found = relicLocation.HasBeenObtained();
                     if (found) sb.Append("$");
-                    sb.Append(Strings.Get("AREA_SHORT_" + relicLocation.worldArea.ToString()));
+                    sb.Append(Strings.Get("AREA_SHORT_" + relicLocation.area.ToString()));
                     if (found) sb.Append("$");
                     sb.Append("  ");
                 }
@@ -127,7 +127,7 @@ namespace Randomiser
                 if (found) sb.Append("$");
                 sb.Append(Strings.Get("SKILL_Stomp"));
                 sb.Append(": ");
-                sb.Append(Strings.Get("AREA_SHORT_" + stompLoc.worldArea));
+                sb.Append(Strings.Get("AREA_SHORT_" + stompLoc.area));
                 if (found) sb.Append("$");
 
                 if (grenadeLoc != null)
@@ -140,11 +140,42 @@ namespace Randomiser
                 if (found) sb.Append("$");
                 sb.Append(Strings.Get("SKILL_Grenade"));
                 sb.Append(": ");
-                sb.Append(Strings.Get("AREA_SHORT_" + grenadeLoc.worldArea));
+                sb.Append(Strings.Get("AREA_SHORT_" + grenadeLoc.area));
                 if (found) sb.Append("$");
             }
 
             return sb.ToString();
+        }
+
+        public static string BuildDiscordActivityStatus()
+        {
+            switch (GameStateMachine.Instance.CurrentState)
+            {
+                case GameStateMachine.State.Game:
+                    return "Randomiser: " + GetDiscordGameStatus();
+
+                case GameStateMachine.State.Prologue:
+                    return "Randomiser: Prologue";
+
+                default:
+                    return "Randomiser: In menus";
+            }
+        }
+
+        private static string GetDiscordGameStatus()
+        {
+            if (Randomiser.Seed.GoalMode == GoalMode.WorldTour)
+                return "World Tour";
+
+            switch (Randomiser.Seed.KeyMode)
+            {
+                case KeyMode.None: return "Free";
+                case KeyMode.Clues: return "Clues";
+                case KeyMode.Shards: return "Shards";
+                case KeyMode.LimitKeys: return "Limit Keys";
+            }
+
+            return "In game";
         }
     }
 }
