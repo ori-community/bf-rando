@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Reflection.Emit;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
@@ -12,6 +10,7 @@ using Archipelago.MultiClient.Net.Models;
 using Game;
 using HarmonyLib;
 using Newtonsoft.Json;
+using OriDeModLoader;
 using Sein.World;
 using UnityEngine;
 
@@ -98,15 +97,14 @@ namespace Randomiser.Multiplayer.Archipelago
         private void Items_ItemReceived(ReceivedItemsHelper helper)
         {
             var item = helper.DequeueItem();
-            if (item.Player == session.ConnectionInfo.Slot)
-                Debug.Log("Found my own item");
             ReceiveItem(item, true);
         }
 
         private void ReceiveItem(NetworkItem item, bool notify)
         {
             // Announce that the item was received even if on the main menu. It will be refreshed once loaded.
-            Debug.Log($"Item received: {item.Item} ({session.Items.GetItemName(item.Item)}) from location {session.Locations.GetLocationNameFromId(item.Location)}, player {session.Players.GetPlayerName(item.Player)}");
+            if (item.Player != session.ConnectionInfo.Slot)
+                Randomiser.Message(Strings.Get("AP_RECEIVE_ITEM", session.Items.GetItemName(item.Item), session.Players.GetPlayerName(item.Player)));
 
             if (!Characters.Sein)
                 return; // Sein does not exist i.e. in menu. Don't worry, you'll get the items upon loading in.
@@ -120,8 +118,8 @@ namespace Randomiser.Multiplayer.Archipelago
             }
             catch (Exception ex)
             {
-                Debug.Log("Failed to grant item");
-                Debug.Log(ex);
+                Console.WriteLine("Failed to grant item");
+                Console.WriteLine(ex);
             }
         }
 
@@ -129,16 +127,22 @@ namespace Randomiser.Multiplayer.Archipelago
         {
             if (Characters.Sein)
             {
-                Debug.Log(deathLink.Source);
-                Debug.Log(deathLink.Cause);
+                Console.WriteLine(deathLink.Source);
+                Console.WriteLine(deathLink.Cause);
                 Characters.Sein.Mortality.DamageReciever.OnKill(new Damage(-1f, Vector2.zero, Vector3.zero, DamageType.Lava, null));
             }
         }
 
         private void MessageLog_OnMessageReceived(LogMessage message)
         {
-            Debug.Log("Message received");
-            Debug.Log(message.ConvertMessageFormat());
+            Console.WriteLine("Message received");
+            Console.WriteLine(message.ConvertMessageFormat());
+
+            if (message is ItemSendLogMessage slm && slm.SendingPlayerSlot == session.ConnectionInfo.Slot && slm.ReceivingPlayerSlot != session.ConnectionInfo.Slot)
+            {
+                // When we send someone else an item
+                Randomiser.Message(Strings.Get("AP_SEND_ITEM", session.Items.GetItemName(slm.Item.Item), session.Players.GetPlayerName(slm.ReceivingPlayerSlot)));
+            }
         }
 
         [ContextMenu("Print received items")]
@@ -244,7 +248,7 @@ namespace Randomiser.Multiplayer.Archipelago
         {
             GUI.DragWindow(new Rect(0, 0, 350, 16));
 
-            const int labelWidth = 65;
+            const int labelWidth = 85;
 
             GUILayout.Label("Warning: Archipelago support is experimental. Many ordinary randomiser features will not work and you should expect bugs.");
 
@@ -316,32 +320,6 @@ namespace Randomiser.Multiplayer.Archipelago
         {
             if (!___ShouldLock && Randomiser.Archipelago.Active)
                 Randomiser.Archipelago.ForceSetArchipelagoItems();
-        }
-    }
-
-    [HarmonyPatch(typeof(SeinDamageReciever), nameof(SeinDamageReciever.OnRecieveDamage))]
-    static class DeathLinkOnKill
-    {
-        static void PerformDeathLinkKill(Damage damage)
-        {
-            if (Randomiser.Archipelago.Active && Randomiser.Archipelago.deathLink != null)
-            {
-                Randomiser.Archipelago.deathLink.SendDeathLink(new DeathLink(Randomiser.Archipelago.Slot, damage.Type.ToString()));
-            }
-        }
-
-        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-        {
-            var method = AccessTools.Method(typeof(SeinDamageReciever), nameof(SeinDamageReciever.OnKill));
-            foreach (var code in instructions)
-            {
-                yield return code;
-                if (code.Calls(method))
-                {
-                    yield return new CodeInstruction(OpCodes.Ldarg_1);
-                    yield return CodeInstruction.Call(typeof(DeathLinkOnKill), nameof(PerformDeathLinkKill));
-                }
-            }
         }
     }
 }
