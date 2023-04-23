@@ -13,7 +13,6 @@ namespace Randomiser
 
         public override void UpdateCharacterState()
         {
-            // TODO put the custom abilities ON Sein so they won't execute if sein doesn't exist
             Characters.Sein.Energy.Gain(Randomiser.Inventory.energyRegen * EnergyPerSecond * Time.deltaTime);
 
             // health method takes int :(

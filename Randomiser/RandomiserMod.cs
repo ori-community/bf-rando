@@ -5,6 +5,7 @@ using OriDeModLoader;
 using OriDeModLoader.CustomSeinAbilities;
 using OriDeModLoader.UIExtensions;
 using Randomiser.Multiplayer.Archipelago;
+using Randomiser.Stats;
 
 namespace Randomiser
 {
@@ -29,6 +30,7 @@ namespace Randomiser
             CustomSeinAbilityManager.Add<SeinRegen>("cc6427ed-31bf-4a7a-b4c4-ad559000ced9");
             CustomSeinAbilityManager.Add<SeinHotColdSense>("eda5f877-889b-4be5-9ecb-1b499ce7053d");
             CustomSeinAbilityManager.Add<ExtraAirDash>("88f2d7ca-f017-43f1-8dbb-3ae2afcb4ff4");
+            CustomSeinAbilityManager.Add<StatsController>("491cb0ce-cb60-4fe0-96c1-fa7012d6994b");
 
             Hooks.OnStartNewGame += () =>
             {
