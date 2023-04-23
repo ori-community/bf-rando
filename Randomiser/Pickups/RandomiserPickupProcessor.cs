@@ -39,6 +39,7 @@ namespace Randomiser
 
             // Small exp orb (that drops from enemies)
             int amount = (int)(expOrbPickup.Amount * Randomiser.SpiritLightMultiplier);
+            Randomiser.Inventory.xpGainedFromEnemies += amount;
             Sein.Level.GainExperience(amount);
             expOrbPickup.Collected();
             if (m_expText && m_expText.gameObject.activeInHierarchy)

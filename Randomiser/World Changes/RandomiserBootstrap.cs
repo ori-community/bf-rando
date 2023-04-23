@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using BaseModLib;
 using OriDeModLoader;
+using OriDeModLoader.UIExtensions;
+using Randomiser.Multiplayer.Archipelago;
 using UnityEngine;
 
 namespace Randomiser
@@ -81,22 +83,13 @@ namespace Randomiser
             //Name n ^Mod n^#";
         }
 
-        private static void BootstrapTitleScreenSwallowsNest(SceneRoot sceneRoot)
+        private static Transform CreateImageFrom(Transform existing, string imageName, int width, int height)
         {
-            var background = sceneRoot.transform.Find("ui/group/definitiveEdition/logoOriDefinitiveEditionA");
-            background.localScale = new Vector3(21.28151f, 10.32038f, 0.7093837f);
-            background.position = new Vector3(-2478.584f, -549.78f, 0);
+            var newText = GameObject.Instantiate(existing);
+            newText.SetParentMaintainingLocalTransform(existing.parent);
 
-            var deText = sceneRoot.transform.Find("ui/group/definitiveEdition/logoOriDefinitiveEditionB");
-            deText.position = new Vector3(deText.position.x, -549.2224f, deText.position.z);
-
-            var randoText = GameObject.Instantiate(deText);
-            randoText.SetParent(deText.parent, false);
-            randoText.position = new Vector3(deText.position.x, -550.0939f, deText.position.z);
-            randoText.localScale = new Vector3(8, 3.8f, 1);
-
-            var tex = LoadTextureFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "assets/logo.png"), 256, 128);
-            var meshRenderer = randoText.GetComponent<MeshRenderer>();
+            var tex = LoadTextureFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "assets/" + imageName), width, height);
+            var meshRenderer = newText.GetComponent<MeshRenderer>();
             meshRenderer.material.mainTexture = tex;
 
             meshRenderer.material.SetVector("_MainTex_US_ATLAS", new Vector4(1, 1, 1, 1));
@@ -140,8 +133,37 @@ namespace Randomiser
             };
             mesh.uv = uv;
 
-            randoText.GetComponent<MeshFilter>().mesh = mesh;
+            newText.GetComponent<MeshFilter>().mesh = mesh;
 
+            return newText;
+        }
+
+        private static void BootstrapTitleScreenSwallowsNest(SceneRoot sceneRoot)
+        {
+            var background = sceneRoot.transform.Find("ui/group/definitiveEdition/logoOriDefinitiveEditionA");
+            background.localScale = new Vector3(21.28151f, 10.32038f, 0.7093837f);
+            background.position = new Vector3(-2478.584f, -549.78f, 0);
+
+            var deText = sceneRoot.transform.Find("ui/group/definitiveEdition/logoOriDefinitiveEditionB");
+            deText.position = new Vector3(deText.position.x, -549.2224f, deText.position.z);
+
+            var randoText = CreateImageFrom(deText, "logo.png", 256, 128);
+            randoText.position = new Vector3(deText.position.x, -550.0939f, deText.position.z);
+            randoText.localScale = new Vector3(8, 3.8f, 1);
+
+            // Show the Archipelago icon if it's enabled
+            {
+                var apIcon = CreateImageFrom(deText, "archipelago.png", 200, 200);
+                apIcon.localScale = Vector3.one * 3;
+                apIcon.localPosition = new Vector3(-2484.555f, -549.2224f, -0.09f);
+                apIcon.GetComponent<Renderer>().material.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+
+                var apIconActivator = apIcon.parent.gameObject.AddComponent<ActivateBasedOnCondition>();
+                var apActivatorCondition = apIconActivator.gameObject.AddComponent<ArchipelagoCondition>();
+                apIconActivator.Target = apIcon.gameObject;
+                apIconActivator.Condition = apActivatorCondition;
+                apActivatorCondition.IsTrue = true;
+            }
 
             // Insert seed gen
             {
@@ -166,6 +188,20 @@ namespace Randomiser
                 var provider = ScriptableObject.CreateInstance<BasicMessageProvider>();
                 provider.SetMessage(Strings.Get("UI_VIEW_SEED"));
                 backLabel.SetMessageProvider(provider);
+            }
+
+            // Add multiplayer menu
+            if (Settings.EnableArchipelago.Value)
+            {
+                var manager = sceneRoot.transform.Find("ui/group/3. fullGameMainMenu").GetComponent<CleverMenuItemSelectionManager>();
+
+                var messageProvider = ScriptableObject.CreateInstance<BasicMessageProvider>();
+                messageProvider.SetMessage(string.Join("\n", ModLoader.GetLoadedMods().Select(m => m.Mod.Name).ToArray()));
+
+                manager.AddMenuItem("MULTIPLAYER", 1, () =>
+                {
+                    Randomiser.Archipelago.ShowUI = true;
+                });
             }
         }
 

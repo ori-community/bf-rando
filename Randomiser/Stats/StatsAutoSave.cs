@@ -1,10 +1,9 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 
 namespace Randomiser.Stats
 {
     [HarmonyPatch]
-    static class StatsFacilitator
+    static class StatsAutoSave
     {
         [HarmonyPrefix, HarmonyPatch(typeof(GameController), nameof(GameController.RestartGame))]
         public static void OnRTM(bool ___m_isRestartingGame)
@@ -22,13 +21,6 @@ namespace Randomiser.Stats
             Randomiser.Stats.GlobalStats.areaStats[(int)__instance.Sein.CurrentWorldArea()].deaths++;
 
             Randomiser.Stats?.SaveNow(); // Before the checkpoint is reloaded, save the stats so they persist across deaths
-        }
-
-        [HarmonyPrefix, HarmonyPatch(typeof(SeinDeathCounter), nameof(SeinDeathCounter.Awake))]
-        public static void OnSDCAwake(SeinDeathCounter __instance)
-        {
-            var stats = __instance.gameObject.AddComponent<StatsController>();
-            stats.MoonGuid = new MoonGuid(new Guid("491cb0ce-cb60-4fe0-96c1-fa7012d6994b"));
         }
     }
 }

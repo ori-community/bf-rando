@@ -180,3 +180,6 @@ UI_NEW_RANDO_DIFFICULTY_OneLife_DESC=You only get one change to save Nibel. The 
 
 UI_NEW_RANDO_SPAWN=Spawn
 UI_NEW_RANDO_SPAWN_DESC=Where you will spawn at the beginning of the game
+
+AP_SEND_ITEM=Sent #{0}# to ${1}$
+AP_RECEIVE_ITEM=Received #{0}# from ${1}$

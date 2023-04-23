@@ -1,9 +1,9 @@
-﻿using Game;
+﻿using OriDeModLoader.CustomSeinAbilities;
 using UnityEngine;
 
 namespace Randomiser.Stats
 {
-    public class StatsController : SaveSerialize, ISuspendable
+    public class StatsController : CustomSeinAbility
     {
         public AllStats GlobalStats;
 
@@ -19,14 +19,12 @@ namespace Randomiser.Stats
         {
             Reset();
             Randomiser.Stats = this;
-            SuspensionManager.Register(this);
         }
 
         public override void OnDestroy()
         {
             if (Randomiser.Stats == this)
                 Randomiser.Stats = null;
-            SuspensionManager.Unregister(this);
         }
 
         public void SaveNow()
@@ -45,12 +43,12 @@ namespace Randomiser.Stats
         // TODO when copying over another file that has the same identifier, keep the stats of the more played one
         //      (this will keep stats consistent when using backups)
 
-        void FixedUpdate()
+        public override void UpdateCharacterState()
         {
-            if (IsSuspended) // TODO check that this continues to count up during SA (and fix the base timer so it does too!)
-                return;
-
-            GlobalStats.areaStats[(int)Characters.Sein.CurrentWorldArea()].time += Time.deltaTime;
+            // TODO check that this continues to count up during SA (and fix the base timer so it does too!)
+            GlobalStats.areaStats[(int)Sein.CurrentWorldArea()].time += Time.deltaTime;
         }
+
+        public override bool AllowAbility(SeinLogicCycle logicCycle) => true;
     }
 }

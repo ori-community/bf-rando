@@ -1,6 +1,7 @@
 ﻿using System;
 using Game;
 using OriDeModLoader;
+using Randomiser.Multiplayer.Archipelago;
 using Randomiser.Stats;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Randomiser
         public static RandomiserLocations Locations { get; internal set; }
         public static RandomiserMessageController Messages { get; internal set; }
         public static StatsController Stats { get; internal set; }
+        public static ArchipelagoController Archipelago { get; internal set; }
 
 
         public static int TotalPickupsFound => Inventory.pickupsCollected.Sum;
@@ -34,6 +36,7 @@ namespace Randomiser
             }
         }
         public static float ChargeDashDiscount => Inventory.chargeDashEfficiency ? 0.5f : 0f;
+
 
         public static void Grant(MoonGuid guid)
         {
@@ -66,16 +69,14 @@ namespace Randomiser
             Inventory.pickupsCollected[location.saveIndex] = true;
             GameWorld.Instance.CurrentArea.DirtyCompletionAmount();
 
-            var action = Seed.GetActionFromGuid(location.guid);
-            if (action == null)
+            if (Archipelago.Active)
             {
-                // There is nothing at this location, which is acceptable
-                //Debug.Log("WARNING: Unknown pickup id: " + location.guid.ToGuid());
-                return;
+                Archipelago.CheckLocation(location);
             }
 
-            Debug.Log(action);
-            action.Execute();
+            var action = Seed.GetActionFromGuid(location.guid);
+            Debug.Log(action?.ToString() ?? "Nothing here");
+            action?.Execute();
 
             CheckGoal();
 
@@ -92,7 +93,7 @@ namespace Randomiser
             Messages.AddMessage(message);
         }
 
-        private static void CheckGoal()
+        public static void CheckGoal()
         {
             if (!Inventory.goalComplete && Seed.GoalMode != GoalMode.None)
             {

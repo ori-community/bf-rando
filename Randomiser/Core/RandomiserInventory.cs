@@ -25,6 +25,11 @@
 
         public string lastPickup;
 
+        public int keysSpent;
+        public int apSpent;
+        public int mapsSpent;
+        public int xpGainedFromEnemies;
+
         public override void Awake()
         {
             base.Awake();
@@ -50,6 +55,10 @@
             lastPickup = "Good luck on your rando!";
             skillClueFound = false;
             warmthFragments = 0;
+            keysSpent = 0;
+            mapsSpent = 0;
+            apSpent = 0;
+            xpGainedFromEnemies = 0;
         }
 
         public override void Serialize(Archive ar)
@@ -77,6 +86,11 @@
             ar.Serialize(ref lastPickup);
             ar.Serialize(ref skillClueFound);
             ar.Serialize(ref warmthFragments);
+
+            ar.Serialize(ref keysSpent);
+            ar.Serialize(ref mapsSpent);
+            ar.Serialize(ref apSpent);
+            ar.Serialize(ref xpGainedFromEnemies);
         }
     }
 }
