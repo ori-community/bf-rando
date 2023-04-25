@@ -2,6 +2,7 @@
 
 namespace Randomiser.Utils
 {
+#if DEBUG
     public class ShaderEditor : MonoBehaviour
     {
         Renderer renderer;
@@ -14,19 +15,6 @@ namespace Randomiser.Utils
 
         void OnGUI()
         {
-            //Color c = renderer.material.color;
-
-            //GUILayout.BeginArea(new Rect(10, 10, 1000, 3000));
-            //c.r = GUILayout.HorizontalSlider(c.r, 0, 1);
-            //c.g = c.r;
-            //c.b = c.r;
-            //c.a = GUILayout.HorizontalSlider(c.a, 0, 1);
-
-            //renderer.material.SetFloat("_UberShaderColorMask", GUILayout.HorizontalSlider(renderer.material.GetFloat("_UberShaderColorMask"), 0, 16));
-            //GUILayout.Label(renderer.material.GetFloat("_UberShaderColorMask").ToString());
-            //renderer.material.SetFloat("_UberShaderBlendModeDst", GUILayout.HorizontalSlider(renderer.material.GetFloat("_UberShaderBlendModeDst"), 0, 16));
-            //GUILayout.Label(renderer.material.GetFloat("_UberShaderBlendModeDst").ToString());
-
             Colour("_Color", 0, 1);
 
             Float("_UberShaderColorMask", 0, 16);
@@ -77,4 +65,5 @@ namespace Randomiser.Utils
             renderer.material.SetColor(name, col);
         }
     }
+#endif
 }

@@ -6,7 +6,9 @@ using System.Reflection;
 using BaseModLib;
 using OriDeModLoader;
 using OriDeModLoader.UIExtensions;
+using OriDeModLoader.Util;
 using Randomiser.Multiplayer.Archipelago;
+using Randomiser.Utils;
 using UnityEngine;
 
 namespace Randomiser
@@ -73,14 +75,10 @@ namespace Randomiser
             creditsTextMods.position += Vector3.right * 10;
 
             var messageBox = creditsTextMods.GetComponent<MessageBox>();
-            messageBox.OverrideText = "TODO";
-            //            messageBox.OverrideText = @"*Mods*#
-
-            //#Author/s  ^Mod Loader^#
-
-            //#Name 1  ^Mod 1^
-            //Name 2 ^Mod 2^
-            //Name n ^Mod n^#";
+            messageBox.OverrideText = File.ReadAllText(PathUtil.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "assets", "credits.txt"));
+#if DEBUG
+            messageBox.gameObject.AddComponent<CreditsHelper>();
+#endif
         }
 
         private static Transform CreateImageFrom(Transform existing, string imageName, int width, int height)
