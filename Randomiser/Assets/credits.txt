@@ -22,7 +22,6 @@ Hydra
 iRobin
 JHobz
 Jitaenow
-Jitaenow
 LusTher
 madinsane
 Mattermonkey
@@ -44,18 +43,18 @@ Xemsys
 *Tournament Champions*
 
 @<#FFFFFF>2017 Singles</>
-^Covert_Muffin^@
+^CovertMuffin^@
 
 @<#FFFFFF>2017 Doubles</>
 ^"That Is Faster"^
-^Sigmasin, IMRaziel^@
+^Sigmasin, Raziel^@
 
 @<#FFFFFF>2018 Singles</>
 ^Sigmasin^@
 
 @<#FFFFFF>2018 Doubles</>
 ^"That Is Still Faster"^
-^Sigmasin, IMRaziel^@
+^Sigmasin, Raziel^@
 
 @<#FFFFFF>2021</>
 ^Cleanfel^@
