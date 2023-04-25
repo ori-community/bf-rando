@@ -68,7 +68,6 @@ Yes! There are some caveats currently:
 #### **How to play Archipelago**
 
 1. The host starts a game using the Ori and the Blind Forest settings along with any other games
-1. Install the AP beta in the mod manager by right clicking "Rando 2 (beta)" and selecting "Install version..."
 1. Launch the game and go to the settings. Under Randomiser, enable `Enable Archipelago` and restart the game.
 1. When the game loads, there will be a Multiplayer option in the main menu.
 1. Enter your name and the appropriate hostname and port. The host will know these details.
