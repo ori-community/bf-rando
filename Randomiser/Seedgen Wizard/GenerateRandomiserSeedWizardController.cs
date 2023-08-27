@@ -1,6 +1,7 @@
 ﻿using System;
 using BaseModLib;
 using OriDeModLoader;
+using Randomiser.Utils;
 using UnityEngine;
 
 namespace Randomiser
@@ -140,7 +141,7 @@ namespace Randomiser
             ModifyOptions(state);
         }
 
-        const int QuickStart = 0, NewSeed = 1, ImportSeed = 2;
+        const int QuickStart = 0, NewSeed = 1, ImportSeed = 2, ReadSeed = 3;
         const int Casual = 0, Standard = 1, Expert = 2, Master = 3;
         const int Clues = 0, Shards = 1, NoKeyMode = 2;
         const int ForceTrees = 0, WorldTour = 1, ForceMaps = 2, WarmthFrags = 3;
@@ -152,10 +153,11 @@ namespace Randomiser
             switch (state)
             {
                 case WizardState.Start:
-                    SetOptionCount(3);
+                    SetOptionCount(4);
                     SetOption(QuickStart, "UI_NEW_RANDO_QUICK_START");
                     SetOption(NewSeed, "UI_NEW_RANDO_NEW_SEED");
                     SetOption(ImportSeed, "UI_NEW_RANDO_IMPORT_SHARED_SEED");
+                    SetOption(ReadSeed, "UI_NEW_RANDO_LOAD_SEED_FROM_FILE");
                     SelectOption(0);
                     break;
                 case WizardState.LogicMode:
@@ -205,6 +207,11 @@ namespace Randomiser
             switch (state)
             {
                 case WizardState.Start:
+                    if (index != ReadSeed)
+                    {
+                        seedGenOptions.FilePath = null;
+                    }
+
                     if (index == QuickStart)
                     {
                         int rngSeed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
@@ -224,6 +231,19 @@ namespace Randomiser
                     if (index == ImportSeed)
                     {
                         Randomiser.Message("Not yet implemented");
+                        return;
+                    }
+
+                    if (index == ReadSeed)
+                    {
+                        string filename = WindowsUtils.OpenFile("Randomiser seed file", "Blind Forest Rando (*.obfr, *.dat)\0*.obfr;*.dat\0All Files (*.*)\0*.*\0");
+
+                        if (filename != null)
+                        {
+                            seedGenOptions.FilePath = filename;
+                            backStepSize = WizardState.Difficulty - WizardState.Start;
+                            GoToState(WizardState.Difficulty);
+                        }
                         return;
                     }
 

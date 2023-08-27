@@ -136,8 +136,10 @@ UI_NEW_RANDO_NEW_SEED=Generate New
 UI_NEW_RANDO_NEW_SEED_DESC=Generate a new game with options you provide
 UI_NEW_RANDO_QUICK_START=Quick Start
 UI_NEW_RANDO_QUICK_START_DESC=Start a new game with recommended settings (Standard, Clues, Force Trees)
-UI_NEW_RANDO_IMPORT_SHARED_SEED=Seeded
+UI_NEW_RANDO_IMPORT_SHARED_SEED=Import seed
 UI_NEW_RANDO_IMPORT_SHARED_SEED_DESC=Start a new game with a premade seed
+UI_NEW_RANDO_LOAD_SEED_FROM_FILE=Load from file
+UI_NEW_RANDO_LOAD_SEED_FROM_FILE_DESC=Load a seed from file
 
 UI_NEW_RANDO_DIFFICULTY_Casual=Casual
 UI_NEW_RANDO_DIFFICULTY_Casual_DESC=The easiest mode

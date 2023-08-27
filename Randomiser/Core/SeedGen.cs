@@ -20,6 +20,7 @@ namespace Randomiser
             public RandomiserFlags Flags { get; set; }
             public LogicPath LogicPreset { get; set; }
             public string Seed { get; set; }
+            public string FilePath { get; set; } = null;
 
             public static SeedGenOptions FromSharableSeed(string sharableSeed)
             {
@@ -73,6 +74,11 @@ namespace Randomiser
             int saveSlotIndex = SaveSlotsUI.Instance.CurrentSlotIndex;
             var outputPath = Path.GetFullPath(Path.Combine(assemblyDir, Path.Combine("seeds", (saveSlotIndex + 1).ToString())));
             Directory.CreateDirectory(outputPath);
+
+            if (options.FilePath != null)
+            {
+                return new SeedGenResult { FilePath = options.FilePath };
+            }
 
             string seedgenPath = Path.Combine(
                 Path.Combine(assemblyDir, "assets"),
