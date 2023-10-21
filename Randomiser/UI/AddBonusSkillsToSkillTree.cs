@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using BaseModLib;
 using HarmonyLib;
-using OriDeModLoader;
+using OriModding.BF.Core;
+using OriModding.BF.l10n;
 using UnityEngine;
 
 namespace Randomiser

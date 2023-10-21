@@ -113,7 +113,7 @@ namespace Randomiser
                 Randomiser.Message("Failed to generate seed");
 
             string seedFile = Path.Combine(outputPath, "randomizer0.dat");
-            UnityEngine.Debug.Log(seedFile);
+            RandomiserMod.Logger.LogDebug(seedFile);
 
             return new SeedGenResult { FilePath = seedFile };
         }

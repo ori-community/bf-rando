@@ -1,4 +1,4 @@
-﻿using OriDeModLoader.UIExtensions;
+﻿using OriModding.BF.UiLib.Map;
 using UnityEngine;
 
 namespace Randomiser

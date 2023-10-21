@@ -1,6 +1,6 @@
 ﻿using Game;
 using HarmonyLib;
-using OriDeModLoader;
+using OriModding.BF.Core;
 using UnityEngine;
 
 namespace Randomiser

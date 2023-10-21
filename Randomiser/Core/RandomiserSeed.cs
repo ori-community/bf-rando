@@ -68,7 +68,7 @@ namespace Randomiser
 
         public bool HasFlag(RandomiserFlags flag) => (Flags & flag) == flag;
 
-        public Clues Clues { get; private set; }
+        public Clues Clues { get; private set; } = new Clues();
 
         private readonly List<Location> senseList = new List<Location>();
         public IEnumerable<Location> SenseItems => senseList.AsEnumerable();
@@ -111,19 +111,28 @@ namespace Randomiser
 
         public override void Serialize(Archive ar)
         {
-            GoalMode = (GoalMode)ar.Serialize((int)GoalMode);
-            KeyMode = (KeyMode)ar.Serialize((int)KeyMode);
-            Flags = (RandomiserFlags)ar.Serialize((int)Flags);
-            ar.Serialize(ref seed);
-            SerialiseMap(ar);
-            Clues.Serialize(ar);
-            LogicPreset = (LogicPath)ar.Serialize((int)LogicPreset);
-            RelicsRequired = ar.Serialize(RelicsRequired);
-            WarmthFragmentsRequired = ar.Serialize(WarmthFragmentsRequired);
-
-            if (ar.Reading)
+            try
             {
-                RefreshReadonly();
+
+                GoalMode = (GoalMode)ar.Serialize((int)GoalMode);
+                KeyMode = (KeyMode)ar.Serialize((int)KeyMode);
+                Flags = (RandomiserFlags)ar.Serialize((int)Flags);
+                ar.Serialize(ref seed);
+                SerialiseMap(ar);
+                Clues.Serialize(ar);
+                LogicPreset = (LogicPath)ar.Serialize((int)LogicPreset);
+                RelicsRequired = ar.Serialize(RelicsRequired);
+                WarmthFragmentsRequired = ar.Serialize(WarmthFragmentsRequired);
+
+                if (ar.Reading)
+                {
+                    RefreshReadonly();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Randomiser.Message(ex.ToString());
             }
         }
 
@@ -187,7 +196,7 @@ namespace Randomiser
             if (!File.Exists(filepath))
             {
                 Randomiser.Message(filepath + " not found");
-                Debug.Log("File not found: " + Path.GetFullPath(filepath));
+                RandomiserMod.Logger.LogDebug("File not found: " + Path.GetFullPath(filepath));
                 return;
             }
 

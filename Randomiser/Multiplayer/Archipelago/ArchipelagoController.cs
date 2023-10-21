@@ -10,7 +10,7 @@ using Archipelago.MultiClient.Net.Models;
 using Game;
 using HarmonyLib;
 using Newtonsoft.Json;
-using OriDeModLoader;
+using OriModding.BF.l10n;
 using Sein.World;
 using UnityEngine;
 
@@ -70,7 +70,7 @@ namespace Randomiser.Multiplayer.Archipelago
             var result = session.TryConnectAndLogin(GameName, Slot, ItemsHandlingFlags.AllItems, password: Password);
             if (result.Successful)
             {
-                Debug.Log("Connection succeeded");
+                RandomiserMod.Logger.LogDebug("Connection succeeded");
                 loginErrors = new string[0];
                 Active = true;
 
@@ -91,12 +91,12 @@ namespace Randomiser.Multiplayer.Archipelago
             }
             else
             {
-                Debug.Log("Connection failed");
+                RandomiserMod.Logger.LogDebug("Connection failed");
                 if (result is LoginFailure failure)
                 {
                     loginErrors = failure.Errors;
                     foreach (var err in loginErrors)
-                        Debug.Log(err);
+                        RandomiserMod.Logger.LogDebug(err);
                 }
                 Active = false;
             }
@@ -158,7 +158,7 @@ namespace Randomiser.Multiplayer.Archipelago
         {
             foreach (var item in session.Items.AllItemsReceived)
             {
-                Debug.Log(session.Items.GetItemName(item.Item));
+                RandomiserMod.Logger.LogDebug(session.Items.GetItemName(item.Item));
             }
         }
 
@@ -166,7 +166,7 @@ namespace Randomiser.Multiplayer.Archipelago
         public void APPrintPlayers()
         {
             foreach (var p in session.Players.AllPlayers)
-                Debug.Log($"{p.Name}: {p.Game}");
+                RandomiserMod.Logger.LogDebug($"{p.Name}: {p.Game}");
         }
 
         [ContextMenu("Force set items")]
@@ -175,7 +175,7 @@ namespace Randomiser.Multiplayer.Archipelago
             // Whenever you load in, force-set all your skills and events and whatnot
             // This will make sure you stay up to date at all times
             // TODO idk how death rollback works (or if it even rolls back at all)
-            Debug.Log("Force-setting items");
+            RandomiserMod.Logger.LogDebug("Force-setting items");
             try
             {
                 RandomiserAction.hideMessage = true;
@@ -183,7 +183,7 @@ namespace Randomiser.Multiplayer.Archipelago
 
                 if (!sein)
                 {
-                    Debug.Log("This can only be called while in-game");
+                    RandomiserMod.Logger.LogDebug("This can only be called while in-game");
                     return;
                 }
 

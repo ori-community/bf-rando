@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using HarmonyLib;
-using OriDeModLoader;
+using OriModding.BF.l10n;
 using Sein.World;
 using UnityEngine;
 

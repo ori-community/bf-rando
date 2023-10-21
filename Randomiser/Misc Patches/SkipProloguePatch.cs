@@ -1,5 +1,5 @@
 ﻿using HarmonyLib;
-using OriDeModLoader;
+using OriModding.BF.Core;
 
 namespace Randomiser
 {

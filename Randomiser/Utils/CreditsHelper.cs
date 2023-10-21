@@ -1,6 +1,5 @@
 ﻿using System.IO;
-using System.Reflection;
-using OriDeModLoader.Util;
+using OriModding.BF.Core;
 using UnityEngine;
 
 namespace Randomiser.Utils
@@ -12,7 +11,7 @@ namespace Randomiser.Utils
 
         FileSystemWatcher watcher;
 
-        string CreditsPath => PathUtil.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "assets", "credits.txt");
+        string CreditsPath => RandomiserMod.Instance.GetAssetPath("assets", "credits.txt");
 
         void Awake()
         {

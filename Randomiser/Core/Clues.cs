@@ -1,4 +1,6 @@
-﻿namespace Randomiser
+﻿using System;
+
+namespace Randomiser
 {
     public class Clues : ISerializable
     {
@@ -20,8 +22,20 @@
 
         public enum ClueType { WaterVein, GumonSeal, Sunstone };
 
-        private int[] revealOrder;
+        private int[] revealOrder = new int[3];
         private readonly MoonGuid[] locations = new MoonGuid[3];
+
+        public Clues()
+        {
+            Console.WriteLine("Clues.cctor");
+            revealOrder = new int[3];
+            locations = new MoonGuid[]
+            {
+                new MoonGuid(1,1,1,1),
+                new MoonGuid(1,1,1,1),
+                new MoonGuid(1,1,1,1)
+            };
+        }
 
         public Clues(ClueType clue1, ClueType clue2, ClueType clue3, MoonGuid wv, MoonGuid gs, MoonGuid ss)
         {
@@ -50,10 +64,15 @@
 
         public void Serialize(Archive ar)
         {
+            Console.WriteLine(ar.Reading ? "READING" : "WRITING");
+            Console.WriteLine(ar == null ? "AR IS NULL" : "AR IS NOT NULL");
+            Console.WriteLine("here?");
             revealOrder = ar.Serialize(revealOrder);
+            Console.WriteLine("2");
             locations[0] = ar.Serialize(locations[0]);
             locations[1] = ar.Serialize(locations[1]);
             locations[2] = ar.Serialize(locations[2]);
+            Console.WriteLine("3");
         }
     }
 }
