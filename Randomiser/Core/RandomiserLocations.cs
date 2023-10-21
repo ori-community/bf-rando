@@ -8,48 +8,47 @@ using Newtonsoft.Json.Converters;
 using Randomiser.JsonConverters;
 using UnityEngine;
 
-namespace Randomiser
+namespace Randomiser;
+
+public class RandomiserLocations : MonoBehaviour
 {
-    public class RandomiserLocations : MonoBehaviour
+    private Dictionary<string, Location> nameMap = new Dictionary<string, Location>();
+    private Dictionary<MoonGuid, Location> guidMap = new Dictionary<MoonGuid, Location>();
+
+    public LocationCache Cache { get; private set; }
+
+    public Location this[string name] => nameMap.GetOrDefault(name);
+    public Location this[MoonGuid guid] => guidMap.GetOrDefault(guid);
+
+    public Location GetProgressiveMapstoneLocation(int index)
     {
-        private Dictionary<string, Location> nameMap = new Dictionary<string, Location>();
-        private Dictionary<MoonGuid, Location> guidMap = new Dictionary<MoonGuid, Location>();
+        if (index > 8 || index < 0)
+            throw new IndexOutOfRangeException("index must be in the range [0, 8]");
 
-        public LocationCache Cache { get; private set; }
+        return this[$"Map{index + 1}"];
+    }
 
-        public Location this[string name] => nameMap.GetOrDefault(name);
-        public Location this[MoonGuid guid] => guidMap.GetOrDefault(guid);
+    public IEnumerable<Location> GetAll() => guidMap.Values;
 
-        public Location GetProgressiveMapstoneLocation(int index)
-        {
-            if (index > 8 || index < 0)
-                throw new IndexOutOfRangeException("index must be in the range [0, 8]");
+    private void Awake()
+    {
+        Load(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"assets\LocationData.json"));
 
-            return this[$"Map{index + 1}"];
-        }
+        // TODO this dependency is unfortunate, find a better way to do it
+        RandomiserIcons.Initialise(this);
+    }
 
-        public IEnumerable<Location> GetAll() => guidMap.Values;
+    public void Load(string file)
+    {
+        // TODO handle missing file
+        // TODO improve debug menu keyboard controls
 
-        private void Awake()
-        {
-            Load(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"assets\LocationData.json"));
+        string json = File.ReadAllText(file);
+        List<Location> allLocs = JsonConvert.DeserializeObject<List<Location>>(json, new MoonGuidJsonConverter(), new Vector2JsonConverter(), new StringEnumConverter());
 
-            // TODO this dependency is unfortunate, find a better way to do it
-            RandomiserIcons.Initialise(this);
-        }
+        nameMap = allLocs.ToDictionary(l => l.name);
+        guidMap = allLocs.ToDictionary(l => l.guid);
 
-        public void Load(string file)
-        {
-            // TODO handle missing file
-            // TODO improve debug menu keyboard controls
-
-            string json = File.ReadAllText(file);
-            List<Location> allLocs = JsonConvert.DeserializeObject<List<Location>>(json, new MoonGuidJsonConverter(), new Vector2JsonConverter(), new StringEnumConverter());
-
-            nameMap = allLocs.ToDictionary(l => l.name);
-            guidMap = allLocs.ToDictionary(l => l.guid);
-
-            Cache = new LocationCache(allLocs);
-        }
+        Cache = new LocationCache(allLocs);
     }
 }

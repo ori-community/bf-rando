@@ -20,7 +20,8 @@ public class GenerateRandomiserSeedWizardController : MonoBehaviour
     }
 
     public static GenerateRandomiserSeedWizardController Instance { get; private set; }
-    void Awake()
+
+    private void Awake()
     {
         Instance = this;
 
@@ -28,7 +29,7 @@ public class GenerateRandomiserSeedWizardController : MonoBehaviour
         newBackAction.Controller = this;
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         if (Instance == this)
             Instance = null;
@@ -40,17 +41,14 @@ public class GenerateRandomiserSeedWizardController : MonoBehaviour
     public SeedGen.SeedGenOptions seedGenOptions;
     private DifficultyMode difficulty;
     private WizardState state;
-
-
-    CleverMenuItemSelectionManager selectionManager;
-    CleverMenuItemLayout layout;
-
-    CleverMenuItem[] options;
-    MessageBox[] messageBoxes;
-    BasicMessageProvider[] tooltips;
+    private CleverMenuItemSelectionManager selectionManager;
+    private CleverMenuItemLayout layout;
+    private CleverMenuItem[] options;
+    private MessageBox[] messageBoxes;
+    private BasicMessageProvider[] tooltips;
 
     /// <summary>When pressing Back how far back should we go. Usually 1 but quickstart skips some steps.</summary>
-    int backStepSize;
+    private int backStepSize;
 
     private void SetOptionCount(int count)
     {
@@ -141,12 +139,12 @@ public class GenerateRandomiserSeedWizardController : MonoBehaviour
         ModifyOptions(state);
     }
 
-    const int QuickStart = 0, NewSeed = 1, ImportSeed = 2, ReadSeed = 3;
-    const int Casual = 0, Standard = 1, Expert = 2, Master = 3;
-    const int Clues = 0, Shards = 1, NoKeyMode = 2;
-    const int ForceTrees = 0, WorldTour = 1, ForceMaps = 2, WarmthFrags = 3;
-    const int Easy = 0, Normal = 1, Hard = 2, OneLife = 3;
-    const int RandomSeed = 0, InputSeed = 1;
+    private const int QuickStart = 0, NewSeed = 1, ImportSeed = 2, ReadSeed = 3;
+    private const int Casual = 0, Standard = 1, Expert = 2, Master = 3;
+    private const int Clues = 0, Shards = 1, NoKeyMode = 2;
+    private const int ForceTrees = 0, WorldTour = 1, ForceMaps = 2, WarmthFrags = 3;
+    private const int Easy = 0, Normal = 1, Hard = 2, OneLife = 3;
+    private const int RandomSeed = 0, InputSeed = 1;
 
     private void ModifyOptions(WizardState state)
     {

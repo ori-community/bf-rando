@@ -1,10 +1,9 @@
-﻿namespace Randomiser
+﻿namespace Randomiser;
+
+public class GrantPickupAction : ActionMethod
 {
-    public class GrantPickupAction : ActionMethod
+    public override void Perform(IContext context)
     {
-        public override void Perform(IContext context)
-        {
-            Randomiser.Grant(MoonGuid);
-        }
+        Randomiser.Grant(MoonGuid);
     }
 }

@@ -1,14 +1,13 @@
 ﻿using HarmonyLib;
 
-namespace Randomiser.Stats
+namespace Randomiser.Stats;
+
+[HarmonyPatch]
+internal static class StatsFunctions
 {
-    [HarmonyPatch]
-    static class StatsFunctions
+    [HarmonyPostfix, HarmonyPatch(typeof(TeleporterController), nameof(TeleporterController.OnFinishedTeleporting))]
+    private static void OnTeleported()
     {
-        [HarmonyPostfix, HarmonyPatch(typeof(TeleporterController), nameof(TeleporterController.OnFinishedTeleporting))]
-        static void OnTeleported()
-        {
-            Randomiser.Stats.GlobalStats.teleports++;
-        }
+        Randomiser.Stats.GlobalStats.teleports++;
     }
 }

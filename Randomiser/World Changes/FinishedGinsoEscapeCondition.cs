@@ -1,11 +1,10 @@
-﻿namespace Randomiser
+﻿namespace Randomiser;
+
+public class FinishedGinsoEscapeCondition : Condition
 {
-    public class FinishedGinsoEscapeCondition : Condition
+    public bool IsTrue = true;
+    public override bool Validate(IContext context)
     {
-        public bool IsTrue = true;
-        public override bool Validate(IContext context)
-        {
-            return Randomiser.Inventory.finishedGinsoEscape == IsTrue;
-        }
+        return Randomiser.Inventory.finishedGinsoEscape == IsTrue;
     }
 }

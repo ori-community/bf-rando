@@ -2,38 +2,36 @@
 using OriModding.BF.Core;
 using UnityEngine;
 
-namespace Randomiser.Utils
-{
+namespace Randomiser.Utils;
+
 #if DEBUG
-    public class CreditsHelper : MonoBehaviour
+public class CreditsHelper : MonoBehaviour
+{
+    private MessageBox messageBox;
+    private FileSystemWatcher watcher;
+
+    private string CreditsPath => RandomiserMod.Instance.GetAssetPath("assets", "credits.txt");
+
+    private void Awake()
     {
-        MessageBox messageBox;
+        messageBox = GetComponent<MessageBox>();
 
-        FileSystemWatcher watcher;
+        watcher = new FileSystemWatcher(Path.GetDirectoryName(CreditsPath));
+        watcher.Filter = "credits.txt";
+        watcher.EnableRaisingEvents = true;
+        watcher.Changed += (sender, e) => RefreshText();
 
-        string CreditsPath => RandomiserMod.Instance.GetAssetPath("assets", "credits.txt");
-
-        void Awake()
-        {
-            messageBox = GetComponent<MessageBox>();
-
-            watcher = new FileSystemWatcher(Path.GetDirectoryName(CreditsPath));
-            watcher.Filter = "credits.txt";
-            watcher.EnableRaisingEvents = true;
-            watcher.Changed += (sender, e) => RefreshText();
-
-            RefreshText();
-        }
-
-        void RefreshText()
-        {
-            messageBox.OverrideText = File.ReadAllText(CreditsPath);
-        }
-
-        void OnDestroy()
-        {
-            watcher.Dispose();
-        }
+        RefreshText();
     }
-#endif
+
+    private void RefreshText()
+    {
+        messageBox.OverrideText = File.ReadAllText(CreditsPath);
+    }
+
+    private void OnDestroy()
+    {
+        watcher.Dispose();
+    }
 }
+#endif

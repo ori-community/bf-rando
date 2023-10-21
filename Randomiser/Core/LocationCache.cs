@@ -2,31 +2,30 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace Randomiser
+namespace Randomiser;
+
+public class LocationCache
 {
-    public class LocationCache
+    public readonly ReadOnlyCollection<Location> skills;
+    public readonly ReadOnlyCollection<Location> skillsExceptSein;
+    public readonly ReadOnlyCollection<Location> progressiveMapstones;
+    private readonly Dictionary<Location.WorldArea, ReadOnlyCollection<Location>> areas;
+
+    public ReadOnlyCollection<Location> LocationsInArea(Location.WorldArea area) => areas[area];
+
+    public LocationCache(List<Location> allLocations)
     {
-        public readonly ReadOnlyCollection<Location> skills;
-        public readonly ReadOnlyCollection<Location> skillsExceptSein;
-        public readonly ReadOnlyCollection<Location> progressiveMapstones;
-        private readonly Dictionary<Location.WorldArea, ReadOnlyCollection<Location>> areas;
+        skills = allLocations.Where(l => l.type == Location.LocationType.Skill).ToList().AsReadOnly();
+        skillsExceptSein = allLocations.Where(l => l.type == Location.LocationType.Skill && l.name != "Sein").ToList().AsReadOnly();
+        progressiveMapstones = allLocations.Where(l => l.type == Location.LocationType.ProgressiveMapstone).ToList().AsReadOnly();
 
-        public ReadOnlyCollection<Location> LocationsInArea(Location.WorldArea area) => areas[area];
-
-        public LocationCache(List<Location> allLocations)
+        var dict = new Dictionary<Location.WorldArea, List<Location>>();
+        foreach (var loc in allLocations)
         {
-            skills = allLocations.Where(l => l.type == Location.LocationType.Skill).ToList().AsReadOnly();
-            skillsExceptSein = allLocations.Where(l => l.type == Location.LocationType.Skill && l.name != "Sein").ToList().AsReadOnly();
-            progressiveMapstones = allLocations.Where(l => l.type == Location.LocationType.ProgressiveMapstone).ToList().AsReadOnly();
-
-            var dict = new Dictionary<Location.WorldArea, List<Location>>();
-            foreach (var loc in allLocations)
-            {
-                if (!dict.ContainsKey(loc.area))
-                    dict[loc.area] = new List<Location>();
-                dict[loc.area].Add(loc);
-            }
-            areas = dict.ToDictionary(a => a.Key, a => a.Value.AsReadOnly());
+            if (!dict.ContainsKey(loc.area))
+                dict[loc.area] = new List<Location>();
+            dict[loc.area].Add(loc);
         }
+        areas = dict.ToDictionary(a => a.Key, a => a.Value.AsReadOnly());
     }
 }

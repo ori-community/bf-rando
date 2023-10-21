@@ -1,16 +1,15 @@
 ﻿using HarmonyLib;
 
-namespace Randomiser
+namespace Randomiser;
+
+[HarmonyPatch(typeof(EntityDamageReciever), nameof(EntityDamageReciever.OnRecieveDamage))]
+internal class PetrifiedPlantPatch
 {
-    [HarmonyPatch(typeof(EntityDamageReciever), nameof(EntityDamageReciever.OnRecieveDamage))]
-    internal class PetrifiedPlantPatch
+    private static void Postfix(EntityDamageReciever __instance)
     {
-        private static void Postfix(EntityDamageReciever __instance)
+        if (__instance.NoHealthLeft && __instance.Entity is PetrifiedPlant)
         {
-            if (__instance.NoHealthLeft && __instance.Entity is PetrifiedPlant)
-            {
-                Randomiser.Grant(__instance.Entity.MoonGuid);
-            }
+            Randomiser.Grant(__instance.Entity.MoonGuid);
         }
     }
 }

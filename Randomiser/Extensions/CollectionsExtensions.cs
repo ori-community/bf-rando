@@ -1,32 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Randomiser
+namespace Randomiser;
+
+public static class CollectionsExtensions
 {
-    public static class CollectionsExtensions
+    public static TValue GetOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key)
     {
-        public static TValue GetOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key)
-        {
-            if (dict.ContainsKey(key))
-                return dict[key];
+        if (dict.ContainsKey(key))
+            return dict[key];
 
-            return default;
-        }
+        return default;
+    }
 
-        public static int ObtainedCount(this ReadOnlyCollection<Location> locations)
+    public static int ObtainedCount(this ReadOnlyCollection<Location> locations)
+    {
+        int count = 0;
+        for (int i = 0; i < locations.Count; i++)
         {
-            int count = 0;
-            for (int i = 0; i < locations.Count; i++)
-            {
-                if (locations[i].HasBeenObtained())
-                    count++;
-            }
-            return count;
+            if (locations[i].HasBeenObtained())
+                count++;
         }
+        return count;
+    }
 
-        public static void AddRange<T>(this List<T> list, params T[] items)
-        {
-            list.AddRange(items);
-        }
+    public static void AddRange<T>(this List<T> list, params T[] items)
+    {
+        list.AddRange(items);
     }
 }

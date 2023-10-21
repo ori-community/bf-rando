@@ -1,11 +1,10 @@
-﻿namespace Randomiser
+﻿namespace Randomiser;
+
+public class DeprogressWizardAction : ActionMethod
 {
-    public class DeprogressWizardAction : ActionMethod
+    public GenerateRandomiserSeedWizardController Controller;
+    public override void Perform(IContext context)
     {
-        public GenerateRandomiserSeedWizardController Controller;
-        public override void Perform(IContext context)
-        {
-            Controller.GoBackwards();
-        }
+        Controller.GoBackwards();
     }
 }

@@ -1,11 +1,10 @@
-﻿namespace Randomiser
+﻿namespace Randomiser;
+
+public enum BonusAbilities
 {
-    public enum BonusAbilities
-    {
-        ExtraAirDash,
-        ExtraDoubleJump,
-        HealthRegen,
-        EnergyRegen,
-        AttackPowerUpgrade
-    }
+    ExtraAirDash,
+    ExtraDoubleJump,
+    HealthRegen,
+    EnergyRegen,
+    AttackPowerUpgrade
 }

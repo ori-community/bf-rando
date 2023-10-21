@@ -283,7 +283,7 @@ public class RandomiserAction : ISerializable
             case RandomiserBonus.WarmthFragment:
                 Randomiser.Inventory.warmthFragments++;
                 return new RandomiserActionResult(Strings.Get("BONUS_WARMTH_FRAGMENT", Randomiser.Inventory.warmthFragments, Randomiser.Seed.WarmthFragmentsRequired),
-                    Randomiser.Inventory.warmthFragments >= Randomiser.Seed.WarmthFragmentsRequired ? '$' : (char?)null);
+                    Randomiser.Inventory.warmthFragments >= Randomiser.Seed.WarmthFragmentsRequired ? '$' : null);
         }
 
         return null;

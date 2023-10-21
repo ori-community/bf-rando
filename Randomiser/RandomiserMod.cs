@@ -21,7 +21,7 @@ public class RandomiserMod : BaseUnityPlugin
     public static RandomiserMod Instance { get; private set; }
     public static new ManualLogSource Logger { get; private set; }
 
-    void Awake()
+    private void Awake()
     {
         try
         {
@@ -72,7 +72,7 @@ public class RandomiserMod : BaseUnityPlugin
         }
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         if (Instance == this)
             Instance = null;

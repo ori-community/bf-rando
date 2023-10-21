@@ -1,12 +1,11 @@
-﻿namespace Randomiser
+﻿namespace Randomiser;
+
+public enum RandomiserWorldEvents
 {
-    public enum RandomiserWorldEvents
-    {
-        WaterVein = 0,
-        CleanWater,
-        GumonSeal,
-        WindRestored,
-        Sunstone,
-        WarmthReturned
-    }
+    WaterVein = 0,
+    CleanWater,
+    GumonSeal,
+    WindRestored,
+    Sunstone,
+    WarmthReturned
 }

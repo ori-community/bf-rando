@@ -1,18 +1,17 @@
 ﻿using HarmonyLib;
 
-namespace Randomiser
-{
-    [HarmonyPatch(typeof(SeinDoorHandler), nameof(SeinDoorHandler.EnterIntoDoor))]
-    internal class ForbidDoorPatch
-    {
-        // Returning false = cannot travel through door
-        private static bool Prefix(Door door)
-        {
-            // Don't let anyone through to the element of warmth
-            if (door.name == "mountHoruExitDoor")
-                return Randomiser.Seed.GoalMode == GoalMode.None || Randomiser.Inventory.goalComplete;
+namespace Randomiser;
 
-            return true;
-        }
+[HarmonyPatch(typeof(SeinDoorHandler), nameof(SeinDoorHandler.EnterIntoDoor))]
+internal class ForbidDoorPatch
+{
+    // Returning false = cannot travel through door
+    private static bool Prefix(Door door)
+    {
+        // Don't let anyone through to the element of warmth
+        if (door.name == "mountHoruExitDoor")
+            return Randomiser.Seed.GoalMode == GoalMode.None || Randomiser.Inventory.goalComplete;
+
+        return true;
     }
 }

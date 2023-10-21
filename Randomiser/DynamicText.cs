@@ -2,180 +2,179 @@
 using System.Text;
 using OriModding.BF.l10n;
 
-namespace Randomiser
+namespace Randomiser;
+
+public static class DynamicText
 {
-    public static class DynamicText
+    public static string BuildProgressString()
     {
-        public static string BuildProgressString()
+        StringBuilder sb = new StringBuilder();
+
+        int trees = Randomiser.TreesFoundExceptSein;
+        int maps = Randomiser.MapstonesRepaired;
+
+        if (Randomiser.Seed.GoalMode == GoalMode.WorldTour)
         {
-            StringBuilder sb = new StringBuilder();
-
-            int trees = Randomiser.TreesFoundExceptSein;
-            int maps = Randomiser.MapstonesRepaired;
-
-            if (Randomiser.Seed.GoalMode == GoalMode.WorldTour)
-            {
-                int relics = Randomiser.RelicsFound;
-                sb.Append(Strings.Get("RANDO_PROGRESS_WORLDTOUR",
-                    trees >= 10 ? "$" : "",
-                    trees,
-                    maps >= 9 ? "$" : "",
-                    maps,
-                    Randomiser.TotalPickupsFound,
-                    relics >= Randomiser.Seed.RelicsRequired ? "$" : "",
-                    relics,
-                    Randomiser.Seed.RelicsRequired
-                ));
-            }
-            else
-            {
-                sb.Append(Strings.Get("RANDO_PROGRESS_0",
-                    trees == 10 ? "$" : "",
-                    trees,
-                    maps == 9 ? "$" : "",
-                    maps,
-                    Randomiser.TotalPickupsFound
-                ));
-            }
-
-            if (Randomiser.Seed.KeyMode == KeyMode.Clues)
-            {
-                Clues.Clue wv = Randomiser.Seed.Clues.WaterVein;
-                Clues.Clue gs = Randomiser.Seed.Clues.GumonSeal;
-                Clues.Clue ss = Randomiser.Seed.Clues.Sunstone;
-
-                sb.AppendLine();
-                sb.Append(Strings.Get("RANDO_PROGRESS_CLUES",
-                    wv.owned ? "*" : "",
-                    wv.revealed ? Strings.Get("AREA_SHORT_" + wv.area) : "????",
-                    gs.owned ? "#" : "",
-                    gs.revealed ? Strings.Get("AREA_SHORT_" + gs.area) : "????",
-                    ss.owned ? "@" : "",
-                    ss.revealed ? Strings.Get("AREA_SHORT_" + ss.area) : "????"
-                ));
-            }
-
-            if (Randomiser.Seed.KeyMode == KeyMode.Shards)
-            {
-                int max = Randomiser.Seed.ShardsRequiredForKey;
-
-                sb.AppendLine();
-                sb.Append(Strings.Get("RANDO_PROGRESS_SHARDS",
-                    Randomiser.Inventory.waterVeinShards == max ? "*" : "",
-                    Randomiser.Inventory.waterVeinShards,
-                    Randomiser.Inventory.gumonSealShards == max ? "#" : "",
-                    Randomiser.Inventory.gumonSealShards,
-                    Randomiser.Inventory.sunstoneShards == max ? "@" : "",
-                    Randomiser.Inventory.sunstoneShards,
-                    max
-                ));
-            }
-
-            return sb.ToString();
+            int relics = Randomiser.RelicsFound;
+            sb.Append(Strings.Get("RANDO_PROGRESS_WORLDTOUR",
+                trees >= 10 ? "$" : "",
+                trees,
+                maps >= 9 ? "$" : "",
+                maps,
+                Randomiser.TotalPickupsFound,
+                relics >= Randomiser.Seed.RelicsRequired ? "$" : "",
+                relics,
+                Randomiser.Seed.RelicsRequired
+            ));
+        }
+        else
+        {
+            sb.Append(Strings.Get("RANDO_PROGRESS_0",
+                trees == 10 ? "$" : "",
+                trees,
+                maps == 9 ? "$" : "",
+                maps,
+                Randomiser.TotalPickupsFound
+            ));
         }
 
-        public static string BuildDetailedGoalString()
+        if (Randomiser.Seed.KeyMode == KeyMode.Clues)
         {
-            StringBuilder sb = new StringBuilder();
+            Clues.Clue wv = Randomiser.Seed.Clues.WaterVein;
+            Clues.Clue gs = Randomiser.Seed.Clues.GumonSeal;
+            Clues.Clue ss = Randomiser.Seed.Clues.Sunstone;
 
-            if (Randomiser.Inventory.goalComplete)
-            {
-                sb.Append(Strings.Get("OBJECTIVE_COMPLETE_TEXT"));
-            }
-            else if (Randomiser.Seed.GoalMode == GoalMode.WorldTour)
-            {
-                sb.AppendLine(Strings.Get("OBJECTIVE_RELICS_FOUND_TEXT"));
-                foreach (var relicLocation in Randomiser.Seed.RelicLocations.OrderBy(l => (int)l.area))
-                {
-                    bool found = relicLocation.HasBeenObtained();
-                    if (found) sb.Append("$");
-                    sb.Append(Strings.Get("AREA_SHORT_" + relicLocation.area.ToString()));
-                    if (found) sb.Append("$");
-                    sb.Append("  ");
-                }
-            }
-            else if (Randomiser.Seed.GoalMode == GoalMode.ForceTrees)
-            {
-                sb.AppendLine(Strings.Get("OBJECTIVE_TREES_FOUND_TEXT"));
-                foreach (var treeLocation in Randomiser.Locations.Cache.skillsExceptSein.OrderBy(l => l.saveIndex))
-                {
-                    bool found = treeLocation.HasBeenObtained();
-                    if (found) sb.Append("$");
-                    sb.Append(Strings.Get("LOCATION_" + treeLocation.name));
-                    if (found) sb.Append("$");
-                    sb.Append("  ");
-                }
-            }
-            else if (Randomiser.Seed.GoalMode == GoalMode.Frags)
-            {
-                sb.Append(Strings.Get("OBJECTIVE_WARMTH_FRAGS_FOUND_TEXT", Randomiser.Inventory.warmthFragments, Randomiser.Seed.WarmthFragmentsRequired));
-            }
-
-            return sb.ToString();
+            sb.AppendLine();
+            sb.Append(Strings.Get("RANDO_PROGRESS_CLUES",
+                wv.owned ? "*" : "",
+                wv.revealed ? Strings.Get("AREA_SHORT_" + wv.area) : "????",
+                gs.owned ? "#" : "",
+                gs.revealed ? Strings.Get("AREA_SHORT_" + gs.area) : "????",
+                ss.owned ? "@" : "",
+                ss.revealed ? Strings.Get("AREA_SHORT_" + ss.area) : "????"
+            ));
         }
 
-        public static string BuildSkillClueString()
+        if (Randomiser.Seed.KeyMode == KeyMode.Shards)
         {
-            StringBuilder sb = new StringBuilder();
+            int max = Randomiser.Seed.ShardsRequiredForKey;
 
-            Location stompLoc = Randomiser.Seed.GetSkillLocation(AbilityType.Stomp);
-            Location grenadeLoc = Randomiser.Seed.GetSkillLocation(AbilityType.Grenade);
+            sb.AppendLine();
+            sb.Append(Strings.Get("RANDO_PROGRESS_SHARDS",
+                Randomiser.Inventory.waterVeinShards == max ? "*" : "",
+                Randomiser.Inventory.waterVeinShards,
+                Randomiser.Inventory.gumonSealShards == max ? "#" : "",
+                Randomiser.Inventory.gumonSealShards,
+                Randomiser.Inventory.sunstoneShards == max ? "@" : "",
+                Randomiser.Inventory.sunstoneShards,
+                max
+            ));
+        }
 
-            if (stompLoc != null)
+        return sb.ToString();
+    }
+
+    public static string BuildDetailedGoalString()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        if (Randomiser.Inventory.goalComplete)
+        {
+            sb.Append(Strings.Get("OBJECTIVE_COMPLETE_TEXT"));
+        }
+        else if (Randomiser.Seed.GoalMode == GoalMode.WorldTour)
+        {
+            sb.AppendLine(Strings.Get("OBJECTIVE_RELICS_FOUND_TEXT"));
+            foreach (var relicLocation in Randomiser.Seed.RelicLocations.OrderBy(l => (int)l.area))
             {
-                bool found = stompLoc.HasBeenObtained();
+                bool found = relicLocation.HasBeenObtained();
                 if (found) sb.Append("$");
-                sb.Append(Strings.Get("SKILL_Stomp"));
-                sb.Append(": ");
-                sb.Append(Strings.Get("AREA_SHORT_" + stompLoc.area));
+                sb.Append(Strings.Get("AREA_SHORT_" + relicLocation.area.ToString()));
                 if (found) sb.Append("$");
-
-                if (grenadeLoc != null)
-                    sb.Append("  ");
+                sb.Append("  ");
             }
+        }
+        else if (Randomiser.Seed.GoalMode == GoalMode.ForceTrees)
+        {
+            sb.AppendLine(Strings.Get("OBJECTIVE_TREES_FOUND_TEXT"));
+            foreach (var treeLocation in Randomiser.Locations.Cache.skillsExceptSein.OrderBy(l => l.saveIndex))
+            {
+                bool found = treeLocation.HasBeenObtained();
+                if (found) sb.Append("$");
+                sb.Append(Strings.Get("LOCATION_" + treeLocation.name));
+                if (found) sb.Append("$");
+                sb.Append("  ");
+            }
+        }
+        else if (Randomiser.Seed.GoalMode == GoalMode.Frags)
+        {
+            sb.Append(Strings.Get("OBJECTIVE_WARMTH_FRAGS_FOUND_TEXT", Randomiser.Inventory.warmthFragments, Randomiser.Seed.WarmthFragmentsRequired));
+        }
+
+        return sb.ToString();
+    }
+
+    public static string BuildSkillClueString()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        Location stompLoc = Randomiser.Seed.GetSkillLocation(AbilityType.Stomp);
+        Location grenadeLoc = Randomiser.Seed.GetSkillLocation(AbilityType.Grenade);
+
+        if (stompLoc != null)
+        {
+            bool found = stompLoc.HasBeenObtained();
+            if (found) sb.Append("$");
+            sb.Append(Strings.Get("SKILL_Stomp"));
+            sb.Append(": ");
+            sb.Append(Strings.Get("AREA_SHORT_" + stompLoc.area));
+            if (found) sb.Append("$");
 
             if (grenadeLoc != null)
-            {
-                bool found = grenadeLoc.HasBeenObtained();
-                if (found) sb.Append("$");
-                sb.Append(Strings.Get("SKILL_Grenade"));
-                sb.Append(": ");
-                sb.Append(Strings.Get("AREA_SHORT_" + grenadeLoc.area));
-                if (found) sb.Append("$");
-            }
-
-            return sb.ToString();
+                sb.Append("  ");
         }
 
-        public static string BuildDiscordActivityStatus()
+        if (grenadeLoc != null)
         {
-            switch (GameStateMachine.Instance.CurrentState)
-            {
-                case GameStateMachine.State.Game:
-                    return "Randomiser: " + GetDiscordGameStatus();
-
-                case GameStateMachine.State.Prologue:
-                    return "Randomiser: Prologue";
-
-                default:
-                    return "Randomiser: In menus";
-            }
+            bool found = grenadeLoc.HasBeenObtained();
+            if (found) sb.Append("$");
+            sb.Append(Strings.Get("SKILL_Grenade"));
+            sb.Append(": ");
+            sb.Append(Strings.Get("AREA_SHORT_" + grenadeLoc.area));
+            if (found) sb.Append("$");
         }
 
-        private static string GetDiscordGameStatus()
+        return sb.ToString();
+    }
+
+    public static string BuildDiscordActivityStatus()
+    {
+        switch (GameStateMachine.Instance.CurrentState)
         {
-            if (Randomiser.Seed.GoalMode == GoalMode.WorldTour)
-                return "World Tour";
+            case GameStateMachine.State.Game:
+                return "Randomiser: " + GetDiscordGameStatus();
 
-            switch (Randomiser.Seed.KeyMode)
-            {
-                case KeyMode.None: return "Free";
-                case KeyMode.Clues: return "Clues";
-                case KeyMode.Shards: return "Shards";
-                case KeyMode.LimitKeys: return "Limit Keys";
-            }
+            case GameStateMachine.State.Prologue:
+                return "Randomiser: Prologue";
 
-            return "In game";
+            default:
+                return "Randomiser: In menus";
         }
+    }
+
+    private static string GetDiscordGameStatus()
+    {
+        if (Randomiser.Seed.GoalMode == GoalMode.WorldTour)
+            return "World Tour";
+
+        switch (Randomiser.Seed.KeyMode)
+        {
+            case KeyMode.None: return "Free";
+            case KeyMode.Clues: return "Clues";
+            case KeyMode.Shards: return "Shards";
+            case KeyMode.LimitKeys: return "Limit Keys";
+        }
+
+        return "In game";
     }
 }

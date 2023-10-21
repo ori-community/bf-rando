@@ -1,31 +1,30 @@
 ﻿using UnityEngine;
 
-namespace Randomiser
+namespace Randomiser;
+
+public class ActivateMultipleBasedOnCondition : MonoBehaviour
 {
-    public class ActivateMultipleBasedOnCondition : MonoBehaviour
+    public GameObject[] Objects;
+    public bool Activate;
+    public Condition Condition;
+
+    private void Awake()
     {
-        public GameObject[] Objects;
-        public bool Activate;
-        public Condition Condition;
+        Run();
+    }
 
-        private void Awake()
-        {
-            Run();
-        }
+    private void FixedUpdate()
+    {
+        Run();
+    }
 
-        private void FixedUpdate()
+    private void Run()
+    {
+        if (Condition)
         {
-            Run();
-        }
-
-        private void Run()
-        {
-            if (Condition)
-            {
-                var active = Condition.Validate(null) == Activate;
-                foreach (var obj in Objects)
-                    obj.SetActive(active);
-            }
+            var active = Condition.Validate(null) == Activate;
+            foreach (var obj in Objects)
+                obj.SetActive(active);
         }
     }
 }

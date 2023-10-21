@@ -1,15 +1,14 @@
 ﻿using HarmonyLib;
 
-namespace Randomiser
+namespace Randomiser;
+
+[HarmonyPatch(typeof(GetAbilityAction), nameof(GetAbilityAction.Perform))]
+internal class FeatherSeinPatch
 {
-    [HarmonyPatch(typeof(GetAbilityAction), nameof(GetAbilityAction.Perform))]
-    internal class FeatherSeinPatch
+    // This is called only when collecting sein or feather - no other skills
+    private static bool Prefix(GetAbilityAction __instance)
     {
-        // This is called only when collecting sein or feather - no other skills
-        private static bool Prefix(GetAbilityAction __instance)
-        {
-            Randomiser.Grant(__instance.MoonGuid);
-            return false;
-        }
+        Randomiser.Grant(__instance.MoonGuid);
+        return false;
     }
 }

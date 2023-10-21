@@ -1,15 +1,14 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 
-namespace Randomiser
+namespace Randomiser;
+
+[HarmonyPatch]
+internal class ShowRandomiserWizard
 {
-    [HarmonyPatch]
-    class ShowRandomiserWizard
+    [HarmonyPostfix, HarmonyPatch(typeof(SaveSlotsUI), nameof(SaveSlotsUI.EmptySaveSlotSelected))]
+    private static void ShowRandomiserWizardOnPress(GameObject ___m_difficultyScreen)
     {
-        [HarmonyPostfix, HarmonyPatch(typeof(SaveSlotsUI), nameof(SaveSlotsUI.EmptySaveSlotSelected))]
-        static void ShowRandomiserWizardOnPress(GameObject ___m_difficultyScreen)
-        {
-            GenerateRandomiserSeedWizardController.Instance.BeginWizard(___m_difficultyScreen);
-        }
+        GenerateRandomiserSeedWizardController.Instance.BeginWizard(___m_difficultyScreen);
     }
 }

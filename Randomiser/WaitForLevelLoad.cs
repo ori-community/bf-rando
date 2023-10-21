@@ -1,17 +1,16 @@
 ﻿using Core;
 using UnityEngine;
 
-namespace Randomiser
+namespace Randomiser;
+
+public class WaitForLevelLoad : CustomYieldInstruction
 {
-    public class WaitForLevelLoad : CustomYieldInstruction
+    private readonly string sceneName;
+
+    public WaitForLevelLoad(string sceneName)
     {
-        private readonly string sceneName;
-
-        public WaitForLevelLoad(string sceneName)
-        {
-            this.sceneName = sceneName;
-        }
-
-        public override bool keepWaiting => Scenes.Manager.CurrentScene?.Scene != sceneName;
+        this.sceneName = sceneName;
     }
+
+    public override bool keepWaiting => Scenes.Manager.CurrentScene?.Scene != sceneName;
 }

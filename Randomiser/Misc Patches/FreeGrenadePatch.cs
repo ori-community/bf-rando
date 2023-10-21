@@ -1,13 +1,12 @@
 ﻿using HarmonyLib;
 
-namespace Randomiser
+namespace Randomiser;
+
+[HarmonyPatch(typeof(SeinGrenadeAttack), "get_EnergyCostFinal")]
+internal class FreeGrenadePatch
 {
-    [HarmonyPatch(typeof(SeinGrenadeAttack), "get_EnergyCostFinal")]
-    internal class FreeGrenadePatch
+    private static void Postfix(ref float __result)
     {
-        private static void Postfix(ref float __result)
-        {
-            __result = 0;
-        }
+        __result = 0;
     }
 }
