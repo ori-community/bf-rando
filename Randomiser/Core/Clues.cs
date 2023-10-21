@@ -31,9 +31,9 @@ public class Clues : ISerializable
         revealOrder = new int[3];
         locations = new MoonGuid[]
         {
-            new MoonGuid(1,1,1,1),
-            new MoonGuid(1,1,1,1),
-            new MoonGuid(1,1,1,1)
+            MoonGuid.Empty,
+            MoonGuid.Empty,
+            MoonGuid.Empty
         };
     }
 
@@ -64,14 +64,9 @@ public class Clues : ISerializable
 
     public void Serialize(Archive ar)
     {
-        Console.WriteLine(ar.Reading ? "READING" : "WRITING");
-        Console.WriteLine(ar == null ? "AR IS NULL" : "AR IS NOT NULL");
-        Console.WriteLine("here?");
         revealOrder = ar.Serialize(revealOrder);
-        Console.WriteLine("2");
         locations[0] = ar.Serialize(locations[0]);
         locations[1] = ar.Serialize(locations[1]);
         locations[2] = ar.Serialize(locations[2]);
-        Console.WriteLine("3");
     }
 }

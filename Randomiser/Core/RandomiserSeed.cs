@@ -100,7 +100,7 @@ public class RandomiserSeed : SaveSerialize
         LogicPreset = 0;
         map.Clear();
         seed = "";
-        Clues = new Clues(Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, null, null, null);
+        Clues = new Clues(Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, Clues.ClueType.WaterVein, MoonGuid.Empty, MoonGuid.Empty, MoonGuid.Empty);
         senseList.Clear();
         relicLocations.Clear();
         skillLocations.Clear();

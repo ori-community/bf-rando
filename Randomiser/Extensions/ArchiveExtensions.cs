@@ -54,21 +54,9 @@ public static class ArchiveExtensions
     {
         if (archive.Writing)
         {
-            Console.WriteLine("Thingo");
-            if (moonGuid == null)
+            if (moonGuid is null) // IMPORTANT: Do NOT use "moonGuid == null" because that will ALWAYS return false!
                 throw new ArgumentNullException(nameof(moonGuid), "Trying to serialize a null guid");
-            var bytes = moonGuid.ToByteArray();
-            Console.WriteLine(bytes[0]);
-            Console.WriteLine(bytes[1]);
-            Console.WriteLine(bytes[2]);
-            Console.WriteLine(bytes[3]);
-
-            Console.WriteLine("Didn't throw at least");
-            Console.WriteLine(moonGuid.A);
-            Console.WriteLine(moonGuid.A + 1);
-            Console.WriteLine((moonGuid.A + 1).ToString());
             archive.Serialize(moonGuid.A);
-            Console.WriteLine("serialized A");
             archive.Serialize(moonGuid.B);
             archive.Serialize(moonGuid.C);
             archive.Serialize(moonGuid.D);
