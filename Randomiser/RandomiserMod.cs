@@ -16,6 +16,7 @@ namespace Randomiser;
 [BepInDependency(OriModding.BF.UiLib.PluginInfo.PLUGIN_GUID)]
 [BepInDependency(OriModding.BF.InputLib.PluginInfo.PLUGIN_GUID)]
 [BepInDependency(OriModding.BF.ConfigMenu.PluginInfo.PLUGIN_GUID, BepInDependency.DependencyFlags.SoftDependency)]
+[BepInDependency(KFT.OriBF.DiscordLib.PluginInfo.PLUGIN_GUID, BepInDependency.DependencyFlags.SoftDependency)]
 public class RandomiserMod : BaseUnityPlugin
 {
     private Harmony harmony;
@@ -27,7 +28,6 @@ public class RandomiserMod : BaseUnityPlugin
         try
         {
             Logger = base.Logger;
-            Logger.LogInfo("Awake()");
             Instance = this;
 
             harmony = new Harmony("com.ori.randomiser");
@@ -54,20 +54,42 @@ public class RandomiserMod : BaseUnityPlugin
             SceneBootstrap.RegisterHandler(RandomiserBootstrap.SetupBootstrap, "Randomiser");
             Settings.Bind(this);
 
-            //if (ModLoader.GetMod("Discord") != null)
+            //if (this.TryGetPlugin(KFT.OriBF.DiscordLib.PluginInfo.PLUGIN_GUID, out var discordPlugin))
             //{
-            //    IPC.SetValue("Discord.ActivityDetails", (Func<string>)DynamicText.BuildDiscordActivityStatus);
+            //    Logger.LogInfo("DiscordLib loaded");
+            //    (discordPlugin as KFT.OriBF.DiscordLib.Plugin).GetActivityDetails = DynamicText.BuildDiscordActivityStatus;
+            //}
+            //else
+            //{
+            //    Logger.LogInfo("DiscordLib is not loaded");
             //}
 
             this.TryGetPlugin(OriModding.BF.InputLib.PluginInfo.PLUGIN_GUID, out var inputPlugin);
             RandomiserInput.Initialise(this, inputPlugin as OriModding.BF.InputLib.Plugin);
-            
+
 
             On.SaveGameController.GetSaveFilePath += (orig, self, slotIndex, backupIndex) =>
             {
                 string filePath = orig(self, slotIndex, backupIndex);
                 return filePath.Substring(0, filePath.Length - 3) + "randosav";
             };
+
+            // TODO teleporting to credits on win
+            //On.TeleporterController.OnFadedToBlack += (orig, self) =>
+            //{
+            //    orig(self);
+            //    Logger.LogMessage("================= RANDO FADED TO BLACK =================");
+
+            //    GameController.Instance.MainMenuCanBeOpened = true;
+            //    GameController.Instance.RequireInitialValues = true;
+            //    GameStateMachine.Instance.SetToWatchCutscene();
+
+            //    if (Characters.Sein)
+            //        Destroy(Characters.Sein.gameObject);
+            //    if (Characters.Ori)
+            //        Destroy(Characters.Ori.gameObject);
+            //    GoToSceneController.Instance.GoToScene("creditsScreen");
+            //};
 
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_NAME} is loaded!");
         }

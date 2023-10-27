@@ -11,6 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="lib\**" />
+    <EmbeddedResource Remove="lib\**" />
+    <None Remove="lib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.*" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
@@ -28,6 +34,12 @@
 
   <ItemGroup>
     <None Include="Assets\LocationData.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="KFT.OriBF.DiscordLib">
+      <HintPath>lib\KFT.OriBF.DiscordLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
     <Target Name="Copy Assets and Dependencies" AfterTargets="Build" Condition=" '$(Configuration)' == 'Debug' and '$(OriNoCopy)' == '' and '$(OriPluginPath)' != '' ">

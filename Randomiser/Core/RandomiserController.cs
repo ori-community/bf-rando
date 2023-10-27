@@ -1,5 +1,6 @@
 ﻿using Core;
 using Game;
+using HarmonyLib;
 using OriModding.BF.l10n;
 using UnityEngine;
 
@@ -78,7 +79,7 @@ public class RandomiserController : MonoBehaviour, ISuspendable
         if (IsSuspended)
             return;
 
-        if (RandomiserInput.ReturnToStart.Value.OnPressed)
+        if (RandomiserInput.OpenTeleport.Value.OnPressed)
         {
             if (Characters.Sein && Characters.Sein.Controller.CanMove && Characters.Sein.Active)
                 OpenTeleportMenu();
@@ -107,5 +108,39 @@ public class RandomiserController : MonoBehaviour, ISuspendable
             if (Randomiser.Inventory.skillClueFound)
                 Randomiser.Message(DynamicText.BuildSkillClueString());
         }
+    }
+
+    public void TeleportToCredits()
+    {
+        // TODO
+        var m_isTeleporting = Traverse.Create(TeleporterController.Instance).Field("m_isTeleporting");
+        var m_teleportingStartSound = Traverse.Create(TeleporterController.Instance).Field("m_teleportingStartSound");
+        var m_startTime = Traverse.Create(TeleporterController.Instance).Field("m_startTime");
+
+        Vector3 creditsPosition = new Vector3(-2478.001f, -592.9817f, -21f);
+
+        Scenes.Manager.AdditivelyLoadScenesAtPosition(creditsPosition, true, false, true);
+
+        m_isTeleporting.SetValue(true);
+        Characters.Sein.Controller.PlayAnimation(TeleporterController.Instance.TeleportingStartAnimation);
+        if (GameMapUI.Instance.Teleporters.StartTeleportingSound)
+        {
+            Sound.Play(GameMapUI.Instance.Teleporters.StartTeleportingSound.GetSound(null), Vector3.zero, null);
+        }
+        if (Characters.Sein.Abilities.Carry && Characters.Sein.Abilities.Carry.CurrentCarryable != null)
+        {
+            Characters.Sein.Abilities.Carry.CurrentCarryable.Drop();
+        }
+        if (TeleporterController.Instance.TeleportingStartSound != null)
+        {
+            m_teleportingStartSound.SetValue(Sound.Play(TeleporterController.Instance.TeleportingStartSound.GetSound(null), Characters.Sein.Position, () => m_teleportingStartSound.SetValue(null)));
+        }
+        Characters.Sein.Controller.OnTriggeredAnimationFinished += TeleporterController.OnFinishedTeleportingStartAnimation;
+
+        m_startTime.SetValue(Time.time);
+        //foreach (SavePedestal savePedestal in SavePedestal.All)
+        //{
+        //    savePedestal.OnBeginTeleporting();
+        //}
     }
 }

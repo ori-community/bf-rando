@@ -1,5 +1,4 @@
-﻿using System;
-using BepInEx.Configuration;
+﻿using BepInEx.Configuration;
 using OriModding.BF.InputLib;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ namespace Randomiser;
 
 public class RandomiserInput
 {
-    public static ConfigEntry<CustomInput> ReturnToStart { get; private set; }
+    public static ConfigEntry<CustomInput> OpenTeleport { get; private set; }
     public static ConfigEntry<CustomInput> ShowProgress { get; private set; }
     public static ConfigEntry<CustomInput> ShowLastPickup { get; private set; }
     public static ConfigEntry<CustomInput> ShowGoal { get; private set; }
@@ -15,7 +14,7 @@ public class RandomiserInput
 
     internal static void Initialise(RandomiserMod randomiserMod, Plugin plugin)
     {
-        ReturnToStart = plugin.BindAndRegister(randomiserMod, "Randomiser", "Return To Start",
+        OpenTeleport = plugin.BindAndRegister(randomiserMod, "Randomiser", "Teleport",
             new CustomInput().AddChord(KeyCode.LeftAlt, KeyCode.R));
 
         ShowProgress = plugin.BindAndRegister(randomiserMod, "Randomiser", "Show Progress",

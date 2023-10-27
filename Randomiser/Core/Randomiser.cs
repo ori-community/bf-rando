@@ -94,6 +94,7 @@ public class Randomiser
 
     public static void CheckGoal()
     {
+        //RandomiserController.Instance.TeleportToCredits();
         if (!Inventory.goalComplete && Seed.GoalMode != GoalMode.None)
         {
             if (IsGoalMet(Seed.GoalMode))
