@@ -1,5 +1,6 @@
 ﻿using Core;
 using Game;
+using OriModding.BF.l10n;
 using UnityEngine;
 
 namespace Randomiser;
@@ -67,7 +68,7 @@ public class RandomiserController : MonoBehaviour, ISuspendable
             }
             else
             {
-                Randomiser.Message("No #Spirit Wells# have been activated yet!");
+                Randomiser.Message(Strings.Get("RANDO_NO_SPIRIT_WELLS"));
             }
         }
     }
@@ -77,38 +78,34 @@ public class RandomiserController : MonoBehaviour, ISuspendable
         if (IsSuspended)
             return;
 
-        if (UnityEngine.Input.GetKey(KeyCode.LeftAlt) || UnityEngine.Input.GetKey(KeyCode.RightAlt))
+        if (RandomiserInput.ReturnToStart.Value.OnPressed)
         {
             if (Characters.Sein && Characters.Sein.Controller.CanMove && Characters.Sein.Active)
-            {
-                if (UnityEngine.Input.GetKeyDown(KeyCode.R))
-                {
-                    OpenTeleportMenu();
-                }
+                OpenTeleportMenu();
+        }
 
-                if (UnityEngine.Input.GetKeyDown(KeyCode.P))
-                {
-                    Randomiser.Message(DynamicText.BuildProgressString());
-                }
-            }
+        if (RandomiserInput.ShowProgress.Value.OnPressed)
+        {
+            if (Characters.Sein && Characters.Sein.Controller.CanMove && Characters.Sein.Active)
+                Randomiser.Message(DynamicText.BuildProgressString());
+        }
 
-            if (UnityEngine.Input.GetKeyDown(KeyCode.T))
-            {
-                Randomiser.Message(Randomiser.Inventory.lastPickup);
-            }
+        if (RandomiserInput.ShowLastPickup.Value.OnPressed)
+        {
+            Randomiser.Message(Randomiser.Inventory.lastPickup);
+        }
 
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                string text = DynamicText.BuildDetailedGoalString();
-                if (!string.IsNullOrEmpty(text))
-                    Randomiser.Message(text);
-            }
+        if (RandomiserInput.ShowGoal.Value.OnPressed)
+        {
+            string text = DynamicText.BuildDetailedGoalString();
+            if (!string.IsNullOrEmpty(text))
+                Randomiser.Message(text);
+        }
 
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha6))
-            {
-                if (Randomiser.Inventory.skillClueFound)
-                    Randomiser.Message(DynamicText.BuildSkillClueString());
-            }
+        if (RandomiserInput.ShowSkillClue.Value.OnPressed)
+        {
+            if (Randomiser.Inventory.skillClueFound)
+                Randomiser.Message(DynamicText.BuildSkillClueString());
         }
     }
 }

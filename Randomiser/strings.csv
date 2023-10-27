@@ -86,6 +86,7 @@ RANDO_EXIT_BLOCKED_WorldTour,"You can't enter until you find all of the #relics#
 RANDO_EXIT_BLOCKED_Frags,"You can't enter until you find all of the #warmth fragments#!"
 RANDO_GOOD_LUCK,"Good luck on your rando!"
 RANDO_ESCAPE_AVAILABLE,"#Horu escape# is now available"
+RANDO_NO_SPIRIT_WELLS,"No #Spirit Wells# have been activated yet!"
 OBJECTIVE_HORU_ESCAPE,"Find and Restore #Mount Horu#!"
 OBJECTIVE_FORCE_TREES,"Visit all 10 #Skill Trees#"
 OBJECTIVE_WORLD_TOUR,"Find all {0} #Relics# hidden throughout Nibel"

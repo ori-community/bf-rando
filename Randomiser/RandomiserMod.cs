@@ -14,6 +14,7 @@ namespace Randomiser;
 [BepInDependency(OriModding.BF.Core.PluginInfo.PLUGIN_GUID)]
 [BepInDependency(OriModding.BF.l10n.PluginInfo.PLUGIN_GUID)]
 [BepInDependency(OriModding.BF.UiLib.PluginInfo.PLUGIN_GUID)]
+[BepInDependency(OriModding.BF.InputLib.PluginInfo.PLUGIN_GUID)]
 [BepInDependency(OriModding.BF.ConfigMenu.PluginInfo.PLUGIN_GUID, BepInDependency.DependencyFlags.SoftDependency)]
 public class RandomiserMod : BaseUnityPlugin
 {
@@ -57,6 +58,10 @@ public class RandomiserMod : BaseUnityPlugin
             //{
             //    IPC.SetValue("Discord.ActivityDetails", (Func<string>)DynamicText.BuildDiscordActivityStatus);
             //}
+
+            this.TryGetPlugin(OriModding.BF.InputLib.PluginInfo.PLUGIN_GUID, out var inputPlugin);
+            RandomiserInput.Initialise(this, inputPlugin as OriModding.BF.InputLib.Plugin);
+            
 
             On.SaveGameController.GetSaveFilePath += (orig, self, slotIndex, backupIndex) =>
             {
