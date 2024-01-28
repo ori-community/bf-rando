@@ -3,7 +3,6 @@ using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 using OriModding.BF.Core;
-using OriModding.BF.Core.Hooks;
 using OriModding.BF.Core.SeinAbilities;
 using Randomiser.Multiplayer.Archipelago;
 using Randomiser.Stats;
@@ -12,8 +11,6 @@ namespace Randomiser;
 
 [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
 [BepInDependency(OriModding.BF.Core.PluginInfo.PLUGIN_GUID)]
-[BepInDependency(OriModding.BF.l10n.PluginInfo.PLUGIN_GUID)]
-[BepInDependency(OriModding.BF.UiLib.PluginInfo.PLUGIN_GUID)]
 [BepInDependency(OriModding.BF.InputLib.PluginInfo.PLUGIN_GUID)]
 [BepInDependency(OriModding.BF.ConfigMenu.PluginInfo.PLUGIN_GUID, BepInDependency.DependencyFlags.SoftDependency)]
 [BepInDependency(KFT.OriBF.DiscordLib.PluginInfo.PLUGIN_GUID, BepInDependency.DependencyFlags.SoftDependency)]
@@ -45,9 +42,10 @@ public class RandomiserMod : BaseUnityPlugin
             CustomSeinAbilityManager.Add<ExtraAirDash>("88f2d7ca-f017-43f1-8dbb-3ae2afcb4ff4");
             CustomSeinAbilityManager.Add<StatsController>("491cb0ce-cb60-4fe0-96c1-fa7012d6994b");
 
-            Hooks.Game.OnStartNewGame += () =>
+            On.GameController.SetupGameplay += (orig, self, sceneRoot, worldEventsOnAwake) =>
             {
                 // This runs when ori rises from the ground after the prologue
+                orig(self, sceneRoot, worldEventsOnAwake);
                 Randomiser.Message(AreaMapObjectiveText.GetGoalMessage());
             };
 
