@@ -4,1875 +4,2143 @@
         "name": "FirstPickup",
         "type": "ExpSmall",
         "area": "Glades",
-        "position": "(92.0, -227.5)"
+        "position": "(92.0, -227.5)",
+        "uberId": "(1,1)"
     },
     {
         "guid": "946296aa-9449-4a2b-8d71-9d8dc9354e04",
         "name": "FirstEnergyCell",
         "type": "EnergyCell",
         "area": "Glades",
-        "position": "(-27.4, -256.3)"
+        "position": "(-27.4, -256.3)",
+        "uberId": "(1,2)"
     },
     {
         "guid": "6bb0cafc-6dd1-47f2-85dd-8567b3a60e15",
         "name": "FronkeyFight",
         "type": "ExpSmall",
         "area": "Glades",
-        "position": "(-154.5, -271.8)"
+        "position": "(-154.5, -271.8)",
+        "uberId": "(1,3)"
     },
     {
         "guid": "df30b319-f085-4e36-9ad7-04f14f8087ee",
         "name": "Sein",
         "type": "Skill",
         "area": "Glades",
-        "position": "(-164.1, -261.4)"
+        "position": "(-164.1, -261.4)",
+        "uberId": "(1,4)"
     },
     {
         "guid": "bc6b3f8d-e278-460e-86b6-7ece93e236ce",
         "name": "GladesKeystone1",
         "type": "Keystone",
         "area": "Glades",
-        "position": "(83.1, -222.3)"
+        "position": "(83.1, -222.3)",
+        "uberId": "(1,5)"
     },
     {
         "guid": "e06e9d7a-e566-4594-aba9-87b8e660a89c",
         "name": "GladesKeystone2",
         "type": "Keystone",
         "area": "Glades",
-        "position": "(-11.1, -206.4)"
+        "position": "(-11.1, -206.4)",
+        "uberId": "(1,6)"
     },
     {
         "guid": "8da3969b-7ae7-4894-8801-49727a1634e7",
         "name": "GladesGrenadePool",
         "type": "ExpLarge",
         "area": "Glades",
-        "position": "(59.0, -280.9)"
+        "position": "(59.0, -280.9)",
+        "uberId": "(1,7)"
     },
     {
         "guid": "096fb36f-de47-477e-85a2-7bb9f4a8920a",
         "name": "GladesGrenadeTree",
         "type": "AbilityCell",
         "area": "Glades",
-        "position": "(83.0, -196.8)"
+        "position": "(83.0, -196.8)",
+        "uberId": "(1,8)"
     },
     {
         "guid": "f648eef0-1c8b-449b-bf87-8260ba65ffab",
         "name": "GladesMainPool",
         "type": "ExpMedium",
         "area": "Glades",
-        "position": "(5.7, -241.8)"
+        "position": "(5.7, -241.8)",
+        "uberId": "(1,9)"
     },
     {
         "guid": "5c65dca8-1dab-410f-a03a-a6cdacb3a273",
         "name": "GladesMainPoolDeep",
         "type": "EnergyCell",
         "area": "Glades",
-        "position": "(-40.1, -239.8)"
+        "position": "(-40.1, -239.8)",
+        "uberId": "(1,10)"
     },
     {
         "guid": "aec98a28-a213-4a32-9149-9189ad294a82",
         "name": "FronkeyWalkRoof",
         "type": "ExpLarge",
         "area": "Glades",
-        "position": "(257.1, -199.7)"
+        "position": "(257.1, -199.7)",
+        "uberId": "(1,11)"
     },
     {
         "guid": "5d7a6107-ca33-4820-a7cf-0a9db233d16c",
         "name": "FourthHealthCell",
         "type": "HealthCell",
         "area": "Glades",
-        "position": "(-80.5, -189.0)"
+        "position": "(-80.5, -189.0)",
+        "uberId": "(1,12)"
     },
     {
         "guid": "b4d6891b-6985-44b7-a38a-7207a2c0eb9a",
         "name": "GladesMapKeystone",
         "type": "Keystone",
         "area": "Glades",
-        "position": "(-59.4, -244.3)"
+        "position": "(-59.4, -244.3)",
+        "uberId": "(1,13)"
     },
     {
         "guid": "9be6ea7c-ea0e-4127-bf98-7d1ab19d73dd",
         "name": "WallJumpSkillTree",
         "type": "Skill",
         "area": "Glades",
-        "position": "(-316.0, -308.0)"
+        "position": "(-316.0, -308.0)",
+        "uberId": "(1,14)"
     },
     {
         "guid": "32cc3987-9ef6-461d-ae6a-f38f3288bb5d",
         "name": "LeftGladesHiddenExp",
         "type": "ExpSmall",
         "area": "Glades",
-        "position": "(-283.4, -236.4)"
+        "position": "(-283.4, -236.4)",
+        "uberId": "(1,15)"
     },
     {
         "guid": "3cb3ac42-c9ca-47be-a6dd-b5415220b07b",
         "name": "DeathGauntletExp",
         "type": "ExpMedium",
         "area": "Grove",
-        "position": "(303.4, -190.5)"
+        "position": "(303.4, -190.5)",
+        "uberId": "(2,1)"
     },
     {
         "guid": "227e146b-13d0-4043-b0b7-f3a2ceacaa6e",
         "name": "DeathGauntletEnergyCell",
         "type": "EnergyCell",
         "area": "Grotto",
-        "position": "(423.8, -169.2)"
+        "position": "(423.8, -169.2)",
+        "uberId": "(3,1)"
     },
     {
         "guid": "df93a803-a0b8-4c29-a46f-894babb371c9",
         "name": "GladesMap",
         "type": "Mapstone",
         "area": "Glades",
-        "position": "(-81.0, -248.0)"
+        "position": "(-81.0, -248.0)",
+        "uberId": "(1,16)"
     },
     {
         "guid": "febeb52a-4b83-4385-b0f2-c8c3a863f646",
         "name": "AboveFourthHealth",
         "type": "AbilityCell",
         "area": "Glades",
-        "position": "(-48.3, -166.0)"
+        "position": "(-48.3, -166.0)",
+        "uberId": "(1,17)"
     },
     {
         "guid": "20aecfe4-bb54-42ef-b108-365f1bd2d2d2",
         "name": "WallJumpAreaExp",
         "type": "ExpLarge",
         "area": "Glades",
-        "position": "(-245.7, -277.0)"
+        "position": "(-245.7, -277.0)",
+        "uberId": "(1,18)"
     },
     {
         "guid": "15e6e704-70cf-4410-ae45-00ee9e9e74e1",
         "name": "WallJumpAreaEnergyCell",
         "type": "EnergyCell",
         "area": "Glades",
-        "position": "(-336.8, -288.2)"
+        "position": "(-336.8, -288.2)",
+        "uberId": "(1,19)"
     },
     {
         "guid": "3923d025-375d-4e4a-ab65-b4be0b95b47e",
         "name": "LeftGladesExp",
         "type": "ExpSmall",
         "area": "Glades",
-        "position": "(-247.1, -207.1)"
+        "position": "(-247.1, -207.1)",
+        "uberId": "(1,20)"
     },
     {
         "guid": "0e87e1d6-3fb6-47c1-a996-e54429ddf5b0",
         "name": "LeftGladesKeystone",
         "type": "Keystone",
         "area": "Glades",
-        "position": "(-238.3, -212.4)"
+        "position": "(-238.3, -212.4)",
+        "uberId": "(1,21)"
     },
     {
         "guid": "39f08f0c-9eb5-468b-a132-a1f325df358b",
         "name": "LeftGladesMapstone",
         "type": "MapstoneFragment",
         "area": "Glades",
-        "position": "(-184.9, -227.6)"
+        "position": "(-184.9, -227.6)",
+        "uberId": "(1,22)"
     },
     {
         "guid": "9135c75e-d9c0-45ca-9b05-e4ac4bbe75fb",
         "name": "SpiritCavernsKeystone1",
         "type": "Keystone",
         "area": "Glades",
-        "position": "(-182.1, -194.0)"
+        "position": "(-182.1, -194.0)",
+        "uberId": "(1,23)"
     },
     {
         "guid": "927cd88f-8daf-462f-8e0f-5f5886fc96c4",
         "name": "SpiritCavernsKeystone2",
         "type": "Keystone",
         "area": "Glades",
-        "position": "(-217.4, -183.9)"
+        "position": "(-217.4, -183.9)",
+        "uberId": "(1,24)"
     },
     {
         "guid": "9f4f6208-7d94-42b3-a9c0-7fa64ff186f3",
         "name": "SpiritCavernsTopRightKeystone",
         "type": "Keystone",
         "area": "Glades",
-        "position": "(-177.9, -154.5)"
+        "position": "(-177.9, -154.5)",
+        "uberId": "(1,25)"
     },
     {
         "guid": "d61613b4-d469-40ab-afe7-d5ffd438ce90",
         "name": "SpiritCavernsTopLeftKeystone",
         "type": "Keystone",
         "area": "Glades",
-        "position": "(-217.5, -146.3)"
+        "position": "(-217.5, -146.3)",
+        "uberId": "(1,26)"
     },
     {
         "guid": "3d70c596-68de-4606-8f2e-c132ac4021f6",
         "name": "SpiritCavernsAbilityCell",
         "type": "AbilityCell",
         "area": "Glades",
-        "position": "(-216.4, -176.4)"
+        "position": "(-216.4, -176.4)",
+        "uberId": "(1,27)"
     },
     {
         "guid": "b905425d-a894-48ae-9c27-0b21e2b11b53",
         "name": "GladesLaser",
         "type": "EnergyCell",
         "area": "Glades",
-        "position": "(-155.0, -186.0)"
+        "position": "(-155.0, -186.0)",
+        "uberId": "(1,28)"
     },
     {
         "guid": "4319a75b-01d6-49c0-9bac-1d10f5c59a82",
         "name": "GladesLaserGrenade",
         "type": "AbilityCell",
         "area": "Glades",
-        "position": "(-165.4, -140.4)"
+        "position": "(-165.4, -140.4)",
+        "uberId": "(1,29)"
     },
     {
         "guid": "9887f949-0a02-4ca0-974d-fe400569ece9",
         "name": "SpiritTreeExp",
         "type": "ExpMedium",
         "area": "Grove",
-        "position": "(-168.1, -103.0)"
+        "position": "(-168.1, -103.0)",
+        "uberId": "(2,2)"
     },
     {
         "guid": "db35e94b-0392-48ff-990e-c24befa00a2e",
         "name": "ChargeFlameSkillTree",
         "type": "Skill",
         "area": "Grove",
-        "position": "(-56.0, -160.0)"
+        "position": "(-56.0, -160.0)",
+        "uberId": "(2,3)"
     },
     {
         "guid": "50e3ac87-6cb0-46a5-9b6d-61fc512bf491",
         "name": "ChargeFlameAreaPlant",
         "type": "Plant",
         "area": "Grove",
-        "position": "(43.0, -156.0)"
+        "position": "(43.0, -156.0)",
+        "uberId": "(2,4)"
     },
     {
         "guid": "31ce9625-ba55-4bb3-87c0-9d4350a7e512",
         "name": "ChargeFlameAreaExp",
         "type": "ExpMedium",
         "area": "Glades",
-        "position": "(5.0, -193.2)"
+        "position": "(5.0, -193.2)",
+        "uberId": "(1,30)"
     },
     {
         "guid": "7bbd835d-c1cb-4144-be49-5df3d7e76835",
         "name": "AboveChargeFlameTreeExp",
         "type": "ExpMedium",
         "area": "Grove",
-        "position": "(-14.2, -95.7)"
+        "position": "(-14.2, -95.7)",
+        "uberId": "(2,5)"
     },
     {
         "guid": "9a078c11-d254-4bef-823f-9b8c9a224936",
         "name": "SpiderSacEnergyDoor",
         "type": "AbilityCell",
         "area": "Grove",
-        "position": "(64.0, -109.4)"
+        "position": "(64.0, -109.4)",
+        "uberId": "(2,6)"
     },
     {
         "guid": "41d64105-b524-4a62-85fd-a44e0c458ff8",
         "name": "SpiderSacHealthCell",
         "type": "HealthCell",
         "area": "Grove",
-        "position": "(151.8, -117.8)"
+        "position": "(151.8, -117.8)",
+        "uberId": "(2,7)"
     },
     {
         "guid": "e03c5ccc-09ed-4f74-9aa2-82335dd6f538",
         "name": "SpiderSacEnergyCell",
         "type": "EnergyCell",
         "area": "Grove",
-        "position": "(60.7, -155.8)"
+        "position": "(60.7, -155.8)",
+        "uberId": "(2,8)"
     },
     {
         "guid": "82e91575-ec36-4bfa-b050-e87fc3684cb5",
         "name": "SpiderSacGrenadeDoor",
         "type": "AbilityCell",
         "area": "Grove",
-        "position": "(93.4, -92.5)"
+        "position": "(93.4, -92.5)",
+        "uberId": "(2,9)"
     },
     {
         "guid": "fac86702-fb8e-4f69-9c10-875ca4c054d3",
         "name": "DashAreaOrbRoomExp",
         "type": "ExpMedium",
         "area": "Blackroot",
-        "position": "(154.0, -291.5)"
+        "position": "(154.0, -291.5)",
+        "uberId": "(11,1)"
     },
     {
         "guid": "a0e20125-fd8d-403e-8f05-18bc816178fb",
         "name": "DashAreaAbilityCell",
         "type": "AbilityCell",
         "area": "Blackroot",
-        "position": "(183.8, -291.5)"
+        "position": "(183.8, -291.5)",
+        "uberId": "(11,2)"
     },
     {
         "guid": "a8959482-6024-4de2-9c4a-85904321498a",
         "name": "DashAreaRoofExp",
         "type": "ExpMedium",
         "area": "Blackroot",
-        "position": "(197.3, -229.1)"
+        "position": "(197.3, -229.1)",
+        "uberId": "(11,3)"
     },
     {
         "guid": "bb0847e0-a88b-4449-9bf6-f9944e5024df",
         "name": "DashSkillTree",
         "type": "Skill",
         "area": "Blackroot",
-        "position": "(292.0, -256.0)"
+        "position": "(292.0, -256.0)",
+        "uberId": "(11,4)"
     },
     {
         "guid": "a334b21b-691d-4b79-b149-4027b2aed3e5",
         "name": "DashAreaPlant",
         "type": "Plant",
         "area": "Blackroot",
-        "position": "(313.0, -232.0)"
+        "position": "(313.0, -232.0)",
+        "uberId": "(11,5)"
     },
     {
         "guid": "821112d5-830d-4dd0-a16c-6f574a4122aa",
         "name": "RazielNo",
         "type": "ExpMedium",
         "area": "Blackroot",
-        "position": "(304.4, -303.2)"
+        "position": "(304.4, -303.2)",
+        "uberId": "(11,6)"
     },
     {
         "guid": "c09a7bd5-d703-40ec-92b9-c3a840478aa8",
         "name": "DashAreaMapstone",
         "type": "MapstoneFragment",
         "area": "Blackroot",
-        "position": "(346.0, -255.0)"
+        "position": "(346.0, -255.0)",
+        "uberId": "(11,7)"
     },
     {
         "guid": "b73d5139-430f-4076-8357-91638db8aa4c",
         "name": "BlackrootTeleporterHealthCell",
         "type": "HealthCell",
         "area": "Blackroot",
-        "position": "(395.0, -309.1)"
+        "position": "(395.0, -309.1)",
+        "uberId": "(11,8)"
     },
     {
         "guid": "6b12d651-6eae-46b3-9949-94fa73404a45",
         "name": "BlackrootMap",
         "type": "Mapstone",
         "area": "Blackroot",
-        "position": "(418.0, -291.0)"
+        "position": "(418.0, -291.0)",
+        "uberId": "(11,9)"
     },
     {
         "guid": "965ca68c-a41d-47a4-ac63-64a932c04177",
         "name": "BlackrootBoulderExp",
         "type": "ExpMedium",
         "area": "Blackroot",
-        "position": "(432.0, -324.0)"
+        "position": "(432.0, -324.0)",
+        "uberId": "(11,10)"
     },
     {
         "guid": "a90db45e-56b4-405b-80d6-83bc4607b921",
         "name": "GrenadeSkillTree",
         "type": "Skill",
         "area": "Blackroot",
-        "position": "(72.0, -380.0)"
+        "position": "(72.0, -380.0)",
+        "uberId": "(11,11)"
     },
     {
         "guid": "f9f705a1-e2c4-4856-a6b3-ce08a0b15807",
         "name": "GrenadeAreaExp",
         "type": "ExpMedium",
         "area": "Blackroot",
-        "position": "(224.0, -359.1)"
+        "position": "(224.0, -359.1)",
+        "uberId": "(11,12)"
     },
     {
         "guid": "bcd84bf8-2b02-442a-bd2d-798687ead2aa",
         "name": "GrenadeAreaAbilityCell",
         "type": "AbilityCell",
         "area": "Blackroot",
-        "position": "(252.4, -331.9)"
+        "position": "(252.4, -331.9)",
+        "uberId": "(11,13)"
     },
     {
         "guid": "07983731-614c-4123-8bec-1eb036fbdceb",
         "name": "LowerBlackrootAbilityCell",
         "type": "AbilityCell",
         "area": "Blackroot",
-        "position": "(279.0, -375.0)"
+        "position": "(279.0, -375.0)",
+        "uberId": "(11,14)"
     },
     {
         "guid": "66dabcc6-dafa-47a4-9c2d-0be6f915198c",
         "name": "LowerBlackrootLaserAbilityCell",
         "type": "AbilityCell",
         "area": "Blackroot",
-        "position": "(391.5, -423.0)"
+        "position": "(391.5, -423.0)",
+        "uberId": "(11,15)"
     },
     {
         "guid": "e9cec978-351e-4ab4-b37b-c3d90b11e17e",
         "name": "LowerBlackrootLaserExp",
         "type": "ExpMedium",
         "area": "Blackroot",
-        "position": "(339.0, -418.8)"
+        "position": "(339.0, -418.8)",
+        "uberId": "(11,16)"
     },
     {
         "guid": "d8e6c0cd-f194-4913-8776-f23882161070",
         "name": "LowerBlackrootGrenadeThrow",
         "type": "AbilityCell",
         "area": "Blackroot",
-        "position": "(208.5, -431.5)"
+        "position": "(208.5, -431.5)",
+        "uberId": "(11,17)"
     },
     {
         "guid": "b4f9a336-4147-49e4-8ea6-83d46493c154",
         "name": "LostGroveAbilityCell",
         "type": "AbilityCell",
         "area": "Blackroot",
-        "position": "(459.5, -506.8)"
+        "position": "(459.5, -506.8)",
+        "uberId": "(11,18)"
     },
     {
         "guid": "c06b2949-b01a-4c67-a44f-ae2c9476ebb8",
         "name": "LostGroveHiddenExp",
         "type": "ExpMedium",
         "area": "Blackroot",
-        "position": "(462.4, -489.5)"
+        "position": "(462.4, -489.5)",
+        "uberId": "(11,19)"
     },
     {
         "guid": "aa4ee768-a4ab-456f-8c38-4d7433ca6c81",
         "name": "LostGroveTeleporter",
         "type": "ExpMedium",
         "area": "Blackroot",
-        "position": "(307.3, -525.2)"
+        "position": "(307.3, -525.2)",
+        "uberId": "(11,20)"
     },
     {
         "guid": "1a3b17d1-5331-4315-885c-c4a012e527f4",
         "name": "LostGroveLongSwim",
         "type": "AbilityCell",
         "area": "Blackroot",
-        "position": "(527.0, -544.0)"
+        "position": "(527.0, -544.0)",
+        "uberId": "(11,21)"
     },
     {
         "guid": "f1d27bac-0911-4a0e-8901-626982bb909e",
         "name": "HollowGroveMapstone",
         "type": "MapstoneFragment",
         "area": "Grove",
-        "position": "(300.0, -94.0)"
+        "position": "(300.0, -94.0)",
+        "uberId": "(2,10)"
     },
     {
         "guid": "6e75862e-6c9f-488a-b4cf-760dcaa22f9e",
         "name": "OuterSwampAbilityCell",
         "type": "AbilityCell",
         "area": "Swamp",
-        "position": "(703.2, -82.3)"
+        "position": "(703.2, -82.3)",
+        "uberId": "(5,1)"
     },
     {
         "guid": "5e0ff4fa-86c1-4ac6-afd3-94734b0ec95b",
         "name": "OuterSwampStompExp",
         "type": "ExpMedium",
         "area": "Swamp",
-        "position": "(618.5, -98.0)"
+        "position": "(618.5, -98.0)",
+        "uberId": "(5,2)"
     },
     {
         "guid": "c7978ab3-94f4-4040-b4a6-0d254d03017a",
         "name": "OuterSwampHealthCell",
         "type": "HealthCell",
         "area": "Swamp",
-        "position": "(581.5, -67.0)"
+        "position": "(581.5, -67.0)",
+        "uberId": "(5,3)"
     },
     {
         "guid": "fd4e2fed-e523-4327-9db6-667088becf80",
         "name": "HollowGroveMap",
         "type": "Mapstone",
         "area": "Grove",
-        "position": "(351.0, -119.0)"
+        "position": "(351.0, -119.0)",
+        "uberId": "(2,11)"
     },
     {
         "guid": "ffb8ac3d-8be4-4dbf-aa37-c7cec997d207",
         "name": "HollowGroveTreeAbilityCell",
         "type": "AbilityCell",
         "area": "Grove",
-        "position": "(333.1, -61.9)"
+        "position": "(333.1, -61.9)",
+        "uberId": "(2,12)"
     },
     {
         "guid": "8f928efd-0550-4c86-835a-d813bd8aacd3",
         "name": "HollowGroveMapPlant",
         "type": "Plant",
         "area": "Grove",
-        "position": "(365.0, -119.0)"
+        "position": "(365.0, -119.0)",
+        "uberId": "(2,13)"
     },
     {
         "guid": "5a507a02-ede0-4720-8db8-d1a0e3e99929",
         "name": "HollowGroveTreePlant",
         "type": "Plant",
         "area": "Grove",
-        "position": "(330.0, -78.0)"
+        "position": "(330.0, -78.0)",
+        "uberId": "(2,14)"
     },
     {
         "guid": "216d4b2e-843f-462d-a04a-155da8b2938f",
         "name": "SwampEntrancePlant",
         "type": "Plant",
         "area": "Swamp",
-        "position": "(628.0, -120.0)"
+        "position": "(628.0, -120.0)",
+        "uberId": "(5,4)"
     },
     {
         "guid": "f647b2e0-1032-4cea-9fa9-f13e0ffa660f",
         "name": "MoonGrottoStompPlant",
         "type": "Plant",
         "area": "Grotto",
-        "position": "(435.0, -140.0)"
+        "position": "(435.0, -140.0)",
+        "uberId": "(3,2)"
     },
     {
         "guid": "07e6b6ae-01ba-42cf-b468-b32d2347feb3",
         "name": "OuterSwampMortarPlant",
         "type": "Plant",
         "area": "Swamp",
-        "position": "(515.0, -100.0)"
+        "position": "(515.0, -100.0)",
+        "uberId": "(5,5)"
     },
     {
         "guid": "5db1c38e-62da-4839-b5dd-1b28db826a1c",
         "name": "GroveWaterStompAbilityCell",
         "type": "AbilityCell",
         "area": "Grove",
-        "position": "(354.0, -178.5)"
+        "position": "(354.0, -178.5)",
+        "uberId": "(2,15)"
     },
     {
         "guid": "308487d6-451c-40f4-86a2-631ea7a4ff93",
         "name": "OuterSwampGrenadeExp",
         "type": "ExpLarge",
         "area": "Swamp",
-        "position": "(666.0, -48.0)"
+        "position": "(666.0, -48.0)",
+        "uberId": "(5,6)"
     },
     {
         "guid": "3dc121cd-1460-4387-aad8-88c700d97dab",
         "name": "SwampTeleporterAbilityCell",
         "type": "AbilityCell",
         "area": "Swamp",
-        "position": "(409.5, -34.5)"
+        "position": "(409.5, -34.5)",
+        "uberId": "(5,7)"
     },
     {
         "guid": "a36910b8-8ab6-4097-8f18-3548d4bc2ebc",
         "name": "GroveAboveSpiderWaterExp",
         "type": "ExpLarge",
         "area": "Grove",
-        "position": "(174.2, -105.6)"
+        "position": "(174.2, -105.6)",
+        "uberId": "(2,16)"
     },
     {
         "guid": "4570a95a-58c8-41bd-b5b3-13948d1cecf1",
         "name": "GroveAboveSpiderWaterHealthCell",
         "type": "HealthCell",
         "area": "Grove",
-        "position": "(261.4, -117.7)"
+        "position": "(261.4, -117.7)",
+        "uberId": "(2,17)"
     },
     {
         "guid": "01216f37-d036-4d76-ab97-5036b92121b0",
         "name": "GroveAboveSpiderWaterEnergyCell",
         "type": "EnergyCell",
         "area": "Grove",
-        "position": "(272.5, -97.5)"
+        "position": "(272.5, -97.5)",
+        "uberId": "(2,18)"
     },
     {
         "guid": "111c6aa1-9b11-49d6-b20e-80af97f0c8c7",
         "name": "GroveSpiderWaterSwim",
         "type": "ExpMedium",
         "area": "Grove",
-        "position": "(187.3, -163.9)"
+        "position": "(187.3, -163.9)",
+        "uberId": "(2,19)"
     },
     {
         "guid": "cf38993c-f94f-45b8-b0f9-119e257c02d7",
         "name": "DeathGauntletSwimEnergyDoor",
         "type": "AbilityCell",
         "area": "Grove",
-        "position": "(339.0, -216.0)"
+        "position": "(339.0, -216.0)",
+        "uberId": "(2,20)"
     },
     {
         "guid": "c563573f-ebfc-4b8f-8e2d-16aebd0a8698",
         "name": "DeathGauntletStompSwim",
         "type": "ExpLarge",
         "area": "Grotto",
-        "position": "(356.8, -207.1)"
+        "position": "(356.8, -207.1)",
+        "uberId": "(3,3)"
     },
     {
         "guid": "9eeb188b-99e3-4783-bbe6-e5440fe8faca",
         "name": "AboveGrottoTeleporterExp",
         "type": "ExpMedium",
         "area": "Grotto",
-        "position": "(477.0, -140.0)"
+        "position": "(477.0, -140.0)",
+        "uberId": "(3,4)"
     },
     {
         "guid": "93918644-d27f-48fa-a1ae-4587dfc1af39",
         "name": "GrottoLasersRoofExp",
         "type": "ExpMedium",
         "area": "Grotto",
-        "position": "(432.0, -108.0)"
+        "position": "(432.0, -108.0)",
+        "uberId": "(3,5)"
     },
     {
         "guid": "45d1f68e-1e7b-4bad-8f20-185f34fe8c8a",
         "name": "IcelessExp",
         "type": "ExpMedium",
         "area": "Grove",
-        "position": "(365.2, -109.1)"
+        "position": "(365.2, -109.1)",
+        "uberId": "(2,21)"
     },
     {
         "guid": "7774dc60-7d2c-43cf-8be8-75a2eb8ad89e",
         "name": "BelowGrottoTeleporterPlant",
         "type": "Plant",
         "area": "Grotto",
-        "position": "(540.0, -220.0)"
+        "position": "(540.0, -220.0)",
+        "uberId": "(3,6)"
     },
     {
         "guid": "fe6f5315-4db5-42e9-b240-d25ae5e4aff2",
         "name": "LeftGrottoTeleporterExp",
         "type": "ExpLarge",
         "area": "Grotto",
-        "position": "(450.0, -166.8)"
+        "position": "(450.0, -166.8)",
+        "uberId": "(3,7)"
     },
     {
         "guid": "cb8e6952-0852-4337-84ac-4adbca2e2b73",
         "name": "OuterSwampMortarAbilityCell",
         "type": "AbilityCell",
         "area": "Swamp",
-        "position": "(502.0, -108.0)"
+        "position": "(502.0, -108.0)",
+        "uberId": "(5,8)"
     },
     {
         "guid": "56a4b631-7d43-4fda-9d5f-ac1d454bcab9",
         "name": "SwampEntranceSwim",
         "type": "ExpLarge",
         "area": "Swamp",
-        "position": "(595.0, -136.0)"
+        "position": "(595.0, -136.0)",
+        "uberId": "(5,9)"
     },
     {
         "guid": "818751c2-f958-4afa-b71d-d39f9853461d",
         "name": "BelowGrottoTeleporterHealthCell",
         "type": "HealthCell",
         "area": "Grotto",
-        "position": "(543.6, -189.4)"
+        "position": "(543.6, -189.4)",
+        "uberId": "(3,8)"
     },
     {
         "guid": "dbc518b6-ec15-4d73-88c0-0aee01e1614c",
         "name": "GrottoEnergyDoorSwim",
         "type": "ExpMedium",
         "area": "Grotto",
-        "position": "(423.0, -274.0)"
+        "position": "(423.0, -274.0)",
+        "uberId": "(3,9)"
     },
     {
         "guid": "80ba61d0-281f-4fe8-883a-0b04320a5200",
         "name": "GrottoEnergyDoorHealthCell",
         "type": "HealthCell",
         "area": "Grotto",
-        "position": "(424.0, -220.0)"
+        "position": "(424.0, -220.0)",
+        "uberId": "(3,10)"
     },
     {
         "guid": "a3e8287b-7f53-497f-9dd2-92e6807d9f35",
         "name": "GrottoSwampDrainAccessExp",
         "type": "ExpMedium",
         "area": "Grotto",
-        "position": "(552.0, -141.5)"
+        "position": "(552.0, -141.5)",
+        "uberId": "(3,11)"
     },
     {
         "guid": "97361c03-6a9c-4e7e-afc2-bbd1fff37ef8",
         "name": "GrottoSwampDrainAccessPlant",
         "type": "Plant",
         "area": "Grotto",
-        "position": "(537.0, -176.0)"
+        "position": "(537.0, -176.0)",
+        "uberId": "(3,12)"
     },
     {
         "guid": "ac4c2a10-b3c3-4805-bc4d-d8dd51b2fe34",
         "name": "GrottoHideoutFallAbilityCell",
         "type": "AbilityCell",
         "area": "Grotto",
-        "position": "(451.0, -296.0)"
+        "position": "(451.0, -296.0)",
+        "uberId": "(3,13)"
     },
     {
         "guid": "eb9be108-9834-4192-a14b-cc6ca5c5eb7a",
         "name": "GumoHideoutMapstone",
         "type": "MapstoneFragment",
         "area": "Grotto",
-        "position": "(513.0, -413.0)"
+        "position": "(513.0, -413.0)",
+        "uberId": "(3,14)"
     },
     {
         "guid": "e2a87ba7-6179-439e-b610-0f424d600fef",
         "name": "GumoHideoutMiniboss",
         "type": "Keystone",
         "area": "Grotto",
-        "position": "(620.0, -404.0)"
+        "position": "(620.0, -404.0)",
+        "uberId": "(3,15)"
     },
     {
         "guid": "ce03775a-859f-4117-b88c-4e5cdcd63abe",
         "name": "GumoHideoutCrusherExp",
         "type": "ExpMedium",
         "area": "Grotto",
-        "position": "(572.5, -378.5)"
+        "position": "(572.5, -378.5)",
+        "uberId": "(3,16)"
     },
     {
         "guid": "4cd7b2de-aa6d-4ea6-99f0-ed4748765194",
         "name": "GumoHideoutCrusherKeystone",
         "type": "Keystone",
         "area": "Grotto",
-        "position": "(590.0, -384.0)"
+        "position": "(590.0, -384.0)",
+        "uberId": "(3,17)"
     },
     {
         "guid": "e9324310-3a82-49ec-8823-1b79e828b65f",
         "name": "GumoHideoutRightHangingExp",
         "type": "ExpSmall",
         "area": "Grotto",
-        "position": "(496.0, -369.0)"
+        "position": "(496.0, -369.0)",
+        "uberId": "(3,18)"
     },
     {
         "guid": "c54266b0-44eb-4ef9-86cd-8efa8f0e3377",
         "name": "GumoHideoutLeftHangingExp",
         "type": "ExpSmall",
         "area": "Grotto",
-        "position": "(467.5, -369.0)"
+        "position": "(467.5, -369.0)",
+        "uberId": "(3,19)"
     },
     {
         "guid": "f8c47a8b-74d8-495f-8920-a2fcb9c83a0a",
         "name": "GumoHideoutRedirectAbilityCell",
         "type": "AbilityCell",
         "area": "Grotto",
-        "position": "(449.0, -430.0)"
+        "position": "(449.0, -430.0)",
+        "uberId": "(3,20)"
     },
     {
         "guid": "5051e7e8-3361-46fc-9edf-8470b28bf7df",
         "name": "GumoHideoutMap",
         "type": "Mapstone",
         "area": "Grotto",
-        "position": "(477.0, -389.0)"
+        "position": "(477.0, -389.0)",
+        "uberId": "(3,21)"
     },
     {
         "guid": "83a91676-9217-4d5f-8ae5-ef6189d6ebfe",
         "name": "DoubleJumpSkillTree",
         "type": "Skill",
         "area": "Grotto",
-        "position": "(784.0, -412.0)"
+        "position": "(784.0, -412.0)",
+        "uberId": "(3,22)"
     },
     {
         "guid": "5601a577-4fe0-4baa-aa82-24baa01ebcd8",
         "name": "DoubleJumpAreaExp",
         "type": "ExpMedium",
         "area": "Grotto",
-        "position": "(759.0, -398.0)"
+        "position": "(759.0, -398.0)",
+        "uberId": "(3,23)"
     },
     {
         "guid": "1a34da08-b071-434c-bb16-5061d90dbb23",
         "name": "GumoHideoutEnergyCell",
         "type": "EnergyCell",
         "area": "Grotto",
-        "position": "(545.8, -357.9)"
+        "position": "(545.8, -357.9)",
+        "uberId": "(3,24)"
     },
     {
         "guid": "76b64647-1a59-4fa5-8dbc-9a9db47afe6e",
         "name": "GumoHideoutRockfallExp",
         "type": "ExpMedium",
         "area": "Grotto",
-        "position": "(567.6, -246.2)"
+        "position": "(567.6, -246.2)",
+        "uberId": "(3,25)"
     },
     {
         "guid": "ed6776f6-fe53-4fdc-b6c3-82ae8863a0a7",
         "name": "WaterVein",
         "type": "Event",
         "area": "Grotto",
-        "position": "(500.0, -248.0)"
+        "position": "(500.0, -248.0)",
+        "uberId": "(3,26)"
     },
     {
         "guid": "99d20fdb-93ae-4a56-8099-50db65fcc038",
         "name": "LeftGumoHideoutExp",
         "type": "ExpMedium",
         "area": "Grotto",
-        "position": "(406.9, -386.2)"
+        "position": "(406.9, -386.2)",
+        "uberId": "(3,27)"
     },
     {
         "guid": "055b2efc-5c0d-48df-b459-c0597a6157a0",
         "name": "LeftGumoHideoutHealthCell",
         "type": "HealthCell",
         "area": "Grotto",
-        "position": "(393.8, -375.6)"
+        "position": "(393.8, -375.6)",
+        "uberId": "(3,28)"
     },
     {
         "guid": "f26afebd-eb6e-4632-b221-92d933a9ce71",
         "name": "LeftGumoHideoutLowerPlant",
         "type": "Plant",
         "area": "Grotto",
-        "position": "(447.0, -368.0)"
+        "position": "(447.0, -368.0)",
+        "uberId": "(3,29)"
     },
     {
         "guid": "1e5ffc6a-4955-442e-8e55-83cc6dc98bae",
         "name": "LeftGumoHideoutUpperPlant",
         "type": "Plant",
         "area": "Grotto",
-        "position": "(439.0, -344.0)"
+        "position": "(439.0, -344.0)",
+        "uberId": "(3,30)"
     },
     {
         "guid": "aae4f932-9adf-493b-a7c2-610f7155800b",
         "name": "GumoHideoutRedirectPlant",
         "type": "Plant",
         "area": "Grotto",
-        "position": "(492.0, -400.0)"
+        "position": "(492.0, -400.0)",
+        "uberId": "(3,31)"
     },
     {
         "guid": "3848b58f-6b4d-458c-82c5-d12da775c239",
         "name": "LeftGumoHideoutSwim",
         "type": "ExpMedium",
         "area": "Grotto",
-        "position": "(397.0, -411.5)"
+        "position": "(397.0, -411.5)",
+        "uberId": "(3,32)"
     },
     {
         "guid": "191a7af3-09ce-400a-b46f-c42e3795a91a",
         "name": "GumoHideoutRedirectEnergyCell",
         "type": "EnergyCell",
         "area": "Grotto",
-        "position": "(515.4, -441.9)"
+        "position": "(515.4, -441.9)",
+        "uberId": "(3,33)"
     },
     {
         "guid": "effd752c-50ad-4ac0-95fd-fae40eee581c",
         "name": "GumoHideoutRedirectExp",
         "type": "ExpLarge",
         "area": "Grotto",
-        "position": "(505.3, -439.4)"
+        "position": "(505.3, -439.4)",
+        "uberId": "(3,34)"
     },
     {
         "guid": "5525f151-36cf-44bf-924b-8a0ccc9f7854",
         "name": "FarLeftGumoHideoutExp",
         "type": "ExpMedium",
         "area": "Grotto",
-        "position": "(328.9, -353.7)"
+        "position": "(328.9, -353.7)",
+        "uberId": "(3,35)"
     },
     {
         "guid": "d903d308-ba71-4ed4-a5a8-27d1c01250e3",
         "name": "SwampEntranceAbilityCell",
         "type": "AbilityCell",
         "area": "Swamp",
-        "position": "(643.5, -127.5)"
+        "position": "(643.5, -127.5)",
+        "uberId": "(5,10)"
     },
     {
         "guid": "981f27e8-b14d-474a-a2f0-99eb418d45a1",
         "name": "DeathGauntletRoofHealthCell",
         "type": "HealthCell",
         "area": "Grove",
-        "position": "(321.7, -179.1)"
+        "position": "(321.7, -179.1)",
+        "uberId": "(2,22)"
     },
     {
         "guid": "9b46304b-0b29-4d72-bb28-c6068ef3304b",
         "name": "DeathGauntletRoofPlant",
         "type": "Plant",
         "area": "Grove",
-        "position": "(342.0, -179.0)"
+        "position": "(342.0, -179.0)",
+        "uberId": "(2,23)"
     },
     {
         "guid": "0f0951ec-975e-446d-b434-259a40dde5cc",
         "name": "LowerGinsoHiddenExp",
         "type": "ExpMedium",
         "area": "Ginso",
-        "position": "(523.0, 142.0)"
+        "position": "(523.0, 142.0)",
+        "uberId": "(4,1)"
     },
     {
         "guid": "930cc8c6-d894-4be9-8b68-5ddb33e2cc9a",
         "name": "LowerGinsoKeystone1",
         "type": "Keystone",
         "area": "Ginso",
-        "position": "(531.0, 267.0)"
+        "position": "(531.0, 267.0)",
+        "uberId": "(4,2)"
     },
     {
         "guid": "10d7d1cd-05a1-4cda-8358-ffb70309ada4",
         "name": "LowerGinsoKeystone2",
         "type": "Keystone",
         "area": "Ginso",
-        "position": "(540.0, 277.0)"
+        "position": "(540.0, 277.0)",
+        "uberId": "(4,3)"
     },
     {
         "guid": "35b2689e-8ecb-4f4d-9434-10b9bfdc778e",
         "name": "LowerGinsoKeystone3",
         "type": "Keystone",
         "area": "Ginso",
-        "position": "(508.0, 304.0)"
+        "position": "(508.0, 304.0)",
+        "uberId": "(4,4)"
     },
     {
         "guid": "dd7b36d5-af5a-44dc-8f2f-071d2729c35a",
         "name": "LowerGinsoKeystone4",
         "type": "Keystone",
         "area": "Ginso",
-        "position": "(529.0, 297.0)"
+        "position": "(529.0, 297.0)",
+        "uberId": "(4,5)"
     },
     {
         "guid": "d15bed0b-b493-4931-8822-4f8c91a782d3",
         "name": "LowerGinsoPlant",
         "type": "Plant",
         "area": "Ginso",
-        "position": "(540.0, 101.0)"
+        "position": "(540.0, 101.0)",
+        "uberId": "(4,6)"
     },
     {
         "guid": "d094cce4-3b65-454f-b5c9-7e6ed7dcc436",
         "name": "BashSkillTree",
         "type": "Skill",
         "area": "Ginso",
-        "position": "(532.0, 328.0)"
+        "position": "(532.0, 328.0)",
+        "uberId": "(4,7)"
     },
     {
         "guid": "32419a38-e045-48dc-b9af-84f192f34b68",
         "name": "BashAreaExp",
         "type": "ExpMedium",
         "area": "Ginso",
-        "position": "(518.4, 339.8)"
+        "position": "(518.4, 339.8)",
+        "uberId": "(4,8)"
     },
     {
         "guid": "e5d4683c-2909-4d5a-b5a2-6184af83f66f",
         "name": "UpperGinsoLowerKeystone",
         "type": "Keystone",
         "area": "Ginso",
-        "position": "(507.0, 476.0)"
+        "position": "(507.0, 476.0)",
+        "uberId": "(4,9)"
     },
     {
         "guid": "94a7bf35-e1f1-4be6-ab6d-276d18e36fe6",
         "name": "UpperGinsoRightKeystone",
         "type": "Keystone",
         "area": "Ginso",
-        "position": "(535.0, 488.0)"
+        "position": "(535.0, 488.0)",
+        "uberId": "(4,10)"
     },
     {
         "guid": "dff38fe5-bc28-4709-875e-4cc7870484b1",
         "name": "UpperGinsoUpperRightKeystone",
         "type": "Keystone",
         "area": "Ginso",
-        "position": "(531.0, 502.0)"
+        "position": "(531.0, 502.0)",
+        "uberId": "(4,11)"
     },
     {
         "guid": "b3e67ad6-4be0-4fba-b3a9-84dca30eb78e",
         "name": "UpperGinsoUpperLeftKeystone",
         "type": "Keystone",
         "area": "Ginso",
-        "position": "(508.0, 498.0)"
+        "position": "(508.0, 498.0)",
+        "uberId": "(4,12)"
     },
     {
         "guid": "290b4d70-e069-4bab-948a-473bdb723377",
         "name": "UpperGinsoRedirectLowerExp",
         "type": "ExpMedium",
         "area": "Ginso",
-        "position": "(517.1, 384.4)"
+        "position": "(517.1, 384.4)",
+        "uberId": "(4,13)"
     },
     {
         "guid": "dad100fb-2cd5-4796-9eb3-5833e513a583",
         "name": "UpperGinsoRedirectUpperExp",
         "type": "ExpMedium",
         "area": "Ginso",
-        "position": "(530.5, 407.0)"
+        "position": "(530.5, 407.0)",
+        "uberId": "(4,14)"
     },
     {
         "guid": "86516ca1-f515-4d4c-a01a-48370ad334d6",
         "name": "UpperGinsoEnergyCell",
         "type": "EnergyCell",
         "area": "Ginso",
-        "position": "(536.6, 434.7)"
+        "position": "(536.6, 434.7)",
+        "uberId": "(4,15)"
     },
     {
         "guid": "a72abfba-4389-4714-a5f4-1fd606ac7dd8",
         "name": "TopGinsoLeftLowerExp",
         "type": "ExpMedium",
         "area": "Ginso",
-        "position": "(456.9, 566.1)"
+        "position": "(456.9, 566.1)",
+        "uberId": "(4,16)"
     },
     {
         "guid": "abaaf3cb-a9f3-45f0-8755-c09dc03dfdfa",
         "name": "TopGinsoLeftUpperExp",
         "type": "ExpMedium",
         "area": "Ginso",
-        "position": "(471.2, 614.8)"
+        "position": "(471.2, 614.8)",
+        "uberId": "(4,17)"
     },
     {
         "guid": "008f4c83-8e59-4640-9bdd-ac60a7c121c0",
         "name": "TopGinsoRightPlant",
         "type": "Plant",
         "area": "Ginso",
-        "position": "(610.0, 611.0)"
+        "position": "(610.0, 611.0)",
+        "uberId": "(4,18)"
     },
     {
         "guid": "41f363b4-1d7b-4788-9bf0-66d56fd82b9c",
         "name": "GinsoEscapeSpiderExp",
         "type": "ExpLarge",
         "area": "Ginso",
-        "position": "(534.5, 661.5)"
+        "position": "(534.5, 661.5)",
+        "uberId": "(4,19)"
     },
     {
         "guid": "38f99d93-1c86-4ca5-a782-4c79a8f30311",
         "name": "GinsoEscapeJumpPadExp",
         "type": "ExpMedium",
         "area": "Ginso",
-        "position": "(537.5, 733.6)"
+        "position": "(537.5, 733.6)",
+        "uberId": "(4,20)"
     },
     {
         "guid": "3b098597-20a4-4471-80bd-d0bf1d84ed14",
         "name": "GinsoEscapeProjectileExp",
         "type": "ExpMedium",
         "area": "Ginso",
-        "position": "(533.5, 827.3)"
+        "position": "(533.5, 827.3)",
+        "uberId": "(4,21)"
     },
     {
         "guid": "fb37b950-223e-4e1e-9261-11fa135a4bde",
         "name": "GinsoEscapeHangingExp",
         "type": "ExpMedium",
         "area": "Ginso",
-        "position": "(519.3, 867.6)"
+        "position": "(519.3, 867.6)",
+        "uberId": "(4,22)"
     },
     {
         "guid": "12728fe9-7224-46aa-b315-7790e2bd8efc",
         "name": "GinsoEscapeExit",
         "type": "Event",
         "area": "Ginso",
-        "position": "(548.0, 952.0)"
+        "position": "(548.0, 952.0)",
+        "uberId": "(4,23)"
     },
     {
         "guid": "d5e3a6dc-2cd8-46da-9120-6863dfce00bd",
         "name": "SwampMap",
         "type": "Mapstone",
         "area": "Swamp",
-        "position": "(677.0, -129.0)"
+        "position": "(677.0, -129.0)",
+        "uberId": "(5,11)"
     },
     {
         "guid": "d1306ce2-990b-4d51-bce3-2e5557927670",
         "name": "InnerSwampDrainExp",
         "type": "ExpMedium",
         "area": "Swamp",
-        "position": "(637.0, -162.2)"
+        "position": "(637.0, -162.2)",
+        "uberId": "(5,12)"
     },
     {
         "guid": "d1f5b054-1050-44dd-bd77-53cc3d430dd3",
         "name": "InnerSwampHiddenSwimExp",
         "type": "ExpMedium",
         "area": "Swamp",
-        "position": "(761.9, -173.5)"
+        "position": "(761.9, -173.5)",
+        "uberId": "(5,13)"
     },
     {
         "guid": "f7c585e3-3b73-42ab-8664-56a17a85a238",
         "name": "InnerSwampSwimLeftKeystone",
         "type": "Keystone",
         "area": "Swamp",
-        "position": "(684.0, -205.0)"
+        "position": "(684.0, -205.0)",
+        "uberId": "(5,14)"
     },
     {
         "guid": "0cc53366-fc0f-4163-9021-ece2ae0751bc",
         "name": "InnerSwampSwimRightKeystone",
         "type": "Keystone",
         "area": "Swamp",
-        "position": "(766.0, -183.0)"
+        "position": "(766.0, -183.0)",
+        "uberId": "(5,15)"
     },
     {
         "guid": "a976fb6d-0db9-4ff3-becb-fd8cb98e7e98",
         "name": "InnerSwampSwimMapstone",
         "type": "MapstoneFragment",
         "area": "Swamp",
-        "position": "(796.0, -210.0)"
+        "position": "(796.0, -210.0)",
+        "uberId": "(5,16)"
     },
     {
         "guid": "ebe89d18-678d-4654-84a2-ca94fe1831a2",
         "name": "InnerSwampStompExp",
         "type": "ExpMedium",
         "area": "Swamp",
-        "position": "(770.9, -148.0)"
+        "position": "(770.9, -148.0)",
+        "uberId": "(5,17)"
     },
     {
         "guid": "2da844e9-4e55-4ec0-a71a-b0c6abd6e1b0",
         "name": "InnerSwampEnergyCell",
         "type": "EnergyCell",
         "area": "Swamp",
-        "position": "(722.3, -95.5)"
+        "position": "(722.3, -95.5)",
+        "uberId": "(5,18)"
     },
     {
         "guid": "d02c2919-1426-44e9-a72b-f48a6c7c68e1",
         "name": "StompSkillTree",
         "type": "Skill",
         "area": "Swamp",
-        "position": "(860.0, -96.0)"
+        "position": "(860.0, -96.0)",
+        "uberId": "(5,19)"
     },
     {
         "guid": "08edaf56-f649-4e8c-8ee6-0fab727507d7",
         "name": "StompAreaRoofExp",
         "type": "ExpLarge",
         "area": "Swamp",
-        "position": "(914.9, -71.3)"
+        "position": "(914.9, -71.3)",
+        "uberId": "(5,20)"
     },
     {
         "guid": "9f0907c3-fc53-4943-910e-79cef197c9bf",
         "name": "StompAreaExp",
         "type": "ExpMedium",
         "area": "Swamp",
-        "position": "(884.0, -98.3)"
+        "position": "(884.0, -98.3)",
+        "uberId": "(5,21)"
     },
     {
         "guid": "195e0dd8-4871-40db-9c6a-a8912684e944",
         "name": "StompAreaGrenadeExp",
         "type": "ExpLarge",
         "area": "Swamp",
-        "position": "(874.2, -143.6)"
+        "position": "(874.2, -143.6)",
+        "uberId": "(5,22)"
     },
     {
         "guid": "dbd78938-437d-4bad-bac3-6f9f3471fd62",
         "name": "HoruFieldsHiddenExp",
         "type": "ExpLarge",
         "area": "Grove",
-        "position": "(97.5, -37.9)"
+        "position": "(97.5, -37.9)",
+        "uberId": "(2,24)"
     },
     {
         "guid": "82db7562-639e-4a64-ab5e-f042096c5d9b",
         "name": "HoruFieldsEnergyCell",
         "type": "EnergyCell",
         "area": "Grove",
-        "position": "(175.9, 1.0)"
+        "position": "(175.9, 1.0)",
+        "uberId": "(2,25)"
     },
     {
         "guid": "1b390cdd-e654-4a83-8aa6-d5235333a1c4",
         "name": "HoruFieldsPlant",
         "type": "Plant",
         "area": "Grove",
-        "position": "(124.0, 21.0)"
+        "position": "(124.0, 21.0)",
+        "uberId": "(2,26)"
     },
     {
         "guid": "83819798-2573-4af5-8bf9-70c5d9d0c68d",
         "name": "HoruFieldsAbilityCell",
         "type": "AbilityCell",
         "area": "Grove",
-        "position": "(176.8, -34.6)"
+        "position": "(176.8, -34.6)",
+        "uberId": "(2,27)"
     },
     {
         "guid": "79cf7fce-01e9-44a3-8568-f2b243baeb7d",
         "name": "HoruFieldsHealthCell",
         "type": "HealthCell",
         "area": "Grove",
-        "position": "(160.3, -78.4)"
+        "position": "(160.3, -78.4)",
+        "uberId": "(2,28)"
     },
     {
         "guid": "91da766a-938d-49d4-bae1-41c015618da6",
         "name": "HoruMap",
         "type": "Mapstone",
         "area": "Horu",
-        "position": "(56.0, 343.0)"
+        "position": "(56.0, 343.0)",
+        "uberId": "(10,1)"
     },
     {
         "guid": "88d96765-325c-4dfc-9167-25020be791d9",
         "name": "HoruL4LowerExp",
         "type": "ExpLarge",
         "area": "Horu",
-        "position": "(-29.8, 148.9)"
+        "position": "(-29.8, 148.9)",
+        "uberId": "(10,2)"
     },
     {
         "guid": "22e628e7-af91-4630-8e1c-b9d6ce0a7fcd",
         "name": "HoruL4ChaseExp",
         "type": "ExpLarge",
         "area": "Horu",
-        "position": "(-191.7, 194.4)"
+        "position": "(-191.7, 194.4)",
+        "uberId": "(10,3)"
     },
     {
         "guid": "7523b755-e9e4-407e-83ef-1c1f7210d310",
         "name": "HoruLavaDrainedLeftExp",
         "type": "ExpLarge",
         "area": "Horu",
-        "position": "(13.5, 164.3)"
+        "position": "(13.5, 164.3)",
+        "uberId": "(10,4)"
     },
     {
         "guid": "a2512573-18dc-46c4-81da-5e5a2ec38f10",
         "name": "HoruR1HangingExp",
         "type": "ExpMedium",
         "area": "Horu",
-        "position": "(193.8, 384.9)"
+        "position": "(193.8, 384.9)",
+        "uberId": "(10,5)"
     },
     {
         "guid": "d368611b-b65c-432d-b62b-2c15b33eccfd",
         "name": "HoruR1Mapstone",
         "type": "MapstoneFragment",
         "area": "Horu",
-        "position": "(148.0, 363.0)"
+        "position": "(148.0, 363.0)",
+        "uberId": "(10,6)"
     },
     {
         "guid": "61414408-5868-442c-9abf-728f9fb0f4a7",
         "name": "HoruR1EnergyCell",
         "type": "EnergyCell",
         "area": "Horu",
-        "position": "(249.4, 403.0)"
+        "position": "(249.4, 403.0)",
+        "uberId": "(10,7)"
     },
     {
         "guid": "9c56d300-6891-4876-9756-2659b8887ad3",
         "name": "HoruR3Plant",
         "type": "Plant",
         "area": "Horu",
-        "position": "(318.0, 245.0)"
+        "position": "(318.0, 245.0)",
+        "uberId": "(10,8)"
     },
     {
         "guid": "5b154bb4-59ea-4135-96a8-d7cfb51870eb",
         "name": "HoruR4StompExp",
         "type": "ExpLarge",
         "area": "Horu",
-        "position": "(191.7, 165.2)"
+        "position": "(191.7, 165.2)",
+        "uberId": "(10,9)"
     },
     {
         "guid": "b9240859-43a5-428b-a81d-ba79a65cf253",
         "name": "HoruR4LaserExp",
         "type": "ExpLarge",
         "area": "Horu",
-        "position": "(253.5, 194.6)"
+        "position": "(253.5, 194.6)",
+        "uberId": "(10,10)"
     },
     {
         "guid": "01ea51a6-9586-4d16-ac13-847fec4637e0",
         "name": "HoruR4DrainedExp",
         "type": "ExpLarge",
         "area": "Horu",
-        "position": "(163.4, 136.4)"
+        "position": "(163.4, 136.4)",
+        "uberId": "(10,11)"
     },
     {
         "guid": "753b9eef-37af-45ae-8628-194312e1c752",
         "name": "HoruLavaDrainedRightExp",
         "type": "ExpLarge",
         "area": "Horu",
-        "position": "(129.8, 165.6)"
+        "position": "(129.8, 165.6)",
+        "uberId": "(10,12)"
     },
     {
         "guid": "09b053bd-87bb-4718-9419-e5689f618233",
         "name": "DoorWarpExp",
         "type": "ExpLarge",
         "area": "Horu",
-        "position": "(106.5, 112.0)"
+        "position": "(106.5, 112.0)",
+        "uberId": "(10,13)"
     },
     {
         "guid": "ca00fedb-6d8d-4091-95aa-4e49d9583a1c",
         "name": "HoruTeleporterExp",
         "type": "ExpLarge",
         "area": "Horu",
-        "position": "(98.0, 130.5)"
+        "position": "(98.0, 130.5)",
+        "uberId": "(10,14)"
     },
     {
         "guid": "726bbbb9-339f-4b6f-baf0-05a02c215385",
         "name": "HoruR1",
         "type": "Cutscene",
         "area": "Horu",
-        "position": "(264.0, 380.0)"
+        "position": "(264.0, 380.0)",
+        "uberId": "(10,15)"
     },
     {
         "guid": "46555a18-aec8-4943-a12b-fa5782d65b42",
         "name": "HoruR2",
         "type": "Cutscene",
         "area": "Horu",
-        "position": "(172.0, 288.0)"
+        "position": "(172.0, 288.0)",
+        "uberId": "(10,16)"
     },
     {
         "guid": "7cdc17a4-5448-44c2-890a-ce1ba09f6e66",
         "name": "HoruR3",
         "type": "Cutscene",
         "area": "Horu",
-        "position": "(304.0, 304.0)"
+        "position": "(304.0, 304.0)",
+        "uberId": "(10,17)"
     },
     {
         "guid": "4dc498b4-9f8d-4779-ab12-4cce964d211d",
         "name": "HoruR4",
         "type": "Cutscene",
         "area": "Horu",
-        "position": "(216.0, 192.0)"
+        "position": "(216.0, 192.0)",
+        "uberId": "(10,18)"
     },
     {
         "guid": "1e459051-fb73-4ce9-82e3-43777566bf19",
         "name": "HoruL1",
         "type": "Cutscene",
         "area": "Horu",
-        "position": "(-92.0, 376.0)"
+        "position": "(-92.0, 376.0)",
+        "uberId": "(10,19)"
     },
     {
         "guid": "1a7fd156-3c71-4618-99ee-454c9aab2f27",
         "name": "HoruL2",
         "type": "Cutscene",
         "area": "Horu",
-        "position": "(-20.0, 276.0)"
+        "position": "(-20.0, 276.0)",
+        "uberId": "(10,20)"
     },
     {
         "guid": "14684bd4-ce7e-4c3d-ba2d-4673104d8e86",
         "name": "HoruL3",
         "type": "Cutscene",
         "area": "Horu",
-        "position": "(-164.0, 336.0)"
+        "position": "(-164.0, 336.0)",
+        "uberId": "(10,21)"
     },
     {
         "guid": "f93ca13c-c7bc-4b3f-bcc0-3c7b30b2c4a9",
         "name": "HoruL4",
         "type": "Cutscene",
         "area": "Horu",
-        "position": "(-96.0, 152.0)"
+        "position": "(-96.0, 152.0)",
+        "uberId": "(10,22)"
     },
     {
         "guid": "956197d9-4af7-452c-931a-2c45f33435d2",
         "name": "ValleyEntryAbilityCell",
         "type": "AbilityCell",
         "area": "Valley",
-        "position": "(-206.0, -113.3)"
+        "position": "(-206.0, -113.3)",
+        "uberId": "(6,1)"
     },
     {
         "guid": "f39ac231-0153-4a0a-b897-ebcb6dafb626",
         "name": "ValleyEntryTreeExp",
         "type": "ExpMedium",
         "area": "Valley",
-        "position": "(-221.0, -84.0)"
+        "position": "(-221.0, -84.0)",
+        "uberId": "(6,2)"
     },
     {
         "guid": "3dac0d06-0ea7-466c-a959-9583f15f1d56",
         "name": "ValleyEntryTreePlant",
         "type": "Plant",
         "area": "Valley",
-        "position": "(-179.0, -88.0)"
+        "position": "(-179.0, -88.0)",
+        "uberId": "(6,3)"
     },
     {
         "guid": "cd85689a-a50c-4923-8621-135a443a76f9",
         "name": "ValleyEntryGrenadeLongSwim",
         "type": "EnergyCell",
         "area": "Valley",
-        "position": "(-320.0, -162.0)"
+        "position": "(-320.0, -162.0)",
+        "uberId": "(6,4)"
     },
     {
         "guid": "dcb47a2b-3a57-45ef-80c7-a58a2861972b",
         "name": "ValleyRightFastStomplessCell",
         "type": "AbilityCell",
         "area": "Valley",
-        "position": "(-355.4, 65.6)"
+        "position": "(-355.4, 65.6)",
+        "uberId": "(6,5)"
     },
     {
         "guid": "4ca2a5dd-bfeb-4c25-95a2-61e6b0c37d07",
         "name": "ValleyRightExp",
         "type": "ExpMedium",
         "area": "Valley",
-        "position": "(-418.8, 67.5)"
+        "position": "(-418.8, 67.5)",
+        "uberId": "(6,6)"
     },
     {
         "guid": "3c8775ce-69a3-402e-869f-e78529dab898",
         "name": "ValleyRightBirdStompCell",
         "type": "AbilityCell",
         "area": "Valley",
-        "position": "(-292.0, 20.7)"
+        "position": "(-292.0, 20.7)",
+        "uberId": "(6,7)"
     },
     {
         "guid": "77ab5ca3-78e5-4c95-80bf-c829fe0db9cb",
         "name": "GlideSkillFeather",
         "type": "Skill",
         "area": "Valley",
-        "position": "(-460.0, -20.0)"
+        "position": "(-460.0, -20.0)",
+        "uberId": "(6,8)"
     },
     {
         "guid": "a7ec42f9-1245-447f-b14c-2af1a282c12b",
         "name": "KuroPerchExp",
         "type": "ExpLarge",
         "area": "Sorrow",
-        "position": "(-546.2, 54.4)"
+        "position": "(-546.2, 54.4)",
+        "uberId": "(9,1)"
     },
     {
         "guid": "c7529078-8db5-40a8-8564-c7d568dc9fef",
         "name": "ValleyMap",
         "type": "Mapstone",
         "area": "Valley",
-        "position": "(-408.0, -170.0)"
+        "position": "(-408.0, -170.0)",
+        "uberId": "(6,9)"
     },
     {
         "guid": "54116d93-15e8-43ce-b34a-4b01e795be11",
         "name": "ValleyMainPlant",
         "type": "Plant",
         "area": "Valley",
-        "position": "(-468.0, -67.0)"
+        "position": "(-468.0, -67.0)",
+        "uberId": "(6,10)"
     },
     {
         "guid": "e8700000-f30c-4294-9a2d-51410549c601",
         "name": "WilhelmExp",
         "type": "ExpLarge",
         "area": "Sorrow",
-        "position": "(-572.0, 157.0)"
+        "position": "(-572.0, 157.0)",
+        "uberId": "(9,2)"
     },
     {
         "guid": "a550b330-e931-42cc-b00c-50ca36143ee7",
         "name": "ValleyRightSwimExp",
         "type": "ExpMedium",
         "area": "Valley",
-        "position": "(-359.0, -87.5)"
+        "position": "(-359.0, -87.5)",
+        "uberId": "(6,11)"
     },
     {
         "guid": "c3044298-0f52-44cc-a4e7-396db2822ef0",
         "name": "ValleyMainFACS",
         "type": "AbilityCell",
         "area": "Valley",
-        "position": "(-415.5, -80.0)"
+        "position": "(-415.5, -80.0)",
+        "uberId": "(6,12)"
     },
     {
         "guid": "467cdd0a-d736-4d51-af19-eee884ee066f",
         "name": "ValleyForlornApproachGrenade",
         "type": "AbilityCell",
         "area": "Valley",
-        "position": "(-460.0, -187.0)"
+        "position": "(-460.0, -187.0)",
+        "uberId": "(6,13)"
     },
     {
         "guid": "a306b326-2662-4035-9c97-2c4459f84a71",
         "name": "ValleyThreeBirdAbilityCell",
         "type": "AbilityCell",
         "area": "Valley",
-        "position": "(-350.9, -98.7)"
+        "position": "(-350.9, -98.7)",
+        "uberId": "(6,14)"
     },
     {
         "guid": "ed79b633-818d-4a00-844e-998fd2745b41",
         "name": "LowerValleyMapstone",
         "type": "MapstoneFragment",
         "area": "Valley",
-        "position": "(-561.0, -89.0)"
+        "position": "(-561.0, -89.0)",
+        "uberId": "(6,15)"
     },
     {
         "guid": "09b3ac61-4972-4448-996b-93bc56222643",
         "name": "LowerValleyExp",
         "type": "ExpMedium",
         "area": "Valley",
-        "position": "(-538.0, -104.0)"
+        "position": "(-538.0, -104.0)",
+        "uberId": "(6,16)"
     },
     {
         "guid": "c068bb67-aed3-470c-90d2-c37fadd4f294",
         "name": "OutsideForlornTreeExp",
         "type": "ExpMedium",
         "area": "Valley",
-        "position": "(-460.0, -255.0)"
+        "position": "(-460.0, -255.0)",
+        "uberId": "(6,17)"
     },
     {
         "guid": "20d96007-fe1e-4469-b5fb-5c5f1f72e68f",
         "name": "OutsideForlornWaterExp",
         "type": "ExpMedium",
         "area": "Valley",
-        "position": "(-514.5, -277.3)"
+        "position": "(-514.5, -277.3)",
+        "uberId": "(6,18)"
     },
     {
         "guid": "ce0c05d0-dc62-4a92-adf9-85440516b089",
         "name": "OutsideForlornCliffExp",
         "type": "ExpLarge",
         "area": "Valley",
-        "position": "(-538.7, -234.7)"
+        "position": "(-538.7, -234.7)",
+        "uberId": "(6,19)"
     },
     {
         "guid": "3c59543f-9c36-43cc-9aab-69d859cae9ea",
         "name": "ValleyForlornApproachMapstone",
         "type": "MapstoneFragment",
         "area": "Valley",
-        "position": "(-443.0, -152.0)"
+        "position": "(-443.0, -152.0)",
+        "uberId": "(6,20)"
     },
     {
         "guid": "a067bd11-efc4-4b4f-8d82-9b51ddf209ce",
         "name": "ForlornEntranceExp",
         "type": "ExpLarge",
         "area": "Forlorn",
-        "position": "(-703.9, -390.0)"
+        "position": "(-703.9, -390.0)",
+        "uberId": "(8,1)"
     },
     {
         "guid": "aec7c676-e2fe-4b4b-8af4-5c9674aac8b9",
         "name": "ForlornHiddenSpiderExp",
         "type": "ExpMedium",
         "area": "Forlorn",
-        "position": "(-841.3, -350.9)"
+        "position": "(-841.3, -350.9)",
+        "uberId": "(8,2)"
     },
     {
         "guid": "117b3edb-dc08-4488-b9a0-391ab9d57960",
         "name": "ForlornKeystone1",
         "type": "Keystone",
         "area": "Forlorn",
-        "position": "(-858.0, -353.0)"
+        "position": "(-858.0, -353.0)",
+        "uberId": "(8,3)"
     },
     {
         "guid": "77bcf456-5d29-4010-af33-bc913b951a93",
         "name": "ForlornKeystone2",
         "type": "Keystone",
         "area": "Forlorn",
-        "position": "(-892.0, -328.0)"
+        "position": "(-892.0, -328.0)",
+        "uberId": "(8,4)"
     },
     {
         "guid": "10eb191f-dac8-45bb-9c86-dc3ed1c77cc0",
         "name": "ForlornKeystone3",
         "type": "Keystone",
         "area": "Forlorn",
-        "position": "(-888.0, -251.0)"
+        "position": "(-888.0, -251.0)",
+        "uberId": "(8,5)"
     },
     {
         "guid": "5e483d15-dfef-408d-9545-d70633769e81",
         "name": "ForlornKeystone4",
         "type": "Keystone",
         "area": "Forlorn",
-        "position": "(-869.0, -255.0)"
+        "position": "(-869.0, -255.0)",
+        "uberId": "(8,6)"
     },
     {
         "guid": "3c0113b8-d5f3-4428-abfa-b00321a780bb",
         "name": "ForlornMap",
         "type": "Mapstone",
         "area": "Forlorn",
-        "position": "(-843.0, -308.0)"
+        "position": "(-843.0, -308.0)",
+        "uberId": "(8,7)"
     },
     {
         "guid": "61b87fae-1434-409e-98c4-6c79598a9e73",
         "name": "ForlornPlant",
         "type": "Plant",
         "area": "Forlorn",
-        "position": "(-815.0, -266.0)"
+        "position": "(-815.0, -266.0)",
+        "uberId": "(8,8)"
     },
     {
         "guid": "da60ec6f-c4ba-493b-b4bd-4f7d8218a73a",
         "name": "RightForlornHealthCell",
         "type": "HealthCell",
         "area": "Forlorn",
-        "position": "(-625.5, -315.1)"
+        "position": "(-625.5, -315.1)",
+        "uberId": "(8,9)"
     },
     {
         "guid": "13f2bf4e-fa2c-46c8-bd24-8e3e4bb27e55",
         "name": "ForlornEscape",
         "type": "Event",
         "area": "Forlorn",
-        "position": "(-732.0, -236.0)"
+        "position": "(-732.0, -236.0)",
+        "uberId": "(8,10)"
     },
     {
         "guid": "92a35133-5de9-4bc5-83c6-9b359d9a0fbf",
         "name": "RightForlornPlant",
         "type": "Plant",
         "area": "Forlorn",
-        "position": "(-607.0, -314.0)"
+        "position": "(-607.0, -314.0)",
+        "uberId": "(8,11)"
     },
     {
         "guid": "62fda5de-8f71-4333-8f4d-e411ffd621af",
         "name": "ForlornEscapePlant",
         "type": "Plant",
         "area": "Forlorn",
-        "position": "(-1230.9, -247.1)"
+        "position": "(-1230.9, -247.1)",
+        "uberId": "(8,12)"
     },
     {
         "guid": "e601dd92-c65c-4cf1-b442-accf961e6ab7",
         "name": "SorrowEntranceAbilityCell",
         "type": "AbilityCell",
         "area": "Sorrow",
-        "position": "(-510.3, 204.3)"
+        "position": "(-510.3, 204.3)",
+        "uberId": "(9,3)"
     },
     {
         "guid": "910dce6f-b896-42d9-b764-e5ef2ba9e471",
         "name": "SorrowMainShaftKeystone",
         "type": "Keystone",
         "area": "Sorrow",
-        "position": "(-485.0, 323.0)"
+        "position": "(-485.0, 323.0)",
+        "uberId": "(9,4)"
     },
     {
         "guid": "10919728-d585-443e-8e2d-86af53161f7c",
         "name": "SorrowSpikeKeystone",
         "type": "Keystone",
         "area": "Sorrow",
-        "position": "(-503.0, 274.0)"
+        "position": "(-503.0, 274.0)",
+        "uberId": "(9,5)"
     },
     {
         "guid": "6c13aced-1bd4-447e-a57d-c373a50142fb",
         "name": "SorrowHiddenKeystone",
         "type": "Keystone",
         "area": "Sorrow",
-        "position": "(-514.0, 303.0)"
+        "position": "(-514.0, 303.0)",
+        "uberId": "(9,6)"
     },
     {
         "guid": "ff0edbb1-882e-4221-a5e0-bfe3136611e3",
         "name": "SorrowLowerLeftKeystone",
         "type": "Keystone",
         "area": "Sorrow",
-        "position": "(-596.0, 229.0)"
+        "position": "(-596.0, 229.0)",
+        "uberId": "(9,7)"
     },
     {
         "guid": "937c8eed-a6fa-4bb9-92c3-46ba0d50adf5",
         "name": "SorrowMap",
         "type": "Mapstone",
         "area": "Sorrow",
-        "position": "(-451.0, 284.0)"
+        "position": "(-451.0, 284.0)",
+        "uberId": "(9,8)"
     },
     {
         "guid": "917c444e-b83e-4bc9-b7e6-93e2d8ee695e",
         "name": "SorrowMapstone",
         "type": "MapstoneFragment",
         "area": "Sorrow",
-        "position": "(-435.0, 322.0)"
+        "position": "(-435.0, 322.0)",
+        "uberId": "(9,9)"
     },
     {
         "guid": "12525396-13fd-4658-a7c3-8df57bac078e",
         "name": "SorrowHealthCell",
         "type": "HealthCell",
         "area": "Sorrow",
-        "position": "(-609.0, 299.0)"
+        "position": "(-609.0, 299.0)",
+        "uberId": "(9,10)"
     },
     {
         "guid": "eae7b2e1-351d-4b55-8b92-9fa04b307d36",
         "name": "LeftSorrowAbilityCell",
         "type": "AbilityCell",
         "area": "Sorrow",
-        "position": "(-671.1, 290.0)"
+        "position": "(-671.1, 290.0)",
+        "uberId": "(9,11)"
     },
     {
         "guid": "69616e29-9a5d-4382-89fb-6d17a8748780",
         "name": "LeftSorrowKeystone1",
         "type": "Keystone",
         "area": "Sorrow",
-        "position": "(-608.0, 329.0)"
+        "position": "(-608.0, 329.0)",
+        "uberId": "(9,12)"
     },
     {
         "guid": "2c561421-dc69-4148-a65e-4a264c5305c7",
         "name": "LeftSorrowKeystone2",
         "type": "Keystone",
         "area": "Sorrow",
-        "position": "(-612.0, 347.0)"
+        "position": "(-612.0, 347.0)",
+        "uberId": "(9,13)"
     },
     {
         "guid": "0eadcdde-8f34-488a-b6ef-b12581a2b27a",
         "name": "LeftSorrowKeystone3",
         "type": "Keystone",
         "area": "Sorrow",
-        "position": "(-604.0, 361.0)"
+        "position": "(-604.0, 361.0)",
+        "uberId": "(9,14)"
     },
     {
         "guid": "a296680b-4a68-4a3e-b664-0a95f6c9893c",
         "name": "LeftSorrowKeystone4",
         "type": "Keystone",
         "area": "Sorrow",
-        "position": "(-613.1, 371.7)"
+        "position": "(-613.1, 371.7)",
+        "uberId": "(9,15)"
     },
     {
         "guid": "e9ca9858-3abd-43b2-8f5e-233529859842",
         "name": "LeftSorrowEnergyCell",
         "type": "EnergyCell",
         "area": "Sorrow",
-        "position": "(-627.1, 394.0)"
+        "position": "(-627.1, 394.0)",
+        "uberId": "(9,16)"
     },
     {
         "guid": "8b7d005c-614e-42b3-9d38-9ee16313f668",
         "name": "LeftSorrowPlant",
         "type": "Plant",
         "area": "Sorrow",
-        "position": "(-630.0, 249.0)"
+        "position": "(-630.0, 249.0)",
+        "uberId": "(9,17)"
     },
     {
         "guid": "b31bf78c-695a-4594-aad6-822f9b42f767",
         "name": "LeftSorrowGrenade",
         "type": "ExpLarge",
         "area": "Sorrow",
-        "position": "(-677.0, 269.9)"
+        "position": "(-677.0, 269.9)",
+        "uberId": "(9,18)"
     },
     {
         "guid": "e8e62373-8d78-474c-bc2e-76244cfd5220",
         "name": "UpperSorrowRightKeystone",
         "type": "Keystone",
         "area": "Sorrow",
-        "position": "(-456.0, 419.0)"
+        "position": "(-456.0, 419.0)",
+        "uberId": "(9,19)"
     },
     {
         "guid": "de067109-811d-4138-9856-4836f217ece3",
         "name": "UpperSorrowFarRightKeystone",
         "type": "Keystone",
         "area": "Sorrow",
-        "position": "(-414.0, 429.0)"
+        "position": "(-414.0, 429.0)",
+        "uberId": "(9,20)"
     },
     {
         "guid": "46f35914-7b0b-4322-8c1d-3ffa1d9c8ab7",
         "name": "UpperSorrowLeftKeystone",
         "type": "Keystone",
         "area": "Sorrow",
-        "position": "(-514.0, 427.0)"
+        "position": "(-514.0, 427.0)",
+        "uberId": "(9,21)"
     },
     {
         "guid": "d5b98071-5721-4e15-b2a4-62fde346be0d",
         "name": "UpperSorrowSpikeExp",
         "type": "ExpMedium",
         "area": "Sorrow",
-        "position": "(-545.0, 409.5)"
+        "position": "(-545.0, 409.5)",
+        "uberId": "(9,22)"
     },
     {
         "guid": "8395174a-d06d-461b-ba37-b9dd97ee322b",
         "name": "UpperSorrowFarLeftKeystone",
         "type": "Keystone",
         "area": "Sorrow",
-        "position": "(-592.0, 445.0)"
+        "position": "(-592.0, 445.0)",
+        "uberId": "(9,23)"
     },
     {
         "guid": "24783b59-4196-4fcb-bd42-d1a925962e86",
         "name": "ChargeJumpSkillTree",
         "type": "Skill",
         "area": "Sorrow",
-        "position": "(-696.0, 408.0)"
+        "position": "(-696.0, 408.0)",
+        "uberId": "(9,24)"
     },
     {
         "guid": "ce467c66-3616-4596-b052-3aa36b9daeab",
         "name": "AboveChargeJumpAbilityCell",
         "type": "AbilityCell",
         "area": "Sorrow",
-        "position": "(-646.9, 473.1)"
+        "position": "(-646.9, 473.1)",
+        "uberId": "(9,25)"
     },
     {
         "guid": "50ffb37d-475f-48f3-911a-bb1c5ba6dd79",
         "name": "Sunstone",
         "type": "Event",
         "area": "Sorrow",
-        "position": "(-560.0, 600.0)"
+        "position": "(-560.0, 600.0)",
+        "uberId": "(9,26)"
     },
     {
         "guid": "f8927d97-73bb-405d-bc66-a97d29b7de94",
         "name": "SunstonePlant",
         "type": "Plant",
         "area": "Sorrow",
-        "position": "(-478.0, 586.0)"
+        "position": "(-478.0, 586.0)",
+        "uberId": "(9,27)"
     },
     {
         "guid": "2f9b8590-168f-4a66-9543-4fce8b1a1035",
         "name": "MistyEntranceStompExp",
         "type": "ExpMedium",
         "area": "Misty",
-        "position": "(-678.1, -30.0)"
+        "position": "(-678.1, -30.0)",
+        "uberId": "(7,1)"
     },
     {
         "guid": "b91ec03d-b110-4d53-960f-724dc406a7f7",
         "name": "MistyEntranceTreeExp",
         "type": "ExpMedium",
         "area": "Misty",
-        "position": "(-822.3, -9.7)"
+        "position": "(-822.3, -9.7)",
+        "uberId": "(7,2)"
     },
     {
         "guid": "47513f30-c883-46f0-9193-8f30c1d3b060",
         "name": "MistyFrogNookExp",
         "type": "ExpMedium",
         "area": "Misty",
-        "position": "(-979.3, 23.6)"
+        "position": "(-979.3, 23.6)",
+        "uberId": "(7,3)"
     },
     {
         "guid": "d7491440-a5d3-40f0-a937-7b2e4cc1a95e",
         "name": "MistyKeystone1",
         "type": "Keystone",
         "area": "Misty",
-        "position": "(-1076.0, 32.0)"
+        "position": "(-1076.0, 32.0)",
+        "uberId": "(7,4)"
     },
     {
         "guid": "40675dbd-5f3c-4e1c-86ee-c7241c5fdd52",
         "name": "MistyMortarCorridorUpperExp",
         "type": "ExpMedium",
         "area": "Misty",
-        "position": "(-1083.0, 8.3)"
+        "position": "(-1083.0, 8.3)",
+        "uberId": "(7,5)"
     },
     {
         "guid": "958dfa0f-6ab3-422e-b1e1-98a71eef37ba",
         "name": "MistyMortarCorridorHiddenExp",
         "type": "ExpMedium",
         "area": "Misty",
-        "position": "(-1009.0, -35.0)"
+        "position": "(-1009.0, -35.0)",
+        "uberId": "(7,6)"
     },
     {
         "guid": "5e563952-174f-42be-ab22-17a901dd29e0",
         "name": "MistyPlant",
         "type": "Plant",
         "area": "Misty",
-        "position": "(-1102.0, -67.0)"
+        "position": "(-1102.0, -67.0)",
+        "uberId": "(7,7)"
     },
     {
         "guid": "a273c819-a2c7-44c9-8798-a6510fc25e0d",
         "name": "ClimbSkillTree",
         "type": "Skill",
         "area": "Misty",
-        "position": "(-1188.0, -100.0)"
+        "position": "(-1188.0, -100.0)",
+        "uberId": "(7,8)"
     },
     {
         "guid": "920137e5-c082-428b-93a1-bcb8f67a0748",
         "name": "MistyKeystone3",
         "type": "Keystone",
         "area": "Misty",
-        "position": "(-912.0, -36.0)"
+        "position": "(-912.0, -36.0)",
+        "uberId": "(7,9)"
     },
     {
         "guid": "43c5043b-4b30-4cc3-84e3-baedb5e5a378",
         "name": "MistyPostClimbSpikeCave",
         "type": "ExpMedium",
         "area": "Misty",
-        "position": "(-837.7, -123.5)"
+        "position": "(-837.7, -123.5)",
+        "uberId": "(7,10)"
     },
     {
         "guid": "8eae37fc-ca7a-4f9b-904b-47384ed8ec39",
         "name": "MistyPostClimbAboveSpikePit",
         "type": "ExpLarge",
         "area": "Misty",
-        "position": "(-796.0, -144.0)"
+        "position": "(-796.0, -144.0)",
+        "uberId": "(7,11)"
     },
     {
         "guid": "654eae78-1b9e-4554-85a3-10523617bcf5",
         "name": "MistyKeystone4",
         "type": "Keystone",
         "area": "Misty",
-        "position": "(-768.0, -144.0)"
+        "position": "(-768.0, -144.0)",
+        "uberId": "(7,12)"
     },
     {
         "guid": "817a54c5-92b6-47da-8891-59b51020b2c3",
         "name": "MistyGrenade",
         "type": "ExpLarge",
         "area": "Misty",
-        "position": "(-671.9, -39.4)"
+        "position": "(-671.9, -39.4)",
+        "uberId": "(7,13)"
     },
     {
         "guid": "62b3451f-85cd-423e-941c-8fbe4589ee55",
         "name": "MistyKeystone2",
         "type": "Keystone",
         "area": "Misty",
-        "position": "(-1043.0, -8.0)"
+        "position": "(-1043.0, -8.0)",
+        "uberId": "(7,14)"
     },
     {
         "guid": "08b6537c-6090-4ff2-96ea-ee4123feb799",
         "name": "MistyAbilityCell",
         "type": "AbilityCell",
         "area": "Misty",
-        "position": "(-1075.7, -2.2)"
+        "position": "(-1075.7, -2.2)",
+        "uberId": "(7,15)"
     },
     {
         "guid": "40872a5d-1d65-46c9-bd05-39b991ebce58",
         "name": "GumonSeal",
         "type": "Event",
         "area": "Misty",
-        "position": "(-720.0, -24.0)"
+        "position": "(-720.0, -24.0)",
+        "uberId": "(7,16)"
     },
     {
         "guid": "2f17c5d1-fdf5-46b1-9374-85daa832911a",
         "name": "FinalEscape",
         "type": "Event",
         "area": "Horu",
-        "position": "(-240.0, 512.0)"
+        "position": "(-240.0, 512.0)",
+        "uberId": "(10,23)"
     },
     {
         "guid": "00000000-0000-0000-0000-100000000001",
         "name": "Map1",
         "type": "ProgressiveMapstone",
         "area": "Mapstone",
-        "position": "(0.0, 24.0)"
+        "position": "(0.0, 24.0)",
+        "uberId": "(12,1)"
     },
     {
         "guid": "00000000-0000-0000-0000-100000000002",
         "name": "Map2",
         "type": "ProgressiveMapstone",
         "area": "Mapstone",
-        "position": "(0.0, 28.0)"
+        "position": "(0.0, 28.0)",
+        "uberId": "(12,2)"
     },
     {
         "guid": "00000000-0000-0000-0000-100000000003",
         "name": "Map3",
         "type": "ProgressiveMapstone",
         "area": "Mapstone",
-        "position": "(0.0, 32.0)"
+        "position": "(0.0, 32.0)",
+        "uberId": "(12,3)"
     },
     {
         "guid": "00000000-0000-0000-0000-100000000004",
         "name": "Map4",
         "type": "ProgressiveMapstone",
         "area": "Mapstone",
-        "position": "(0.0, 36.0)"
+        "position": "(0.0, 36.0)",
+        "uberId": "(12,4)"
     },
     {
         "guid": "00000000-0000-0000-0000-100000000005",
         "name": "Map5",
         "type": "ProgressiveMapstone",
         "area": "Mapstone",
-        "position": "(0.0, 40.0)"
+        "position": "(0.0, 40.0)",
+        "uberId": "(12,5)"
     },
     {
         "guid": "00000000-0000-0000-0000-100000000006",
         "name": "Map6",
         "type": "ProgressiveMapstone",
         "area": "Mapstone",
-        "position": "(0.0, 44.0)"
+        "position": "(0.0, 44.0)",
+        "uberId": "(12,6)"
     },
     {
         "guid": "00000000-0000-0000-0000-100000000007",
         "name": "Map7",
         "type": "ProgressiveMapstone",
         "area": "Mapstone",
-        "position": "(0.0, 48.0)"
+        "position": "(0.0, 48.0)",
+        "uberId": "(12,7)"
     },
     {
         "guid": "00000000-0000-0000-0000-100000000008",
         "name": "Map8",
         "type": "ProgressiveMapstone",
         "area": "Mapstone",
-        "position": "(0.0, 52.0)"
+        "position": "(0.0, 52.0)",
+        "uberId": "(12,8)"
     },
     {
         "guid": "00000000-0000-0000-0000-100000000009",
         "name": "Map9",
         "type": "ProgressiveMapstone",
         "area": "Mapstone",
-        "position": "(0.0, 56.0)"
+        "position": "(0.0, 56.0)",
+        "uberId": "(12,9)"
     },
     {
         "guid": "f7debdd1-f518-4e8e-bd3c-df4382a4526a",
         "name": "KuEgg",
         "type": "Cutscene",
         "area": "Forlorn",
-        "position": "(0.0, 0.0)"
+        "position": "(0.0, 0.0)",
+        "uberId": "(8,13)"
     },
     {
         "guid": "6d2256fc-c415-415a-8b0a-4911854669d2",
         "name": "KuroForlornHideEscape",
         "type": "Cutscene",
         "area": "Valley",
-        "position": "(0.0, 0.0)"
+        "position": "(0.0, 0.0)",
+        "uberId": "(6,21)"
     }
 ]

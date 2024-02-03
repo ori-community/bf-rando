@@ -44,7 +44,7 @@ public class RandomiserLocations : MonoBehaviour
         // TODO improve debug menu keyboard controls
 
         string json = File.ReadAllText(file);
-        List<Location> allLocs = JsonConvert.DeserializeObject<List<Location>>(json, new MoonGuidJsonConverter(), new Vector2JsonConverter(), new StringEnumConverter());
+        List<Location> allLocs = JsonConvert.DeserializeObject<List<Location>>(json, new UberIdJsonConverter(), new MoonGuidJsonConverter(), new Vector2JsonConverter(), new StringEnumConverter());
 
         nameMap = allLocs.ToDictionary(l => l.name);
         guidMap = allLocs.ToDictionary(l => l.guid);

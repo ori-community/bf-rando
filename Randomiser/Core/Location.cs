@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
-
+using Randomiser.Multiplayer.OriRando;
+using System.Runtime.InteropServices;
 namespace Randomiser;
 
 [Serializable]
@@ -47,16 +48,19 @@ public class Location
     public readonly WorldArea area;
     public readonly int saveIndex;
     public readonly MoonGuid guid;
+    public readonly UberId uberId;
 
     private static int nextSaveIndex = 0;
-    public Location(string name, Vector2 position, LocationType type, WorldArea area, MoonGuid guid)
+    public Location(string name, Vector2 position, LocationType type, WorldArea area, MoonGuid guid, UberId uberId)
     {
         this.name = name;
         this.position = position;
         this.type = type;
         this.area = area;
         this.guid = guid;
+        this.uberId = uberId;
         saveIndex = nextSaveIndex++; // TODO improve this
+        UberStates.AddLoc(this);
     }
 
     public bool HasBeenObtained() => Randomiser.Inventory.pickupsCollected[saveIndex];

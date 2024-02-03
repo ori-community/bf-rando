@@ -2,6 +2,7 @@
 using Game;
 using OriModding.BF.l10n;
 using Randomiser.Multiplayer.Archipelago;
+using Randomiser.Multiplayer.OriRando;
 using Randomiser.Stats;
 
 namespace Randomiser;
@@ -45,7 +46,6 @@ public class Randomiser
             Message("ERROR: Unknown location: " + new Guid(guid.ToByteArray()));
             return;
         }
-
         Grant(location);
     }
 
@@ -63,7 +63,7 @@ public class Randomiser
 
     private static void Grant(Location location)
     {
-        RandomiserMod.Logger.LogDebug(location.name);
+        RandomiserMod.Logger.LogDebug($"{location.name}: {location.uberId}");
 
         Inventory.pickupsCollected[location.saveIndex] = true;
         GameWorld.Instance.CurrentArea.DirtyCompletionAmount();
