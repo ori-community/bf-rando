@@ -2,7 +2,7 @@
 
 namespace Randomiser;
 
-[HarmonyPatch(typeof(DoorWithSlots), "get_SeinInRange")]
+[HarmonyPatch(typeof(DoorWithSlots), nameof(DoorWithSlots.SeinInRange), MethodType.Getter)]
 internal class KeystoneDoorOpenFromBothSides
 {
     private static bool Prefix(DoorWithSlots __instance, ref bool __result)

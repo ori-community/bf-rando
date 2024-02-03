@@ -2,7 +2,7 @@
 
 namespace Randomiser;
 
-[HarmonyPatch(typeof(TransparentWallB), "get_HasSense")]
+[HarmonyPatch(typeof(TransparentWallB), nameof(TransparentWallB.HasSense), MethodType.Getter)]
 internal class EnableSenseAlways
 {
     private static bool Prefix(ref bool __result)
@@ -12,7 +12,7 @@ internal class EnableSenseAlways
     }
 }
 
-[HarmonyPatch(typeof(RuntimeGameWorldArea), "get_HasSenseAbility")]
+[HarmonyPatch(typeof(RuntimeGameWorldArea), "HasSenseAbility", MethodType.Getter)]
 internal class RuntimeGameWorldAreaHasSenseAbility
 {
     private static bool Prefix(ref bool __result)

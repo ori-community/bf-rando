@@ -105,7 +105,7 @@ internal static class AddBonusAbilitiesToSkillTree
         }
     }
 
-    [HarmonyPrefix, HarmonyPatch(typeof(SkillItem), "get_CanEarnSkill")]
+    [HarmonyPrefix, HarmonyPatch(typeof(SkillItem), nameof(SkillItem.CanEarnSkill), MethodType.Getter)]
     private static bool PreventBuyingCustomAbilities(SkillItem __instance, ref bool __result)
     {
         if (__instance.Ability == AbilityType.BashBuff)

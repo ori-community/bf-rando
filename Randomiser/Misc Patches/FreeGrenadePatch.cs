@@ -2,7 +2,7 @@
 
 namespace Randomiser;
 
-[HarmonyPatch(typeof(SeinGrenadeAttack), "get_EnergyCostFinal")]
+[HarmonyPatch(typeof(SeinGrenadeAttack), "EnergyCostFinal", MethodType.Getter)]
 internal class FreeGrenadePatch
 {
     private static void Postfix(ref float __result)
