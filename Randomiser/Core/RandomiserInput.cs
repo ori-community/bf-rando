@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using OriModding.BF.Core;
 using OriModding.BF.InputLib;
 using UnityEngine;
 
@@ -12,21 +13,23 @@ public class RandomiserInput
     public static ConfigEntry<CustomInput> ShowGoal { get; private set; }
     public static ConfigEntry<CustomInput> ShowSkillClue { get; private set; }
 
-    internal static void Initialise(RandomiserMod randomiserMod, Plugin plugin)
+    internal static void Initialise(RandomiserMod randomiserMod)
     {
-        OpenTeleport = plugin.BindAndRegister(randomiserMod, "Randomiser", "Teleport",
+        var inputManager = randomiserMod.GetPlugin<Plugin>(OriModding.BF.Core.PluginInfo.PLUGIN_GUID).InputManager;
+
+        OpenTeleport = inputManager.BindAndRegister(randomiserMod, "Randomiser", "Teleport",
             new CustomInput().AddChord(KeyCode.LeftAlt, KeyCode.R));
 
-        ShowProgress = plugin.BindAndRegister(randomiserMod, "Randomiser", "Show Progress",
+        ShowProgress = inputManager.BindAndRegister(randomiserMod, "Randomiser", "Show Progress",
             new CustomInput().AddChord(KeyCode.LeftAlt, KeyCode.P));
 
-        ShowLastPickup = plugin.BindAndRegister(randomiserMod, "Randomiser", "Show Last Pickup",
+        ShowLastPickup = inputManager.BindAndRegister(randomiserMod, "Randomiser", "Show Last Pickup",
             new CustomInput().AddChord(KeyCode.LeftAlt, KeyCode.T));
 
-        ShowGoal = plugin.BindAndRegister(randomiserMod, "Randomiser", "Show Goal",
+        ShowGoal = inputManager.BindAndRegister(randomiserMod, "Randomiser", "Show Goal",
             new CustomInput().AddChord(KeyCode.LeftAlt, KeyCode.Alpha5));
 
-        ShowSkillClue = plugin.BindAndRegister(randomiserMod, "Randomiser", "Show Skill Clue",
+        ShowSkillClue = inputManager.BindAndRegister(randomiserMod, "Randomiser", "Show Skill Clue",
             new CustomInput().AddChord(KeyCode.LeftAlt, KeyCode.Alpha6));
     }
 }

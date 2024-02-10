@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using Randomiser;
 namespace Randomiser.Multiplayer.OriRando;
 
-public class UberId {
-    public UberId(int groupID, int id) {
-      GroupID = groupID;
-      ID = id;
+public class UberId
+{
+    public UberId(int groupID, int id)
+    {
+        GroupID = groupID;
+        ID = id;
     }
     public int GroupID;
     public int ID;
@@ -40,7 +40,8 @@ public class IntUberState : UberState
     }
 }
 
-    public class BoolUberState : UberState {
+public class BoolUberState : UberState
+{
     protected Action<bool> setter;
     protected Func<bool> getter;
     public BoolUberState(UberId uberId, Action<bool> setter, Func<bool> getter) : base()
@@ -50,7 +51,7 @@ public class IntUberState : UberState
         this.getter = getter;
     }
 
-    public BoolUberState(int groupId, int id, Action<bool> setter, Func<bool> getter) : base() => new BoolUberState(new UberId(groupId, id), setter, getter);  
+    public BoolUberState(int groupId, int id, Action<bool> setter, Func<bool> getter) : base() => new BoolUberState(new UberId(groupId, id), setter, getter);
     public override float AsFloat
     {
         get => this.getter() ? 1.0f : 0f;
@@ -61,10 +62,11 @@ public class IntUberState : UberState
 
 public static class UberStates
 {
-    public static Dictionary<UberId, UberState> All = [];
+    public static Dictionary<UberId, UberState> All = new();
     public static void AddLoc(Location loc)
     {
-        void setter(bool newVal) {
+        void setter(bool newVal)
+        {
             if (newVal)
                 Randomiser.Grant(loc.guid);
             else
