@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Game;
 namespace Randomiser.Multiplayer.OriRando;
 
 public class UberId
@@ -63,6 +64,20 @@ public class BoolUberState : UberState
 public static class UberStates
 {
     public static Dictionary<UberId, UberState> All = new();
+
+    public static void Add(UberState state) {
+        All.Add(state.UberId, state);
+    }
+
+    public static void init()
+    {
+        foreach(AbilityType ability in Enum.GetValues(typeof(AbilityType))) {
+            Add(new BoolUberState(new UberId(13, (int)ability), 
+                delegate (bool value) { Characters.Sein.PlayerAbilities.SetAbility(ability, value); },
+                delegate () { return Characters.Sein.PlayerAbilities.HasAbility(ability); })
+                );
+        }
+    }
     public static void AddLoc(Location loc)
     {
         void setter(bool newVal)
