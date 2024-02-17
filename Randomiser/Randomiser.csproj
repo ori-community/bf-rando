@@ -22,12 +22,22 @@
     <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
     <PackageReference Include="OriModding.BF.ConfigMenu" Version="1.0.0" />
     <PackageReference Include="OriModding.BF.Core" Version="1.0.0" />
+    <PackageReference Include="protobuf-net" Version="2.4.8" />
+    <PackageReference Include="protobuf-net.BuildTools" Version="3.2.33">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Threading.dll" Version="1.0.2856" />
     <PackageReference Include="UnityEngine.Modules" Version="5.3.2" IncludeAssets="compile" />
     <PackageReference Include="Archipelago.MultiClient.Net" Version="4.2.4" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <AdditionalFiles Include="Assets\proto\packets.proto" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,7 +50,9 @@
     </Reference>
   </ItemGroup>
 
-  <Target Name="Copy Assets and Dependencies" AfterTargets="Build" Condition=" '$(Configuration)' == 'Debug' and '$(OriNoCopy)' == '' and '$(OriPluginPath)' != '' ">
+
+
+    <Target Name="Copy Assets and Dependencies" AfterTargets="Build" Condition=" '$(Configuration)' == 'Debug' and '$(OriNoCopy)' == '' and '$(OriPluginPath)' != '' ">
     <Copy SourceFiles="strings.csv" DestinationFolder="$(OriPluginPath)\$(AssemblyName)" />
   </Target>
 </Project>
