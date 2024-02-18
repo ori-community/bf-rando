@@ -86,10 +86,10 @@ public class Randomiser
         }
     }
 
-    public static void Message(string message)
+    public static void Message(string message, float duration = 3)
     {
         RandomiserMod.Logger.LogDebug(message);
-        Messages.AddMessage(message);
+        Messages.AddMessage(message, duration);
     }
 
     public static void CheckGoal()
