@@ -1,4 +1,5 @@
 BF Rando UberId notes
 
-Groups 1-12: pickups (see LocationData.Json)
+Groups 0-11: pickups (see LocationData.Json)
+Group 12: MultiStates #todo
 Group 13: Abilities (by AbilityType)
