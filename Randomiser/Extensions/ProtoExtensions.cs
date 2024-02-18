@@ -9,8 +9,11 @@ public static class ProtoExtensions
         byte[] bytes; 
         Stream stream = new MemoryStream();
         Serializer.Serialize(stream, message);
-        using (var bReader = new BinaryReader(stream))
+        using (var bReader = new BinaryReader(stream)) {
+            stream.Position = 0;
             bytes = bReader.ReadBytes((int)stream.Length);
+        }
+
         return bytes;
     }
 
