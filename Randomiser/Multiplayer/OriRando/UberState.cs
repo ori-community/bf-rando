@@ -19,7 +19,7 @@ public class UberId
 public abstract class UberState
 {
     public UberId UberId;
-    public abstract float AsFloat { get; set; }
+    public abstract int AsInt { get; set; }
 
 }
 public class IntUberState : UberState
@@ -34,10 +34,10 @@ public class IntUberState : UberState
     }
 
     public IntUberState(int groupId, int id, Action<int> setter, Func<int> getter) : base() => new IntUberState(new UberId(groupId, id), setter, getter);
-    public override float AsFloat
+    public override int AsInt
     {
         get => this.getter();
-        set => this.setter((int)Math.Round(value));
+        set => this.setter(value);
     }
 }
 
@@ -53,10 +53,10 @@ public class BoolUberState : UberState
     }
 
     public BoolUberState(int groupId, int id, Action<bool> setter, Func<bool> getter) : base() => new BoolUberState(new UberId(groupId, id), setter, getter);
-    public override float AsFloat
+    public override int AsInt
     {
-        get => this.getter() ? 1.0f : 0f;
-        set => this.setter(value > 0f);
+        get => this.getter() ? 1 : 0;
+        set => this.setter(value > 0);
     }
 
 }
@@ -91,5 +91,8 @@ public static class UberStates
     }
 
     public static UberState State(this UberId uberId) => All[uberId];
-    public static float ValueAsFloat(this UberId uberId) => uberId.State().AsFloat;
+
+    public static UberId UberId(this Network.UberStateUpdateMessage message) => new UberId(message.State.Group, message.State.State);
+    public static UberState State(this Network.UberStateUpdateMessage message) => message.UberId().State();
+    public static float ValueAsFloat(this UberId uberId) => uberId.State().AsInt;
 }
