@@ -52,7 +52,9 @@
 
 
 
-    <Target Name="Copy Assets and Dependencies" AfterTargets="Build" Condition=" '$(Configuration)' == 'Debug' and '$(OriNoCopy)' == '' and '$(OriPluginPath)' != '' ">
+  <Target Name="Copy Assets and Dependencies" AfterTargets="Build" Condition=" '$(Configuration)' == 'Debug' and '$(OriNoCopy)' == '' and '$(OriPluginPath)' != '' ">
     <Copy SourceFiles="strings.csv" DestinationFolder="$(OriPluginPath)\$(AssemblyName)" />
+    <Copy Include="lib\NativeWebSocket.dll" DestinationFolder="$(OriPluginPath)\$(AssemblyName)" />
+
   </Target>
 </Project>

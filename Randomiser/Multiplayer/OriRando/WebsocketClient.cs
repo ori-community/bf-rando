@@ -18,6 +18,8 @@ public class WebsocketController : MonoBehaviour
 {
     public void Awake()
     {
+        RandomiserMod.Logger.LogInfo($"Exists: {System.IO.File.Exists("NativeWebSocket.dll")}");
+
         WebsocketClient.Connect();
     }
 }
@@ -35,16 +37,14 @@ public static class WebsocketClient
     private static Thread updateThread;
     private static Thread connectThread;
     public static bool PerformedAuthentication = false;
+    public static bool AttemptAuth = true;
 
-    public static bool IsConnected { get { return socket != null && (socket.ReadyState == WebSocketState.Open || socket.ReadyState == WebSocketState.Closing); } }
-    public static bool CanSend { get { return IsConnected && socket.ReadyState == WebSocketState.Open && PerformedAuthentication; } }
+    public static bool IsConnected { get { return NativeWebSocket.GetState() == SocketState.Open; } }
+    public static bool CanSend { get { return IsConnected && PerformedAuthentication; } }
 
     public static bool Connecting { get => connectThread?.IsAlive ?? false; }
 
-    private static string tokenFile = "token.txt";
-
-    public static bool WantConnection = System.IO.File.Exists(tokenFile); // yeah we'll mess with this later
-
+    
     public static bool ExpectingDisconnect = false;
 
     private static bool stopping = false;
@@ -52,9 +52,10 @@ public static class WebsocketClient
     private static CancellationTokenSource cancelSource = new CancellationTokenSource();
 
     // don't even worry about it, this is temporary
+    private static string tokenFile = "token.txt";
+    public static bool WantConnection = System.IO.File.Exists(tokenFile); // yeah we'll mess with this later
     private static string token = System.IO.File.ReadAllText(tokenFile);
 
-    private static WebSocket socket;
 
     private static Dictionary<LogLevel, BepInEx.Logging.LogLevel> llt = new Dictionary<LogLevel, BepInEx.Logging.LogLevel>(){
         {LogLevel.Trace, BepInEx.Logging.LogLevel.Debug},
@@ -69,65 +70,44 @@ public static class WebsocketClient
         RandomiserMod.Logger.LogInfo("Connection Request Recieved");
 
         if (!WantConnection) return;
-        //        setupUpdateThread();
-        if (Connecting)
-        {
-            RandomiserMod.Logger.LogDebug("Skipping connection request as one is in-progress");
-            TimeUntilReconnectAttempt = 2.0f;
-            return;
-        }
+        NativeWebSocket.InitializeNetwork();
+
         connectThread = new Thread(() =>
         {
             RandomiserMod.Logger.LogInfo("Connection thread started");
-
-            if (socket != null)
-                Disconnect();
 
             ExpectingDisconnect = false;
             try
             {
                 RandomiserMod.Logger.LogInfo("attempting socket init");
+                NativeWebSocket.SetUrl(ServerAddress);
+                NativeWebSocket.Start();
+                Serializer.PrepareSerializer<AuthenticateMessage>();
+                Serializer.PrepareSerializer<Packet>();
 
-                socket = new WebSocket(ServerAddress);
-
-                socket.Log.Level = LogLevel.Info;
-                socket.Log.Output = (logdata, output) => {
-                    try
-                    {
-                        if (logdata != null)
-                            RandomiserMod.Logger.Log(llt[logdata.Level], $"Websocket says: {logdata.Message}");
-                        else
-                            RandomiserMod.Logger.LogInfo($"Websocket output: {output}");
+                for (; ; )
+                {
+                    var state = NativeWebSocket.GetState();
+                    if(state != SocketState.Open) {
+                        RandomiserMod.Logger.LogInfo($"Socket currently {state}, waiting for Open");
+                        Thread.Sleep(50);
+                        continue;
                     }
-                    catch (Exception e)
-                    {
-                        RandomiserMod.Logger.LogError($"Websocket log {e}");
+                    if(AttemptAuth) {
+                        var packet = new Packet
+                        {
+                            Id = Packet.PacketID.AuthenticateMessage,
+                            packet = new AuthenticateMessage() { Jwt = token }.ToByteArray()
+                        };
+                        RandomiserMod.Logger.LogInfo($"Attempting token authentication");
+                        NativeWebSocket.SendBinary(packet.ToByteArray());
+                        AttemptAuth = false;
                     }
-                };
-                socket.OnError += (sender, e) => {
-                RandomiserMod.Logger.LogError($"WebSocket: {e} {e?.Exception}");
-                    TimeUntilReconnectAttempt = 10.0f;
-                    PerformedAuthentication = false;
-                };
-                socket.OnClose += (sender, e) => {
-                    RandomiserMod.Logger.LogError($"Closing socket ({e?.Code}: {e?.Reason})");
-                    PerformedAuthentication = false;
-                    if (!ExpectingDisconnect)
-                        RandomiserMod.Logger.LogInfo("Disconnected! Retrying in 5s");
-                };
-                socket.OnOpen += (sender, args) => {
-                    RandomiserMod.Logger.LogInfo($"Connected to server");
-                    Packet packet = new Packet
-                    {
-                        Id = Packet.PacketID.AuthenticateMessage,
-                        packet = new AuthenticateMessage() { Jwt = token }.ToByteArray()
-                    };
-                    socket.Send(packet.ToByteArray());
-                    PerformedAuthentication = true;
-                };
-                socket.OnMessage += HandleMessage;
-                RandomiserMod.Logger.LogInfo($"Attempting to connect to {Domain}");
-                socket.Connect();
+                    while (NativeWebSocket.HasPendingMessage()) {
+                        HandleMessage(NativeWebSocket.GetPendingMessage());
+                    }
+                    Thread.Sleep(50);
+                }
             }
             catch (Exception ex)
             {
@@ -138,23 +118,25 @@ public static class WebsocketClient
         });
         connectThread.Start();
     }
-    public static void HandleMessage(object sender, MessageEventArgs args) {
+    public static void HandleMessage(IEnumerable<byte> data) {
         try
         {
-            var data = args.RawData;
-            if (data == null)
-            {
-                RandomiserMod.Logger.LogError("received message with no data!");
-                return;
-            }
-            var pack = Serializer.Deserialize<Packet>(new System.IO.MemoryStream(data));
+            var pack = Serializer.Deserialize<Packet>(new System.IO.MemoryStream(data.ToArray()));
             switch(pack.Id)
             {
                 case Packet.PacketID.AuthenticatedMessage:
                     {
                         var authedMessage = Serializer.Deserialize<AuthenticatedMessage>(new System.IO.MemoryStream(pack.packet));
                         PerformedAuthentication = true;
-                        RandomiserMod.Logger.LogInfo($"Successfully connected: {authedMessage.User}");
+                        RandomiserMod.Logger.LogInfo($"Successfully connected as: {authedMessage.User.Name}");
+                        break;
+                    }
+                case Packet.PacketID.PrintTextMessage:
+                    {
+                        var printMessage = Serializer.Deserialize<PrintTextMessage>(new System.IO.MemoryStream(pack.packet));
+                        Randomiser.Message(printMessage.Text, printMessage.Time);
+                        break;
+                    }
                         break;
                     }
                 default:
