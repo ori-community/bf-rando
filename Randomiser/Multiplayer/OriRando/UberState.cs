@@ -102,7 +102,7 @@ public static class UberStates
     public static void init()
     {
         foreach(AbilityType ability in Enum.GetValues(typeof(AbilityType))) {
-            Add(new BoolUberState(new UberId(13, (int)ability), 
+            Add(new BoolUberState(ability.UberId(), 
                 delegate (bool value) { Characters.Sein.PlayerAbilities.SetAbility(ability, value); },
                 delegate () { return Characters.Sein.PlayerAbilities.HasAbility(ability); })
                 );
@@ -130,7 +130,10 @@ public static class UberStates
     }
     public static UberId UberId(this Network.UberStateUpdateMessage message) => new UberId(message.State.Group, message.State.State);
     public static UberState State(this Network.UberStateUpdateMessage message) => message.UberId().State();
-    public static float ValueAsFloat(this UberId uberId) => uberId.State().AsInt;
+
+    public static UberState State(this AbilityType abilityType) => abilityType.UberId().State();
+    public static UberId UberId(this AbilityType abilityType) => new UberId(13, (int)abilityType);
+    public static float ValueAsFloat(this UberId uberId) => uberId.State().Get();
 }
 
 public class UberStateController : MonoBehaviour {
