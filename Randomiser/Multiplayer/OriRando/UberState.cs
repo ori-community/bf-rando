@@ -115,10 +115,16 @@ public static class UberStates
                 RandomiserMod.Logger.LogError("Unpickuping is not supported (yet!)");
         }
         All.Add(loc.uberId, new BoolUberState(loc.uberId, setter, loc.HasBeenObtained));
+
     }
 
-    public static UberState State(this UberId uberId) => All[uberId];
-
+    // dumb extensions 
+    public static UberState State(this UberId uberId) { 
+        if(!All.ContainsKey(uberId)) {
+            RandomiserMod.Logger.LogError($"Unknown UberId {uberId}!");
+        }
+        return All[uberId];
+    }
     public static UberId UberId(this Network.UberStateUpdateMessage message) => new UberId(message.State.Group, message.State.State);
     public static UberState State(this Network.UberStateUpdateMessage message) => message.UberId().State();
     public static float ValueAsFloat(this UberId uberId) => uberId.State().AsInt;
