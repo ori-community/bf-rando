@@ -84,7 +84,7 @@ public static class WebsocketClient
                 NativeWebSocket.Start();
                 Serializer.PrepareSerializer<AuthenticateMessage>();
                 Serializer.PrepareSerializer<Packet>();
-
+                int retryAuthIn = 50;
                 for (; ; )
                 {
                     var state = NativeWebSocket.GetState();
@@ -94,6 +94,7 @@ public static class WebsocketClient
                         continue;
                     }
                     if(AttemptAuth) {
+                        retryAuthIn = 50;
                         var packet = new Packet
                         {
                             Id = Packet.PacketID.AuthenticateMessage,
@@ -106,6 +107,14 @@ public static class WebsocketClient
                     while (NativeWebSocket.HasPendingMessage()) {
                         HandleMessage(NativeWebSocket.GetPendingMessage());
                     }
+                    if (PerformedAuthentication)
+                        while (SendQueue.Any()) {
+                            var packet = SendQueue.Take();
+                            RandomiserMod.Logger.LogInfo($"Sending {packet.Id}");
+                            NativeWebSocket.SendBinary(packet.ToByteArray());
+                        }
+                    else if (!AttemptAuth && --retryAuthIn <= 0)
+                        AttemptAuth = true;
                     Thread.Sleep(50);
                 }
             }
