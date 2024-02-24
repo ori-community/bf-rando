@@ -127,11 +127,13 @@ public static class WebsocketClient
         });
         connectThread.Start();
     }
+
     public static void HandleMessage(IEnumerable<byte> data) {
         try
         {
             var pack = Serializer.Deserialize<Packet>(new System.IO.MemoryStream(data.ToArray()));
-            switch(pack.Id)
+            RandomiserMod.Logger.LogInfo($"Attempting to recieve a {pack.Id}");
+            switch (pack.Id)
             {
                 case Packet.PacketID.AuthenticatedMessage:
                     {
@@ -146,17 +148,37 @@ public static class WebsocketClient
                         Randomiser.Message(printMessage.Text, printMessage.Time);
                         break;
                     }
+                case Packet.PacketID.UberStateBatchUpdateMessage:
+                    {
+                        var usMessage = Serializer.Deserialize<UberStateBatchUpdateMessage>(new System.IO.MemoryStream(pack.packet));
+                        foreach (var usum in usMessage.Updates) handleUberStateUpdate(usum);
+                        break;
+                    }
+                case Packet.PacketID.UberStateUpdateMessage:
+                    {
+                        handleUberStateUpdate(Serializer.Deserialize<UberStateUpdateMessage>(new System.IO.MemoryStream(pack.packet)));
                         break;
                     }
                 default:
                     {
-                        RandomiserMod.Logger.LogInfo($"Recieved Packet ID {pack.Id}");
+                        RandomiserMod.Logger.LogInfo($"No special handler for {pack.Id}");
                         break;
                     }
             }
         } catch (Exception ex)
         {
             RandomiserMod.Logger.LogError($"HandleMessage: ${ex}");
+        }
+    }
+
+    private static void handleUberStateUpdate(UberStateUpdateMessage message)
+    {
+        try {
+            message.State().Set(Convert.ToInt32(message.Value));
+            RandomiserMod.Logger.LogInfo($"{message.UberId()} => {message.Value}"); 
+        }
+        catch (Exception ex)  {
+            RandomiserMod.Logger.LogError($"handleUberStateUpdate: ${ex}");
         }
     }
 
