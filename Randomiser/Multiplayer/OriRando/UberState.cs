@@ -72,7 +72,7 @@ public class BoolUberState : UberState
 {
     protected Action<bool> setter;
     protected Func<bool> getter;
-    protected Action onChange;
+    protected Action onChange = delegate () { };
     public BoolUberState(UberId uberId, Action<bool> setter, Func<bool> getter, Action onChange = null) : base()
     {
         UberId = uberId;
