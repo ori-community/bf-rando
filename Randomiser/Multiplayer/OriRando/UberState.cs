@@ -14,6 +14,8 @@ public class UberId
     }
     public int GroupID;
     public int ID;
+    public override int GetHashCode() => ToString().GetHashCode();
+    public override bool Equals(object obj) => (obj is UberId) && (obj as UberId).GroupID == GroupID && (obj as UberId).ID == ID;
     public override string ToString() => $"({GroupID}, {ID})";
 }
 
