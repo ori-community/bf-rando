@@ -18,8 +18,6 @@ public class WebsocketController : MonoBehaviour
 {
     public void Awake()
     {
-        RandomiserMod.Logger.LogInfo($"Exists: {System.IO.File.Exists("NativeWebSocket.dll")}");
-
         WebsocketClient.Connect();
     }
 }
