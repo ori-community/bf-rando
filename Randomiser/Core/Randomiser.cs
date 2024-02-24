@@ -38,7 +38,7 @@ public class Randomiser
     public static float ChargeDashDiscount => Inventory.chargeDashEfficiency ? 0.5f : 0f;
 
 
-    public static void Grant(MoonGuid guid)
+    public static void Grant(MoonGuid guid, bool suppressed = false)
     {
         Location location = Locations[guid];
         if (location == null)
@@ -46,10 +46,10 @@ public class Randomiser
             Message("ERROR: Unknown location: " + new Guid(guid.ToByteArray()));
             return;
         }
-        Grant(location);
+        Grant(location, suppressed);
     }
 
-    public static void Grant(string name)
+    public static void Grant(string name, bool suppressed = false)
     {
         Location location = Locations[name];
         if (location == null)
@@ -58,10 +58,10 @@ public class Randomiser
             return;
         }
 
-        Grant(location);
+        Grant(location, suppressed);
     }
 
-    private static void Grant(Location location)
+    private static void Grant(Location location, bool suppressed)
     {
         RandomiserMod.Logger.LogDebug($"{location.name}: {location.uberId}");
 
@@ -84,6 +84,7 @@ public class Randomiser
             if (TreesFoundExceptSein % 3 == 0)
                 Message(DynamicText.BuildProgressString());
         }
+        if(!suppressed) location.uberId.State().OnChange();
     }
 
     public static void Message(string message, float duration = 3)

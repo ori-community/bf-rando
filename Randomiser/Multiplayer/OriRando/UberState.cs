@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game;
+using Randomiser.Extensions;
 namespace Randomiser.Multiplayer.OriRando;
 
 public class UberId
@@ -19,25 +20,48 @@ public class UberId
 public abstract class UberState
 {
     public UberId UberId;
-    public abstract int AsInt { get; set; }
+    public abstract int Get();
+
+    protected abstract void set(int value);
+    public virtual void Set(int value, bool ignoreChange = false) {
+        set(value);
+        if(!ignoreChange)
+            OnChange();
+
+    }
+    // probably we'll only ever use this for debugging?
+    public virtual void OnChange() {
+        RandomiserMod.Logger.LogInfo($"{UberId} value is now {Get()}");
+    }
+    public virtual int AsInt
+    {
+        get { return Get(); }
+        set { Set(value); }
+    }
+
+    public override string ToString() => $"{UberId}: {Get()}";
 
 }
 public class IntUberState : UberState
 {
     protected Action<int> setter;
     protected Func<int> getter;
-    public IntUberState(UberId uberId, Action<int> setter, Func<int> getter) : base()
+    protected Action onChange = delegate () { };
+    public IntUberState(UberId uberId, Action<int> setter, Func<int> getter, Action onChange = null) : base()
     {
         this.UberId = uberId;
         this.setter = setter;
         this.getter = getter;
+        this.onChange ??= onChange;
     }
 
-    public IntUberState(int groupId, int id, Action<int> setter, Func<int> getter) : base() => new IntUberState(new UberId(groupId, id), setter, getter);
-    public override int AsInt
+    public IntUberState(int groupId, int id, Action<int> setter, Func<int> getter, Action onChange = null) : base() => new IntUberState(new UberId(groupId, id), setter, getter, onChange);
+    public override int Get() => getter();
+    protected override void set(int value) => setter(value);
+    public override void OnChange()
     {
-        get => this.getter();
-        set => this.setter(value);
+        onChange();
+        base.OnChange();
     }
 }
 
@@ -45,20 +69,23 @@ public class BoolUberState : UberState
 {
     protected Action<bool> setter;
     protected Func<bool> getter;
-    public BoolUberState(UberId uberId, Action<bool> setter, Func<bool> getter) : base()
+    protected Action onChange;
+    public BoolUberState(UberId uberId, Action<bool> setter, Func<bool> getter, Action onChange = null) : base()
     {
-        this.UberId = uberId;
+        UberId = uberId;
         this.setter = setter;
         this.getter = getter;
+        this.onChange ??= onChange;
     }
+    public BoolUberState(int groupId, int id, Action<bool> setter, Func<bool> getter, Action onChange = null) : base() => new BoolUberState(new UberId(groupId, id), setter, getter, onChange);
 
-    public BoolUberState(int groupId, int id, Action<bool> setter, Func<bool> getter) : base() => new BoolUberState(new UberId(groupId, id), setter, getter);
-    public override int AsInt
+    public override int Get() => getter() ? 1 : 0;
+    protected override void set(int value) => setter(value != 0);
+    public override void OnChange()
     {
-        get => this.getter() ? 1 : 0;
-        set => this.setter(value > 0);
+        onChange();
+        base.OnChange();
     }
-
 }
 
 public static class UberStates
