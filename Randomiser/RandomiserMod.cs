@@ -37,6 +37,7 @@ public class RandomiserMod : BaseUnityPlugin
             Controllers.Add<RandomiserMessageController>(null, "Randomiser", mb => Randomiser.Messages = mb as RandomiserMessageController);
             Controllers.Add<ArchipelagoController>(null, "Randomiser", mb => Randomiser.Archipelago = mb as ArchipelagoController);
             Controllers.Add<WebsocketController>(null, "Randomiser");
+            Controllers.Add<UberStateController>(null, "Randomiser");
 
             CustomSeinAbilityManager.Add<SeinRegen>("cc6427ed-31bf-4a7a-b4c4-ad559000ced9");
             CustomSeinAbilityManager.Add<SeinHotColdSense>("eda5f877-889b-4be5-9ecb-1b499ce7053d");

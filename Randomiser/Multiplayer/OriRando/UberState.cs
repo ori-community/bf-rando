@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Game;
 using Randomiser.Extensions;
+using UnityEngine;
 namespace Randomiser.Multiplayer.OriRando;
 
 public class UberId
@@ -129,3 +130,11 @@ public static class UberStates
     public static UberState State(this Network.UberStateUpdateMessage message) => message.UberId().State();
     public static float ValueAsFloat(this UberId uberId) => uberId.State().AsInt;
 }
+
+public class UberStateController : MonoBehaviour {
+    public void Awake()
+    {
+        UberStates.init();
+    }
+}
+
