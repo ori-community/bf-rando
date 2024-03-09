@@ -80,9 +80,8 @@ public static class WebsocketClient
                 RandomiserMod.Logger.LogInfo("attempting socket init");
                 NativeWebSocket.SetUrl(ServerAddress);
                 NativeWebSocket.Start();
-                Serializer.PrepareSerializer<AuthenticateMessage>();
-                Serializer.PrepareSerializer<Packet>();
                 int retryAuthIn = 50;
+                int i = 0;
                 for (; ; )
                 {
                     var state = NativeWebSocket.GetState();
@@ -110,9 +109,12 @@ public static class WebsocketClient
                             var packet = SendQueue.Take();
                             RandomiserMod.Logger.LogInfo($"Sending {packet.Id}");
                             NativeWebSocket.SendBinary(packet.ToByteArray());
-                        }
+                    }
                     else if (!AttemptAuth && --retryAuthIn <= 0)
                         AttemptAuth = true;
+                    i++;
+                    if(i % 100 == 0)
+                        SyncAll();
                     Thread.Sleep(50);
                 }
             }
@@ -178,6 +180,24 @@ public static class WebsocketClient
         catch (Exception ex)  {
             RandomiserMod.Logger.LogError($"handleUberStateUpdate: ${ex}");
         }
+    }
+
+    public static void SyncAll()
+    {
+        if (!RandomiserController.PlayerHasControl) return;
+        try
+        {
+            var busum = new UberStateBatchUpdateMessage();
+            busum.Updates.AddRange(UberStates.All.Where(kvp => kvp.Key.GroupID == 12).Select(kvp => kvp.Value.ToUpdateMessage()));
+            var packet = new Packet() {
+                Id = Packet.PacketID.UberStateBatchUpdateMessage,
+                packet =  busum.ToByteArray(),
+            };
+            SendQueue.Add(packet);
+        } catch (Exception ex) {
+            RandomiserMod.Logger.LogError($"SyncAll: ${ex}");
+        }
+
     }
 
     public static void Disconnect()

@@ -74,6 +74,8 @@ public class RandomiserController : MonoBehaviour, ISuspendable
         }
     }
 
+    public static bool PlayerHasControl => Characters.Sein && Characters.Sein.Controller.CanMove && Characters.Sein.Active;
+
     private void Update()
     {
         if (IsSuspended)
@@ -81,13 +83,13 @@ public class RandomiserController : MonoBehaviour, ISuspendable
 
         if (RandomiserInput.OpenTeleport.Value.OnPressed)
         {
-            if (Characters.Sein && Characters.Sein.Controller.CanMove && Characters.Sein.Active)
+            if (PlayerHasControl)
                 OpenTeleportMenu();
         }
 
         if (RandomiserInput.ShowProgress.Value.OnPressed)
         {
-            if (Characters.Sein && Characters.Sein.Controller.CanMove && Characters.Sein.Active)
+            if (PlayerHasControl)
                 Randomiser.Message(DynamicText.BuildProgressString());
         }
 

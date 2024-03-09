@@ -49,13 +49,13 @@ public class IntUberState : UberState
 {
     protected Action<int> setter;
     protected Func<int> getter;
-    protected Action onChange = delegate () { };
+    protected Action onChange;
     public IntUberState(UberId uberId, Action<int> setter, Func<int> getter, Action onChange = null) : base()
     {
         this.UberId = uberId;
         this.setter = setter;
         this.getter = getter;
-        this.onChange ??= onChange;
+        this.onChange = onChange ?? delegate () { };
     }
 
     public IntUberState(int groupId, int id, Action<int> setter, Func<int> getter, Action onChange = null) : base() => new IntUberState(new UberId(groupId, id), setter, getter, onChange);
@@ -72,13 +72,13 @@ public class BoolUberState : UberState
 {
     protected Action<bool> setter;
     protected Func<bool> getter;
-    protected Action onChange = delegate () { };
+    protected Action onChange;
     public BoolUberState(UberId uberId, Action<bool> setter, Func<bool> getter, Action onChange = null) : base()
     {
         UberId = uberId;
         this.setter = setter;
         this.getter = getter;
-        this.onChange ??= onChange;
+        this.onChange = onChange ?? delegate () { };
     }
     public BoolUberState(int groupId, int id, Action<bool> setter, Func<bool> getter, Action onChange = null) : base() => new BoolUberState(new UberId(groupId, id), setter, getter, onChange);
 
@@ -110,14 +110,24 @@ public static class UberStates
     }
     public static void AddLoc(Location loc)
     {
-        void setter(bool newVal)
-        {
-            if (newVal)
-                Randomiser.Grant(loc.guid);
+        var multiStateId = new UberId(12, (loc.uberId.GroupID + 1) * 100 + loc.uberId.ID);
+        var grantLoc = delegate (bool value) { if (value) Randomiser.Grant(loc.guid); };
+
+        void onChange() {
+            RandomiserMod.Logger.LogInfo($"new Network.UberStateUpdateMessage {{State = new Network.UberId() {{ Group = {multiStateId.GroupID}, State = {multiStateId.ID} }},Value = 1 }}");
+            if (loc.HasBeenObtained()) {
+                WebsocketClient.SendQueue.TryAdd(new Network.Packet
+                {
+                    Id = Network.Packet.PacketID.UberStateUpdateMessage,
+                    packet = new Network.UberStateUpdateMessage {State = new Network.UberId() { Group = multiStateId.GroupID, State = multiStateId.ID }, Value = 1}.ToByteArray()
+                });
+            }
             else
                 RandomiserMod.Logger.LogError("Unpickuping is not supported (yet!)");
         }
-        All.Add(loc.uberId, new BoolUberState(loc.uberId, setter, loc.HasBeenObtained));
+        Add(new BoolUberState(loc.uberId, grantLoc, loc.HasBeenObtained, onChange));
+        // crime zone
+        Add(new BoolUberState(multiStateId, delegate (bool value) { if (value) Randomiser.Grant(loc.guid, false); }, loc.HasBeenObtained));
 
     }
 
@@ -130,7 +140,15 @@ public static class UberStates
     }
     public static UberId UberId(this Network.UberStateUpdateMessage message) => new UberId(message.State.Group, message.State.State);
     public static UberState State(this Network.UberStateUpdateMessage message) => message.UberId().State();
-
+    public static Network.UberStateUpdateMessage ToUpdateMessage(this UberState state) => new Network.UberStateUpdateMessage
+    {
+        State = new Network.UberId()
+        {
+            Group = state.UberId.GroupID,
+            State = state.UberId.ID
+        },
+        Value = state.Get()
+    };
     public static UberState State(this AbilityType abilityType) => abilityType.UberId().State();
     public static UberId UberId(this AbilityType abilityType) => new UberId(13, (int)abilityType);
     public static float ValueAsFloat(this UberId uberId) => uberId.State().Get();
