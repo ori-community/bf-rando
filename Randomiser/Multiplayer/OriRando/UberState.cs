@@ -127,8 +127,7 @@ public static class UberStates
         }
         Add(new BoolUberState(loc.uberId, grantLoc, loc.HasBeenObtained, onChange));
         // crime zone
-        Add(new BoolUberState(multiStateId, delegate (bool value) { if (value) Randomiser.Grant(loc.guid, false); }, loc.HasBeenObtained));
-
+        Add(new BoolUberState(multiStateId, delegate (bool value) { if (value && !loc.HasBeenObtained()) Randomiser.Grant(loc.guid, true); }, loc.HasBeenObtained));
     }
 
     // dumb extensions 
