@@ -34,7 +34,7 @@ public abstract class UberState
     }
     // probably we'll only ever use this for debugging?
     public virtual void OnChange() {
-        RandomiserMod.Logger.LogInfo($"{UberId} value is now {Get()}");
+        RandomiserMod.Logger.LogDebug($"{UberId} value is now {Get()}");
     }
     public virtual int AsInt
     {
@@ -114,7 +114,6 @@ public static class UberStates
         var grantLoc = delegate (bool value) { if (value) Randomiser.Grant(loc.guid); };
 
         void onChange() {
-            RandomiserMod.Logger.LogInfo($"new Network.UberStateUpdateMessage {{State = new Network.UberId() {{ Group = {multiStateId.GroupID}, State = {multiStateId.ID} }},Value = 1 }}");
             if (loc.HasBeenObtained()) {
                 WebsocketClient.SendQueue.TryAdd(new Network.Packet
                 {
@@ -127,7 +126,16 @@ public static class UberStates
         }
         Add(new BoolUberState(loc.uberId, grantLoc, loc.HasBeenObtained, onChange));
         // crime zone
-        Add(new BoolUberState(multiStateId, delegate (bool value) { if (value && !loc.HasBeenObtained()) Randomiser.Grant(loc.guid, true); }, loc.HasBeenObtained));
+        Add(new BoolUberState(multiStateId, delegate (bool value) {
+            if (value && !loc.HasBeenObtained()) {
+                try {
+                    RandomiserMod.Logger.LogInfo($"got {Randomiser.Seed.GetActionFromGuid(loc.guid).ToSeedFormat()} from {loc.name}");
+                } catch(Exception e) {
+                    RandomiserMod.Logger.LogError($"{multiStateId} hasBeenObtained (for {loc.name}): {e}");
+                }
+                Randomiser.Grant(loc.guid, true);
+            }
+        }, loc.HasBeenObtained));
     }
 
     // dumb extensions 

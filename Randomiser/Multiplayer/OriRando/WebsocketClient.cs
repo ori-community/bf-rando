@@ -175,7 +175,6 @@ public static class WebsocketClient
     {
         try {
             message.State().Set(Convert.ToInt32(message.Value));
-            RandomiserMod.Logger.LogInfo($"{message.UberId()} => {message.Value}"); 
         }
         catch (Exception ex)  {
             RandomiserMod.Logger.LogError($"handleUberStateUpdate: ${ex}");
